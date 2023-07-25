@@ -29,6 +29,7 @@ class circumference():
             self.circdw.remove()
         except:
             pass
+            #self.radius = random.randint(0, xmax-xmin)
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
         y_up = self.center[1] + circ
