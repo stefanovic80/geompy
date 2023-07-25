@@ -4,13 +4,13 @@ import numpy as np
 plt.ion()
 
 class plot():
-    def __init__(self, xmin = -1, xmax = 1, step = 200):# = [ t/200 for t in range(-200, 201)]):
+    def __init__(self, xmin = -1, xmax = 1, step = 200):
         x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
-        self.ax.set_xlim(xmin*1.2, xmax*1.2)
-        self.ax.set_ylim(xmin*1.2, xmax*1.2)
+        self.ax.set_xlim(xmin, xmax)
+        self.ax.set_ylim(xmin, xmax)
 
 xmin = int(input('xmin = \n '))
 xmax = int(input('xmax = \n '))
@@ -24,7 +24,12 @@ class circumference():
         self.circup = 0
         self.circdw = 0
     def plot(self, obj = picture, color = 'b' ):
-        #last = x[-1]**2
+        try:
+            self.circup.remove()
+            self.circdw.remove()
+        except:
+            pass
+
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
         y_up = self.center[1] + circ
         y_dw = self.center[1] - circ #circumference equation
