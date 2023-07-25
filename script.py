@@ -4,15 +4,18 @@ import numpy as np
 plt.ion()
 
 class plot():
-    def __init__(self, xmin = -200, xmax = 201):# = [ t/200 for t in range(-200, 201)]):
-        x = [t/abs(xmin) for t in range(xmin, xmax)]
+    def __init__(self, xmin = -1, xmax = 1, step = 200):# = [ t/200 for t in range(-200, 201)]):
+        x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
-        self.ax.set_xlim(-1.2, 1.2)
-        self.ax.set_ylim(-1.2, 1.2)
+        self.ax.set_xlim(xmin*1.2, xmax*1.2)
+        self.ax.set_ylim(xmin*1.2, xmax*1.2)
 
-picture = plot()
+xmin = int(input('xmin = \n '))
+xmax = int(input('xmax = \n '))
+step = int(input('step = \n '))
+picture = plot(xmin = xmin, xmax = xmax, step = step)
 
 class circumference():
     def __init__(self, radius = 1, center = [0, 0]):
