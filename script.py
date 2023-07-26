@@ -18,10 +18,24 @@ xmax = int(input('xmax = \n '))
 step = int(input('step = \n '))
 picture = plot(xmin = xmin, xmax = xmax, step = step)
 
+#class circumference():
+#    def __init__(self, radius = 1, center = [(xmin + xmax)/2, (xmax + xmin)/2]):
+#        self.radius = radius
+#        self.center = center
+#        self.circup = 0
+#        self.circdw = 0
+#    def plot(self, obj = picture, color = 'b' ):
+#        try:
+#            self.circup.remove()
+#            self.circdw.remove()
+#        except:
+#            pass
+#            #self.radius = random.randint(0, xmax-xmin)
+
 class circumference():
-    def __init__(self, radius = 1, center = [0, 0]):
-        self.radius = radius
-        self.center = center
+    def __init__(self, xmax = xmax, xmin = xmin):
+        self.radius = np.random.randint((xmax-xmin)/2)
+        self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
         self.circup = 0
         self.circdw = 0
     def plot(self, obj = picture, color = 'b' ):
@@ -31,6 +45,9 @@ class circumference():
         except:
             pass
             #self.radius = random.randint(0, xmax-xmin)
+
+
+
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
         y_up = self.center[1] + circ
