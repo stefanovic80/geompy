@@ -4,13 +4,14 @@ import numpy as np
 plt.ion()
 
 class plot():
-    def __init__(self, xmin = -1, xmax = 1, step = 200):
+    def __init__(self, xmin = -1, xmax = 1, step = 200, grid = False):
         x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
         self.ax.set_xlim(xmin, xmax)
         self.ax.set_ylim(xmin, xmax)
+        self.ax.grid(grid)
 
 xmin = int(input('xmin = \n '))
 xmax = int(input('xmax = \n '))
@@ -36,7 +37,8 @@ class circumference():
         y_dw = self.center[1] - circ #circumference equation
         self.circup, = obj.ax.plot(obj.x, y_up, linewidth=2, color = color)#, markersize=12)
         self.circdw, = obj.ax.plot(obj.x, y_dw, linewidth=2, color = color)
-
+        #[ value for value in A if np.isnan(value) != True]
+        return y_up, y_dw
 
 class straightLine():
     def __init__(self, angCoeff = np.random.randint(-20, 20), \
