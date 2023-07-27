@@ -77,3 +77,33 @@ class straightLine():
         return line
 
 
+
+
+
+
+
+
+
+
+
+class parabola():
+    def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
+           # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
+        self.xShift = np.random.randint(xmin, xmax)
+        self.yShift = np.random.randint(xmin, xmax)
+        self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
+        self.parabola = 0
+
+    def plot(self, obj = picture, color = 'b' ):
+        try:
+            self.parabola.remove()
+        except:
+            pass
+            #self.radius = random.randint(0, xmax-xmin)
+
+        parab = self.concavity*(obj.x - self.xShift)**2 + self.yShift
+        self.parabola, = obj.ax.plot(obj.x, parab, linewidth=2, color = color)#, markersize=12)
+        #[ value for value in A if np.isnan(value) != True]
+        return parab
+
+
