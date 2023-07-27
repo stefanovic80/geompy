@@ -57,8 +57,6 @@ class circumference():
 
 
 
-
-
 class straightLine():
     def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
            # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
@@ -79,20 +77,3 @@ class straightLine():
         return line
 
 
-
-
-
-
-
-
-
-
-
-class straightLineAt():
-    def __init__(self, angCoeff = np.random.randint(-20, 20), \
-            intercept = np.random.randint(-1, 1)/10):
-        self.angCoeff = angCoeff
-        self.intercept = intercept
-    def plot(self, obj = picture):
-        y = self.angCoeff*obj.x + self.intercept
-        straightLine, = obj.ax.plot(obj.x, y)
