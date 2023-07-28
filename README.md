@@ -63,7 +63,7 @@ change color
 
 `C1.plot( color = 'red')`
 
-![Alt Text](pictures/circumferenceDraw2.png
+![Alt Text](pictures/circumferenceDrawRed.png
 
 or 
 
