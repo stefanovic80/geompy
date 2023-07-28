@@ -4,7 +4,7 @@ The present project is thought to be a python tool to be used by high school stu
 
 Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Once you have it, than you can simply download the script.py file and run it on a python interpreter with the following command:
 
-run script.py
+`run script.py`
 
 at this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 12, with a step of 500.
 
@@ -17,11 +17,13 @@ Than you can plot one of the following geometric places
 Say you want to draw a circumference, than type
 
 `C1 = circumference()`
+
 `C1.plot()`
 
 that will do the job. The center and the radium circumference will be given by random values. If you want to manage a particular radius, say radius = 5, and/or particular couple of coordinates for the center, say [2, 5], than type:
 
 `C1.radius = 5`
+
 `C1.center = [2, 5]`
 
 and again
@@ -39,12 +41,14 @@ or
 In case you want to draw a straight line or a parabola, than do the some job with one of the following classes:
 
 `L1 = straightLine()`
+
 `L1.plot()`
 
 
 for a straight line
 
 `P1 = parabola()`
+
 `P1.plot()`
 
 for a parabola
