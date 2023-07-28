@@ -27,7 +27,7 @@ Than you can plot one of the following geometric places
 ###- Parabola
 
 
-## circumference
+## Random circumference
 
 `C1 = circumference()`
 
@@ -36,19 +36,24 @@ Than you can plot one of the following geometric places
 ![Alt Text](pictures/circumferenceDraw.png)
 
 
-A circumference with random center and random radius is given. Type
+
+
+# Circumference with specific center position and radius size
+
+
+
 
 `C1.radius = 5`
 
-to change the radius to 5, and 
+to change the radius to 5
 
 `C1.center = [2, 5]`
 
-to move the center to the point [2, 5]. Type
+to move the center to the point [2, 5]. 
 
 `C1.plot()`
 
-And you gonna have the circumference you need
+To modify the plot
 
 ![Alt Text](pictures/circumferenceDraw2.png)
 
