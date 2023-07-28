@@ -12,7 +12,7 @@ Once you have it, than you can simply download the script.py file and run it on 
 
 `run script.py`
 
-at this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 12, with a step of 500.
+at this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with a step of 500.
 
 
 ![Alt Text](pictures/cartesianPlane.png)
