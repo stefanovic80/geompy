@@ -82,10 +82,6 @@ class straightLine():
 
 
 
-
-
-
-
 class parabola():
     def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
            # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
@@ -106,4 +102,12 @@ class parabola():
         #[ value for value in A if np.isnan(value) != True]
         return parab
 
-
+#class straightLineCalc():
+#    def __init__(self, straightLine1, straightLine2):
+#        self.straightLineData1 = straightLineData1
+#        self.straightLineData2 = straightLineData2
+#        self.L1.angCoeff = L1.angCoeff
+#        self.L2.angCoeff = L2.angCoeff
+#    def angCoeffDiff(self):
+#        ang = np.arctan(self.L1.angCoeff) - np.arctan(self.L2.angCoeff)
+#        return ang

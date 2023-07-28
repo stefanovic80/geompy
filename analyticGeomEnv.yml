@@ -1,0 +1,10 @@
+name: analyticGeomEnv
+dependencies:
+  - python=3.10.12
+  - numpy
+  - matplotlib
+
+channels:
+  - conda-forge
+  - defaults
+
