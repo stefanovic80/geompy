@@ -6,11 +6,16 @@ Just ensure you have a fully working python environment with matplotlib and nump
 
 <b> Usage </b>
 
+
+
 Once you have it, than you can simply download the script.py file and run it on a python interpreter with the following command:
 
 `run script.py`
 
 at this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 12, with a step of 500.
+
+
+![Alt Text](pictures/cartesianPlane.png)
 
 
 Than you can plot one of the following geometric places
