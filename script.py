@@ -21,7 +21,7 @@ step = int(input('step = \n '))
 
 
 picture = plot(xmin = xmin, xmax = xmax, step = step)
-
+#picture as a "plot" class type object
 
 
 
