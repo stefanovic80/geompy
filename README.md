@@ -51,11 +51,11 @@ for a parabola
 
 clearly, straight lines or parabola do not have any radius or center. If you want to modify their position on the Cartesian Plane or their shape, than type
 
-P1.__dict__
+`P1.__dict__`
 
 or
 
-L1.__dict__
+`L1.__dict__`
 
 once replaced the random attributes chosen from the software, than plot again
 
