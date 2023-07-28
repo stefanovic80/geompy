@@ -1,8 +1,12 @@
 The present project is thought to be a python tool to be used by high school students dealing with analytical geometry. It's already plenty of software which shows geometrical shapes, but in this case the student has to manage a python interpreter which I believe it's an opportunity to start managing computer programming issues.
 
-<h> Installation </h>
+<b> Installation </b>
 
-Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Once you have it, than you can simply download the script.py file and run it on a python interpreter with the following command:
+Just ensure you have a fully working python environment with matplotlib and numpy installed on it. 
+
+<b> Usage </b>
+
+Once you have it, than you can simply download the script.py file and run it on a python interpreter with the following command:
 
 `run script.py`
 
