@@ -16,13 +16,13 @@ Than you can plot one of the following geometric places
 
 Say you want to draw a circumference, than type
 
-C1 = circumference()
-C1.plot()
+`C1 = circumference()`
+`C1.plot()`
 
 that will do the job. The center and the radium circumference will be given by random values. If you want to manage a particular radius, say radius = 5, and/or particular couple of coordinates for the center, say [2, 5], than type:
 
-`C1.radius = 5
-C1.center = [2, 5]`
+`C1.radius = 5`
+`C1.center = [2, 5]`
 
 and again
 
@@ -38,14 +38,14 @@ or
 
 In case you want to draw a straight line or a parabola, than do the some job with one of the following classes:
 
-`L1 = straightLine()
-L1.plot()`
+`L1 = straightLine()`
+`L1.plot()`
 
 
 for a straight line
 
-`P1 = parabola()
-P1.plot()`
+`P1 = parabola()`
+`P1.plot()`
 
 for a parabola
 
