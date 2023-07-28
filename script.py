@@ -18,7 +18,7 @@ class plot():
 xmin = int(input('xmin = \n '))
 xmax = int(input('xmax = \n '))
 step = int(input('step = \n '))
-#grid = bool(input('1 , 0 = no grid \n')
+
 
 picture = plot(xmin = xmin, xmax = xmax, step = step)
 
@@ -37,9 +37,6 @@ class circumference():
             self.circdw.remove()
         except:
             pass
-            #self.radius = random.randint(0, xmax-xmin)
-
-
 
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
@@ -49,8 +46,6 @@ class circumference():
         self.circdw, = obj.ax.plot(obj.x, y_dw, linewidth=2, color = color)
         #[ value for value in A if np.isnan(value) != True]
         return y_up, y_dw
-
-
 
 
 
@@ -75,7 +70,6 @@ class straightLine():
         self.straightLine, = obj.ax.plot(obj.x, line, linewidth=2, color = color)#, markersize=12)
         #[ value for value in A if np.isnan(value) != True]
         return line
-
 
 
 
