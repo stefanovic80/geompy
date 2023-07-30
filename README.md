@@ -83,9 +83,7 @@ L1 is an object of "straightLine" class type which choose random values for the 
 
 L1.plot() draws the geometrical locus
 
-
-
-
+![Alt Text](pictures/straightLine.png)
 
 
 # Draw a Parabola
@@ -105,7 +103,7 @@ P1 is an object of "parabola" class type which choose random values for the para
 
 P1.plot() draws the geometrical locus
 
-
+![Alt Text](pictures/parabola.png)
 
 
 # How to see geometrical locus parameters
