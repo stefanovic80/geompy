@@ -27,33 +27,36 @@ Than you can plot one of the following geometric places
 ### - Parabola
 
 
-## Random circumference
+# Draw a circumference
+
+Type
 
 `C1 = circumference()`
 
+"C1" is a "circumference" class type. It choice a random value for the circumference radius (C1.radius) and a couple of random values (C1.center) for x and y circumference center point
+
 `C1.plot()`
+
+the .plot() method draw the circumference
 
 ![Alt Text](pictures/circumferenceDraw.png)
 
 
 
 
-# Circumference with specific center position and radius size
+## Choose values for the circumference radius size and center coordinates
 
 
 
 
 `C1.radius = 5`
 
-to change the radius to 5
-
 `C1.center = [2, 5]`
 
-to move the center to the point [2, 5]. 
+Draw the desired circumference 
 
 `C1.plot()`
 
-To modify the plot
 
 ![Alt Text](pictures/circumferenceDraw2.png)
 
@@ -69,33 +72,47 @@ or
 
 `C1.plot( color = 'black')`
 
-In case you want to draw a straight line or a parabola, than do the some job with one of the following classes:
+# Draw a straight line
+
 
 `L1 = straightLine()`
 
+L1 is an object of "straightLine" class type which choose random values for the angular coefficient (L1.angCoeff) and the intercept (L1.intercept)
+
 `L1.plot()`
 
+L1.plot() draws the geometrical locus
 
-for a straight line
+
+
+
+
+
+# Draw a Parabola
+
 
 `P1 = parabola()`
 
+P1 is an object of "parabola" class type which choose random values for the parabola parameters:
+
+- x-shift (P1.xShift)
+
+- y-shift (P1.yShift)
+
+- concavity (P1.concavity)
+
 `P1.plot()`
 
-for a parabola
+P1.plot() draws the geometrical locus
 
-clearly, straight lines or parabola do not have any radius or center. If you want to modify their position on the Cartesian Plane or their shape, than type
+
+
+
+# How to see geometrical locus parameters
+ 
+`C1.__dict__`
 
 `P1.__dict__`
 
-or
-
 `L1.__dict__`
 
-once replaced the random attributes chosen from the software, than plot again
-
-`P1.plot()`
-
-or
-
-`L1.plot()`
