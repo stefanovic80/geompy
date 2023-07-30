@@ -76,15 +76,15 @@ or
 
 # Delete a circumference
 
-According with previous notes, we suppose the drawn circumference is a "C1" object. 
+According with previous notes, we suppose the drawn circumference is a "C1" object. Than
 
 `C1.circup.remove()`
 
-removes the upper part of the locus
+removes the upper side of the circomference, while
 
 `C1.circdw.remove()`
 
-removes the down part of the locus
+removes the down side of it.
 
 # Draw a (random) straight line
 
@@ -118,6 +118,8 @@ choose the intercept
 According with previous notes, we suppose the drawn straight line is a "L1" object. Than
 
 `L1.straightLine.remove()`
+
+removes the straight line you previously have drawn.
 
 # Draw a (random) Parabola
 
@@ -164,6 +166,8 @@ draw the parabola
 According with previous notes, we suppose the drawn parabola is a "P1" object. Than
 
 `P1.parabola.remove()`
+
+removes the parabola you previously have drawn.
 
 # How to see geometrical locus parameters
  
