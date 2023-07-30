@@ -9,6 +9,8 @@ Just ensure you have a fully working python environment with matplotlib and nump
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
+<!conda env create -f analyticGeomEnv.yml>
+
 # Usage
 
 
