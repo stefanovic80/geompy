@@ -64,15 +64,7 @@ Draw the desired circumference
 
 
 
-change color
 
-`C1.plot( color = 'red')`
-
-![Alt Text](pictures/circumferenceDrawRed.png)
-
-or 
-
-`C1.plot( color = 'black')`
 
 # Delete a circumference
 
@@ -85,6 +77,20 @@ removes the upper side of the circomference, while
 `C1.circdw.remove()`
 
 removes the down side of it.
+
+
+# Change color
+
+Say you have drawn a circumference by using a "circunference method" named "C1". To change it's color to red type this
+
+`C1.plot( color = 'red')`
+
+![Alt Text](pictures/circumferenceDrawRed.png)
+
+to change to "black" type
+
+`C1.plot( color = 'black')`
+
 
 # Draw a (random) straight line
 
@@ -168,6 +174,11 @@ According with previous notes, we suppose the drawn parabola is a "P1" object. T
 `P1.parabola.remove()`
 
 removes the parabola you previously have drawn.
+
+
+
+
+
 
 # How to see geometrical locus parameters
  
