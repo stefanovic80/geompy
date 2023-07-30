@@ -12,7 +12,7 @@ Just ensure you have a fully working python environment with matplotlib and nump
 # Usage
 
 
-At this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps.
+At this stage the interpreter will ask you to choose the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps.
 
 
 ![Alt Text](pictures/cartesianPlane.png)
@@ -27,13 +27,13 @@ Than you can plot one of the following geometric places
 ### - Parabola
 
 
-# Draw a circumference
+# Draw a (random) circumference
 
 Type
 
 `C1 = circumference()`
 
-"C1" is a "circumference" class type. It choice a random value for the circumference radius (C1.radius) and a couple of random values (C1.center) for x and y circumference center point
+"C1" is a "circumference" class type. It choose a random value for the circumference radius (C1.radius) and a couple of random values (C1.center) for x and y circumference center point
 
 `C1.plot()`
 
@@ -44,12 +44,14 @@ the .plot() method draw the circumference
 
 
 
-## Choose values for the circumference radius size and center coordinates
+## Draw a specific circumference
 
 
-
+choose the radius
 
 `C1.radius = 5`
+
+choose the center position
 
 `C1.center = [2, 5]`
 
@@ -71,6 +73,18 @@ change color
 or 
 
 `C1.plot( color = 'black')`
+
+# Delete a circumference
+
+According with previous notes, we suppose the drawn circumference is a "C1" object. 
+
+`C1.circup.remove()`
+
+removes the upper part of the locus
+
+`C1.circdw.remove()`
+
+removes the down part of the locus
 
 # Draw a straight line
 
