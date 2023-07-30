@@ -63,7 +63,17 @@ Draw the desired circumference
 ![Alt Text](pictures/circumferenceDraw2.png)
 
 
+# Change color
 
+Say you have drawn a circumference by using a "circunference method" named "C1". To change it's color to red type this
+
+`C1.plot( color = 'red')`
+
+![Alt Text](pictures/circumferenceDrawRed.png)
+
+to change to "black" type
+
+`C1.plot( color = 'black')`
 
 
 # Delete a circumference
@@ -79,17 +89,7 @@ removes the upper side of the circomference, while
 removes the down side of it.
 
 
-# Change color
 
-Say you have drawn a circumference by using a "circunference method" named "C1". To change it's color to red type this
-
-`C1.plot( color = 'red')`
-
-![Alt Text](pictures/circumferenceDrawRed.png)
-
-to change to "black" type
-
-`C1.plot( color = 'black')`
 
 
 # Draw a (random) straight line
