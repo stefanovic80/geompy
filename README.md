@@ -86,7 +86,7 @@ removes the upper part of the locus
 
 removes the down part of the locus
 
-# Draw a straight line
+# Draw a (random) straight line
 
 
 `L1 = straightLine()`
@@ -98,6 +98,19 @@ L1 is an object of "straightLine" class type which choose random values for the 
 L1.plot() draws the geometrical locus
 
 ![Alt Text](pictures/straightLine.png)
+
+
+## Draw a specific circumference
+
+choose the angular coefficient
+
+`L1.angCoeff = 6`
+
+choose the intercept
+
+`L1.intercept = 10`
+
+![Alt Text](pictures/straightLine2.png)
 
 
 # Draw a Parabola
