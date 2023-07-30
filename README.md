@@ -113,7 +113,7 @@ choose the intercept
 ![Alt Text](pictures/straightLine2.png)
 
 
-# Delete a straight line
+## Delete a straight line
 
 According with previous notes, we suppose the drawn straight line is a "L1" object. Than
 
@@ -139,7 +139,7 @@ P1.plot() draws the geometrical locus
 ![Alt Text](pictures/parabola.png)
 
 
-# Draw a specific parabola
+## Draw a specific parabola
 
 choose an x-Shift of 
 
@@ -159,7 +159,7 @@ draw the parabola
 
 ![Alt Text](pictures/parabola2.png)
 
-# Delete a parabola
+## Delete a parabola
 
 According with previous notes, we suppose the drawn parabola is a "P1" object. Than
 
