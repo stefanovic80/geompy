@@ -1,18 +1,18 @@
-The present project is thought to be a python tool to be used by high school students dealing with analytical geometry. It's already plenty of software which shows geometrical shapes, but in this case the student has to manage a python interpreter which I believe it's an opportunity to start managing computer programming issues.
+This is meant to be the occasion for high school students to start over computer programming for scientific applications. Particularly, it's a tool for visualizing locus in analytical geometry by using python. 
 
-<b> Installation </b>
+# Installation
 
-Just ensure you have a fully working python environment with matplotlib and numpy installed on it. 
+Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Than download the script.py and run it on a python interprete, such as ipython
+
+`run script.py`
+
+![Alt Text](pictures/pythonInterpreter.png)
+
 
 # Usage
 
 
-
-Once you have it, than you can simply download the script.py file and run it on a python interpreter with the following command:
-
-`run script.py`
-
-at this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps.
+At this stage the interpreter will ask you to choice the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps.
 
 
 ![Alt Text](pictures/cartesianPlane.png)
@@ -24,7 +24,7 @@ Than you can plot one of the following geometric places
 
 ### - Straight Line
 
-###- Parabola
+### - Parabola
 
 
 ## Random circumference
