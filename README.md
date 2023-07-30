@@ -113,7 +113,7 @@ choose the intercept
 ![Alt Text](pictures/straightLine2.png)
 
 
-# Draw a Parabola
+# Draw a (random) Parabola
 
 
 `P1 = parabola()`
@@ -132,6 +132,26 @@ P1.plot() draws the geometrical locus
 
 ![Alt Text](pictures/parabola.png)
 
+
+# Draw a specific parabola
+
+choose an x-Shift of 
+
+`P1.xShift = 5`
+
+choose a y-Shift of 0
+
+`P1.YShift = 0`
+
+choose a concavity equal to 0.5
+
+`P1.concavity = 0.5`
+
+draw the parabola
+
+`P1.plot()`
+
+![Alt Text](pictures/parabola2.png)
 
 # How to see geometrical locus parameters
  
