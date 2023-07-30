@@ -100,7 +100,7 @@ L1.plot() draws the geometrical locus
 ![Alt Text](pictures/straightLine.png)
 
 
-## Draw a specific circumference
+## Draw a specific straight line
 
 choose the angular coefficient
 
@@ -112,6 +112,12 @@ choose the intercept
 
 ![Alt Text](pictures/straightLine2.png)
 
+
+# Delete a straight line
+
+According with previous notes, we suppose the drawn straight line is a "L1" object. Than
+
+`L1.straightLine.remove()`
 
 # Draw a (random) Parabola
 
@@ -152,6 +158,12 @@ draw the parabola
 `P1.plot()`
 
 ![Alt Text](pictures/parabola2.png)
+
+# Delete a parabola
+
+According with previous notes, we suppose the drawn parabola is a "P1" object. Than
+
+`P1.parabola.remove()`
 
 # How to see geometrical locus parameters
  
