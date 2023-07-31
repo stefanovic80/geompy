@@ -31,13 +31,16 @@ class circumference():
         self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
         self.circup = 0
         self.circdw = 0
-    def plot(self, obj = picture, color = 'b' ):
+    
+
+    def remove(self, obj = picture):
         try:
+            self.circdw.remove()    
             self.circup.remove()
-            self.circdw.remove()
         except:
             pass
-
+    def plot(self, obj = picture, color = 'b' ):
+        self.remove(self)
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
         y_up = self.center[1] + circ
@@ -47,11 +50,6 @@ class circumference():
         #[ value for value in A if np.isnan(value) != True]
         return y_up, y_dw
 
-
-
-
-
-
 class straightLine():
     def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
            # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
@@ -59,12 +57,14 @@ class straightLine():
         self.intercept = np.random.randint(xmin, xmax)
         self.strightLine = 0
 
-    def plot(self, obj = picture, color = 'b' ):
+    def remove(self, obj = picture):
         try:
             self.straightLine.remove()
         except:
             pass
-            #self.radius = random.randint(0, xmax-xmin)
+
+    def plot(self, obj = picture, color = 'b' ):
+        self.remove(self)
 
         line = self.angCoeff*obj.x + self.intercept
         self.straightLine, = obj.ax.plot(obj.x, line, linewidth=2, color = color)#, markersize=12)
@@ -84,12 +84,16 @@ class parabola():
         self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
         self.parabola = 0
 
-    def plot(self, obj = picture, color = 'b' ):
+
+    def remove(self, obj = picture):
         try:
             self.parabola.remove()
         except:
             pass
-            #self.radius = random.randint(0, xmax-xmin)
+
+
+    def plot(self, obj = picture, color = 'b' ):
+        self.remove(self)
 
         parab = self.concavity*(obj.x - self.xShift)**2 + self.yShift
         self.parabola, = obj.ax.plot(obj.x, parab, linewidth=2, color = color)#, markersize=12)
