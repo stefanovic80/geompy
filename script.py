@@ -29,10 +29,10 @@ class circumference():
     def __init__(self, xmax = xmax, xmin = xmin):
         self.radius = np.random.randint((xmax-xmin)/2)
         self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
-        self.circup = 0
-        self.circdw = 0
-    
-
+        self.circup = None
+        self.circdw = None
+        self.data = None
+        
     def remove(self, obj = picture):
         try:
             self.circdw.remove()    
@@ -43,19 +43,20 @@ class circumference():
         self.remove(self)
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
-        y_up = self.center[1] + circ
-        y_dw = self.center[1] - circ #circumference equation
-        self.circup, = obj.ax.plot(obj.x, y_up, linewidth=2, color = color)#, markersize=12)
-        self.circdw, = obj.ax.plot(obj.x, y_dw, linewidth=2, color = color)
-        #[ value for value in A if np.isnan(value) != True]
-        return y_up, y_dw
+        self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
+        self.circup, = obj.ax.plot(obj.x, self.data[0], linewidth=2, color = color)#, markersize=12)
+
+        self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
+        self.circdw, = obj.ax.plot(obj.x, self.data[1], linewidth=2, color = color)
+
 
 class straightLine():
     def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
            # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
         self.angCoeff = np.random.randint(-20, 20)
         self.intercept = np.random.randint(xmin, xmax)
-        self.strightLine = 0
+        self.strightLine = None
+        self.data = None
 
     def remove(self, obj = picture):
         try:
@@ -66,13 +67,8 @@ class straightLine():
     def plot(self, obj = picture, color = 'b' ):
         self.remove(self)
 
-        line = self.angCoeff*obj.x + self.intercept
-        self.straightLine, = obj.ax.plot(obj.x, line, linewidth=2, color = color)#, markersize=12)
-        #[ value for value in A if np.isnan(value) != True]
-        return line
-
-
-
+        self.data = self.angCoeff*obj.x + self.intercept
+        self.straightLine, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)#, markersize=12)
 
 
 
@@ -82,8 +78,8 @@ class parabola():
         self.xShift = np.random.randint(xmin, xmax)
         self.yShift = np.random.randint(xmin, xmax)
         self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
-        self.parabola = 0
-
+        self.parabola = None
+        self.data = None
 
     def remove(self, obj = picture):
         try:
@@ -95,10 +91,8 @@ class parabola():
     def plot(self, obj = picture, color = 'b' ):
         self.remove(self)
 
-        parab = self.concavity*(obj.x - self.xShift)**2 + self.yShift
-        self.parabola, = obj.ax.plot(obj.x, parab, linewidth=2, color = color)#, markersize=12)
-        #[ value for value in A if np.isnan(value) != True]
-        return parab
+        self.data = self.concavity*(obj.x - self.xShift)**2 + self.yShift
+        self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)#, markersize=12)
 
 #class straightLineCalc():
 #    def __init__(self, straightLine1, straightLine2):
