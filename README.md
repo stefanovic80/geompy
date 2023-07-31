@@ -20,7 +20,7 @@ At this stage the interpreter will ask you to choose the size of a Cartesian Pla
 ![Alt Text](pictures/cartesianPlane.png)
 
 
-Than you can plot one of the following geometric places
+Than you can plot one of the following geometric loci
 
 ### - Circomference
 
