@@ -4,21 +4,24 @@ import numpy as np
 plt.ion()
 
 class plot():
-    def __init__(self, xmin = -1, xmax = 1, step = 200):# = True):
+    def __init__(self, xmin = -1, xmax = 1, step = 200, grid = False):
         x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
         self.ax.set_xlim(xmin, xmax)
         self.ax.set_ylim(xmin, xmax)
-        self.ax.grid(False)
-    #def set_grid(self, grid = True):
-    #    self.ax.grid(grid)
+        #self.ax.grid(False)
+        self.ax.grid(grid)
+    def grid(self, grid = True):
+        self.ax.grid(grid)
+        #self.ax.set_xticks(self.x)
+        #self.ax.set_xticklabels([])
 
 xmin = int(input('xmin = \n '))
 xmax = int(input('xmax = \n '))
 step = int(input('step = \n '))
-
+#grid = bool(input('grid = \n '))
 
 picture = plot(xmin = xmin, xmax = xmax, step = step)
 #picture as a "plot" class type object

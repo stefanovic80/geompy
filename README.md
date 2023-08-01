@@ -9,7 +9,17 @@ Just ensure you have a fully working python environment with matplotlib and nump
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-<!conda env create -f analyticGeomEnv.yml>
+In case of problems of compatibility due to different numpy and or matplotlib versions, than create a 'analyticGeomEnv' conda environment
+
+
+`conda env create -f analyticGeomEnv.yml`
+
+it may take time, depending on internet connection speed. Activate it
+
+`conda activate analyticGeomEnv`
+
+run script.py on it.
+
 
 # Usage
 
