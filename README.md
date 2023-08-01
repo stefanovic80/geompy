@@ -30,6 +30,14 @@ At this stage the interpreter will ask you to choose the size of a Cartesian Pla
 ![Alt Text](pictures/cartesianPlane.png)
 
 
+You can additionally add a grid by typing
+
+`picture.grid(True)`
+
+or remove it
+
+`picture.grid(False)`
+
 Than you can plot one of the following geometric loci
 
 ### - Circomference
