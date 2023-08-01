@@ -97,6 +97,8 @@ class parabola():
         self.data = self.concavity*(obj.x - self.xShift)**2 + self.yShift
         self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)#, markersize=12)
 
+# a class to save ALL data and open it again in python and/or libreOffice Calc
+
 #class straightLineCalc():
 #    def __init__(self, straightLine1, straightLine2):
 #        self.straightLineData1 = straightLineData1
