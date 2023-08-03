@@ -3,13 +3,14 @@ This is meant to be the occasion for high school students to start over computer
 
 
 
-### - [Circomference](#Draw-a-random-circumference)
-
-### - [Straight Line](#Draw-a-random-straight-line )
-
-### - [Parabola]( #Draw-a-random-Parabola )
-
  
+
+### - [Circumference](#draw-a-random-circumference)
+
+### - [Straight Line](#draw-a-random-straight-line)
+
+### - [Parabola](#draw-a-random-parabola)
+
 
 # Installation
 
