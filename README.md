@@ -2,14 +2,14 @@ This is meant to be the occasion for high school students to start over computer
 
 # Installation
 
-Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Than download the script.py and run it on a python interprete, such as ipython
+Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Than download the script.py and run it on a python interpreter, such as ipython
 
 `run script.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-In case of problems of compatibility due to different numpy and or matplotlib versions, than create a 'analyticGeomEnv' conda environment
+In case of dysfunctions, check numpy and/or matplotlib versions and create a 'analyticGeomEnv' conda environment
 
 
 `conda env create -f analyticGeomEnv.yml`
@@ -24,7 +24,7 @@ run script.py on it.
 # Usage
 
 
-At this stage the interpreter will ask you to choose the size of a Cartesian Plane. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps.
+Choose the lowest and highest values for the two Cartesian axes. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps, than type as reported in the following picture
 
 
 ![Alt Text](pictures/cartesianPlane.png)
@@ -57,10 +57,34 @@ Type
 
 `C1.plot()`
 
-the .plot() method draw the circumference
+the .plot() method draw the circumference. 
 
 ![Alt Text](pictures/circumferenceDraw.png)
 
+Optionally you can choose the color by adding an argument to the .plot method 
+
+`C1.plot( color = 'red' )`
+
+or 
+
+`C1.plot( color = 'r' )`
+
+
+- ``'b'``          blue
+
+- ``'g'``          green
+
+- ``'r'``          red
+
+- ``'c'``          cyan
+
+- ``'m'``          magenta
+
+- ``'y'``          yellow
+
+- ``'k'``          black
+
+- ``'w'``          white
 
 
 
