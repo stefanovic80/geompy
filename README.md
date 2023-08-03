@@ -1,4 +1,13 @@
-This is meant to be the occasion for high school students to start over computer programming for scientific applications. Particularly, it's a tool for visualizing locus in analytical geometry by using python. 
+This is meant to be the occasion for high school students to start over computer programming for scientific applications. Particularly, it's a tool for visualizing geometric loci by using python such as
+
+
+### - Circomference
+
+### - Straight Line
+
+### - Parabola
+
+ 
 
 # Installation
 
@@ -38,13 +47,8 @@ or remove it
 
 `picture.grid(False)`
 
-Than you can plot one of the following geometric loci
 
-### - Circomference
 
-### - Straight Line
-
-### - Parabola
 
 
 # Draw a (random) circumference
