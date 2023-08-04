@@ -5,13 +5,13 @@ plt.ion()
 
 class plot():
     def __init__(self, xmin = -1, xmax = 1, step = 200, grid = False):
+    
         x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
         self.ax.set_xlim(xmin, xmax)
         self.ax.set_ylim(xmin, xmax)
-        #self.ax.grid(False)
         self.ax.grid(grid)
     def grid(self, grid = True):
         self.ax.grid(grid)
@@ -30,6 +30,13 @@ picture = plot(xmin = xmin, xmax = xmax, step = step)
 
 class circumference():
     def __init__(self, xmax = xmax, xmin = xmin):
+    
+    	#for u in self.__dict__:
+    	#	try:
+    	#		u.remove()
+    	#	except:
+    	#		pass
+    
         self.radius = np.random.randint((xmax-xmin)/2)
         self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
         self.circup = None
@@ -42,8 +49,14 @@ class circumference():
             self.circup.remove()
         except:
             pass
+
     def plot(self, obj = picture, color = 'b' ):
         self.remove(self)
+        #try:
+        #    self.circdw.remove()
+        #    self.circup.remove()
+        #except:
+        #    pass
 
         circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
@@ -54,8 +67,8 @@ class circumference():
 
 
 class straightLine():
-    def __init__(self, xmax = xmax, xmin = xmin):#,  angCoeff = np.random.randint(-20, 20), \
-           # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
+    def __init__(self, xmax = xmax, xmin = xmin):
+
         self.angCoeff = np.random.randint(-20, 20)
         self.intercept = np.random.randint(xmin, xmax)
         self.idxMin = None
@@ -72,23 +85,24 @@ class straightLine():
     def plot(self, obj = picture, color = 'b',\
             xMin = picture.x[0], xMax = picture.x[-1]):
         self.remove(self)
+        # obj.x[0] do not work: a bug has to be fixed
         idxMin = np.where( picture.x >= xMin)[0][0]
         idxMax = np.where( picture.x >= xMax)[0][0]
         x = obj.x[idxMin: idxMax] # a local copy of x values
         self.data = self.angCoeff*x + self.intercept
-        self.straightLine, = obj.ax.plot(x, self.data, linewidth=2, color = color)#, markersize=12)
+        self.straightLine, = obj.ax.plot(x, self.data, linewidth=2, color = color)
     
 
 class parabola():
-    def __init__(self, xmax = xmax, xmin = xmin, extVar = eval("list(globals().keys() )") ):#,  angCoeff = np.random.randint(-20, 20), \
-           # intercept = np.random.randint(xmin, xmax ), obj = picture, color = 'b'  ):
+    def __init__(self, xmax = xmax, xmin = xmin, extVar = eval("list(globals().keys() )") ):
+
         self.xShift = np.random.randint(xmin, xmax)
         self.yShift = np.random.randint(xmin, xmax)
         self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
         self.parabola = None
         self.data = None
         self.name =  extVar  #[-2]
-        #self.name = name
+
 
     def remove(self, obj = picture):
         try:
@@ -101,23 +115,10 @@ class parabola():
         self.remove(self)
 
         self.data = self.concavity*(obj.x - self.xShift)**2 + self.yShift
-        self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)#, markersize=12)
-
+        self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)
 
 
 
 
 #list(globals().keys())[-2]
 
-
-# a class to save ALL data and open it again in python and/or libreOffice Calc
-
-#class straightLineCalc():
-#    def __init__(self, straightLine1, straightLine2):
-#        self.straightLineData1 = straightLineData1
-#        self.straightLineData2 = straightLineData2
-#        self.L1.angCoeff = L1.angCoeff
-#        self.L2.angCoeff = L2.angCoeff
-#    def angCoeffDiff(self):
-#        ang = np.arctan(self.L1.angCoeff) - np.arctan(self.L2.angCoeff)
-#        return ang
