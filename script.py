@@ -30,13 +30,8 @@ picture = plot(xmin = xmin, xmax = xmax, step = step)
 
 class circumference():
     def __init__(self, xmax = xmax, xmin = xmin):
-    
-    	#for u in self.__dict__:
-    	#	try:
-    	#		u.remove()
-    	#	except:
-    	#		pass
-    
+
+        #self.remove(self)
         self.radius = np.random.randint((xmax-xmin)/2)
         self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
         self.circup = None
@@ -48,7 +43,7 @@ class circumference():
             self.circdw.remove()    
             self.circup.remove()
         except:
-            pass
+            print(".remove() not working")
 
     def plot(self, obj = picture, color = 'b' ):
         self.remove(self)
@@ -66,19 +61,19 @@ class circumference():
         self.circdw, = obj.ax.plot(obj.x, self.data[1], linewidth=2, color = color)
 
 
-class straightLine():
+class segment():
     def __init__(self, xmax = xmax, xmin = xmin):
 
         self.angCoeff = np.random.randint(-20, 20)
         self.intercept = np.random.randint(xmin, xmax)
         self.idxMin = None
         self.idxMax = None
-        self.strightLine = None
+        self.segment = None
         self.data = None
 
     def remove(self, obj = picture):
         try:
-            self.straightLine.remove()
+            self.segment.remove()
         except:
             pass
 
@@ -86,11 +81,12 @@ class straightLine():
             xMin = picture.x[0], xMax = picture.x[-1]):
         self.remove(self)
         # obj.x[0] do not work: a bug has to be fixed
-        idxMin = np.where( picture.x >= xMin)[0][0]
-        idxMax = np.where( picture.x >= xMax)[0][0]
+        print(obj.x)
+        idxMin = np.where( obj.x >= xMin)[0][0]
+        idxMax = np.where( obj.x >= xMax)[0][0]
         x = obj.x[idxMin: idxMax] # a local copy of x values
         self.data = self.angCoeff*x + self.intercept
-        self.straightLine, = obj.ax.plot(x, self.data, linewidth=2, color = color)
+        self.segment, = obj.ax.plot(x, self.data, linewidth=2, color = color)
     
 
 class parabola():
@@ -118,7 +114,8 @@ class parabola():
         self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)
 
 
-
+#class Triangle(Segment):
+#    def __init__(self, obj = picture, 
 
 #list(globals().keys())[-2]
 
