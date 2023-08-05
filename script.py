@@ -115,16 +115,15 @@ class parabola():
 
 
 class triangle(segment):
-    def __init__(self, obj = picture):#, xmin, xmax):
-        super.__init__(angCoeff, intercept)
+    def __init__(self):#, xmin, xmax):
+    	super().__init__()
+        #super().__init__()
     
-    def plot():
-        S1 = segment()
-        S2 = segment()
-        S3 = segment()
-        S1.plot()
-        S2.plot()
-        S3.plot()
+    def plot(self, obj = picture, color = 'b'):
+        
+        self.data = self.angCoeff*obj.x + self.intercept
+        self.segment, = obj.ax.plot(obj.x, self.data)
+
 
 #list(globals().keys())[-2]
 
