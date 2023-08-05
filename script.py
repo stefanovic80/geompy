@@ -116,8 +116,8 @@ class parabola():
 
 class triangle(segment):
     def __init__(self):#, xmin, xmax):
-    	super().__init__()
-        #super().__init__()
+        segment().__init__()
+        super().__init__()
     
     def plot(self, obj = picture, color = 'b'):
         
