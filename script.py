@@ -114,8 +114,17 @@ class parabola():
         self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)
 
 
-#class Triangle(Segment):
-#    def __init__(self, obj = picture, 
+class triangle(segment):
+    def __init__(self, obj = picture):#, xmin, xmax):
+        super.__init__(angCoeff, intercept)
+    
+    def plot():
+        S1 = segment()
+        S2 = segment()
+        S3 = segment()
+        S1.plot()
+        S2.plot()
+        S3.plot()
 
 #list(globals().keys())[-2]
 
