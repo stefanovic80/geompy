@@ -3,11 +3,16 @@ import numpy as np
 
 plt.ion()
 
-class plot():
-    def __init__(self, xmin = -1, xmax = 1, step = 200, grid = False):
+class plotSett():
+    def __init__(self, xmin = -10, xmax = 10, step = 200, grid = False):
     
         x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
         self.x = np.array(x)
+        
+        self.xmin = self.x[0]
+        self.xmax = self.x[-1]
+        self.step = 200
+
         self.fig = plt.figure(figsize =(9, 9))
         self.ax = self.fig.add_subplot(111)
         self.ax.set_xlim(xmin, xmax)
@@ -23,44 +28,42 @@ xmax = int(input('xmax = \n '))
 step = int(input('step = \n '))
 #grid = bool(input('grid = \n '))
 
-picture = plot(xmin = xmin, xmax = xmax, step = step)
+#picture = plot(xmin = xmin, xmax = xmax, step = step)
 #picture as a "plot" class type object
 
 
 
-class circumference():
-    def __init__(self, xmax = xmax, xmin = xmin):
-
+class circumference(plotSett):
+    def __init__(self):
+        
+        super().__init__()
         #self.remove(self)
-        self.radius = np.random.randint((xmax-xmin)/2)
-        self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
+        self.radius = np.random.randint((self.xmax-self.xmin)/2)
+        self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
         self.circup = None
         self.circdw = None
         self.data = None
         
-    def remove(self, obj = picture):
+    def remove(self):
         try:
             self.circdw.remove()    
             self.circup.remove()
         except:
             print(".remove() not working")
 
-    def plot(self, obj = picture, color = 'b' ):
-        self.remove(self)
-        #try:
-        #    self.circdw.remove()
-        #    self.circup.remove()
-        #except:
-        #    pass
+    def plot(self, color = 'b' ):
+        #self.remove(self)
 
-        circ = np.sqrt( self.radius**2 - (obj.x- self.center[0])**2)#circumference equation
+        circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = obj.ax.plot(obj.x, self.data[0], linewidth=2, color = color)#, markersize=12)
+        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color)#, markersize=12)
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
-        self.circdw, = obj.ax.plot(obj.x, self.data[1], linewidth=2, color = color)
+        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
 
 
+
+"""
 class segment():
     def __init__(self, xmax = xmax, xmin = xmin):
 
@@ -126,4 +129,4 @@ class triangle(segment):
 
 
 #list(globals().keys())[-2]
-
+"""
