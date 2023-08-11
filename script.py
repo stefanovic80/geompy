@@ -3,12 +3,21 @@ import numpy as np
 
 plt.ion()
 
+
+
 class plotSett():
-    
+    #xmin = -10
+    #xmax = 10
+    #step = 500
+
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
 
+    #x = [t/abs(plotSett.step) for t in range(xmin*plotSett.step, xmax*plotSett.step + 1, 1)]
+    #x = np.array(x)
+
 """
+
     def __init__(self, xmin = -10, xmax = 10, step = 200, grid = False):
 
 
@@ -31,9 +40,9 @@ class plotSett():
 """
 
 
-xmin = int(input('xmin = \n '))
-xmax = int(input('xmax = \n '))
-step = int(input('step = \n '))
+#xmin = int(input('xmin = \n '))
+#xmax = int(input('xmax = \n '))
+#step = int(input('step = \n '))
 #grid = bool(input('grid = \n '))
 
 #picture = plot(xmin = xmin, xmax = xmax, step = step)
@@ -46,8 +55,11 @@ class circumference(plotSett):
         
         super().__init__()
         #self.remove(self)
-        self.radius = np.random.randint((xmax-xmin)/2)
-        self.center = [np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)]
+        self.xmin = xmin 
+        self.xmax = xmax
+
+        self.radius = np.random.randint((self.xmax-self.xmin)/2)
+        self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
         self.circup = None
         self.circdw = None
         self.data = None
@@ -61,8 +73,10 @@ class circumference(plotSett):
 
     def plot(self, color = 'b' ):
         #self.remove(self)
+        
+        step = 500
 
-        x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
+        x = [t/abs(step) for t in range(self.xmin*step, self.xmax*step + 1, 1)]
         x = np.array(x)
 
         circ = np.sqrt( self.radius**2 - (x- self.center[0])**2)#circumference equation
