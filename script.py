@@ -6,57 +6,23 @@ plt.ion()
 
 
 class plotSett():
-    #xmin = -10
-    #xmax = 10
-    #step = 500
-
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
+    def __init__(self, xmin = -10, xmax = 10, step = 500):
+        self.xmin = xmin
+        self.xmax = xmax
+        self.step = step
 
-    #x = [t/abs(plotSett.step) for t in range(xmin*plotSett.step, xmax*plotSett.step + 1, 1)]
-    #x = np.array(x)
-
-"""
-
-    def __init__(self, xmin = -10, xmax = 10, step = 200, grid = False):
-
-
-    x = [t/abs(step) for t in range(xmin*step, xmax*step + 1, 1)]
+        x = [t/abs(self.step) for t in range(self.xmin*self.step, self.xmax*self.step + 1, 1)]
         self.x = np.array(x)
-        
-        self.xmin = self.x[0]
-        self.xmax = self.x[-1]
-        self.step = 200
-
-        self.fig = plt.figure(figsize =(9, 9))
-        self.ax = self.fig.add_subplot(111)
-        self.ax.set_xlim(xmin, xmax)
-        self.ax.set_ylim(xmin, xmax)
-        self.ax.grid(grid)
-    def grid(self, grid = True):
-        self.ax.grid(grid)
-        #self.ax.set_xticks(self.x)
-        #self.ax.set_xticklabels([])
-"""
-
-
-#xmin = int(input('xmin = \n '))
-#xmax = int(input('xmax = \n '))
-#step = int(input('step = \n '))
-#grid = bool(input('grid = \n '))
-
-#picture = plot(xmin = xmin, xmax = xmax, step = step)
-#picture as a "plot" class type object
 
 
 
 class circumference(plotSett):
-    def __init__(self, xmin = -10, xmax = 10):
+    def __init__(self, xmin= -10, xmax = -10, step = 500):
         
         super().__init__()
         #self.remove(self)
-        self.xmin = xmin 
-        self.xmax = xmax
 
         self.radius = np.random.randint((self.xmax-self.xmin)/2)
         self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
@@ -73,18 +39,15 @@ class circumference(plotSett):
 
     def plot(self, color = 'b' ):
         #self.remove(self)
-        
-        step = 500
 
-        x = [t/abs(step) for t in range(self.xmin*step, self.xmax*step + 1, 1)]
-        x = np.array(x)
-
-        circ = np.sqrt( self.radius**2 - (x- self.center[0])**2)#circumference equation
+        circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = self.ax.plot(x, self.data[0], linewidth=2, color = color)#, markersize=12)
+        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color)#, markersize=12)
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
-        self.circdw, = self.ax.plot(x, self.data[1], linewidth=2, color = color)
+        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
+
+
 
 
 
