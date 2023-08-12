@@ -3,39 +3,18 @@ import numpy as np
 
 plt.ion()
 
-from plotSettFile import plotSett
 
 
-class circumference(plotSett):
-    def __init__(self, xmin= -10, xmax = -10, step = 500):
-        
-        super().__init__()
-        #self.remove(self)
+class plotSett():
+    fig = plt.figure(figsize=(9,9))
+    ax = fig.add_subplot(111)
+    def __init__(self, xmin = -10, xmax = 10, step = 500):
+        self.xmin = xmin
+        self.xmax = xmax
+        self.step = step
 
-        self.radius = np.random.randint((self.xmax-self.xmin)/2)
-        self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
-        self.circup = None
-        self.circdw = None
-        self.data = None
-        
-    def remove(self):
-        try:
-            self.circdw.remove()    
-            self.circup.remove()
-        except:
-            print(".remove() not working")
-
-    def plot(self, color = 'b' ):
-        #self.remove(self)
-
-        circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
-        self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color)#, markersize=12)
-
-        self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
-        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
-
-
+        x = [t/abs(self.step) for t in range(self.xmin*self.step, self.xmax*self.step + 1, 1)]
+        self.x = np.array(x)
 
 
 
