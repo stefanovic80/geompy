@@ -17,7 +17,8 @@ class circumference(plotSett):
         self.circup = None
         self.circdw = None
         self.data = None
-        
+        self.name = None
+
     def remove(self):
         try:
             self.circdw.remove()    
@@ -28,15 +29,14 @@ class circumference(plotSett):
     def plot(self, color = 'b' ):
         
         self.remove()
-        #    self.circdw.remove()
-        #    self.circup.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color)#, markersize=12)
+        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color, label = self.name)#, markersize=12)
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
         self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
+        self.ax.legend()
 
 
 

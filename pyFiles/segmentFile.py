@@ -19,7 +19,7 @@ class segment(plotSett):
         self.idxMax = None
         self.segment = None
         self.data = None
-        self.name = globals().keys()
+        self.name = None
 
     def remove(self):
         try:
@@ -27,7 +27,7 @@ class segment(plotSett):
         except:
             pass
 
-    def plot(self, color = 'b', name = 'label'):
+    def plot(self, color = 'b'):
         
         self.remove()
         
@@ -35,5 +35,5 @@ class segment(plotSett):
         idxMax = np.where( self.x >= self.xmax)[0][0]
         x = self.x[idxMin: idxMax] # a local copy of x values
         self.data = self.angCoeff*x + self.intercept
-        self.segment, = self.ax.plot(x, self.data, linewidth=2, color = color, label = name)
+        self.segment, = self.ax.plot(x, self.data, linewidth=2, color = color, label = self.name)
         self.ax.legend()
