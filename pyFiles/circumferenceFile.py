@@ -26,11 +26,10 @@ class circumference(plotSett):
             print(".remove() not working")
 
     def plot(self, color = 'b' ):
-        try:
-            self.circdw.remove()
-            self.circup.remove()
-        except:
-            pass
+        
+        self.remove()
+        #    self.circdw.remove()
+        #    self.circup.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
