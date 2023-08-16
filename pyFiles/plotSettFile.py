@@ -47,6 +47,10 @@ class segment():
         self.segment, = obj.ax.plot(x, self.data, linewidth=2, color = color)
     
 
+
+
+
+
 class parabola():
     def __init__(self, xmax = xmax, xmin = xmin, extVar = eval("list(globals().keys() )") ):
 
