@@ -14,12 +14,13 @@ class circumference(plotSett):
         #super().__init__()
         plotSett.__init__(self)
 
-        self.radius = np.random.randint((self.xmax-self.xmin)/2)
-        self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
+        self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
+        self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
         self.circup = None
         self.circdw = None
         self.data = None
         self.name = None
+        self.CD = None
 
         colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
                 'c', 'cyan', 'm', 'magenta', 'k', 'black']
@@ -30,10 +31,14 @@ class circumference(plotSett):
         try:
             self.circdw.remove()    
             self.circup.remove()
+            try:
+                self.CD.remove()
+            except:
+                pass
         except:
-            print(".remove() not working")
+            pass
 
-    def plot(self ):
+    def draw(self ):
         self.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
@@ -49,8 +54,9 @@ class circumference(plotSett):
         self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = self.color)#, markersize=12)
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
-
-
+    
+    def centerDraw(self):
+        self.CD, = self.ax.scatter(self.center[0], self.center[1], s=10, color = self.color, marker='o')
 
 
 
