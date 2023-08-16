@@ -36,4 +36,6 @@ class segment(plotSett):
         x = self.x[idxMin: idxMax] # a local copy of x values
         self.data = self.angCoeff*x + self.intercept
         self.segment, = self.ax.plot(x, self.data, linewidth=2, color = color, label = self.name)
+        self.ax.set_xlim(self.xmin, self.xmax)
+        self.ax.set_ylim(self.xmin, self.xmax)
         self.ax.legend()

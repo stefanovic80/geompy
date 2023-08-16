@@ -7,7 +7,8 @@ from .plotSettFile import plotSett
 
 
 class circumference(plotSett):
-    def __init__(self, xmin= -10, xmax = -10, step = 500):
+    
+    def __init__(self, xmin= -10, xmax = 10, step = 500):
         
         super().__init__()
         #self.remove(self)
@@ -18,6 +19,7 @@ class circumference(plotSett):
         self.circdw = None
         self.data = None
         self.name = None
+        
 
     def remove(self):
         try:
@@ -36,6 +38,8 @@ class circumference(plotSett):
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
         self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
+        self.ax.set_xlim(self.xmin, self.xmax)
+        self.ax.set_ylim(self.xmin, self.xmax)
         self.ax.legend()
 
 
