@@ -11,7 +11,7 @@ def main():
     #print("Result from module1:", result)
 
 
-    figure = plotSett()
+    #figure = plotSett()
     #instance.some_method()
 
 

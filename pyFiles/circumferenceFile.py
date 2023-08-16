@@ -8,10 +8,10 @@ from .plotSettFile import plotSett
 
 class circumference(plotSett):
     
-    def __init__(self, xmin= -10, xmax = 10, step = 500):
+    def __init__(self, xmin= -20, xmax = 20, step = 500):
         
-        super().__init__()
-        #self.remove(self)
+        #super().__init__()
+        plotSett.__init__(self)
 
         self.radius = np.random.randint((self.xmax-self.xmin)/2)
         self.center = [np.random.randint(self.xmin, self.xmax), np.random.randint(self.xmin, self.xmax)]
