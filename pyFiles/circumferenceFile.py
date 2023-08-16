@@ -3,7 +3,7 @@ import numpy as np
 
 plt.ion()
 
-from plotSettFile import plotSett
+from .plotSettFile import plotSett
 
 
 class circumference(plotSett):
@@ -26,7 +26,11 @@ class circumference(plotSett):
             print(".remove() not working")
 
     def plot(self, color = 'b' ):
-        #self.remove(self)
+        try:
+            self.circdw.remove()
+            self.circup.remove()
+        except:
+            pass
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ

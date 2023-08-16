@@ -1,6 +1,8 @@
 # Import functions and classes from your package
 #from pyFiles.module2 import MyClass
 from pyFiles.plotSettFile import plotSett
+from pyFiles.circumferenceFile import circumference
+from pyFiles.segmentFile import segment
 
 def main():
     print("Running main.py")
