@@ -3,8 +3,6 @@ import numpy as np
 
 plt.ion()
 
-
-
 class plotSett():
     fig = plt.figure(figsize=(9,9))
     ax = fig.add_subplot(111)
@@ -15,6 +13,8 @@ class plotSett():
 
         x = [t/abs(self.step) for t in range(self.xmin*self.step, self.xmax*self.step + 1, 1)]
         self.x = np.array(x)
+
+
 
 
 
