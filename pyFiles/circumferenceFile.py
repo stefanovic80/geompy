@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 plt.ion()
 
@@ -19,7 +20,11 @@ class circumference(plotSett):
         self.circdw = None
         self.data = None
         self.name = None
-        
+
+        colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
+                'c', 'cyan', 'm', 'magenta', 'k', 'black']
+
+        self.color = random.choice(colors)
 
     def remove(self):
         try:
@@ -28,19 +33,22 @@ class circumference(plotSett):
         except:
             print(".remove() not working")
 
-    def plot(self, color = 'b' ):
-        
+    def plot(self ):
         self.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = color, label = self.name)#, markersize=12)
+        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = self.color, label = self.name)#, markersize=12)
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
-        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = color)
+        
+        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = self.color, label = self.name)
+        self.ax.legend()
+
+
+        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = self.color)#, markersize=12)
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
-        self.ax.legend()
 
 
 
