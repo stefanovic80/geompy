@@ -18,9 +18,9 @@ class circumference(plotSett):
         self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
         self.circup = None
         self.circdw = None
+        self.CD = None
         self.data = None
         self.name = None
-        self.CD = None
 
         colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
                 'c', 'cyan', 'm', 'magenta', 'k', 'black']
@@ -31,19 +31,20 @@ class circumference(plotSett):
         try:
             self.circdw.remove()    
             self.circup.remove()
-            try:
-                self.CD.remove()
-            except:
-                pass
         except:
             pass
+
+        try:
+            self.CD.remove()
+        except:
+            pass
+
 
     def draw(self ):
         self.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = self.color, label = self.name)#, markersize=12)
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
         
@@ -56,7 +57,7 @@ class circumference(plotSett):
         self.ax.set_ylim(self.xmin, self.xmax)
     
     def centerDraw(self):
-        self.CD, = self.ax.scatter(self.center[0], self.center[1], s=10, color = self.color, marker='o')
+        self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color)# s=10, color = self.color, marker='o')
 
 
 
