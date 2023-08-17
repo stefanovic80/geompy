@@ -60,7 +60,7 @@ class circumference(plotSett):
         self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color)# s=10, color = self.color, marker='o')
 
     def __str__(self):
-        return f"Attributes:\n\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n\033[93mradius:\033[0m {self.radius}\n\033[93mx:\033[0m {self.x}\n\033[93mdata:\033[0m {self.data}\n\033[93mname:\033[0m {self.name}\n\033[93mcolor:\033[0m {self.color}\n\nMethods:\n\033[93mdraw()\033[0m\n\033[93mcenterDraw()\033[0m"
+        return f"Attributes:\n\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n\033[93mradius:\033[0m {self.radius}\n\033[93mx:\033[0m {self.x}\n\033[93mdata:\033[0m {self.data}\n\033[93mname:\033[0m {self.name}\n\033[93mcolor:\033[0m {self.color}\n\nMethods:\n\033[93mdraw()\033[0m\n\033[93mcenterDraw()\033[0m\n\033[93mremove()\033"
 
 """
 class segment():
