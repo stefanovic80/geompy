@@ -66,8 +66,6 @@ class circumference(plotSett):
             f"Attributes:\n"
             f"\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n"
             f"\033[93mradius:\033[0m {self.radius}\n"
-            f"\033[93mxmin:\033[0m {self.xmin}\n"
-            f"\033[93mxmax:\033[0m {self.xmax}\n"
             f"\033[93mx:\033[0m {self.x}\n"
             f"\033[93mdata:\033[0m {self.data}\n"
             f"\033[93mname:\033[0m {self.name}\n"
@@ -78,41 +76,22 @@ class circumference(plotSett):
             f"\nMethods:\n"
             f"\033[93mdraw()\033[0m\n"
             f"\033[93mcenterDraw()\033[0m\n"
-            f"\033[93mremove()\033"
+            f"\033[93mremove()\033[0m\n"
         )
         
-        return attributes + methods
+        plotSettings = (
+            f"\nSettings:\n"
+            f"\033[93mxmin:\033[0m {self.xmin}\n"
+            f"\033[93mxmax:\033[0m {self.xmax}\n"
+        
+        )
+        
+        return attributes + methods + plotSettings
 
 
-"""
-class segment():
-    def __init__(self, xmax = xmax, xmin = xmin):
 
-        self.angCoeff = np.random.randint(-20, 20)
-        self.intercept = np.random.randint(xmin, xmax)
-        self.idxMin = None
-        self.idxMax = None
-        self.segment = None
-        self.data = None
-
-    def remove(self, obj = picture):
-        try:
-            self.segment.remove()
-        except:
-            pass
-
-    def plot(self, obj = picture, color = 'b',\
-            xMin = picture.x[0], xMax = picture.x[-1]):
-        self.remove(self)
-        # obj.x[0] do not work: a bug has to be fixed
-        print(obj.x)
-        idxMin = np.where( obj.x >= xMin)[0][0]
-        idxMax = np.where( obj.x >= xMax)[0][0]
-        x = obj.x[idxMin: idxMax] # a local copy of x values
-        self.data = self.angCoeff*x + self.intercept
-        self.segment, = obj.ax.plot(x, self.data, linewidth=2, color = color)
     
-
+"""
 class parabola():
     def __init__(self, xmax = xmax, xmin = xmin, extVar = eval("list(globals().keys() )") ):
 
