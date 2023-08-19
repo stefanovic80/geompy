@@ -84,8 +84,6 @@ class circumference(plotSett):
         return attributes + methods
 
 
-        #return f"Attributes:\n\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n\033[93mradius:\033[0m {self.radius}\n\033[93mxmin:\033[0m{self.xmin}\n\033[93mxmax:\033[0m {self.xmax}\n\033[93mx:\033[0m {self.x}\n\033[93mdata:\033[0m {self.data}\n\033[93mname:\033[0m {self.name}\n\033[93mcolor:\033[0m {self.color}\n\nMethods:\n\033[93mdraw()\033[0m\n\033[93mcenterDraw()\033[0m\n\033[93mremove()\033"
-
 """
 class segment():
     def __init__(self, xmax = xmax, xmin = xmin):
