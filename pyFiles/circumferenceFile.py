@@ -39,6 +39,8 @@ class circumference(plotSett):
         except:
             pass
 
+    def __del__(self):
+        self.remove()
 
     def draw(self ):
         self.remove()
