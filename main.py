@@ -5,6 +5,7 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.segmentFile import segment
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
     print("Running main.py")

@@ -11,8 +11,8 @@ class circumference(plotSett):
     
     def __init__(self, xmin= -20, xmax = 20, step = 500):
         
-        #super().__init__()
-        plotSett.__init__(self)
+        super().__init__(xmin, xmax, step)
+        #plotSett.__init__(self)
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
@@ -59,8 +59,32 @@ class circumference(plotSett):
     def centerDraw(self):
         self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color)# s=10, color = self.color, marker='o')
 
+
+
     def __str__(self):
-        return f"Attributes:\n\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n\033[93mradius:\033[0m {self.radius}\n\033[93mx:\033[0m {self.x}\n\033[93mdata:\033[0m {self.data}\n\033[93mname:\033[0m {self.name}\n\033[93mcolor:\033[0m {self.color}\n\nMethods:\n\033[93mdraw()\033[0m\n\033[93mcenterDraw()\033[0m\n\033[93mremove()\033"
+        attributes = (
+            f"Attributes:\n"
+            f"\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n"
+            f"\033[93mradius:\033[0m {self.radius}\n"
+            f"\033[93mxmin:\033[0m {self.xmin}\n"
+            f"\033[93mxmax:\033[0m {self.xmax}\n"
+            f"\033[93mx:\033[0m {self.x}\n"
+            f"\033[93mdata:\033[0m {self.data}\n"
+            f"\033[93mname:\033[0m {self.name}\n"
+            f"\033[93mcolor:\033[0m {self.color}\n"
+        )
+        
+        methods = (
+            f"\nMethods:\n"
+            f"\033[93mdraw()\033[0m\n"
+            f"\033[93mcenterDraw()\033[0m\n"
+            f"\033[93mremove()\033"
+        )
+        
+        return attributes + methods
+
+
+        #return f"Attributes:\n\033[93mcenter:\033[0m {self.center[0]} {self.center[1]}\n\033[93mradius:\033[0m {self.radius}\n\033[93mxmin:\033[0m{self.xmin}\n\033[93mxmax:\033[0m {self.xmax}\n\033[93mx:\033[0m {self.x}\n\033[93mdata:\033[0m {self.data}\n\033[93mname:\033[0m {self.name}\n\033[93mcolor:\033[0m {self.color}\n\nMethods:\n\033[93mdraw()\033[0m\n\033[93mcenterDraw()\033[0m\n\033[93mremove()\033"
 
 """
 class segment():
