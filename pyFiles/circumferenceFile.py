@@ -4,14 +4,14 @@ import random
 
 plt.ion()
 
-from .plotSettFile import plotSett
+from ._plotSettFile import plotSett
 
 
 class circumference(plotSett):
     
-    def __init__(self, xmin= -20, xmax = 20, step = 500, linewidth = 2):
+    def __init__(self, xmin= -20, xmax = 20, steps = 500, linewidth = 2):
         
-        super().__init__(xmin, xmax, step, linewidth)
+        super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
@@ -86,6 +86,7 @@ class circumference(plotSett):
             f"\nSettings:\n"
             f"\033[93mxmin:\033[0m {self.xmin}\n"
             f"\033[93mxmax:\033[0m {self.xmax}\n"
+            f"\033[93msteps:\033[0m {self.steps}\n"
             f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )
         

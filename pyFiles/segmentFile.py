@@ -4,14 +4,14 @@ import random
 
 plt.ion()
 
-from .plotSettFile import plotSett
+from ._plotSettFile import plotSett
 
 
 class segment(plotSett):
 
-    def __init__(self, xmin= -20, xmax = 20, step = 500):
+    def __init__(self, xmin= -20, xmax = 20, steps = 500):
         
-        super().__init__(xmin, xmax, step)
+        super().__init__(xmin, xmax, steps)
 
         self.angCoeff = np.random.randint(self.xmin, self.xmax)
         self.intercept = np.random.randint(self.xmin, self.xmax)
@@ -68,9 +68,18 @@ class segment(plotSett):
             f"\nMethods:\n"
             f"\033[93mdraw()\033[0m\n"
             f"\033[93mremove()\033"
+        )            
+            
+        plotSettings = (
+            f"\nSettings:\n"
+            f"\033[93mxmin:\033[0m {self.xmin}\n"
+            f"\033[93mxmax:\033[0m {self.xmax}\n"
+            f"\033[93msteps:\033[0m {self.steps}\n"
+            f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
+        
         )
         
-        return attributes + methods
+        return attributes + methods + plotSettings
 
 
 
