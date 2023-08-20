@@ -3,6 +3,7 @@
 from pyFiles.plotSettFile import plotSett
 from pyFiles.circumferenceFile import circumference
 from pyFiles.segmentFile import segment
+from pyFiles.parabolaFile import parabola
 
 import matplotlib.pyplot as plt
 import numpy as np

@@ -6,69 +6,13 @@ plt.ion()
 
 from .plotSettFile import plotSett
 
-"""
-class circumference(plotSett):
-    
-    def __init__(self, xmin= -20, xmax = 20, step = 500):
-        
-        super().__init__(xmin, xmax, step)
-        #plotSett.__init__(self)
-
-        self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
-        self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
-        self.circup = None
-        self.circdw = None
-        self.CD = None
-        self.data = None
-        self.name = None
-
-        colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
-                'c', 'cyan', 'm', 'magenta', 'k', 'black']
-
-        self.color = random.choice(colors)
-
-    def remove(self):
-        try:
-            self.circdw.remove()    
-            self.circup.remove()
-        except:
-            pass
-
-        try:
-            self.CD.remove()
-        except:
-            pass
-
-
-    def draw(self ):
-        self.remove()
-
-        circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
-        self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
-
-        self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
-        
-        self.circdw, = self.ax.plot(self.x, self.data[1], linewidth=2, color = self.color, label = self.name)
-        self.ax.legend()
-
-
-        self.circup, = self.ax.plot(self.x, self.data[0], linewidth=2, color = self.color)#, markersize=12)
-        self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_ylim(self.xmin, self.xmax)
-    
-    def centerDraw(self):
-        self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color)# s=10, color = self.color, marker='o')
-
-
-"""
-
 
 class segment(plotSett):
 
     def __init__(self, xmin= -20, xmax = 20, step = 500):
         
         super().__init__(xmin, xmax, step)
-        
+
         self.angCoeff = np.random.randint(self.xmin, self.xmax)
         self.intercept = np.random.randint(self.xmin, self.xmax)
         self.idxMin = None
@@ -87,6 +31,9 @@ class segment(plotSett):
             self.segment.remove()
         except:
             pass
+
+    def __del__(self):
+        self.remove()
 
     def draw(self, xMin = None, xMax = None):
         
