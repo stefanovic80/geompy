@@ -94,33 +94,9 @@ class circumference(plotSett):
 
 
 
-    
+
+
 """
-class parabola():
-    def __init__(self, xmax = xmax, xmin = xmin, extVar = eval("list(globals().keys() )") ):
-
-        self.xShift = np.random.randint(xmin, xmax)
-        self.yShift = np.random.randint(xmin, xmax)
-        self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
-        self.parabola = None
-        self.data = None
-        self.name =  extVar  #[-2]
-
-
-    def remove(self, obj = picture):
-        try:
-            self.parabola.remove()
-        except:
-            pass
-
-
-    def plot(self, obj = picture, color = 'b' ):
-        self.remove(self)
-
-        self.data = self.concavity*(obj.x - self.xShift)**2 + self.yShift
-        self.parabola, = obj.ax.plot(obj.x, self.data, linewidth=2, color = color)
-
-
 class triangle(segment):
     def __init__(self):#, xmin, xmax):
         segment().__init__()

@@ -67,7 +67,7 @@ class segment(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93mdraw()\033[0m\n"
-            f"\033[93mremove()\033"
+            f"\033[93mremove()\033\n"
         )            
             
         plotSettings = (
