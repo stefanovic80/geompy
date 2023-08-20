@@ -59,7 +59,7 @@ class circumference(plotSett):
         self.ax.set_ylim(self.xmin, self.xmax)
     
     def centerDraw(self):
-        self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linedwidth)# s=10, color = self.color, marker='o')
+        self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linewidth)# s=10, color = self.color, marker='o')
 
 
 
