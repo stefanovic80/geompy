@@ -24,17 +24,25 @@ class plotSett():
         x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
         self.x = np.array(x)
 
-    def grid(self, sizeMinor = 0.2, sizeMajor = 1):# xstepM = 0.1, xstepm = 0.05, \
-             #ymin = 0, ymax = 1, ystepM = 0.1, ystepm = 0.05,\
-             #sizeMinor = 0.2, sizeMajor = 1): # line size
-	
-        GridSteps = int(self.steps / 10)
-        gridSteps = int(self.steps / 100)
+    def grid(self, sizeMinor = 0.2, sizeMajor = 1, N = 1):
 
+        #gridSteps = int(self.steps / 10)
+        #GridSteps = int(self.steps / 100)
+        gridSteps = (self.xmax - self.xmin) / self.steps*N*10
+        GridSteps = (self.xmax - self.xmin) / self.steps*N*100
+
+        #Xmajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
         Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
+        Ymajor_ticks = Xmajor_ticks
+
+        #Xminor_ticks = np.linspace(self.xmin, self.xmax, gridSteps)
+
         Xminor_ticks = np.arange(self.xmin, self.xmax, gridSteps)
-        Ymajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
-        Yminor_ticks = np.arange(self.xmin, self.xmax, gridSteps)
+
+        Yminor_ticks = Xminor_ticks
+
+        #Ymajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
+        #Yminor_ticks = np.linspace(self.xmin, self.xmax, gridSteps)
 
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_xticks(Xmajor_ticks)
