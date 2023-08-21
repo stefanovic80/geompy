@@ -50,6 +50,7 @@ class parabola(plotSett):
             f"\nAttributes:\n"
             f"\033[93mxShift:\033[0m {self.xShift}\n"
             f"\033[93myShift:\033[0m {self.yShift}\n"
+            f"\033[93mconcavity:\033[0m {self.concavity}\n"
             f"\033[93mx:\033[0m {self.x}\n"
             f"\033[93mdata:\033[0m {self.data}\n"
             f"\033[93mname:\033[0m {self.name}\n"
