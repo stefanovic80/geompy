@@ -57,3 +57,13 @@ class plotSett():
         self.ax.grid(which='minor', alpha=0.2)
         self.ax.grid(which='major', alpha=0.2)
         # alpha stands for transparency: 0 transparent, 1 opaque
+        
+    def remove(self):
+        try:
+            self.line.remove()
+        except:
+            pass
+
+
+    def __del__(self):
+    	self.remove()

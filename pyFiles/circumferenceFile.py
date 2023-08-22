@@ -42,9 +42,6 @@ class circumference(plotSett):
         except:
             pass
 
-    def __del__(self):
-        self.remove()
-
     def draw(self ):
         self.remove()
 
@@ -94,22 +91,3 @@ class circumference(plotSett):
         )
         
         return attributes + methods + plotSettings
-
-
-
-
-
-"""
-class triangle(segment):
-    def __init__(self):#, xmin, xmax):
-        segment().__init__()
-        super().__init__()
-    
-    def plot(self, obj = picture, color = 'b'):
-        
-        self.data = self.angCoeff*obj.x + self.intercept
-        self.segment, = obj.ax.plot(obj.x, self.data)
-
-
-#list(globals().keys())[-2]
-"""

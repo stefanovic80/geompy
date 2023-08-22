@@ -14,7 +14,7 @@ class parabola(plotSett):
         self.xShift = np.random.randint(xmin, xmax)
         self.yShift = np.random.randint(xmin, xmax)
         self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
-        self.parabola = None
+        self.line = None
         self.data = None
         self.name =  None
 
@@ -23,25 +23,11 @@ class parabola(plotSett):
 
         self.color = random.choice(colors)
 
-
-
-
-
-    def remove(self):
-        try:
-            self.parabola.remove()
-        except:
-            pass
-
-
-    def __del__(self):
-    	self.remove()
-
     def draw(self ):
         self.remove()
 
         self.data = self.concavity*(self.x - self.xShift)**2 + self.yShift
-        self.parabola, = self.ax.plot(self.x, self.data, linewidth=2, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams!
+        self.line, = self.ax.plot(self.x, self.data, linewidth=2, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams!
 
     def __str__(self):
         attributes = (
@@ -73,19 +59,14 @@ class parabola(plotSett):
         return attributes + methods + plotSettings
 
 
-
 """
-
-class triangle(segment):
-    def __init__(self):#, xmin, xmax):
-        segment().__init__()
-        super().__init__()
-    
-    def plot(self, obj = picture, color = 'b'):
-        
-        self.data = self.angCoeff*obj.x + self.intercept
-        self.segment, = obj.ax.plot(obj.x, self.data)
+    def remove(self):
+        try:
+            self.line.remove()
+        except:
+            pass
 
 
-#list(globals().keys())[-2]
+    def __del__(self):
+    	self.remove()
 """
