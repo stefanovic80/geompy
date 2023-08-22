@@ -1,6 +1,9 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import random
+# circumference.py
+from . import plt, np, random
+
+#import matplotlib.pyplot as plt
+#import numpy as np
+#import random
 
 plt.ion()
 

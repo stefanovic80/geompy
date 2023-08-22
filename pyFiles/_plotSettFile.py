@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
+# _plotSett.py
+from . import plt, np, random
 
 plt.ion()
 

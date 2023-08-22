@@ -1,6 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import random
+# pointFile.py
+from . import plt, np, random
 #matplotlib.plot has to be imported in all pyFiles modules
 
 plt.ion()
