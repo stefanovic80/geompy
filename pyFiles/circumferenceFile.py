@@ -19,9 +19,7 @@ class circumference(plotSett):
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
-        self.circup = None
-        self.circdw = None
-        self.CD = None
+        self.lines = []
         self.data = None
         self.name = None
 
@@ -30,19 +28,8 @@ class circumference(plotSett):
 
         self.color = random.choice(colors)
 
-    def remove(self):
-        try:
-            self.circdw.remove()    
-            self.circup.remove()
-        except:
-            pass
 
-        try:
-            self.CD.remove()
-        except:
-            pass
-
-    def draw(self ):
+    def draw(self):
         self.remove()
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
@@ -50,18 +37,24 @@ class circumference(plotSett):
 
         self.data = self.data + [ self.center[1] - circ ] #append one element of list with dw side of circ
         
-        self.circdw, = self.ax.plot(self.x, self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
+        line1, = self.ax.plot(self.x, self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
+
         self.ax.legend()
 
+        line2, = self.ax.plot(self.x, self.data[0], color = self.color, linewidth = self.linewidth)#, markersize=12)
+        
+        self.lines = []
+        self.lines.append(line1)
+        self.lines.append(line2)
 
-        self.circup, = self.ax.plot(self.x, self.data[0], color = self.color, linewidth = self.linewidth)#, markersize=12)
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
     
     def centerDraw(self):
-        self.CD = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linewidth)# s=10, color = self.color, marker='o')
-
-
+        line3 = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linewidth)# s=10, color = self.color, marker='o')
+        #there is a bug: when the center is added it's not going to be erased anymore
+        
+        self.lines.append(line3)
 
     def __str__(self):
         attributes = (

@@ -14,11 +14,13 @@ class point(plotSett):
         super().__init__( xmin, xmax, steps, linewidth )
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
-        self.line = None
+        self.lines = []
 
         colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
                 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.color = random.choice(colors)
 
     def draw(self):
-        self.line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
+        line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
+        self.lines = []
+        self.lines.append(line)

@@ -16,7 +16,7 @@ class segment(plotSett):
         self.intercept = np.random.randint(self.xmin, self.xmax)
         self.idxMin = None
         self.idxMax = None
-        self.line = None
+        self.lines = []
         self.data = None
 	#self.name = None
 	
@@ -25,16 +25,7 @@ class segment(plotSett):
 
         self.color = random.choice(colors)
 
-    """
-    def remove(self):
-        try:
-            self.line.remove()
-        except:
-            pass
-
-    def __del__(self):
-        self.remove()
-    """
+    
     def draw(self, xMin = None, xMax = None):
         
         self.remove()
@@ -47,8 +38,10 @@ class segment(plotSett):
         	
         x = self.x[idxMin: idxMax] # a local copy of x values
         self.data = self.angCoeff*x + self.intercept
-        self.line, = self.ax.plot(x, self.data, linewidth=2, color = self.color)
-    
+        line, = self.ax.plot(x, self.data, linewidth=2, color = self.color)
+
+        self.lines = []
+        self.lines.append(line)
 
     def __str__(self):
         attributes = (

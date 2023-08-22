@@ -14,7 +14,7 @@ class parabola(plotSett):
         self.xShift = np.random.randint(xmin, xmax)
         self.yShift = np.random.randint(xmin, xmax)
         self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
-        self.line = None
+        self.lines = []
         self.data = None
         self.name =  None
 
@@ -27,7 +27,10 @@ class parabola(plotSett):
         self.remove()
 
         self.data = self.concavity*(self.x - self.xShift)**2 + self.yShift
-        self.line, = self.ax.plot(self.x, self.data, linewidth=2, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams!
+        line, = self.ax.plot(self.x, self.data, linewidth=2, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams
+        
+        self.lines = []
+        self.lines.append(line)
 
     def __str__(self):
         attributes = (
