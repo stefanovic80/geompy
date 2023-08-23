@@ -29,6 +29,9 @@ class parabola(plotSett):
         self.lines.append(line)
 
     def __str__(self):
+
+        super().__str__()
+
         attributes = (
             f"\033[93mType:\033[0m parabola\n"
             f"\nAttributes:\n"
@@ -46,26 +49,5 @@ class parabola(plotSett):
             f"\033[93mdraw()\033[0m\n"
             f"\033[93mremove()\033[0m\n"
         )
-        
-        plotSettings = (
-            f"\nSettings:\n"
-            f"\033[93mxmin:\033[0m {self.xmin}\n"
-            f"\033[93mxmax:\033[0m {self.xmax}\n"
-            f"\033[93msteps:\033[0m {self.steps}\n"
-        
-        )
-        
-        return attributes + methods + plotSettings
 
-
-"""
-    def remove(self):
-        try:
-            self.line.remove()
-        except:
-            pass
-
-
-    def __del__(self):
-    	self.remove()
-"""
+        return attributes + methods + self.plotSettings

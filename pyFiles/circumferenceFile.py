@@ -53,6 +53,9 @@ class circumference(plotSett):
         self.lines.append(line3)
 
     def __str__(self):
+
+        super().__str__()
+
         attributes = (
             f"\033[93mType:\033[0m circumference\n"
             f"\nAttributes:\n"
@@ -71,12 +74,6 @@ class circumference(plotSett):
             f"\033[93mremove()\033[0m\n"
         )
         
-        plotSettings = (
-            f"\nSettings:\n"
-            f"\033[93mxmin:\033[0m {self.xmin}\n"
-            f"\033[93mxmax:\033[0m {self.xmax}\n"
-            f"\033[93msteps:\033[0m {self.steps}\n"
-            f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
-        )
         
-        return attributes + methods + plotSettings
+        return attributes + methods + self.plotSettings
+    

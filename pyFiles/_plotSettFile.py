@@ -19,6 +19,8 @@ class plotSett():
         self.steps = steps
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth
+        self.plotSettings = None
+
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
         x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
@@ -69,3 +71,15 @@ class plotSett():
 		    
     def __del__(self):
     	self.remove()
+	
+    def __str__(self):
+        self.plotSettings = (
+            f"\nSettings:\n"
+            f"\033[93mxmin:\033[0m {self.xmin}\n"
+            f"\033[93mxmax:\033[0m {self.xmax}\n"
+            f"\033[93msteps:\033[0m {self.steps}\n"
+            f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
+        )
+    	
+     	#return self.plotSettings   
+ 
