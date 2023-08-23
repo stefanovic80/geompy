@@ -17,7 +17,7 @@ class plotSett():
         self.xmin = xmin
         self.xmax = xmax
         self.steps = steps
-
+        self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 

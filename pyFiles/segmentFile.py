@@ -18,12 +18,7 @@ class segment(plotSett):
         self.idxMax = None
         self.lines = []
         self.data = None
-	#self.name = None
-	
-        colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
-                'c', 'cyan', 'm', 'magenta', 'k', 'black']
-
-        self.color = random.choice(colors)
+        self.color = random.choice(self.colors)
 
     
     def draw(self, xMin = None, xMax = None):

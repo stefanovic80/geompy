@@ -15,10 +15,7 @@ class point(plotSett):
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
         self.lines = []
-
-        colors = ['b', 'blue', 'g', 'green', 'r', 'red',\
-                'c', 'cyan', 'm', 'magenta', 'k', 'black']
-        self.color = random.choice(colors)
+        self.color = random.choice(self.colors)
 
     def draw(self):
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
