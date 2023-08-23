@@ -29,10 +29,11 @@ class point(plotSett):
         self.remove()
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
+        self.draw()
 
     def __str__(self):
 
-        super().__init__()
+        super().__str__()
         
         
         attributes = (
@@ -50,6 +51,5 @@ class point(plotSett):
             f"\033[93mremove()\033[0m\n"
         )
 
-        return attributes + methods #bug: adding self.plotSettings make it crashing!
-        #return attributes + methods + self.plotSettings
+        return attributes + methods + self.plotSettings
 
