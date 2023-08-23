@@ -1,14 +1,10 @@
 # circumference.py
 from . import plt, np, random
 
-#import matplotlib.pyplot as plt
-#import numpy as np
-#import random
-
 plt.ion()
 
 from ._plotSettFile import plotSett
-
+from .pointFile import point
 
 class circumference(plotSett):
     
