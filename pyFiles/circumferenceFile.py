@@ -44,7 +44,7 @@ class circumference(plotSett):
     
     def centerDraw(self):
         line3 = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linewidth)# s=10, color = self.color, marker='o')
-        #there is a bug: when the center is added it's not going to be erased anymore
+        
         
         self.lines.append(line3)
 
