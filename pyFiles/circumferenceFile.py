@@ -1,20 +1,21 @@
 # circumference.py
 from . import plt, np, random
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
 
-class circumference(plotSett):
-    
+#class circumference(plotSett):
+class circumference(point):
+
     def __init__(self, xmin= -20, xmax = 20, steps = 500, linewidth = 2):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
-        self.center = [random.uniform(self.xmin, self.xmax), random.uniform(self.xmin, self.xmax)]
+        self.center = self.coords
         self.lines = []
         self.data = None
         self.name = None
@@ -23,6 +24,8 @@ class circumference(plotSett):
 
     def draw(self):
         self.remove()
+
+        #np.where(self.radius - self.x ) < 0
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center[0])**2)#circumference equation
         self.data = [ self.center[1] + circ ] #a one data list with upper side data of circ
@@ -44,7 +47,6 @@ class circumference(plotSett):
     
     def centerDraw(self):
         line3 = self.ax.scatter(self.center[0], self.center[1], color = self.color, linewidth = self.linewidth)# s=10, color = self.color, marker='o')
-        
         
         self.lines.append(line3)
 

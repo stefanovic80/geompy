@@ -21,6 +21,8 @@ class point(plotSett):
         self.name = None
 
     def draw(self):
+        self.remove()
+
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
         self.lines = []
         self.lines.append(line)
@@ -39,7 +41,7 @@ class point(plotSett):
         attributes = (
             f"\033[93mType:\033[0m point\n"
             f"\nAttributes:\n"
-            f"\033[93mdata:\033[0m {self.coords[0]}\n"
+            f"\033[93mcoords:\033[0m {self.coords[0]} {self.coords[1]} \n"
             f"\033[93mname:\033[0m {self.name}\n"
             f"\033[93mcolor:\033[0m {self.color}\n"
         )
