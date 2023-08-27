@@ -10,10 +10,10 @@ from ._plotSettFile import plotSett
 
 class point(plotSett):
     
-    def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2):
+    def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0):
         super().__init__( xmin, xmax, steps, linewidth )
         
-        self.coords = [random.randint(self.xmin, self.xmax), random.randint(self.xmin, self.xmax) ]
+        self.coords = [random.randint(self.xmin + bip, self.xmax - bip), random.randint(self.xmin, self.xmax) ]
 
         self.lines = None
         self.color = random.choice(self.colors)
