@@ -4,7 +4,7 @@ from . import plt, np, random
 plt.ion()
 
 from ._plotSettFile import plotSett
-
+from .pointFile import point
 
 class segment(plotSett):
 
@@ -20,20 +20,16 @@ class segment(plotSett):
         self.data = None
         self.color = random.choice(self.colors)
     
-    def draw(self, xMin = None, xMax = None):
+    def draw(self):
         
         self.remove()
         try:
-            #pass
             idxMin = np.where( self.x >= self.xMin)[0][0]
             idxMax = np.where( self.x >= self.xMax)[0][0]
             self.x = self.x[idxMin: idxMax] # a local copy of x values
         except:
             self.xMin, self.xMax = self.xmin, self.xmax
-            #self.idxMin, self.idxMax = 0, -1
-            #idxMin = np.where( self.x >= self.xmin)[0][0]
-            #idxMax = np.where( self.x >= self.xmax)[0][0]
-        	
+
         
         self.data = self.angCoeff*self.x + self.intercept
         line, = self.ax.plot(self.x, self.data, linewidth=self.linewidth, color = self.color)
