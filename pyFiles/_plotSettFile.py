@@ -59,7 +59,7 @@ class plotSett():
         self.ax.grid(which='minor', alpha=0.2)
         self.ax.grid(which='major', alpha=0.2)
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.ax.axvline(0, color = 'k')
+        self.ax.axvline(0, color = 'k')#linewidth = self.linewidth
         self.ax.axhline(0, color = 'k')
         
     
@@ -79,7 +79,7 @@ class plotSett():
             f"\033[93mxmin:\033[0m {self.xmin}\n"
             f"\033[93mxmax:\033[0m {self.xmax}\n"
             f"\033[93msteps:\033[0m {self.steps}\n"
-            f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
+            #f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )
     	
      	#return self.plotSettings   
