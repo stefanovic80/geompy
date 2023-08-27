@@ -80,6 +80,7 @@ class plotSett():
             f"\033[93mxmin:\033[0m {self.xmin}\n"
             f"\033[93mxmax:\033[0m {self.xmax}\n"
             f"\033[93msteps:\033[0m {self.steps}\n"
+            f"\033[93mx:\033[0m {self.x}\n"
             #f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )
     	

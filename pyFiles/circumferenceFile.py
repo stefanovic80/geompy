@@ -29,16 +29,20 @@ class circumference(plotSett):
 
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
 
+        #it removes not a number terms due to root of negative values
         idx1 = np.argmax(~np.isnan(circ))
         idx2 = len(circ) - np.argmax(np.flip(~np.isnan(circ)))
-        self.x = self.x[idx1:idx2]
+        #x values for the graph upper side
+        self.data = [self.x[idx1:idx2]]
         circ = circ[idx1:idx2]
         
-        self.data = np.append( self.center.coords[1] + circ, self.center.coords[1] - circ[::-1] )
+        #y values as second column of self.data matrix
+        self.data = self.data + [ np.append( self.center.coords[1] + circ, self.center.coords[1] - circ[::-1] ) ]
 
-        self.x = np.append( self.x, self.x[::-1])
+        #x values for the graph of the lower side
+        self.data[0] = np.append( self.data[0], self.data[0][::-1])
 
-        line1, = self.ax.plot(self.x, self.data, color = self.color, label = self.name, linewidth = self.linewidth)
+        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
 
 
         self.ax.legend()
@@ -56,9 +60,7 @@ class circumference(plotSett):
         attributes = (
             f"\033[93mType:\033[0m circumference\n"
             f"\nAttributes:\n"
-            f"\033[93mcenter.coords:\033[0m {self.center.coords[0]} {self.center.coords[1]}\n"
             f"\033[93mradius:\033[0m {self.radius}\n"
-            f"\033[93mx:\033[0m {self.x}\n"
             f"\033[93mdata:\033[0m {self.data}\n"
             f"\033[93mname:\033[0m {self.name}\n"
             f"\033[93mcolor:\033[0m {self.color}\n"
