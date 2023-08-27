@@ -12,11 +12,10 @@ class point(plotSett):
     
     def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2):
         super().__init__( xmin, xmax, steps, linewidth )
-        #a = plt.ginput()
-        #self.coords = [ a[0][0], a[0][1] ]
-        self.coords = [random.randint(-20, 20), random.randint(-20, 20) ]
+        
+        self.coords = [random.randint(self.xmin, self.xmax), random.randint(self.xmin, self.xmax) ]
 
-        self.lines = []
+        self.lines = None
         self.color = random.choice(self.colors)
         self.name = None
 
