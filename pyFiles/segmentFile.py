@@ -23,16 +23,18 @@ class segment(plotSett):
         self.xMax = None
 
     def draw(self):
-        
         self.remove()
+
+
         try:
-            idxMin = np.where( self.x >= self.xMin)[0][0]
-            idxMax = np.where( self.x >= self.xMax)[0][0]
-            self.data = [ self.x[idxMin: idxMax] ] # a local copy of x values
+            self.idxMin = np.where( self.x >= self.xMin)[0][0]
+            self.idxMax = np.where( self.x >= self.xMax)[0][0]
+            self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
         except:
             self.xMin, self.xMax = self.xmin, self.xmax
             self.data = [ self.x ]
-        
+
+
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 

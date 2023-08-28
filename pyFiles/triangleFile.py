@@ -55,26 +55,13 @@ class triangle(plotSett):
         self.segment['02'].color = self.color
         self.segment['12'].color = self.color
 
-        if self.point[0].coords[0] > self.point[1].coords[0]:
-
-            self.segment['01'].xMax = self.point[0].coords[0]
-            self.segment['01'].xMin = self.point[1].coords[0]
-        else:
-            self.segment['01'].xMin = self.point[0].coords[0]
-            self.segment['01'].xMax = self.point[1].coords[0]
-
-
+        
         self.segment['01'].draw()
         self.segment['02'].draw()
         self.segment['12'].draw() 
 
-        """
-        self.ax.legend() 
-        self.lines = []
-        self.lines.append(line1)
-        self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_ylim(self.xmin, self.xmax)
-        """
+        self.segment['01'].xMax = self.point[0].coords[0]
+
     def __str__(self):
 
         super().__str__()
