@@ -5,6 +5,7 @@ from pyFiles.pointFile import point
 from pyFiles.circumferenceFile import circumference
 from pyFiles.segmentFile import segment
 from pyFiles.parabolaFile import parabola
+from pyFiles.triangleFile import triangle
 
 import matplotlib.pyplot as plt
 import numpy as np
