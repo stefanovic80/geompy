@@ -42,6 +42,9 @@ class circumference(plotSett):
         #x values for the graph of the lower side
         self.data[0] = np.append( self.data[0], self.data[0][::-1])
 
+        self.data[0] = np.append( self.data[0], self.data[0][0] )
+        self.data[1] = np.append( self.data[1], self.data[1][0] )
+
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
 
 
