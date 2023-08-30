@@ -15,7 +15,7 @@ class triangle(plotSett):
         super().__init__(xmin, xmax, steps, linewidth)
 
         self.point = [point(), point(), point()]
-        self.segment = {'01': segment(), '02': segment(), '12': segment()}
+        self.segment = {'00': segment(), '01': segment(), '11': segment()}
         self.lines = None
         self.data = None
         self.name = None
@@ -28,39 +28,41 @@ class triangle(plotSett):
         for j in range(3):
             x[j] = self.point[j].coords[0]
             y[j] = self.point[j].coords[1]
-
+        
+        x.sort(reverse = True)
+        y.sort(reverse = True)
         #angCoeff calculation
 
-        self.segment['01'].angCoeff = ( y[0] - y[1] )/(x[0] - x[1] )
+        self.segment['00'].angCoeff = ( y[0] - y[1] )/(x[0] - x[1] )
+        print(self.segment['00'].angCoeff)
+        #self.segment['02'].angCoeff = ( y[0] - y[2] )/(x[0] - x[2] )
 
-        self.segment['02'].angCoeff = ( y[0] - y[2] )/(x[0] - x[2] )
-
-        self.segment['12'].angCoeff = ( y[1] - y[2] )/(x[1] - x[2] )
+        #self.segment['12'].angCoeff = ( y[1] - y[2] )/(x[1] - x[2] )
 
         #intercept calculation
 
-        self.segment['01'].intercept = ( x[0]*y[1] - x[1]*y[0]  )/( x[0] - x[1]  )
+        self.segment['00'].intercept = ( x[0]*y[1] - x[1]*y[0]  )/( x[0] - x[1]  )
 
 
-        self.segment['02'].intercept = ( x[0]*y[2] - x[2]*y[0]  )/( x[0] - x[2]  )
+        #self.segment['02'].intercept = ( x[0]*y[2] - x[2]*y[0]  )/( x[0] - x[2]  )
 
 
-        self.segment['12'].intercept = ( x[1]*y[2] - x[2]*y[1]  )/( x[1] - x[2]  )
+        #self.segment['12'].intercept = ( x[1]*y[2] - x[2]*y[1]  )/( x[1] - x[2]  )
 
     def draw(self):
         self.remove()
 
         
-        self.segment['01'].color = self.color
-        self.segment['02'].color = self.color
-        self.segment['12'].color = self.color
+        #self.segment['01'].color = self.color
+        #self.segment['02'].color = self.color
+        #self.segment['12'].color = self.color
 
         
-        self.segment['01'].draw()
-        self.segment['02'].draw()
-        self.segment['12'].draw() 
+        self.calc()
+        self.segment['00'].draw()
+        #self.segment['12'].draw() 
 
-        self.segment['01'].xMax = self.point[0].coords[0]
+        #self.segment['01'].xMax = self.point[0].coords[0]
 
     def __str__(self):
 
