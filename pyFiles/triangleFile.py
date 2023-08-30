@@ -23,18 +23,12 @@ class triangle(plotSett):
 
     def calc(self):
         
-        x = [None, None, None]
-        y = [None, None, None]
-        for j in range(3):
-            x[j] = self.point[j].coords[0]
-            y[j] = self.point[j].coords[1]
-        
-        x.sort(reverse = True)
-        y.sort(reverse = True)
+        #x.sort(reverse = True)
+        #y.sort(reverse = True)
         #angCoeff calculation
 
         self.segment['00'].angCoeff = ( y[0] - y[1] )/(x[0] - x[1] )
-        print(self.segment['00'].angCoeff)
+        
         #self.segment['02'].angCoeff = ( y[0] - y[2] )/(x[0] - x[2] )
 
         #self.segment['12'].angCoeff = ( y[1] - y[2] )/(x[1] - x[2] )
@@ -58,8 +52,8 @@ class triangle(plotSett):
         #self.segment['12'].color = self.color
 
         
-        self.calc()
         self.segment['00'].draw()
+        self.segment['01'].draw()
         #self.segment['12'].draw() 
 
         #self.segment['01'].xMax = self.point[0].coords[0]
