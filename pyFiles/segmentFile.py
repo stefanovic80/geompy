@@ -12,7 +12,9 @@ class segment(plotSett):
         
         super().__init__(xmin, xmax, steps)
 
-        self.angCoeff = np.random.randint(self.xmin, self.xmax)
+        angles = np.arange(-np.pi, np.pi, 0.1)
+        angle = random.choice(angles)
+        self.angCoeff = np.tan(angle)
         self.intercept = np.random.randint(self.xmin, self.xmax)
         self.idxMin = None
         self.idxMax = None
