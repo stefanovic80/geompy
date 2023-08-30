@@ -12,8 +12,8 @@ class segment(plotSett):
         
         super().__init__(xmin, xmax, steps)
 
-        #angles = np.arange(-np.pi, np.pi, 0.1)
-        #angle = random.choice(angles)
+        angles = np.arange(-np.pi, np.pi, 0.1)
+        angle = random.choice(angles)
         self.idxMin = None
         self.idxMax = None
         self.lines = None
@@ -23,6 +23,11 @@ class segment(plotSett):
         self.xMax = None
         self.point = [point(), point()]
         
+        self.angCoeff = np.tan(angle)
+        self.intercept = np.random.randint(self.xmin, self.xmax) #change to make decimal possible
+
+    def draw(self):
+        self.remove()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
         x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
@@ -31,9 +36,6 @@ class segment(plotSett):
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
         #self.angCoeff = np.tan(angle)
         #self.intercept = np.random.randint(self.xmin, self.xmax)# a bug here as self.xmin/max can be decimal
-
-    def draw(self):
-        self.remove()
 
 
         try:

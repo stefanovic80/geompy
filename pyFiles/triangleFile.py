@@ -14,49 +14,29 @@ class triangle(plotSett):
         
         super().__init__(xmin, xmax, steps, linewidth)
 
-        self.point = [point(), point(), point()]
-        self.segment = {'00': segment(), '01': segment(), '11': segment()}
+        self.segment = {'01': segment(), '12': segment(), '20': segment()}
         self.lines = None
         self.data = None
         self.name = None
         self.color = random.choice(self.colors)
 
-    def calc(self):
-        
         #x.sort(reverse = True)
         #y.sort(reverse = True)
         #angCoeff calculation
 
-        self.segment['00'].angCoeff = ( y[0] - y[1] )/(x[0] - x[1] )
-        
-        #self.segment['02'].angCoeff = ( y[0] - y[2] )/(x[0] - x[2] )
-
-        #self.segment['12'].angCoeff = ( y[1] - y[2] )/(x[1] - x[2] )
-
-        #intercept calculation
-
-        self.segment['00'].intercept = ( x[0]*y[1] - x[1]*y[0]  )/( x[0] - x[1]  )
-
-
-        #self.segment['02'].intercept = ( x[0]*y[2] - x[2]*y[0]  )/( x[0] - x[2]  )
-
-
-        #self.segment['12'].intercept = ( x[1]*y[2] - x[2]*y[1]  )/( x[1] - x[2]  )
-
     def draw(self):
         self.remove()
-
         
-        #self.segment['01'].color = self.color
-        #self.segment['02'].color = self.color
-        #self.segment['12'].color = self.color
+        self.segment['01'].color = self.segment['12'].color = self.segment['20'].color = self.color
 
-        
-        self.segment['00'].draw()
         self.segment['01'].draw()
-        #self.segment['12'].draw() 
+         
+        self.segment['12'].point[0].coords = self.segment['01'].point[1].coords
+        self.segment['12'].draw()
+        
+        self.segment['20'].point[0].coords = self.segment['12'].point[1].coords
 
-        #self.segment['01'].xMax = self.point[0].coords[0]
+        self.segment['20'].draw()
 
     def __str__(self):
 
