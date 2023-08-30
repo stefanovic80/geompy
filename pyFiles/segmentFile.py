@@ -34,9 +34,6 @@ class segment(plotSett):
 
         self.angCoeff = (y1 - y0)/(x1 - x0)
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-        #self.angCoeff = np.tan(angle)
-        #self.intercept = np.random.randint(self.xmin, self.xmax)# a bug here as self.xmin/max can be decimal
-
 
         try:
             self.idxMin = np.where( self.x >= self.xMin)[0][0]
