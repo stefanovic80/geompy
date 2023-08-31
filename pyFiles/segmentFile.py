@@ -19,14 +19,14 @@ class segment(plotSett):
         self.lines = None
         self.data = None
         self.color = random.choice(self.colors)
-        self.xMin = None
-        self.xMax = None
+        self.xMin = self.xmin
+        self.xMax = self.xmax
         self.point = [point(), point()]
         
         self.angCoeff = np.tan(angle)
         self.intercept = np.random.randint(self.xmin, self.xmax) #change to make decimal possible
 
-    def draw(self):
+    def calc(self):
         self.remove()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
@@ -35,16 +35,16 @@ class segment(plotSett):
         self.angCoeff = (y1 - y0)/(x1 - x0)
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
 
-        try:
-            self.idxMin = np.where( self.x >= self.xMin)[0][0]
-            self.idxMax = np.where( self.x >= self.xMax)[0][0]
-            self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
-        except:
-            self.xMin, self.xMax = self.xmin, self.xmax
-            self.data = [ self.x ]
 
+        self.idxMin = np.where( self.x >= self.xMin)[0][0]
+        self.idxMax = np.where( self.x >= self.xMax)[0][0]
+        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+
+    def draw(self):
+        self.calc()
+
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
         self.lines = []

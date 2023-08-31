@@ -27,6 +27,8 @@ class triangle(plotSett):
     def draw(self):
         self.remove()
         
+        #self.data = self.segment['01'].calc().data
+        
         self.segment['01'].color = self.segment['12'].color = self.segment['20'].color = self.color
 
         self.segment['01'].draw()
