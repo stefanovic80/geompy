@@ -14,7 +14,7 @@ class triangle(plotSett):
         
         super().__init__(xmin, xmax, steps, linewidth)
 
-        self.segment = {'01': segment(), '12': segment(), '20': segment()}
+        self.segment = [segment(), segment(), segment()]
         self.lines = None
         self.data = None
         self.name = None
@@ -27,18 +27,12 @@ class triangle(plotSett):
     def draw(self):
         self.remove()
         
-        #self.data = self.segment['01'].calc().data
+        self.data = [None, None, None]
         
-        self.segment['01'].color = self.segment['12'].color = self.segment['20'].color = self.color
-
-        self.segment['01'].draw()
-         
-        self.segment['12'].point[0].coords = self.segment['01'].point[1].coords
-        self.segment['12'].draw()
-        
-        self.segment['20'].point[0].coords = self.segment['12'].point[1].coords
-
-        self.segment['20'].draw()
+        for j in range(3):
+            self.segment[j].calc()
+            self.data = self.segment[j].data
+            #self.segment[j].draw()
 
     def __str__(self):
 
