@@ -1,22 +1,24 @@
-This is meant to be the occasion for high school students to start over computer programming for scientific applications. Particularly, it's a tool for visualizing geometric loci by using python such as
+This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci by such as
 
 
 
 
  
 
-### - [Circumference](#draw-a-random-circumference)
+### - [circumference](#draw-a-random-circumference)
 
-### - [Straight Line](#draw-a-random-straight-line)
+### - [ellipse] (#draw-a-random-ellipse)
 
-### - [Parabola](#draw-a-random-parabola)
+### - [segment](#draw-a-random-straight-line)
+
+### - [parabola](#draw-a-random-parabola)
 
 
 # Installation
 
-Just ensure you have a fully working python environment with matplotlib and numpy installed on it. Than download the script.py and run it on a python interpreter, such as ipython
+Just ensure you have a fully working python environment with matplotlib and numpy installed on it; I personally use Ipython. Download this project, than open a console and move to the folder in which the main.py file is present. Run the python intepreter, by typing "ipython" and type
 
-`run script.py`
+`run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
@@ -30,51 +32,50 @@ it may take time, depending on internet connection speed. Activate it
 
 `conda activate analyticGeomEnv`
 
-run script.py on it.
+run main.py on it.
 
 
 # Usage
 
+# Draw a (random) circumference
 
-Choose the lowest and highest values for the two Cartesian axes. Say you want a Cartesian Plane with both axes ranging from -10 to 18, with 500 steps, than type as reported in the following picture
+Each geometric locus is a python class. Say you wan to draw a circumference, than you have to define a circumference type instance 'C1' as follows
+
+`C1 = circumference()`
+
+by defult the minimum and maximum values of both x and y axes are -20 and 20, with a step of 500 points. Now that you have a "C1" instance of "circumference" type, than use the "draw" method as follows
+
+
+`C1.draw()`
+
 
 
 ![Alt Text](pictures/cartesianPlane.png)
 
 
-You can additionally add a grid by typing
+You may want to add a grid with both x and y axes
 
-`picture.grid(True)`
+`C1.grid()`
 
-or remove it
-
-`picture.grid(False)`
-
-
-
-
-
-# Draw a (random) circumference
-
-Type
-
-`C1 = circumference()`
-
-"C1" is a "circumference" class type. It choose a random value for the circumference radius (C1.radius) and a couple of random values (C1.center) for x and y circumference center point
-
-`C1.plot()`
-
-the .plot() method draw the circumference. 
 
 ![Alt Text](pictures/circumferenceDraw.png)
 
-Optionally you can choose the color by adding an argument to the .plot method 
 
-`C1.plot( color = 'red' )`
+if you want to see all the details of "C1" circumference instance, than type
+
+
+`print(C1)`
+
+and you can change details such as the color just by typing
+
+
+`C1.color = 'red'`
 
 or 
 
-`C1.plot( color = 'r' )`
+`C1.color = 'r'`
+
+according with matplotlib library, you can choose the color you like more from the following list
 
 
 - ``'b'``          blue
