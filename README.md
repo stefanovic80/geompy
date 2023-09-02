@@ -1,8 +1,5 @@
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci by such as
 
-
-
-
  
 
 ### - [circumference](#draw-a-random-circumference)
@@ -16,41 +13,41 @@ This is meant to be the occasion for high school students to start over computer
 
 # Installation
 
-Just ensure you have a fully working python environment with matplotlib and numpy installed on it; I personally use Ipython. Download this project, than open a console and move to the folder in which the main.py file is present. Run the python intepreter, by typing "ipython" and type
+Ensure you have a fully working Ipython environment with matplotlib, random and numpy libreries installed on it. Download the present project, than open a console and move to the project folder in which the main.py file is present. Run the python intepreter, by typing "ipython" and type
 
 `run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-In case of dysfunctions, check numpy and/or matplotlib versions and create a 'analyticGeomEnv' conda environment
+In case of dysfunctions, you can create a 'analyticGeomEnv' conda environment
 
 
 `conda env create -f analyticGeomEnv.yml`
 
-it may take time, depending on internet connection speed. Activate it
+it may take time, depending on internet connection speed. Once the job is done than activate it
 
 `conda activate analyticGeomEnv`
 
-run main.py on it.
+and try again
+
+`run main.py`
 
 
 # Usage
 
 # Draw a (random) circumference
 
-Each geometric locus is a python class. Say you wan to draw a circumference, than you have to define a circumference type instance 'C1' as follows
+Each geometric locus is a python class. Say you wan to draw a circumference, than you have to define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
-by defult the minimum and maximum values of both x and y axes are -20 and 20, with a step of 500 points. Now that you have a "C1" instance of "circumference" type, than use the "draw" method as follows
-
+by defult, the minimum and maximum values of both x and y axes are -20 and 20, with 500 steps in betweeen them. Once the "C1" instance is created, than use the "draw" method as follows
 
 `C1.draw()`
 
 
-
-![Alt Text](pictures/cartesianPlane.png)
+![Alt Text](pictures/circumferenceDrawn.png)
 
 
 You may want to add a grid with both x and y axes
