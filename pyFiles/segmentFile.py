@@ -16,17 +16,19 @@ class segment(plotSett):
         #angle = random.choice(angles)
         self.idxMin = None
         self.idxMax = None
-        self.lines = None
-        self.data = None
+
         self.color = random.choice(self.colors)
         self.xMin = self.xmin
         self.xMax = self.xmax
+
+
+        self.lines = None
+        self.data = None
         self.point = [point(), point()]
-        
         self.angCoeff = None #np.tan(angle)
         self.intercept = None #np.random.randint(self.xmin, self.xmax) #change to make decimal possible
 
-    def calc(self):
+    def calc1(self):
         self.remove()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
@@ -44,14 +46,52 @@ class segment(plotSett):
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
 
+
+
+
+    def calc2(self):
+        self.remove()
+
+        x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
+        #x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
+
+        #self.angCoeff = (y1 - y0)/(x1 - x0)
+        #self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
+        self.intercept = -self.angCoeff*x0 + y0 
+        #to find out straight line when u know angCoeff and 1 point coords
+
+        self.idxMin = np.where( self.x >= self.xMin)[0][0]
+        self.idxMax = np.where( self.x >= self.xMax)[0][0]
+        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
+
+        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+
+
+
+
+
+
+
+
+
+
     def rm(self):
+        self.lines = None
+        self.data = None
+        self.point = [None, None]
+        self.angCoeff = None
+        self.intercept = None
+        """
         for attr in self.__dict__:
             print(attr)
             setattr(self, attr, None)
-
+        """
 
     def draw(self):
-        self.calc()
+        try:
+            self.calc1()
+        except:
+            self.calc2()
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
