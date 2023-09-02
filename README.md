@@ -55,15 +55,18 @@ You may want to add a grid with both x and y axes
 `C1.grid()`
 
 
-![Alt Text](pictures/circumferenceDraw.png)
+![Alt Text](pictures/circumferenceDraw_withGrid.png)
 
 
-if you want to see all the details of "C1" circumference instance, than type
+Now you want "C1" instance being not just a random circumference, but a specific one. First of all, you need to know attributes, instances and plot settings of "C1" instance, than
 
 
 `print(C1)`
 
-and you can change details such as the color just by typing
+
+![Alt Text](pictures/print_C1_screenshot.png)
+
+you can change details such as the color just by typing
 
 
 `C1.color = 'red'`
@@ -71,6 +74,14 @@ and you can change details such as the color just by typing
 or 
 
 `C1.color = 'r'`
+
+Once the attribute is going to be changed, than use again the "draw" method
+
+`C1.draw()`
+
+![Alt Text](pictures/changeColor.png)
+
+
 
 according with matplotlib library, you can choose the color you like more from the following list
 
@@ -92,13 +103,18 @@ according with matplotlib library, you can choose the color you like more from t
 - ``'w'``          white
 
 
-
 ## Draw a specific circumference
 
+In the some way you can change the radius size or you can add a name 
 
-choose the radius
 
-`C1.radius = 5`
+`C1.radius = 4`
+
+`C1.name = "first circumference"`
+
+`C1.draw()`
+
+
 
 choose the center position
 
