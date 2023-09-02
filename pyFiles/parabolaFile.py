@@ -35,7 +35,7 @@ class parabola(plotSett):
         super().__str__()
 
         attributes = (
-            f"\033[93mType:\033[0m parabola\n"
+            f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
             f"\033[93mxShift:\033[0m {self.xShift}\n"
             f"\033[93myShift:\033[0m {self.yShift}\n"

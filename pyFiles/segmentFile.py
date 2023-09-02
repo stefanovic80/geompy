@@ -12,8 +12,8 @@ class segment(plotSett):
         
         super().__init__(xmin, xmax, steps)
 
-        angles = np.arange(-np.pi, np.pi, 0.1)
-        angle = random.choice(angles)
+        #angles = np.arange(-np.pi, np.pi, 0.1)
+        #angle = random.choice(angles)
         self.idxMin = None
         self.idxMax = None
         self.lines = None
@@ -23,8 +23,8 @@ class segment(plotSett):
         self.xMax = self.xmax
         self.point = [point(), point()]
         
-        self.angCoeff = np.tan(angle)
-        self.intercept = np.random.randint(self.xmin, self.xmax) #change to make decimal possible
+        self.angCoeff = None #np.tan(angle)
+        self.intercept = None #np.random.randint(self.xmin, self.xmax) #change to make decimal possible
 
     def calc(self):
         self.remove()
@@ -34,13 +34,21 @@ class segment(plotSett):
 
         self.angCoeff = (y1 - y0)/(x1 - x0)
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-
+        #self.intercept = -self.angCoeff*x0 + y0 
+        #to find out straight line when u know angCoeff and 1 point coords
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+
+
+    def rm(self):
+        for attr in self.__dict__:
+            print(attr)
+            setattr(self, attr, None)
+
 
     def draw(self):
         self.calc()
@@ -56,7 +64,7 @@ class segment(plotSett):
 
         attributes = (
             f"Attributes:\n"
-            f"\033[93mType:\033[0m Segment\n"
+            f"\033[93mClass type:\033[0m Segment\n"
             f"\033[93mangCoeff:\033[0m {self.angCoeff}\n"
             f"\033[93mintercept:\033[0m {self.intercept}\n"
             f"\033[93mxMin:\033[0m {self.xMin}\n"
@@ -71,6 +79,8 @@ class segment(plotSett):
             f"\nMethods:\n"
             f"\033[93mdraw()\033[0m\n"
             f"\033[93mremove()\033\n"
+            f"\033[93mpoint[0]\033\n"
+            f"\033[93mpoint[1]\033\n"
         )            
         
         return attributes + methods + self.plotSettings
