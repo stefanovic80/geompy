@@ -1,0 +1,29 @@
+class MyClass:
+    def method1(self):
+        try:
+            # Your code for method1 here
+            result = 10 / 0  # This line will raise a ZeroDivisionError
+        except Exception as e:
+            print(f"method1 failed: {e}")
+            self.method2()
+
+    def method2(self):
+        try:
+            # Your code for method2 here
+            result = 20 / 0  # This line will raise a ZeroDivisionError
+        except Exception as e:
+            print(f"method2 failed: {e}")
+            self.method3()
+
+    def method3(self):
+        try:
+            # Your code for method3 here
+            result = 30 / 0  # This line will raise a ZeroDivisionError
+        except Exception as e:
+            print(f"method3 failed: {e}")
+
+# Create an instance of MyClass
+obj = MyClass()
+
+# Call method1 to start the sequence
+obj.method1()

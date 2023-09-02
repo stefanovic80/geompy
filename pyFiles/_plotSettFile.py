@@ -68,7 +68,7 @@ class plotSett():
         try:
             for line in self.lines:
                 line.remove()
-                self.rm()
+                # self.rm()
         except:
             pass	
 
