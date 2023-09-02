@@ -114,15 +114,23 @@ In the some way you can change the radius size or you can add a name
 
 `C1.draw()`
 
+"center" is an instance of point class which is conteined into C1 instance. This means that typing
 
 
-choose the center position
+`print(C1.center)`
 
-`C1.center = [2, 5]`
+You gonna have a list of all Attributes, methods and settings related to the C1.center instance
 
-Draw the desired circumference 
 
-`C1.plot()`
+
+![Alt Text](pictures/printC1center.png)
+
+
+you can change the center coordinates by typing
+
+`C1.center.coords = [2, 5]`
+
+`C1.draw()`
 
 
 ![Alt Text](pictures/circumferenceDraw2.png)
