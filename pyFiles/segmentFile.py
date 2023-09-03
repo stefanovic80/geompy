@@ -108,8 +108,9 @@ class segment(plotSett):
         #self.lines = None
         self.remove()
         self.data = None
-        self.point[0].coords = [None, None]
-        self.point[1].coords = [None, None]
+        for j in range(2):
+            self.point[j].coords = [None, None]
+            #self.point[j].lines.remove()
         self.angCoeff = None
         self.intercept = None
         """
