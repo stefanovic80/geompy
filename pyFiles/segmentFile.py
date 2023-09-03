@@ -12,15 +12,12 @@ class segment(plotSett):
         
         super().__init__(xmin, xmax, steps)
 
-        #angles = np.arange(-np.pi, np.pi, 0.1)
-        #angle = random.choice(angles)
         self.idxMin = None
         self.idxMax = None
 
         self.color = random.choice(self.colors)
         self.xMin = self.xmin
         self.xMax = self.xmax
-
 
         self.lines = None
         self.data = None
@@ -30,25 +27,23 @@ class segment(plotSett):
 
 
 
-
-
-
-
-
-    def calc1(self): #calculate equation from two points
-        self.remove()
+    def calc1(self): #calculate equation angCoeff and intercept
+        self.__del__()
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
         #self.__str__()
+        for j in range(2):
+            self.point[j].coords = [None, None]
+
 
 
     def calc2(self): #calculate equation from two points
-        self.remove()
+        #self.remove()
+        self.__del__()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
         x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
@@ -71,6 +66,10 @@ class segment(plotSett):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.intercept = -self.angCoeff*x0 + y0
+                if j == 0:
+                    self.point[j+1].coords = [None, None]
+                else:
+                    self.point[j-1].coords = [None, None]
             except:
                 pass
 
@@ -84,8 +83,9 @@ class segment(plotSett):
 
 
     def calc4(self): #calculate equation from 1 point and intercept
-        self.remove()
-        
+        #self.remove()
+        self.__del__()
+
         for j in range(2):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
@@ -106,18 +106,16 @@ class segment(plotSett):
 
     def erase(self):#add self.remove()
         #self.lines = None
-        self.remove()
+        #self.remove()
+        self.__del__()
+
         self.data = None
         for j in range(2):
             self.point[j].coords = [None, None]
             #self.point[j].lines.remove()
         self.angCoeff = None
         self.intercept = None
-        """
-        for attr in self.__dict__:
-            print(attr)
-            setattr(self, attr, None)
-        """
+        print(self.__str__() )
 
     def draw(self):
         try:

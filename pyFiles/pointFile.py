@@ -21,7 +21,8 @@ class point(plotSett):
         self.j = 0
 
     def draw(self):
-        self.remove()
+        #self.remove()
+        self.__del__()
 
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
 
@@ -29,7 +30,7 @@ class point(plotSett):
         self.lines.append(line)
 
         if self.j%2 != 0:
-            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)
+            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmax = 4)
             vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)
             self.lines.append(hline)
             self.lines.append(vline)
@@ -41,7 +42,9 @@ class point(plotSett):
 
 
     def click(self):
-        self.remove()
+        #self.remove()
+        self.__del__()
+
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
         self.draw()

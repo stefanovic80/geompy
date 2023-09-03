@@ -45,6 +45,12 @@ class plotSett():
 
         #Ymajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
         #Yminor_ticks = np.linspace(self.xmin, self.xmax, gridSteps)
+        
+        try:
+            self.ax.spines['bottom'].set_position('zero')
+            self.ax.spines['left'].set_position('zero')
+        except:
+            pass
 
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_xticks(Xmajor_ticks)
@@ -73,7 +79,12 @@ class plotSett():
             pass	
 
     def __del__(self):
-        self.remove()
+        try:
+            for line in self.lines:
+                line.remove()
+        except:
+            pass
+
         try:
             for u in self.point:
                 u.remove()
