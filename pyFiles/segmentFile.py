@@ -70,10 +70,9 @@ class segment(plotSett):
         for j in range(2):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                self.intercept = -self.angCoeff*x0 + y0
             except:
                 pass
-        self.intercept = -self.angCoeff*x0 + y0 
-        #to find out straight line when u know angCoeff and 1 point coords
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
@@ -90,10 +89,9 @@ class segment(plotSett):
         for j in range(2):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                self.angCoeff = (y0 - self.intercept)/x0
             except:
                 pass
-
-        self.angCoeff = (y0 - self.intercept)/x0
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
@@ -106,8 +104,9 @@ class segment(plotSett):
 
 
 
-    def rm(self):#add self.remove()
-        self.lines = None
+    def erase(self):#add self.remove()
+        #self.lines = None
+        self.remove()
         self.data = None
         self.point[0].coords = [None, None]
         self.point[1].coords = [None, None]
