@@ -35,14 +35,13 @@ class segment(plotSett):
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-        #self.__str__()
-        for j in range(2):
-            self.point[j].coords = [None, None]
+
+        #for j in range(2):
+        #    self.point[j].coords = [None, None]
 
 
 
     def calc2(self): #calculate equation from two points
-        #self.remove()
         self.__del__()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
@@ -51,11 +50,12 @@ class segment(plotSett):
         self.angCoeff = (y1 - y0)/(x1 - x0)
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
         
-        self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
+        self.calc1()
+        #self.idxMin = np.where( self.x >= self.xMin)[0][0]
+        #self.idxMax = np.where( self.x >= self.xMax)[0][0]
+        #self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
-        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+        #self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
 
     
@@ -73,12 +73,7 @@ class segment(plotSett):
             except:
                 pass
 
-        self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
-
-        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
+        self.calc1()
 
 
 
@@ -96,21 +91,13 @@ class segment(plotSett):
                     self.point[j-1].coords = [None, None]
             except:
                 pass
+        
 
-        self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
-
-        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
-
-
-
+        self.calc1()
+        
 
 
     def erase(self):#add self.remove()
-        #self.lines = None
-        #self.remove()
         self.__del__()
 
         self.data = None
@@ -124,6 +111,8 @@ class segment(plotSett):
     def draw(self):
         try:
             self.calc1()#intercept, angCoeff
+            for j in range(2):
+                 self.point[j].coords = [None, None]
         except:
             try:
                 self.calc2() #two points
@@ -141,13 +130,6 @@ class segment(plotSett):
         self.lines = []
         self.lines.append(line)
         
-        """
-        for j in range(2):
-            try:
-                self.lines = self.lines + self.point[j].lines
-            except:
-                pass
-        """
 
     def __str__(self):
 
