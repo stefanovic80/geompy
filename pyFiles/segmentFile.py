@@ -90,6 +90,10 @@ class segment(plotSett):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.angCoeff = (y0 - self.intercept)/x0
+                if j == 0:
+                    self.point[j+1].coords = [None, None]
+                else:
+                    self.point[j-1].coords = [None, None]
             except:
                 pass
 
