@@ -44,7 +44,7 @@ class segment(plotSett):
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
-
+        #self.__str__()
 
 
     def calc2(self): #calculate equation from two points
@@ -143,7 +143,7 @@ class segment(plotSett):
         super().__str__()
 
         attributes = (
-            f"Attributes:\n"
+            f"Attributes:\n"#change 93 to 91 to make it red
             f"\033[93mClass type:\033[0m Segment\n"
             f"\033[93mangCoeff:\033[0m {self.angCoeff}\n"
             f"\033[93mintercept:\033[0m {self.intercept}\n"
