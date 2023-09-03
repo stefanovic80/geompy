@@ -38,25 +38,11 @@ class segment(plotSett):
     def calc1(self): #calculate equation from two points
         self.remove()
 
-        #x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
-        #x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
-
-        #self.angCoeff = (y1 - y0)/(x1 - x0)
-        #self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-        #self.intercept = -self.angCoeff*x0 + y0
-        #to find out straight line when u know angCoeff and 1 point coords
-
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
-
-
-
-
-
 
 
 
@@ -69,9 +55,7 @@ class segment(plotSett):
 
         self.angCoeff = (y1 - y0)/(x1 - x0)
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-        #self.intercept = -self.angCoeff*x0 + y0 
-        #to find out straight line when u know angCoeff and 1 point coords
-
+        
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
@@ -83,7 +67,11 @@ class segment(plotSett):
     def calc3(self): #calculate equation from 1 point and angCoeff
         self.remove()
         
-        x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+        for j in range(2):
+            try:
+                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+            except:
+                pass
         self.intercept = -self.angCoeff*x0 + y0 
         #to find out straight line when u know angCoeff and 1 point coords
 
@@ -99,8 +87,12 @@ class segment(plotSett):
     def calc4(self): #calculate equation from 1 point and intercept
         self.remove()
         
-        j = 0
-        x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+        for j in range(2):
+            try:
+                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+            except:
+                pass
+
         self.angCoeff = (y0 - self.intercept)/x0
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
@@ -114,7 +106,7 @@ class segment(plotSett):
 
 
 
-    def rm(self):
+    def rm(self):#add self.remove()
         self.lines = None
         self.data = None
         self.point[0].coords = [None, None]
@@ -129,16 +121,16 @@ class segment(plotSett):
 
     def draw(self):
         try:
-            self.calc1()
+            self.calc1()#intercept, angCoeff
         except:
             try:
-                self.calc2()
+                self.calc2() #two points
             except:
                 try:
-                    self.calc3()
+                    self.calc3() # 1point, angCoeff
                 except:
                     try:
-                        self.calc4()
+                        self.calc4()# 1point, intercept
                     except:
                         pass
 
