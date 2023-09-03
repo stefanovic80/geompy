@@ -73,8 +73,17 @@ class plotSett():
             pass	
 
     def __del__(self):
-    	self.remove()
-	
+        self.remove()
+        try:
+            for u in self.point:
+                u.remove()
+        except:
+            pass
+
+
+
+
+
     def __str__(self):
         self.plotSettings = (
             f"\nSettings:\n"
