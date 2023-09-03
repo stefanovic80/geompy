@@ -28,7 +28,40 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None #np.random.randint(self.xmin, self.xmax) #change to make decimal possible
 
+
+
+
+
+
+
+
     def calc1(self): #calculate equation from two points
+        self.remove()
+
+        #x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
+        #x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
+
+        #self.angCoeff = (y1 - y0)/(x1 - x0)
+        #self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
+        #self.intercept = -self.angCoeff*x0 + y0
+        #to find out straight line when u know angCoeff and 1 point coords
+
+        self.idxMin = np.where( self.x >= self.xMin)[0][0]
+        self.idxMax = np.where( self.x >= self.xMax)[0][0]
+        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
+
+        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+
+
+
+
+
+
+
+
+
+
+    def calc2(self): #calculate equation from two points
         self.remove()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
@@ -47,7 +80,7 @@ class segment(plotSett):
 
 
     
-    def calc2(self): #calculate equation from 1 point and angCoeff
+    def calc3(self): #calculate equation from 1 point and angCoeff
         self.remove()
         
         x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
@@ -63,7 +96,7 @@ class segment(plotSett):
 
 
 
-    def calc3(self): #calculate equation drom 1 point and intercept
+    def calc4(self): #calculate equation from 1 point and intercept
         self.remove()
         
         j = 0
@@ -104,7 +137,10 @@ class segment(plotSett):
                 try:
                     self.calc3()
                 except:
-                    pass
+                    try:
+                        self.calc4()
+                    except:
+                        pass
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
