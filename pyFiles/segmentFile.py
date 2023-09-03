@@ -137,6 +137,14 @@ class segment(plotSett):
 
         self.lines = []
         self.lines.append(line)
+        
+        """
+        for j in range(2):
+            try:
+                self.lines = self.lines + self.point[j].lines
+            except:
+                pass
+        """
 
     def __str__(self):
 

@@ -18,13 +18,27 @@ class point(plotSett):
         self.lines = None
         self.color = random.choice(self.colors)
         self.name = None
+        self.j = 0
 
     def draw(self):
         self.remove()
 
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
+
         self.lines = []
         self.lines.append(line)
+
+        if self.j%2 != 0:
+            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)
+            vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)
+            self.lines.append(hline)
+            self.lines.append(vline)
+            print("\nrun .draw one more time to erase coordinates\n")
+        else:
+            print("\nrun .draw one more time to highlight coordinates\n")
+        
+        self.j+=1
+
 
     def click(self):
         self.remove()
