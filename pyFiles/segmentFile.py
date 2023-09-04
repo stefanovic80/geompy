@@ -67,7 +67,7 @@ class segment(plotSett):
 
 
     def calc4(self): #calculate equation from 1 point and intercept
-        self.__del__()
+        #self.__del__()
 
         for j in range(2):
             try:
