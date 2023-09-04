@@ -28,7 +28,7 @@ class segment(plotSett):
 
 
     def calc1(self): #calculate equation angCoeff and intercept
-        self.__del__()
+        #self.__del__()
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
@@ -36,13 +36,9 @@ class segment(plotSett):
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
-        #for j in range(2):
-        #    self.point[j].coords = [None, None]
-
-
 
     def calc2(self): #calculate equation from two points
-        self.__del__()
+        #self.__del__()
 
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
         x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
@@ -51,16 +47,10 @@ class segment(plotSett):
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
         
         self.calc1()
-        #self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        #self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        #self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
-
-        #self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
+        
 
     
     def calc3(self): #calculate equation from 1 point and angCoeff
-        self.remove()
         
         for j in range(2):
             try:
@@ -78,7 +68,6 @@ class segment(plotSett):
 
 
     def calc4(self): #calculate equation from 1 point and intercept
-        #self.remove()
         self.__del__()
 
         for j in range(2):
@@ -100,7 +89,7 @@ class segment(plotSett):
     def erase(self):#add self.remove()
         self.__del__()
 
-        self.data = None
+        self.data = [None, None]
         for j in range(2):
             self.point[j].coords = [None, None]
             #self.point[j].lines.remove()
@@ -109,6 +98,7 @@ class segment(plotSett):
         print(self.__str__() )
 
     def draw(self):
+        self.__del__()
         try:
             self.calc1()#intercept, angCoeff
             for j in range(2):
@@ -137,23 +127,23 @@ class segment(plotSett):
 
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
-            f"\033[93mClass type:\033[0m Segment\n"
-            f"\033[93mangCoeff:\033[0m {self.angCoeff}\n"
-            f"\033[93mintercept:\033[0m {self.intercept}\n"
-            f"\033[93mxMin:\033[0m {self.xMin}\n"
-            f"\033[93mxMax:\033[0m {self.xMax}\n"
-            f"\033[93mdata:\033[0m {self.data}\n"
-            #f"\033[93mname:\033[0m {self.name}\n"
-            f"\033[93mcolor:\033[0m {self.color}\n"
-            f"\033[93mlinewdith:\033[0m {self.linewidth}\n"
+            f"\033[93mClass type = \033[0m Segment\n"
+            f"\033[93mangCoeff = \033[0m {self.angCoeff}\n"
+            f"\033[93mintercept = \033[0m {self.intercept}\n"
+            f"\033[93mxMin = \033[0m {self.xMin}\n"
+            f"\033[93mxMax = \033[0m {self.xMax}\n"
+            f"\033[93mdata = \033[0m {self.data}\n"
+            #f"\033[93mname = \033[0m {self.name}\n"
+            f"\033[93mcolor = \033[0m {self.color}\n"
+            f"\033[93mlinewdith =\033[0m {self.linewidth}\n"
         )
         
         methods = (
             f"\nMethods:\n"
-            f"\033[93mdraw()\033[0m\n"
-            f"\033[93mremove()\033\n"
-            f"\033[93mpoint[0]\033\n"
-            f"\033[93mpoint[1]\033\n"
+            f"\033[93m.draw()\033[0m\n"
+            f"\033[93m.remove()\033\n"
+            f"\033[93m.point[0].coords = [{self.point[0].coords[0]}, {self.point[0].coords[1]}]\033\n "
+            f"\033[93m.point[1].coords = [{self.point[1].coords[0]}, {self.point[1].coords[1]}]\033\n"
         )            
         
         return attributes + methods + self.plotSettings
