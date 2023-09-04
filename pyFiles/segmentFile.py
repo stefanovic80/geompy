@@ -26,7 +26,6 @@ class segment(plotSett):
         self.intercept = None #np.random.randint(self.xmin, self.xmax) #change to make decimal possible
 
 
-
     def calc1(self): #calculate equation angCoeff and intercept
         #self.__del__()
 
@@ -128,14 +127,15 @@ class segment(plotSett):
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
             f"\033[93mClass type = \033[0m Segment\n"
-            f"\033[93mangCoeff = \033[0m {self.angCoeff}\n"
-            f"\033[93mintercept = \033[0m {self.intercept}\n"
-            f"\033[93mxMin = \033[0m {self.xMin}\n"
-            f"\033[93mxMax = \033[0m {self.xMax}\n"
-            f"\033[93mdata = \033[0m {self.data}\n"
+            f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
+            f"\033[93m.intercept = \033[0m {self.intercept}\n"
+            f"\033[93m.xMin = \033[0m {self.xMin}\n"
+            f"\033[93m.xMax = \033[0m {self.xMax}\n"
+            f"\033[93m.data[0] = \033[0m {self.data[0]}\n"
             #f"\033[93mname = \033[0m {self.name}\n"
-            f"\033[93mcolor = \033[0m {self.color}\n"
-            f"\033[93mlinewdith =\033[0m {self.linewidth}\n"
+            f"\033[93m.data[1] = \033[0m {self.data[1]}\n"
+            f"\033[93m.color = \033[0m {self.color}\n"
+            f"\033[93m.linewdith =\033[0m {self.linewidth}\n"
         )
         
         methods = (

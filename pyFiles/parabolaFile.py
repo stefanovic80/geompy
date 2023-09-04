@@ -20,7 +20,8 @@ class parabola(plotSett):
         self.color = random.choice(self.colors)
 
     def draw(self ):
-        self.remove()
+        #self.remove()
+        self.__del__()
 
         self.data = [ self.x ]
 
@@ -37,18 +38,19 @@ class parabola(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
-            f"\033[93mxShift:\033[0m {self.xShift}\n"
-            f"\033[93myShift:\033[0m {self.yShift}\n"
-            f"\033[93mconcavity:\033[0m {self.concavity}\n"
-            f"\033[93mdata:\033[0m {self.data}\n"
-            f"\033[93mname:\033[0m {self.name}\n"
-            f"\033[93mcolor:\033[0m {self.color}\n"
+            f"\033[93m.xShift = \033[0m {self.xShift}\n"
+            f"\033[93m.yShift = \033[0m {self.yShift}\n"
+            f"\033[93m.concavity = \033[0m {self.concavity}\n"
+            f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
+            f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
+            f"\033[93m.name:\033[0m {self.name}\n"
+            f"\033[93m.color:\033[0m {self.color}\n"
         )
         
         methods = (
             f"\nMethods:\n"
-            f"\033[93mdraw()\033[0m\n"
-            f"\033[93mremove()\033[0m\n"
+            f"\033[93m.draw()\033[0m\n"
+            f"\033[93m.remove()\033[0m\n"
         )
 
         return attributes + methods + self.plotSettings

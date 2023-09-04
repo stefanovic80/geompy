@@ -25,8 +25,9 @@ class circumference(plotSett):
         self.center.color = self.color
 
     def draw(self):
-        self.remove()
-
+        #self.remove()
+        self.__del__()
+        
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
 
         #it removes not a number terms due to root of negative values
@@ -63,15 +64,16 @@ class circumference(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m circumference\n"
             f"\nAttributes:\n"
-            f"\033[93mradius:\033[0m {self.radius}\n"
-            f"\033[93mdata:\033[0m {self.data}\n"
-            f"\033[93mname:\033[0m {self.name}\n"
-            f"\033[93mcolor:\033[0m {self.color}\n"
+            f"\033[93m.radius = \033[0m {self.radius}\n"
+            f"\033[93m.data[0] = \033[0m {self.data[0]}\n"
+            f"\033[93m.data[1] = \033[0m {self.data[1]}\n"
+            f"\033[93m.color = \033[0m {self.color}\n"
+            f"\033[93m.name = \033[0m {self.name}\n"
         )
         
         instances = (
             f"\nInstances:\n"
-            f"\033[93mcenter\033[0m\n"
+            f"\033[93m.center\033[0m\n"
         )
         
         return attributes + instances + self.plotSettings
