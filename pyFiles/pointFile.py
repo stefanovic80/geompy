@@ -10,7 +10,7 @@ from ._plotSettFile import plotSett
 
 class point(plotSett):
     
-    def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0):
+    def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0, pickFrom = None):
         super().__init__( xmin, xmax, steps, linewidth )
         
         self.coords = [random.randint(self.xmin + bip, self.xmax - bip), random.randint(self.xmin, self.xmax) ]
@@ -18,10 +18,10 @@ class point(plotSett):
         self.lines = None
         self.color = random.choice(self.colors)
         self.name = None
+        self.pickFrom = pickFrom
         self.j = 0
 
     def draw(self):
-        #self.remove()
         self.__del__()
 
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
@@ -39,6 +39,10 @@ class point(plotSett):
             print("\nrun .draw one more time to highlight coordinates\n")
         
         self.j+=1
+
+    def randomPoint(self):
+        idx = np.random.randint(0, len(self.pickFrom[0]) )
+        self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
 
 
     def click(self):

@@ -20,6 +20,7 @@ class plotSett():
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth
         self.plotSettings = None
+        #self.randomPoint = point()
 
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
@@ -69,7 +70,7 @@ class plotSett():
         #linewidth = self.linewidth
         self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
         
-    
+    #to be deprecated
     def remove(self):
         try:
             for line in self.lines:
@@ -90,10 +91,12 @@ class plotSett():
                 u.remove()
         except:
             pass
-
-
-
-
+    
+    """
+    def randomPoint(self):
+        idx = np.randomint(0, len(self.data[0]) )
+        self.randomPoint.coords = [ self.data[0][idx]  , self.data[1][idx]  ]
+    """
 
     def __str__(self):
         self.plotSettings = (
