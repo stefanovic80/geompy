@@ -10,9 +10,9 @@ from ._plotSettFile import plotSett
 
 class point(plotSett):
     
-    def __init__(self, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0, pickFrom = None):
+    def __init__(self, pickFrom = None, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0):
         super().__init__( xmin, xmax, steps, linewidth )
-        
+        #if pickFrom == None:
         self.coords = [random.randint(self.xmin + bip, self.xmax - bip), random.randint(self.xmin, self.xmax) ]
 
         self.lines = None
@@ -20,6 +20,11 @@ class point(plotSett):
         self.name = None
         self.pickFrom = pickFrom
         self.j = 0
+        
+        try:
+            self.randomPoint()
+        except:
+            pass
 
     def draw(self):
         self.__del__()

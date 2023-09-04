@@ -25,7 +25,7 @@ class triangle(plotSett):
         #angCoeff calculation
 
     def draw(self):
-        self.remove()
+        self.__del__()
         
         self.data = [None, None, None]
         

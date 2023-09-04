@@ -26,7 +26,7 @@ class ellipse(plotSett):
         self.center.color = self.color
 
     def draw(self):
-        self.remove()
+        self.__del__()
 
         ellip = self.focus2*np.sqrt( 1 - ( ( self.x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 

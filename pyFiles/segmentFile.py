@@ -23,9 +23,7 @@ class segment(plotSett):
         self.data = None
         self.point = [point(), point()]
         self.angCoeff = None #np.tan(angle)
-        self.intercept = None #np.random.randint(self.xmin, self.xmax) #change to make decimal possible
-
-        #print(self.__str__())
+        self.intercept = None
 
     def calc1(self): #calculate equation from angCoeff and intercept
         #self.__del__()
