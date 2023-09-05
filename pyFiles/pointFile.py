@@ -20,7 +20,8 @@ class point(plotSett):
         self.name = None
         self.pickFrom = pickFrom
         self.j = 0
-        
+        self.text = None
+
         try:
             self.randomPoint()
         except:
@@ -51,12 +52,15 @@ class point(plotSett):
 
 
     def click(self):
-        #self.remove()
         self.__del__()
 
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
         self.draw()
+
+    def label(self):
+        shift = (self.xmax - self.xmin)/40
+        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
     def __str__(self):
 

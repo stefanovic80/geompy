@@ -79,6 +79,9 @@ class plotSett():
         except:
             pass	
 
+
+
+
     def __del__(self):
         try:
             for line in self.lines:
@@ -91,12 +94,11 @@ class plotSett():
                 u.remove()
         except:
             pass
-    
-    """
-    def randomPoint(self):
-        idx = np.randomint(0, len(self.data[0]) )
-        self.randomPoint.coords = [ self.data[0][idx]  , self.data[1][idx]  ]
-    """
+
+        try:
+            self.text.remove()
+        except:
+            pass
 
     def __str__(self):
         self.plotSettings = (
