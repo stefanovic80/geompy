@@ -44,7 +44,7 @@ class point(plotSett):
     """
 
 
-    def draw(self):
+    def draw(self, name = None):
         self.__del__()
 
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
@@ -61,6 +61,13 @@ class point(plotSett):
         else:
             print("\nrun .draw one more time to highlight coordinates\n")
         
+        try:
+            self.name = name
+            self.label()
+        except:
+            pass
+
+
         self.j+=1
 
     def randomPoint(self):
@@ -75,8 +82,7 @@ class point(plotSett):
         self.coords = [ a[0][0], a[0][1] ]
         self.draw()
 
-    def label(self, name):
-        self.name = name
+    def label(self):
         shift = (self.xmax - self.xmin)/40
         self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
