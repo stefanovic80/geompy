@@ -27,6 +27,23 @@ class point(plotSett):
         except:
             pass
 
+
+    """
+    @property
+    def _name(self):
+        return self.name
+
+    @_name.setter
+    def _name(self, new_name):
+        if new_name != self.name:
+            self.label()
+        self.name = new_name
+
+    #def _on_name_change(self, new_name):
+    #    self.label()
+    """
+
+
     def draw(self):
         self.__del__()
 
@@ -58,7 +75,8 @@ class point(plotSett):
         self.coords = [ a[0][0], a[0][1] ]
         self.draw()
 
-    def label(self):
+    def label(self, name):
+        self.name = name
         shift = (self.xmax - self.xmin)/40
         self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
@@ -83,4 +101,5 @@ class point(plotSett):
         )
 
         return attributes + methods + self.plotSettings
-
+    
+    #a = globals().keys(), b = list(a)
