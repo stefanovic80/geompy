@@ -109,6 +109,9 @@ class segment(plotSett):
         except:
             try:
                 self.calc2() #two points
+                #for j in range(2):
+                #    self.point[j].color = self.color
+                #    self.point[j].draw()# points are going to be deleted and drawn again
             except:
                 try:
                     self.calc3() # 1point, angCoeff

@@ -10,7 +10,7 @@ from .pointFile import point
 class circumference(plotSett):
 #class circumference(point):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
@@ -69,6 +69,7 @@ class circumference(plotSett):
             f"\033[93m.data[0] = \033[0m {self.data[0]}\n"
             f"\033[93m.data[1] = \033[0m {self.data[1]}\n"
             f"\033[93m.color = \033[0m {self.color}\n"
+            f"\033[93m.linewidth = \033[0m\n"
             f"\033[93m.name = \033[0m {self.name}\n"
         )
         

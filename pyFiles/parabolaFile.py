@@ -14,7 +14,7 @@ class parabola(plotSett):
         super().__init__(xmin, xmax, steps)
         self.xShift = np.random.randint(xmin, xmax)
         self.yShift = np.random.randint(xmin, xmax)
-        self.concavity = np.random.randint(-(xmax-xmin)/2, + (xmax + xmin)/2)
+        self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         self.lines = []
         self.data = None
         self.name =  None
@@ -51,7 +51,7 @@ class parabola(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.draw()\033[0m\n"
-            f"\033[93m.remove()\033[0m\n"
+            f"\033[93m.erase()\033[0m\n"
         )
 
         return attributes + methods + self.plotSettings

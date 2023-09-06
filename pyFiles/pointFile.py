@@ -20,10 +20,14 @@ class point(plotSett):
         self.lines = None
         self.color = random.choice(self.colors)
         self.name = None
-        self.pickFrom = pickFrom
+        try:
+            self.pickFrom = pickFrom.data
+        except:
+            self.pickFrom = pickFrom
         self.j = 0
         self.text = None
 
+        
         try:
             self.randomPoint()
         except:
@@ -105,7 +109,7 @@ class point(plotSett):
             f"\nMethods:\n"
             f"\033[93mdraw()\033[0m\n"
             f"\033[93mclick()\033[0m\n"
-            f"\033[93mremove()\033[0m\n"
+            f"\033[93merase()\033[0m\n"
         )
 
         return attributes + methods + self.plotSettings

@@ -108,6 +108,7 @@ class plotSett():
             f"\033[93m.xmax = \033[0m {self.xmax}\n"
             f"\033[93m.steps = \033[0m {self.steps}\n"
             f"\033[93m.x = \033[0m {self.x}\n"
+            f"\033[93m.grid(N = 1)\033[0m\n"
             #f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )
     	
