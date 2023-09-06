@@ -1,5 +1,6 @@
 # parabolaFile.py
 from . import plt, np, random
+from . import xmin, xmax, steps, linewidth
 
 plt.ion()
 
@@ -8,7 +9,7 @@ from ._plotSettFile import plotSett
 
 class parabola(plotSett):
 
-    def __init__(self, xmin= -20, xmax = 20, steps = 500):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
 
         super().__init__(xmin, xmax, steps)
         self.xShift = np.random.randint(xmin, xmax)

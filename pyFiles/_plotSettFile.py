@@ -1,5 +1,6 @@
 # _plotSett.py
 from . import plt, np, random
+from . import xmin, xmax, steps, linewidth
 
 plt.ion()
 
@@ -13,7 +14,7 @@ class plotSett():
     fig = plt.figure()
     ax = fig.add_subplot(111)
     #ax.set_xlim(self.xmin, self.xmax)
-    def __init__(self, xmin = -10, xmax = 10, steps = 500, linewidth = 2):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
         self.xmin = xmin
         self.xmax = xmax
         self.steps = steps

@@ -1,5 +1,6 @@
 # circumference.py
 from . import plt, np, random
+from . import xmin, xmax, steps, linewidth
 
 #plt.ion()
 
@@ -9,7 +10,7 @@ from .pointFile import point
 class circumference(plotSett):
 #class circumference(point):
 
-    def __init__(self, xmin= -20, xmax = 20, steps = 500, linewidth = 2):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)

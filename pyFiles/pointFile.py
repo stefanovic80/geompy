@@ -1,11 +1,13 @@
 # pointFile.py
 from . import plt, np, random
+from . import xmin, xmax, steps, linewidth
+
 #matplotlib.plot has to be imported in all pyFiles modules
 
 plt.ion()
 
 from ._plotSettFile import plotSett
-
+from . import xmin, xmax, steps, linewidth
 
 
 class point(plotSett):
