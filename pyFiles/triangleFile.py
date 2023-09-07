@@ -25,15 +25,14 @@ class triangle(plotSett):
         #y.sort(reverse = True)
         #angCoeff calculation
 
-    def draw(self):
-        self.__del__()
+        #def draw(self):
+        #self.__del__()
         
         self.data = [None, None, None]
         
         for j in range(3):
-            self.segment[j].calc()
-            self.data = self.segment[j].data
-            #self.segment[j].draw()
+            self.segment[j].calc1()
+            self.data[j] = self.segment[j].data
 
     def __str__(self):
 

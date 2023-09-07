@@ -21,12 +21,13 @@ class plotSett():
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth
         self.plotSettings = None
-        #self.randomPoint = point()
 
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
-        x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
-        self.x = np.array(x)
+        #x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
+        #self.x = np.array(x)
+        step = (self.xmax - self.xmin)/self.steps
+        self.x = np.arange(self.xmin, self.xmax + step, step)
 
     def grid(self, sizeMinor = 0.2, sizeMajor = 1, N = 1):#roteate x numbers to make them better fit in
 
@@ -76,7 +77,6 @@ class plotSett():
         try:
             for line in self.lines:
                 line.remove()
-                # self.rm()
         except:
             pass	
 
@@ -107,7 +107,7 @@ class plotSett():
             f"\033[93m.xmin = \033[0m {self.xmin}\n"
             f"\033[93m.xmax = \033[0m {self.xmax}\n"
             f"\033[93m.steps = \033[0m {self.steps}\n"
-            f"\033[93m.x = \033[0m {self.x}\n"
+            f"\033[93m.x = \033[0m {self.x[:10]}...\n"
             f"\033[93m.grid(N = 1)\033[0m\n"
             #f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )

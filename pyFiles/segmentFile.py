@@ -46,7 +46,7 @@ class segment(plotSett):
         
         self.calc1()
         
-    
+
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
         #try:
@@ -69,7 +69,6 @@ class segment(plotSett):
         self.calc1()
 
 
-
     def calc4(self): #calculate equation from 1 point and intercept
         #self.__del__()
 
@@ -86,7 +85,6 @@ class segment(plotSett):
         
 
         self.calc1()
-        
 
 
     def erase(self):#add self.remove()
@@ -125,7 +123,7 @@ class segment(plotSett):
 
         self.lines = []
         self.lines.append(line)
-        print(self.__str__())
+        #print(self.__str__())
 
     def __str__(self):
 
@@ -138,9 +136,9 @@ class segment(plotSett):
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
             f"\033[93m.xMin = \033[0m {self.xMin}\n"
             f"\033[93m.xMax = \033[0m {self.xMax}\n"
-            f"\033[93m.data[0] = \033[0m {self.data[0]}\n"
+            f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             #f"\033[93mname = \033[0m {self.name}\n"
-            f"\033[93m.data[1] = \033[0m {self.data[1]}\n"
+            f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
             f"\033[93m.linewdith =\033[0m {self.linewidth}\n"
         )
@@ -150,7 +148,7 @@ class segment(plotSett):
             f"\033[93m.draw()\033[0m\n"
             f"\033[93m.erase()\033\n"
             f"\033[93m.point[0].coords = [{self.point[0].coords[0]}, {self.point[0].coords[1]}]\033\n "
-            f"\033[93m.point[1].coords = [{self.point[1].coords[0]}, {self.point[1].coords[1]}]\033\n"
+            f"\033[93m.point[1].coords = [{self.point[1].coords[0]}, {self.point[1].coords[1]}]\033[0m\n"
         )            
         
         return attributes + methods + self.plotSettings
