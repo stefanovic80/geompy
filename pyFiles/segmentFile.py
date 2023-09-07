@@ -22,7 +22,7 @@ class segment(plotSett):
 
         self.lines = None
         self.data = None
-        self.point = [point(), point()]
+        self.point = [point(xmin = xmin, xmax = xmax, steps = steps), point(xmin = xmin, xmax = xmax, steps = steps)]
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
 
@@ -86,14 +86,14 @@ class segment(plotSett):
 
         self.calc1()
 
-
+    #it may be to be deprecated
     def erase(self):#add self.remove()
         self.__del__()
 
         self.data = [None, None]
         for j in range(2):
             self.point[j].coords = [None, None]
-            #self.point[j].lines.remove()
+
         self.angCoeff = None
         self.intercept = None
         print(self.__str__() )
@@ -136,9 +136,8 @@ class segment(plotSett):
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
             f"\033[93m.xMin = \033[0m {self.xMin}\n"
             f"\033[93m.xMax = \033[0m {self.xMax}\n"
-            f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
-            #f"\033[93mname = \033[0m {self.name}\n"
-            f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
+            #f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
+            #f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
             f"\033[93m.linewdith =\033[0m {self.linewidth}\n"
         )

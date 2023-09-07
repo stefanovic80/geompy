@@ -57,7 +57,18 @@ class circumference(plotSett):
 
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
-    
+
+
+
+    def erase(self):#add self.remove()
+        self.__del__()
+
+        self.data = [None, None]
+        self.center.coords = [None, None]
+        self.radius = None
+        #print(self.__str__() )
+
+
     def __str__(self):
 
         super().__str__()
@@ -66,8 +77,8 @@ class circumference(plotSett):
             f"\033[93mClass type:\033[0m circumference\n"
             f"\nAttributes:\n"
             f"\033[93m.radius = \033[0m {self.radius}\n"
-            f"\033[93m.data[0] = \033[0m {self.data[0]}\n"
-            f"\033[93m.data[1] = \033[0m {self.data[1]}\n"
+            f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
+            f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
             f"\033[93m.linewidth = \033[0m\n"
             f"\033[93m.name = \033[0m {self.name}\n"
