@@ -1,5 +1,5 @@
 # pointFile.py
-from . import plt, np, random
+from . import plt, np, random, time
 from . import xmin, xmax, steps, linewidth
 
 #matplotlib.plot has to be imported in all pyFiles modules
@@ -9,13 +9,19 @@ plt.ion()
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
 
+x = random.uniform(xmin, xmax)
+y = random.uniform(xmin, xmax)
+
 
 class point(plotSett):
     
-    def __init__(self, pickFrom = None, xmin = -20, xmax = 20, steps = 500, linewidth = 2, bip = 0):
+    def __init__(self, x = x, y = y, pickFrom = None, xmin = -20, xmax = 20, steps = 500, linewidth = 2):
         super().__init__( xmin, xmax, steps, linewidth )
-        #if pickFrom == None:
-        self.coords = [random.uniform(self.xmin + bip, self.xmax - bip), random.uniform(self.xmin, self.xmax) ]
+
+        #self.seed = random.randint(1, 1000000)
+        #random.seed(self.seed)
+
+        self.coords = [x, y]
 
         self.lines = None
         self.color = random.choice(self.colors)
