@@ -21,10 +21,16 @@ class segment(plotSett):
         self.xMax = self.xmax
 
         self.lines = None
-        self.data = None
+        self.data = None #[None, None]
         self.point = [point(xmin = xmin, xmax = xmax, steps = steps), point(xmin = xmin, xmax = xmax, steps = steps)]
+        self.pointLabel = point()
+        
+        self.pointLabel.coords = [None, None]
+        self.pointLabel.color = 'white'
+
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
+        self.name = None
 
     def calc1(self): #calculate equation from angCoeff and intercept
         #self.__del__()
@@ -34,6 +40,11 @@ class segment(plotSett):
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+
+        if self.pointLabel.coords == [None, None]:
+            #shift = int( self.steps
+            idx = int(len(self.data[0])/2)
+            self.pointLabel.coords = [self.data[0][idx], self.data[1][idx + 10] ]
 
 
     def calc2(self): #calculate equation from two points
@@ -96,9 +107,10 @@ class segment(plotSett):
 
         self.angCoeff = None
         self.intercept = None
-        print(self.__str__() )
+        #print(self.__str__() )
 
-    def draw(self):
+
+    def draw(self, name = None):
         self.__del__()
         try:
             self.calc1()#intercept, angCoeff
@@ -119,11 +131,29 @@ class segment(plotSett):
                     except:
                         pass
 
+
+
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+
+
+        self.name = name 
+        self.label()
 
         self.lines = []
         self.lines.append(line)
         #print(self.__str__())
+
+
+
+
+    def label(self):
+
+        self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
+
+
+
+
+
 
     def __str__(self):
 
