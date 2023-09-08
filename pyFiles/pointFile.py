@@ -15,25 +15,31 @@ y = random.uniform(xmin, xmax)
 
 class point(plotSett):
     
-    def __init__(self, x = x, y = y, pickFrom = None, xmin = -20, xmax = 20, steps = 500, linewidth = 2):
+    def __init__(self, pickFrom = None, x = x, y = y, xmin = -20, xmax = 20, steps = 500, linewidth = 2):
         super().__init__( xmin, xmax, steps, linewidth )
 
-        #self.seed = random.randint(1, 1000000)
-        #random.seed(self.seed)
-
+        
+        p = (isinstance(pickFrom, int) or isinstance(pickFrom, float) or pickFrom == None)
+        print(p)
+        #if p == True:
+        #    x = pickFrom
+        #    y = x
         self.coords = [x, y]
-
-        self.lines = None
-        self.color = random.choice(self.colors)
-        self.name = None
+        #else: 
         try:
             self.pickFrom = pickFrom.data
         except:
             self.pickFrom = pickFrom
+        
+        self.lines = None
+        self.color = random.choice(self.colors)
+        self.name = None
+
+
         self.j = 0
         self.text = None
 
-        
+        #it works in case a geometrical locus is selected (.pickFrom) 
         try:
             self.randomPoint()
         except:
@@ -81,7 +87,8 @@ class point(plotSett):
 
 
         self.j+=1
-
+    
+    #it works in case a geometrical locus is selected (.pickFrom)
     def randomPoint(self):
         idx = np.random.randint(0, len(self.pickFrom[0]) )
         self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
