@@ -8,39 +8,23 @@ plt.ion()
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
 from . import seed
-#from .randomGenFile import randomGen
 
-#seed = 1
-#random.seed(seed) #seed automatically imported from main.py
-
-#a = randomGen(seed)
-#seed = a.seed
 
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed):
         super().__init__( xmin, xmax, steps, linewidth)
         
-        
-        #self.pickFrom = pickFrom
         self.seed = seed
         
         self.coords = [None, None]
         if isinstance(pickFrom, int) or isinstance(pickFrom, float):# coords as point instance arguments
             self.coords[0] = pickFrom
             self.coords[1] = x
-            #y = x
         elif pickFrom is None and x is None and y is None:
-            #pass
             self.randomCoords(self.seed)
         else:#chooce from a geometrical locus
             self.pickFrom = pickFrom.data
-            #self.pickFrom = pickFrom
             self.randomPoint()
-            #self.draw()
-        
-        
-        #if x is None and y is None:
-        #    self.randomCoords(self.seed)
 
         self.color = random.choice(self.colors)
         self.j = 0
@@ -66,15 +50,14 @@ class point(plotSett):
         else:
             print("\nrun .draw one more time to highlight coordinates\n")
         
-        #if name != None:
         if isinstance(name, str):
             self.name = name
 
         self.label()
-        
-
-        self.j += 1
-
+        self.j += 1 
+        # used by .draw() method to make it working in 1 maner fist and in another once it's called again
+    
+    #it generates random coordinates if no argument are passed into point()
     def randomCoords(self, seed):
         #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)
@@ -85,9 +68,16 @@ class point(plotSett):
     
     #random Point from a geometrical locus
     def randomPoint(self):
-        idx = np.random.randint(0, len(self.pickFrom[0]) )
-        self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
-
+        condition_mask = ( self.pickFrom[1] > self.xmin) & (self.pickFrom[1] < self.xmax)
+        indices = np.where(condition_mask)
+        pickFrom_x = self.pickFrom[0][indices]
+        pickfrom_y = self.pickFrom[1][indices]
+        idx = np.random.randint(0, len(pickFrom_x) )
+        self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
+        print(pickFrom_x)
+        print(pickFrom_y)
+        #idx = np.random.randint(0, len(self.pickFrom[0]) )
+        #self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
 
 
     def click(self):
@@ -102,12 +92,9 @@ class point(plotSett):
         self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
 
-
-
     def __str__(self):
 
         super().__str__()
-
 
         attributes = (
             f"\033[93mClass type:\033[0m point\n"

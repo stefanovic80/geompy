@@ -13,32 +13,30 @@ class segment(plotSett):
         
         super().__init__(xmin, xmax, steps)
 
+        #.xMin and .xMax indexes to cut off the straight line into a segment
         self.idxMin = None
         self.idxMax = None
 
         self.color = random.choice(self.colors)
+        #self.xMin and self.xMax cut off the straight line into a segment
         self.xMin = self.xmin
         self.xMax = self.xmax
 
+        #according with matplotlib self.lines.remove() removes the plot
         self.lines = None
         self.data = None #[None, None]
-        
 
-        
+        #random points from which the straight line is identified
         point1 = point(xmin = xmin, xmax = xmax)
-        #BUG: point2 is ALWAYS equal to point1
         point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1)
-        
-        #point2.coords = [point1.coords[0]*p, point1.coords[1]/p]
-        #point2.coords = [point1.coords[0], point1.coords[1]]
-        
         self.point = [point1, point2]
-        #self.point = [point(xmin = xmin, xmax = xmax, steps = steps), point(xmin = xmin*1.2, xmax = xmax*.8, steps = steps)]
-        self.pointLabel = point()
         
+        #point choosen for labeling
+        self.pointLabel = point()
         self.pointLabel.coords = [None, None]
         self.pointLabel.color = 'white'
 
+        #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.name = None
@@ -53,7 +51,6 @@ class segment(plotSett):
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
         if self.pointLabel.coords == [None, None]:
-            #shift = int( self.steps
             idx = int(len(self.data[0])/2)
             self.pointLabel.coords = [self.data[0][idx], self.data[1][idx + 10] ]
 
@@ -71,15 +68,11 @@ class segment(plotSett):
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
-        #try:
-        #    x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
         
         for j in range(2):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.intercept = -self.angCoeff*x0 + y0
-        
-        #[u for u in self.point if u not in [x0, y0] ]
         
                 if j == 0:
                     self.point[j+1].coords = [None, None]
@@ -92,7 +85,6 @@ class segment(plotSett):
 
 
     def calc4(self): #calculate equation from 1 point and intercept
-        #self.__del__()
 
         for j in range(2):
             try:
@@ -105,21 +97,7 @@ class segment(plotSett):
             except:
                 pass
         
-
         self.calc1()
-
-    #it may be to be deprecated
-    def erase(self):#add self.remove()
-        self.__del__()
-
-        self.data = [None, None]
-        for j in range(2):
-            self.point[j].coords = [None, None]
-
-        self.angCoeff = None
-        self.intercept = None
-        #print(self.__str__() )
-
 
     def draw(self, name = None):
         self.__del__()
@@ -127,12 +105,10 @@ class segment(plotSett):
             self.calc1()#intercept, angCoeff
             for j in range(2):
                  self.point[j].coords = [None, None]
+                 #as .data[1] are directly calculated from .angCoeff and intercept, there is no need for a couple of points
         except:
             try:
                 self.calc2() #two points
-                #for j in range(2):
-                #    self.point[j].color = self.color
-                #    self.point[j].draw()# points are going to be deleted and drawn again
             except:
                 try:
                     self.calc3() # 1point, angCoeff
@@ -142,29 +118,17 @@ class segment(plotSett):
                     except:
                         pass
 
-
-
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
-
 
         self.name = name 
         self.label()
 
         self.lines = []
         self.lines.append(line)
-        #print(self.__str__())
-
-
-
 
     def label(self):
 
         self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
-
-
-
-
-
 
     def __str__(self):
 
@@ -177,8 +141,6 @@ class segment(plotSett):
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
             f"\033[93m.xMin = \033[0m {self.xMin}\n"
             f"\033[93m.xMax = \033[0m {self.xMax}\n"
-            #f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
-            #f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
             f"\033[93m.linewdith =\033[0m {self.linewidth}\n"
         )
