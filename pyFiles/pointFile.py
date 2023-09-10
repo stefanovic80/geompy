@@ -2,21 +2,28 @@
 from . import plt, np, random
 from . import xmin, xmax, steps, linewidth
 
+
 plt.ion()
 
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
+#from main import seed
+from .randomGenFile import randomGen
 
-x = random.uniform(xmin, xmax)
-y = random.uniform(xmin, xmax)
+seed = 1
+random.seed(seed) #seed automatically imported from main.py
+
+a = randomGen(seed)
+seed = a.seed
 
 class point(plotSett):
-    def __init__(self, pickFrom = None, x = x, y = y, xmin = -25, xmax = 25, steps = 500, linewidth = 2):
+    def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed):
         super().__init__( xmin, xmax, steps, linewidth)
         
         
         #self.pickFrom = pickFrom
-
+        self.seed = seed
+        
         if isinstance(pickFrom, int) or isinstance(pickFrom, float):# or pickFrom is None:
             x = pickFrom
             y = x
@@ -26,15 +33,21 @@ class point(plotSett):
             self.pickFrom = pickFrom
             self.randomPoint()
             #self.draw()
+        
+        self.coords = [None, None]
+        if x is None and y is None:
+            self.randomCoords()
+        else:
+            self.coords = [x, y]
 
-
-        self.coords = [x, y]
         self.color = random.choice(self.colors)
         self.j = 0
 
         self.lines = None
         self.text = None
         self.name = None
+        
+        print(seed)
 
     def draw(self, name = None):
         self.__del__()
@@ -61,6 +74,12 @@ class point(plotSett):
             pass
 
         self.j += 1
+
+    def randomCoords(self):
+        seed = input("chooce a random integer\n")
+        random.seed(seed)
+        self.coords[0] = random.uniform(xmin, xmax)
+        self.coords[1] = random.uniform(xmin, xmax)
 
 
     

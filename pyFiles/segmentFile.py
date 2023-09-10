@@ -1,4 +1,4 @@
-# modulo.py
+# segment.py
 from . import plt, np, random
 from . import xmin, xmax, steps, linewidth
 
@@ -28,9 +28,10 @@ class segment(plotSett):
         point1 = point(xmin = xmin, xmax = xmax)
         #BUG: point2 is ALWAYS equal to point1
         point2 = point(xmin = xmin, xmax = xmax)
-        p = point2.coords[0]
-        point2.coords = [point1.coords[0]*p, point1.coords[1]/p]
-
+        
+        #point2.coords = [point1.coords[0]*p, point1.coords[1]/p]
+        #point2.coords = [point1.coords[0], point1.coords[1]]
+        
         self.point = [point1, point2]
         #self.point = [point(xmin = xmin, xmax = xmax, steps = steps), point(xmin = xmin*1.2, xmax = xmax*.8, steps = steps)]
         self.pointLabel = point()

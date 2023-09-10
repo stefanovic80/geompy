@@ -10,6 +10,8 @@ from pyFiles.triangleFile import triangle
 
 import matplotlib.pyplot as plt
 import numpy as np
+import random
+
 
 def main():
     print("Running main.py")
@@ -17,10 +19,9 @@ def main():
     # result = my_function()
     #print("Result from module1:", result)
 
-
+    #seed = random.randint(1, 1000)
     #figure = plotSett()
     #instance.some_method()
-
 
 if __name__ == "__main__":
     main()
