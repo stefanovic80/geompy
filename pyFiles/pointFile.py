@@ -66,13 +66,12 @@ class point(plotSett):
         else:
             print("\nrun .draw one more time to highlight coordinates\n")
         
-        
-
-        try:
+        #if name != None:
+        if isinstance(name, str):
             self.name = name
-            self.label()
-        except:
-            pass
+
+        self.label()
+        
 
         self.j += 1
 
