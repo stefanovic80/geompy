@@ -7,14 +7,14 @@ plt.ion()
 
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
-#from main import seed
-from .randomGenFile import randomGen
+from . import seed
+#from .randomGenFile import randomGen
 
-seed = 1
-random.seed(seed) #seed automatically imported from main.py
+#seed = 1
+#random.seed(seed) #seed automatically imported from main.py
 
-a = randomGen(seed)
-seed = a.seed
+#a = randomGen(seed)
+#seed = a.seed
 
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed):
@@ -36,7 +36,7 @@ class point(plotSett):
         
         self.coords = [None, None]
         if x is None and y is None:
-            self.randomCoords()
+            self.randomCoords(self.seed)
         else:
             self.coords = [x, y]
 
@@ -75,12 +75,12 @@ class point(plotSett):
 
         self.j += 1
 
-    def randomCoords(self):
-        seed = input("chooce a random integer\n")
-        random.seed(seed)
+    def randomCoords(self, seed):
+        #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)
         self.coords[1] = random.uniform(xmin, xmax)
-
+        self.seed += 1
+        seed = self.seed
 
     
 

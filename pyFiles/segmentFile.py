@@ -1,6 +1,6 @@
 # segment.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
+from . import xmin, xmax, steps, linewidth, seed
 
 plt.ion()
 
@@ -27,7 +27,7 @@ class segment(plotSett):
         
         point1 = point(xmin = xmin, xmax = xmax)
         #BUG: point2 is ALWAYS equal to point1
-        point2 = point(xmin = xmin, xmax = xmax)
+        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1)
         
         #point2.coords = [point1.coords[0]*p, point1.coords[1]/p]
         #point2.coords = [point1.coords[0], point1.coords[1]]
