@@ -30,7 +30,7 @@ class point(plotSett):
             self.coords[1] = x
             #y = x
         elif pickFrom is None and x is None and y is None:
-            pass
+            #pass
             self.randomCoords(self.seed)
         else:#chooce from a geometrical locus
             self.pickFrom = pickFrom.data
@@ -49,7 +49,6 @@ class point(plotSett):
         self.text = None
         self.name = None
         
-        print(seed)
 
     def draw(self, name = None):
         self.__del__()
