@@ -70,14 +70,8 @@ class point(plotSett):
     def randomPoint(self):
         condition_mask = ( self.pickFrom[1] > self.xmin) & (self.pickFrom[1] < self.xmax)
         indices = np.where(condition_mask)
-        pickFrom_x = self.pickFrom[0][indices]
-        pickfrom_y = self.pickFrom[1][indices]
-        idx = np.random.randint(0, len(pickFrom_x) )
+        idx = random.choice(indices[0])
         self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
-        print(pickFrom_x)
-        print(pickFrom_y)
-        #idx = np.random.randint(0, len(self.pickFrom[0]) )
-        #self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
 
 
     def click(self):
