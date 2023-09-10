@@ -24,21 +24,23 @@ class point(plotSett):
         #self.pickFrom = pickFrom
         self.seed = seed
         
-        if isinstance(pickFrom, int) or isinstance(pickFrom, float):# or pickFrom is None:
-            x = pickFrom
-            y = x
-        elif pickFrom is None:
+        self.coords = [None, None]
+        if isinstance(pickFrom, int) or isinstance(pickFrom, float):# coords as point instance arguments
+            self.coords[0] = pickFrom
+            self.coords[1] = x
+            #y = x
+        elif pickFrom is None and x is None and y is None:
             pass
-        else:
-            self.pickFrom = pickFrom
+            self.randomCoords(self.seed)
+        else:#chooce from a geometrical locus
+            self.pickFrom = pickFrom.data
+            #self.pickFrom = pickFrom
             self.randomPoint()
             #self.draw()
         
-        self.coords = [None, None]
-        if x is None and y is None:
-            self.randomCoords(self.seed)
-        else:
-            self.coords = [x, y]
+        
+        #if x is None and y is None:
+        #    self.randomCoords(self.seed)
 
         self.color = random.choice(self.colors)
         self.j = 0
@@ -83,7 +85,7 @@ class point(plotSett):
         seed = self.seed
 
     
-
+    #random Point from a geometrical locus
     def randomPoint(self):
         idx = np.random.randint(0, len(self.pickFrom[0]) )
         self.coords = [ self.pickFrom[0][idx]  , self.pickFrom[1][idx]  ]
