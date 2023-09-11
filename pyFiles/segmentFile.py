@@ -51,9 +51,12 @@ class segment(plotSett):
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
 
         if self.pointLabel.coords == [None, None]:
-            idx = int(len(self.data[0])/2)
-            self.pointLabel.coords = [self.data[0][idx], self.data[1][idx + 10] ]
-
+            indices = (self.data[1] > xmin ) & (self.data[0] < xmax)
+            data0 = self.data[0][indices]
+            data1 = self.data[1][indices]
+            idx = int(len(data[0])/2)
+            #self.pointLabel.coords = [self.data[0][idx], self.data[1][idx + 10] ]
+            self.pointLabel.coords = [data0[idx], data1[idx + 10] ]
 
     def calc2(self): #calculate equation from two points
 
