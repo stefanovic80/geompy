@@ -130,6 +130,24 @@ class segment(plotSett):
 
         self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
 
+
+
+
+    #it may be to be deprecated
+    def erase(self):#add self.remove()
+        self.__del__()
+
+        self.data = [None, None]
+        for j in range(2):
+            self.point[j].coords = [None, None]
+
+        self.angCoeff = None
+        self.intercept = None
+        #print(self.__str__() )
+
+
+
+
     def __str__(self):
 
         super().__str__()
