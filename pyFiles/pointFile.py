@@ -18,13 +18,14 @@ class point(plotSett):
         
         self.coords = [None, None]
 
-        #check if pickFrom is a number 
-        pf_isnumber = isinstance(pickFrom, int) or isinstance(pickFrom, float)
+        #return True if var is a  number
+        pf_isnumber = isinstance(pickFrom, (int, float) )
 
         #check if x and y are numbers
-        xy_arenumber =  ( isinstance(x, int) or isinstance(x, float) ) and ( isinstance(y, int) or isinstance(y, float) )
+        xy_arenumber =  ( isinstance(x, (int, float) ) ) and ( isinstance(y, (int, float) ) )
 
-        if pf_isnumber == True:# shift of variables: pickFrom become x, x become y
+        #shift of variables:pickFrom become x, x become y
+        if pf_isnumber == True:
             self.coords[0] = pickFrom
             self.coords[1] = x
 
@@ -36,8 +37,7 @@ class point(plotSett):
         elif pf_isnumber == False and xy_arenumber == False:
             self.pickFrom = pickFrom.data
             self.randomPoint()
-
-        # point() arguments are x and y and both are numbers
+        
         elif xy_arenumber == True:
             self.coords[0] = x
             self.coords[1] = y
@@ -63,9 +63,8 @@ class point(plotSett):
             self.lines.append(hline)
             self.lines.append(vline)
             print("\nrun .draw one more time to erase coordinates\n")
-        else:
-            print("\nrun .draw one more time to highlight coordinates\n")
         
+
         if isinstance(name, str):
             self.name = name
 
@@ -73,7 +72,7 @@ class point(plotSett):
         self.j += 1 
         # used by .draw() method to make it working in 1 maner fist and in another once it's called again
     
-    #it generates random coordinates if no argument are passed into point()
+    #to generate random coords if no arguments are passed into point() instance
     def randomCoords(self, seed):
         #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)
