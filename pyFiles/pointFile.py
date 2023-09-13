@@ -17,14 +17,30 @@ class point(plotSett):
         self.seed = seed
         
         self.coords = [None, None]
-        if isinstance(pickFrom, int) or isinstance(pickFrom, float):# coords as point instance arguments
+
+        #check if pickFrom is a number 
+        pf_isnumber = isinstance(pickFrom, int) or isinstance(pickFrom, float)
+
+        #check if x and y are numbers
+        xy_arenumber =  ( isinstance(x, int) or isinstance(x, float) ) and ( isinstance(y, int) or isinstance(y, float) )
+
+        if pf_isnumber == True:# shift of variables: pickFrom become x, x become y
             self.coords[0] = pickFrom
             self.coords[1] = x
+
+        #no arguments return random coords
         elif pickFrom is None and x is None and y is None:
             self.randomCoords(self.seed)
-        else:#chooce from a geometrical locus
+
+        #chooce point coords from a geometrical locus
+        elif pf_isnumber == False and xy_arenumber == False:
             self.pickFrom = pickFrom.data
             self.randomPoint()
+
+        # point() arguments are x and y and both are numbers
+        elif xy_arenumber == True:
+            self.coords[0] = x
+            self.coords[1] = y
 
         self.color = random.choice(self.colors)
         self.j = 0
