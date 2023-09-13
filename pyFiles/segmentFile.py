@@ -49,7 +49,8 @@ class segment(plotSett):
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-
+        
+        #labeling
         if self.pointLabel.coords == [None, None]:
             indices = (self.data[1] > xmin ) & (self.data[0] < xmax)
             data0 = self.data[0][indices]
@@ -67,7 +68,6 @@ class segment(plotSett):
         self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
         
         self.calc1()
-        
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
@@ -77,15 +77,14 @@ class segment(plotSett):
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.intercept = -self.angCoeff*x0 + y0
         
-                if j == 0:
-                    self.point[j+1].coords = [None, None]
-                else:
-                    self.point[j-1].coords = [None, None]
+                #if j == 0:
+                #    self.point[j+1].coords = [None, None]
+                #else:
+                #    self.point[j-1].coords = [None, None]
             except:
                 pass
         
         self.calc1()
-
 
     def calc4(self): #calculate equation from 1 point and intercept
 
@@ -93,10 +92,11 @@ class segment(plotSett):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.angCoeff = (y0 - self.intercept)/x0
-                if j == 0:
-                    self.point[j+1].coords = [None, None]
-                else:
-                    self.point[j-1].coords = [None, None]
+                
+                #if j == 0:
+                #    self.point[j+1].coords = [None, None]
+                #else:
+                #    self.point[j-1].coords = [None, None]
             except:
                 pass
         
@@ -108,7 +108,8 @@ class segment(plotSett):
             self.calc1()#intercept, angCoeff
             for j in range(2):
                  self.point[j].coords = [None, None]
-                 #as .data[1] are directly calculated from .angCoeff and intercept, there is no need for a couple of points
+            #as .data[1] are directly calculated from .angCoeff and intercept, there is no need for a couple of points
+            
         except:
             try:
                 self.calc2() #two points
@@ -134,9 +135,6 @@ class segment(plotSett):
         self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
 
 
-
-
-    #it may be to be deprecated
     def erase(self):#add self.remove()
         self.__del__()
 
@@ -146,7 +144,6 @@ class segment(plotSett):
 
         self.angCoeff = None
         self.intercept = None
-        #print(self.__str__() )
 
 
 
