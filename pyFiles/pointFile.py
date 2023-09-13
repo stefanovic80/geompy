@@ -47,7 +47,7 @@ class point(plotSett):
         self.j = 0
 
         self.lines = None
-        self.text = None
+        #self.text = None
         self.name = None
         
 
@@ -84,21 +84,13 @@ class point(plotSett):
             self.name = name
 
         shift = (self.xmax - self.xmin)/40
-        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+        #self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
-
-
-
-
-
-
-
-
-
-
+        text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+        
+        #self.lines.append(text)
 
     #------------------------------------------------------------
-    #may become one method only
     def randomCoords(self, seed):
         #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)

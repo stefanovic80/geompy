@@ -136,18 +136,14 @@ class segment(plotSett):
         
         
 
+        #may be inherited from "randomPoint" in point class
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
         self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
 
-        self.pointLabel.color = 'k'
-        #self.pointLabel.randomPoint()
+        self.pointLabel.color = self.color
         self.pointLabel.label(name)
-        #self.j += 1
-
-    #    self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
-
 
     def erase(self):#add self.remove()
         self.__del__()
