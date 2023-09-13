@@ -5,6 +5,7 @@ from . import xmin, xmax, steps, linewidth
 
 plt.ion()
 
+#from .segmentFile import segment
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
 from . import seed
@@ -57,6 +58,8 @@ class point(plotSett):
         self.lines = []
         self.lines.append(line)
 
+
+
         if self.j%2 != 0:
             hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmax = 4)
             vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)
@@ -65,14 +68,37 @@ class point(plotSett):
             print("\nrun .draw one more time to erase coordinates\n")
         
 
-        if isinstance(name, str):
-            self.name = name
+        #if isinstance(name, str):
+        #    self.name = name
 
-        self.label()
+        self.label(name)
         self.j += 1 
         # used by .draw() method to make it working in 1 maner fist and in another once it's called again
     
     #to generate random coords if no arguments are passed into point() instance
+
+
+    def label(self, name):
+
+        if isinstance(name, str):
+            self.name = name
+
+        shift = (self.xmax - self.xmin)/40
+        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+
+
+
+
+
+
+
+
+
+
+
+
+    #------------------------------------------------------------
+    #may become one method only
     def randomCoords(self, seed):
         #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)
@@ -87,7 +113,7 @@ class point(plotSett):
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
         self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
-
+    #-------------------------------------------------------------
 
     def click(self):
         self.__del__()
@@ -95,10 +121,6 @@ class point(plotSett):
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
         self.draw()
-
-    def label(self):
-        shift = (self.xmax - self.xmin)/40
-        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
 
 
     def __str__(self):

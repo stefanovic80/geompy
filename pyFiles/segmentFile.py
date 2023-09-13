@@ -9,9 +9,11 @@ from .pointFile import point
 
 class segment(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         
         super().__init__(xmin, xmax, steps)
+        
+        self.seed = seed
 
         #.xMin and .xMax indexes to cut off the straight line into a segment
         self.idxMin = None
@@ -42,7 +44,6 @@ class segment(plotSett):
         self.name = None
 
     def calc1(self): #calculate equation from angCoeff and intercept
-        #self.__del__()
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
@@ -56,7 +57,6 @@ class segment(plotSett):
             data0 = self.data[0][indices]
             data1 = self.data[1][indices]
             idx = int(len(data[0])/2)
-            #self.pointLabel.coords = [self.data[0][idx], self.data[1][idx + 10] ]
             self.pointLabel.coords = [data0[idx], data1[idx + 10] ]
 
     def calc2(self): #calculate equation from two points
@@ -102,7 +102,7 @@ class segment(plotSett):
         
         self.calc1()
 
-    def draw(self, name = None):
+    def chooseCalc(self):
         self.__del__()
         try:
             self.calc1()#intercept, angCoeff
@@ -122,17 +122,31 @@ class segment(plotSett):
                     except:
                         pass
 
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
-        self.name = name 
-        self.label()
+    def draw(self, name = None ):
+        self.chooseCalc()
+
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
         self.lines = []
         self.lines.append(line)
+        
+        if isinstance(name, str):
+            self.name = name
+        
+        
 
-    def label(self):
+        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        indices = np.where(condition_mask)
+        idx = random.choice(indices[0])
+        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
 
-        self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
+        self.pointLabel.color = 'k'
+        #self.pointLabel.randomPoint()
+        self.pointLabel.label(name)
+        #self.j += 1
+
+    #    self.text = self.ax.text(self.pointLabel.coords[0], self.pointLabel.coords[1], self.name, fontsize = 18, color = self.color, ha="center", va="center")
 
 
     def erase(self):#add self.remove()
