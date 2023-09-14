@@ -84,20 +84,20 @@ class plotSett():
 
 
     def __del__(self):
-        try:
+        try:#removes all lines
             for line in self.lines:
                 line.remove()
         except:
             pass
 
-        try:
+        try:#removes all points of the geometrical locus
             for u in self.point:
                 u.remove()
         except:
             pass
 
-        try:
-            self.text.remove()
+        try:#removes point texts (.remove() doesn't work!)
+            self.text.set_text("")
         except:
             pass
 
@@ -109,8 +109,4 @@ class plotSett():
             f"\033[93m.steps = \033[0m {self.steps}\n"
             f"\033[93m.x = \033[0m {self.x[:10]}...\n"
             f"\033[93m.grid(N = 1)\033[0m\n"
-            #f"\033[93mlinewidth:\033[0m {self.linewidth}\n"
         )
-    	
-     	#return self.plotSettings   
- 

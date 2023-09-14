@@ -47,10 +47,9 @@ class point(plotSett):
         self.j = 0
 
         self.lines = None
-        #self.text = None
+        self.text = None
         self.name = None
         
-
     def draw(self, name = None):
         self.__del__()
 
@@ -66,16 +65,10 @@ class point(plotSett):
             self.lines.append(hline)
             self.lines.append(vline)
             print("\nrun .draw one more time to erase coordinates\n")
-        
-
-        #if isinstance(name, str):
-        #    self.name = name
 
         self.label(name)
         self.j += 1 
         # used by .draw() method to make it working in 1 maner fist and in another once it's called again
-    
-    #to generate random coords if no arguments are passed into point() instance
 
 
     def label(self, name):
@@ -84,15 +77,12 @@ class point(plotSett):
             self.name = name
 
         shift = (self.xmax - self.xmin)/40
-        #self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
-
-        text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
         
         #self.lines.append(text)
 
     #------------------------------------------------------------
     def randomCoords(self, seed):
-        #seed = input("chooce a random integer\n")
         self.coords[0] = random.uniform(xmin, xmax)
         self.coords[1] = random.uniform(xmin, xmax)
         self.seed += 1
