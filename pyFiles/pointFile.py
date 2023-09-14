@@ -5,7 +5,6 @@ from . import xmin, xmax, steps, linewidth
 
 plt.ion()
 
-#from .segmentFile import segment
 from ._plotSettFile import plotSett
 from . import xmin, xmax, steps, linewidth
 from . import seed
@@ -47,7 +46,7 @@ class point(plotSett):
         self.j = 0
 
         self.lines = None
-        self.text = None
+        self.tex = None
         self.name = None
         
     def draw(self, name = None):
@@ -72,16 +71,19 @@ class point(plotSett):
 
 
     def label(self, name):
+        try:
+            self.tex.remove()
+        except:
+            pass
 
         if isinstance(name, str):
             self.name = name
 
         shift = (self.xmax - self.xmin)/40
-        self.text = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
         
-        #self.lines.append(text)
 
-    #------------------------------------------------------------
+    #-----------------------------------------------
     def randomCoords(self, seed):
         self.coords[0] = random.uniform(xmin, xmax)
         self.coords[1] = random.uniform(xmin, xmax)
@@ -124,5 +126,11 @@ class point(plotSett):
             f"\033[93merase()\033[0m\n"
         )
 
-        return attributes + methods + self.plotSettings
+        return attributes + methods + self.plotSetting
 
+    def __del__(self):
+        super().__del__()
+        try:
+            self.tex.remove()
+        except:
+            pass

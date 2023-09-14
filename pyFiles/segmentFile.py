@@ -124,8 +124,8 @@ class segment(plotSett):
 
 
     def draw(self, name = None ):
+        #self.pointLabel.set_text("")
         self.chooseCalc()
-
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 
         self.lines = []
@@ -134,8 +134,6 @@ class segment(plotSett):
         if isinstance(name, str):
             self.name = name
         
-        
-
         #may be inherited from "randomPoint" in point class
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
@@ -147,6 +145,11 @@ class segment(plotSett):
 
     def erase(self):#add self.remove()
         self.__del__()
+        
+        try:
+            self.pointLabel.tex.remove()
+        except:
+            pass
 
         self.data = [None, None]
         for j in range(2):
@@ -154,9 +157,6 @@ class segment(plotSett):
 
         self.angCoeff = None
         self.intercept = None
-
-
-
 
     def __str__(self):
 

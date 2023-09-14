@@ -73,14 +73,12 @@ class plotSett():
         self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
         
     #to be deprecated
-    def remove(self):
-        try:
-            for line in self.lines:
-                line.remove()
-        except:
-            pass	
-
-
+    #def remove(self):
+    #    try:
+    #        for line in self.lines:
+    #            line.remove()
+    #    except:
+    #        pass	
 
 
     def __del__(self):
@@ -97,7 +95,7 @@ class plotSett():
             pass
 
         try:#removes point texts (.remove() doesn't work!)
-            self.text.set_text("")
+            self.pointLabel.remove()
         except:
             pass
 
