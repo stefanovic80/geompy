@@ -106,8 +106,8 @@ class segment(plotSett):
         self.__del__()
         try:
             self.calc1()#intercept, angCoeff
-            for j in range(2):
-                 self.point[j].coords = [None, None]
+            #for j in range(2):
+            #     self.point[j].coords = [None, None]
             #as .data[1] are directly calculated from .angCoeff and intercept, there is no need for a couple of points
             
         except:

@@ -126,7 +126,7 @@ class point(plotSett):
             f"\033[93merase()\033[0m\n"
         )
 
-        return attributes + methods + self.plotSetting
+        return attributes + methods + self.plotSettings
 
     def __del__(self):
         super().__del__()
