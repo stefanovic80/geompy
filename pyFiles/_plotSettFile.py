@@ -7,7 +7,8 @@ plt.ion()
 plt.rcParams [ 'axes.labelsize' ] = 18
 plt.rcParams [ 'lines.linewidth' ] = 2
 plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
-plt.rcParams [ 'font.size' ] = 9
+plt.rcParams [ 'font.size' ] = 10
+plt.rcParams [ 'font.weight'] = 'bold'
 
 class plotSett():
     
@@ -72,14 +73,6 @@ class plotSett():
         #linewidth = self.linewidth
         self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
         
-    #to be deprecated
-    #def remove(self):
-    #    try:
-    #        for line in self.lines:
-    #            line.remove()
-    #    except:
-    #        pass	
-
 
     def __del__(self):
         try:#removes all lines
