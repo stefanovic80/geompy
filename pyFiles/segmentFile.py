@@ -51,13 +51,13 @@ class segment(plotSett):
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         
-        #labeling
-        if self.pointLabel.coords == [None, None]:
-            indices = (self.data[1] > xmin ) & (self.data[0] < xmax)
-            data0 = self.data[0][indices]
-            data1 = self.data[1][indices]
-            idx = int(len(data[0])/2)
-            self.pointLabel.coords = [data0[idx], data1[idx + 10] ]
+        #labeling -> Does it make sense????
+        #if self.pointLabel.coords == [None, None]:
+        #    indices = (self.data[1] > xmin ) & (self.data[0] < xmax)
+        #    data0 = self.data[0][indices]
+        #    data1 = self.data[1][indices]
+        #    idx = int(len(data[0])/2)
+        #    self.pointLabel.coords = [data0[idx], data1[idx + 10] ]
 
     def calc2(self): #calculate equation from two points
 

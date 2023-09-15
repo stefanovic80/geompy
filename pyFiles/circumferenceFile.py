@@ -56,9 +56,7 @@ class circumference(plotSett):
         self.data[1] = np.append( self.data[1], self.data[1][0] )
 
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
-
-
-        self.ax.legend()
+        #self.ax.legend()
         
         self.lines = []
         self.lines.append(line1)

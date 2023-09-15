@@ -1,6 +1,6 @@
 #pointFile.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
+#from . import xmin, xmax, steps, linewidth
 
 
 plt.ion()
@@ -85,8 +85,8 @@ class point(plotSett):
 
     #-----------------------------------------------
     def randomCoords(self, seed):
-        self.coords[0] = random.uniform(xmin, xmax)
-        self.coords[1] = random.uniform(xmin, xmax)
+        self.coords[0] = random.uniform(self.xmin, self.xmax)
+        self.coords[1] = random.uniform(self.xmin, self.xmax)
         self.seed += 1
         seed = self.seed
 
