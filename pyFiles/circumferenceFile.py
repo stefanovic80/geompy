@@ -24,9 +24,17 @@ class circumference(plotSett):
         self.color = random.choice(self.colors)
 
         self.center.color = self.color
+        
+        #------------------------------------------------------
+        #point choosen for labeling
+        self.pointLabel = point()
+        self.pointLabel.coords = [None, None]
+        self.pointLabel.color = 'white'
+        #------------------------------------------------------
 
-    def draw(self):
-        #self.remove()
+
+
+    def draw(self, name = None):
         self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
@@ -55,9 +63,21 @@ class circumference(plotSett):
         self.lines = []
         self.lines.append(line1)
 
-        self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_ylim(self.xmin, self.xmax)
+        #self.ax.set_xlim(self.xmin, self.xmax)
+        #self.ax.set_ylim(self.xmin, self.xmax)
+        #-------------------------------------------
+        if isinstance(name, str):
+            self.name = name
 
+        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        indices = np.where(condition_mask)
+        idx = random.choice(indices[0])
+        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
+
+        self.pointLabel.color = self.color
+        self.pointLabel.label(name)
+
+        #-------------------------------------------
 
 
     def erase(self):#add self.remove()

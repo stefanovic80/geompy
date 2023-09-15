@@ -76,11 +76,6 @@ class segment(plotSett):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.intercept = -self.angCoeff*x0 + y0
-        
-                #if j == 0:
-                #    self.point[j+1].coords = [None, None]
-                #else:
-                #    self.point[j-1].coords = [None, None]
             except:
                 pass
         
@@ -92,11 +87,6 @@ class segment(plotSett):
             try:
                 x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
                 self.angCoeff = (y0 - self.intercept)/x0
-                
-                #if j == 0:
-                #    self.point[j+1].coords = [None, None]
-                #else:
-                #    self.point[j-1].coords = [None, None]
             except:
                 pass
         
@@ -106,10 +96,6 @@ class segment(plotSett):
         self.__del__()
         try:
             self.calc1()#intercept, angCoeff
-            #for j in range(2):
-            #     self.point[j].coords = [None, None]
-            #as .data[1] are directly calculated from .angCoeff and intercept, there is no need for a couple of points
-            
         except:
             try:
                 self.calc2() #two points
@@ -134,7 +120,6 @@ class segment(plotSett):
         if isinstance(name, str):
             self.name = name
         
-        #may be inherited from "randomPoint" in point class
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
@@ -143,17 +128,21 @@ class segment(plotSett):
         self.pointLabel.color = self.color
         self.pointLabel.label(name)
 
-    def erase(self):#add self.remove()
+    def erase(self):
         self.__del__()
         
+        #to remove text label
         try:
             self.pointLabel.tex.remove()
         except:
             pass
 
         self.data = [None, None]
+
         for j in range(2):
             self.point[j].coords = [None, None]
+        #for u in self.point:
+        #    u.coords = [None, None]
 
         self.angCoeff = None
         self.intercept = None
