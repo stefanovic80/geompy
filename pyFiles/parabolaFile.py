@@ -5,7 +5,7 @@ from . import xmin, xmax, steps, linewidth
 plt.ion()
 
 from ._plotSettFile import plotSett
-
+from .pointFile import point
 
 class parabola(plotSett):
 
@@ -20,7 +20,15 @@ class parabola(plotSett):
         self.name =  None
         self.color = random.choice(self.colors)
 
-    def draw(self ):
+        #------------------------------------------------------------
+        #point choosen for labeling
+        self.pointLabel = point()
+        self.pointLabel.coords = [None, None]
+        self.pointLabel.color = 'white'
+        #------------------------------------------------------------
+
+
+    def draw(self, name = None):
         #self.remove()
         self.__del__()
 
@@ -31,6 +39,19 @@ class parabola(plotSett):
         
         self.lines = []
         self.lines.append(line)
+
+        if isinstance(name, str):
+            self.name = name
+
+        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        indices = np.where(condition_mask)
+        idx = random.choice(indices[0])
+        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
+
+        self.pointLabel.color = self.color
+        self.pointLabel.label(name)
+
+
 
     def __str__(self):
 
