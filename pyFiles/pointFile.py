@@ -41,6 +41,24 @@ class point(plotSett):
         elif xy_arenumber == True:
             self.coords[0] = x
             self.coords[1] = y
+        
+        """ 
+        @property
+        def X(self):
+            return self.coords[0]
+        
+        @X.setter
+        def X(self, value):
+            self.coords[0] = value
+
+        @property
+        def Y(self):
+            return self.coords[1]
+        
+        @Y.setter
+        def Y(self, value):
+            self.coords[1] = value
+        """
 
         self.color = random.choice(self.colors)
         self.j = 0
