@@ -27,8 +27,9 @@ class plotSett():
 
         #x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
         #self.x = np.array(x)
-        step = (self.xmax - self.xmin)/self.steps
-        self.x = np.arange(self.xmin, self.xmax + step, step)
+        #step = (self.xmax - self.xmin)/self.steps
+        #self.x = np.arange(self.xmin, self.xmax + step, step)
+        self.x = np.linspace(self.xmin, self.xmax, steps)
 
     def grid(self, sizeMinor = 0.2, sizeMajor = 1, N = 1):#roteate x numbers to make them better fit in
 
