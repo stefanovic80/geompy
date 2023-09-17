@@ -24,6 +24,7 @@ class angle(plotSett):
         for j in range(2):
             self.side[j].chooseCalc()
         
+        """
         q0 = self.side[0].intercept
         q1 = self.side[1].intercept
         m0 = self.side[0].angCoeff
@@ -31,6 +32,8 @@ class angle(plotSett):
         xCross = (q1 - q0)/(m0 -m1)
 
         self.center = point(xCross, m0*xCross + q0)
+        """
+
         self.lines = None
         self.data = None
         self.name = None
@@ -42,8 +45,42 @@ class angle(plotSett):
         self.pointLabel.coords = [None, None]
         self.pointLabel.color = 'white'
         #------------------------------------------------------
+        self.cross00 = None
+        self.cross01 = None
+        self.cross10 = None
+        self.cross11 = None
 
+    #to calculate intersection
+    def calc(self):
+        
+        q = [None, None]
+        m = [None, None]
+        for j in range(2):
+            q[j] = self.side[j].intercept
+            m[j] = self.side[j].angCoeff
+        
+        xCross = (q[1] - q[0])/(m[0] -m[1])
+        yCross = m[0]*xCross + q[0]
 
+        self.center = point(xCross, yCross)
+        radius = self.radius
+        
+        Delta = [None, None]
+        
+        x = [ [None, None], [None, None] ]
+        y = [ [None, None], [None, None] ]
+        for j in range(2):
+            Delta[j] = xCross**2 - (q[j] - yCross)**2*(2*xCross*m[j] + 1) + radius**2*( 1 + m[j]**2)
+            x[j][0] = ( xCross - m[j]*(q[j] - yCross) + np.sqrt( Delta[j]  ) ) / ( 1 + m[j]**2  )
+            x[j][1] = ( xCross - m[j]*(q[j] - yCross) - np.sqrt( Delta[j]  ) ) / ( 1 + m[j]**2  )
+
+            y[j][0] = m[j]*x[j][0] + q[j]
+            y[j][1] = m[j]*x[j][1] + q[j]
+
+        self.cross00 = point( x[0][0], y[0][0] )
+        self.cross01 = point( x[0][1], y[0][1] )
+        self.cross10 = point( x[1][0], y[1][0] )
+        self.cross11 = point( x[1][1], y[1][1] )
 
     def draw(self, name = None):
         self.__del__()
