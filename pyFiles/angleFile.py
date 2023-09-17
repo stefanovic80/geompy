@@ -24,15 +24,6 @@ class angle(plotSett):
         for j in range(2):
             self.side[j].chooseCalc()
         
-        """
-        q0 = self.side[0].intercept
-        q1 = self.side[1].intercept
-        m0 = self.side[0].angCoeff
-        m1 = self.side[1].angCoeff
-        xCross = (q1 - q0)/(m0 -m1)
-
-        self.center = point(xCross, m0*xCross + q0)
-        """
 
         self.lines = None
         self.data = None
@@ -53,7 +44,7 @@ class angle(plotSett):
         self.xx = None
 
     #to calculate intersection
-    def calc(self):
+    def intersecPoints(self):
         
         q = [None, None]
         m = [None, None]
@@ -68,9 +59,12 @@ class angle(plotSett):
         radius = self.radius
         
         Delta = [None, None]
-        
+       
+        # points of intersection btw circle and 2 diameters
         x = [ [None, None], [None, None] ]
         y = [ [None, None], [None, None] ]
+
+        #j=0 Delta with line zero, j=1 Delta with line 1
         for j in range(2):
             Delta[j] = xCross**2 - (q[j] - yCross)**2*(2*xCross*m[j] + 1) + radius**2*( 1 + m[j]**2)
             x[j][0] = ( xCross - m[j]*(q[j] - yCross) + np.sqrt( Delta[j]  ) ) / ( 1 + m[j]**2  )
@@ -79,15 +73,17 @@ class angle(plotSett):
             y[j][0] = m[j]*x[j][0] + q[j]
             y[j][1] = m[j]*x[j][1] + q[j]
         
-        self.xx = np.array( [ x[0][0], x[0][1], x[1][0], x[1][1] ]  )
-        self.xx.sort()
-        
+
+        #intersectionPoints
         self.cross00 = point( x[0][0], y[0][0] )
         self.cross01 = point( x[0][1], y[0][1] )
         self.cross10 = point( x[1][0], y[1][0] )
         self.cross11 = point( x[1][1], y[1][1] )
         
-        #def draw(self, name = None):
+        self.xx = np.array( [ x[0][0], x[0][1], x[1][0], x[1][1] ]  )
+        self.xx.sort()
+
+    def calc(self, name = None):
         #self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
@@ -108,14 +104,24 @@ class angle(plotSett):
         self.data[0] = np.append( self.data[0], self.data[0][0] )
         self.data[1] = np.append( self.data[1], self.data[1][0] )
         
-        
-    def draw(self):
+
+    def draw(self, name = None):
+        #self.__del__()
+
+        self.intersecPoints()
+        self.calc()
+
         idx = [None, None, None, None]
-        #for u in range(4):
-        u = 0
-        idx[u] = np.where( self.data[0] >= self.xx[u] )[0][0]
+        for u in range(2):
+            idx[u] = np.where( self.data[0] >= self.xx[u] )[0][0]
         
-        line1, = self.ax.plot(self.data[0][:idx[u] ], self.data[1][:idx[u] ], color = self.color, label = self.name, linewidth = self.linewidth)
+        start = int( len(self.data)/2 + 1 )# +1 to be checked out
+
+        for u in range(2, 4):
+            idx[u] = np.where( self.data[start:] >= self.xx[u] )[0][0]
+
+
+        line1, = self.ax.plot(self.data[0][ idx[0] : idx[1] ], self.data[1][ idx[0] : idx[1] ], color = self.color, label = self.name, linewidth = self.linewidth)
         #self.ax.legend()
         
         #self.lines = []
