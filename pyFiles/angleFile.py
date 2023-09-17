@@ -50,6 +50,8 @@ class angle(plotSett):
         self.cross10 = None
         self.cross11 = None
 
+        self.xx = None
+
     #to calculate intersection
     def calc(self):
         
@@ -76,14 +78,17 @@ class angle(plotSett):
 
             y[j][0] = m[j]*x[j][0] + q[j]
             y[j][1] = m[j]*x[j][1] + q[j]
-
+        
+        self.xx = np.array( [ x[0][0], x[0][1], x[1][0], x[1][1] ]  )
+        self.xx.sort()
+        
         self.cross00 = point( x[0][0], y[0][0] )
         self.cross01 = point( x[0][1], y[0][1] )
         self.cross10 = point( x[1][0], y[1][0] )
         self.cross11 = point( x[1][1], y[1][1] )
-
-    def draw(self, name = None):
-        self.__del__()
+        
+        #def draw(self, name = None):
+        #self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
 
@@ -102,29 +107,19 @@ class angle(plotSett):
 
         self.data[0] = np.append( self.data[0], self.data[0][0] )
         self.data[1] = np.append( self.data[1], self.data[1][0] )
-
-        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
+        
+        
+    def draw(self):
+        idx = [None, None, None, None]
+        #for u in range(4):
+        u = 0
+        idx[u] = np.where( self.data[0] >= self.xx[u] )[0][0]
+        
+        line1, = self.ax.plot(self.data[0][:idx[u] ], self.data[1][:idx[u] ], color = self.color, label = self.name, linewidth = self.linewidth)
         #self.ax.legend()
         
-        self.lines = []
-        self.lines.append(line1)
-
-        #self.ax.set_xlim(self.xmin, self.xmax)
-        #self.ax.set_ylim(self.xmin, self.xmax)
-        #-------------------------------------------
-        if isinstance(name, str):
-            self.name = name
-
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
-
-        #-------------------------------------------
-
+        #self.lines = []
+        #self.lines.append(line1)
 
     def erase(self):#add self.remove()
         self.__del__()
