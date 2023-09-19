@@ -34,7 +34,7 @@ class circumference(plotSett):
 
 
 
-    def draw(self, name = None):
+    def calc(self, name = None):
         self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
@@ -54,6 +54,10 @@ class circumference(plotSett):
 
         self.data[0] = np.append( self.data[0], self.data[0][0] )
         self.data[1] = np.append( self.data[1], self.data[1][0] )
+
+    def draw(self, name = None):
+        self.__del__()
+        self.calc()
 
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
         #self.ax.legend()
