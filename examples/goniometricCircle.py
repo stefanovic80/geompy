@@ -19,6 +19,7 @@ c.grid()
 
 P = point(c)
 P.draw("P")
+P.draw("P")
 
 R = segment()
 R.erase()
