@@ -42,6 +42,8 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.name = None
+        
+        self.cut = False
 
     def calc1(self): #calculate equation from angCoeff and intercept
 
@@ -60,6 +62,14 @@ class segment(plotSett):
         if x1 != x0:
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
+            
+            if self.cut == True:
+                xa = self.point[0].coords[0]
+                xb = self.point[1].coords[0]
+                lims = [ xa, xb ].sort()
+                self.xMin = self.point[0].coords[0]
+                self.xMax = self.point[1].coords[0]
+            
             self.calc1()
         else:
             L = len(self.x)
@@ -106,8 +116,9 @@ class segment(plotSett):
                         pass
 
 
-    def draw(self, name = None ):
+    def draw(self, name = None, cut = False ):
         #self.pointLabel.set_text("")
+        self.cut = cut
         self.chooseCalc()
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
 

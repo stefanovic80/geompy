@@ -27,7 +27,7 @@ R.erase()
 R.point[0] = c.center
 R.point[1] = P
 
-#segment limits
+"""
 xLim = []
 for u in R.point:
     xLim = xLim + [ u.coords[0] ]
@@ -36,6 +36,6 @@ xLim.sort()
 
 R.xMin = xLim[0]
 R.xMax = xLim[1]
-#segment limits
+"""
 
-R.draw("R = 1")
+R.draw("R = 1", cut = True)
