@@ -117,12 +117,12 @@ class point(plotSett):
         self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
     #-------------------------------------------------------------
 
-    def click(self):
+    def click(self, name = None):
         self.__del__()
 
         a = plt.ginput()
         self.coords = [ a[0][0], a[0][1] ]
-        self.draw()
+        self.draw(name)
 
 
     def __str__(self):
