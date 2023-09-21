@@ -46,6 +46,13 @@ class segment(plotSett):
         self.cut = False
 
     def calc1(self): #calculate equation from angCoeff and intercept
+        if self.cut == False:
+            #a, b = self.xMin, self.xMax
+            self.xMin = self.xmin
+            self.xMax = self.xmax
+        #else:
+        #    self.xMin = a
+        #    self.xMax = b
 
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
@@ -62,19 +69,33 @@ class segment(plotSett):
         if x1 != x0:
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-            
+            j = 0 
             if self.cut == True:
-                xa = self.point[0].coords[0]
-                xb = self.point[1].coords[0]
-                lims = [ xa, xb ].sort()
-                self.xMin = self.point[0].coords[0]
-                self.xMax = self.point[1].coords[0]
+                j = 0
+                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims.sort()
+                self.xMin = lims[0]
+                self.xMax = lims[1]
             
             self.calc1()
         else:
             L = len(self.x)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self.x ]
+
+            if self.cut == True:
+                j = 1
+                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims.sort()
+                self.xMin = lims[0]
+                self.xMax = lims[1]
+                self.idxMin = np.where( self.data[j] >= self.xMin )[0][0]
+                self.idxMax = np.where( self.data[j] >= self.xMax )[0][0]
+
+                self.data[0] = self.data[0][self.idxMin: self.idxMax]
+                self.data[1] = self.data[1][self.idxMin: self.idxMax]
+
+
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
