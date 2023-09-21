@@ -28,10 +28,6 @@ class plotSett():
 
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
-        #x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
-        #self.x = np.array(x)
-        #step = (self.xmax - self.xmin)/self.steps
-        #self.x = np.arange(self.xmin, self.xmax + step, step)
         self.x = np.linspace(self.xmin, self.xmax, steps)
 
     def grid(self, sizeMinor = 0.2, sizeMajor = 1, N = 1):#roteate x numbers to make them better fit in
@@ -40,8 +36,9 @@ class plotSett():
         #gridSteps = int(self.steps / 10)
         #GridSteps = int(self.steps / 100)
         gridSteps = (self.xmax - self.xmin) / self.steps*self.N*10
+        gridSteps = round(gridSteps, 2)
         GridSteps = (self.xmax - self.xmin) / self.steps*self.N*100
-
+        GridSteps = round(GridSteps, 1)
         #Xmajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
         Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
         Ymajor_ticks = Xmajor_ticks

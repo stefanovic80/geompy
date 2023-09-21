@@ -13,19 +13,18 @@ This is meant to be the occasion for high school students to start over computer
 
 # Installation
 
-Ensure you have a fully working Ipython environment with matplotlib, random and numpy libreries installed on it. Download the present project, than open a console and move to the project folder in which the main.py file is present. Run the python intepreter, by typing "ipython" and type
+Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the analyticGeometry folder, where the main.py is located. Run the python intepreter, (type "ipython") and type
 
 `run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-In case of dysfunctions, you can create a 'analyticGeomEnv' conda environment
-
+In case of different python libraries versions, dysfunctions may accur. In this case create a 'analyticGeomEnv' conda environment (it may take time, depending on internet connection speed)
 
 `conda env create -f analyticGeomEnv.yml`
 
-it may take time, depending on internet connection speed. Once the job is done than activate it
+Once the job is done than activate it
 
 `conda activate analyticGeomEnv`
 
@@ -33,16 +32,23 @@ and try again
 
 `run main.py`
 
+and choose a minimum (xmin) and a maximum (xmax) value for coordinates axes. In this case 
+
+`xmin`
+`-20`
+
+`xmax`
+`20`
 
 # Usage
 
 # Draw a (random) circumference
 
-Each geometric locus is a python class. Say you wan to draw a circumference, than you have to define a circumference type instance which I suggest you to call 'C1' as follows
+Each geometric locus is a python class. Say you want to draw a circumference, than you have to define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
-by defult, the minimum and maximum values of both x and y axes are -20 and 20, with 500 steps in betweeen them. Once the "C1" instance is created, than use the "draw" method as follows
+Once the "C1" instance is created, than use the "draw" method as follows
 
 `C1.draw()`
 
@@ -54,11 +60,20 @@ You may want to add a grid with both x and y axes
 
 `C1.grid()`
 
+You may want to increase the grid density, than an N argument with values lower than 1 will do the job
+
+`C1.grid(N = .5)`
+
+by typiing 
+
+`print(C1)`
+
+you can see all details of your circumference instance: attributes and methods.
 
 ![Alt Text](pictures/circumferenceDraw_withGrid.png)
 
 
-Now you want "C1" instance being not just a random circumference, but a specific one. First of all, you need to know attributes, instances and plot settings of "C1" instance, than
+Now you want "C1" instance being not just a random circumference, but you want to choose both it's center position and it's radius. First of all, you need to know attributes, instances and plot settings of "C1" instance, than
 
 
 `print(C1)`
