@@ -23,6 +23,9 @@ class plotSett():
         self.linewidth = linewidth
         self.plotSettings = None
 
+        #density of grid
+        self.N = 1
+
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
         #x = [t/abs(self.steps) for t in range(self.xmin*self.steps, self.xmax*self.steps + 1, 1)]
@@ -32,11 +35,12 @@ class plotSett():
         self.x = np.linspace(self.xmin, self.xmax, steps)
 
     def grid(self, sizeMinor = 0.2, sizeMajor = 1, N = 1):#roteate x numbers to make them better fit in
-
+        
+        self.N = N
         #gridSteps = int(self.steps / 10)
         #GridSteps = int(self.steps / 100)
-        gridSteps = (self.xmax - self.xmin) / self.steps*N*10
-        GridSteps = (self.xmax - self.xmin) / self.steps*N*100
+        gridSteps = (self.xmax - self.xmin) / self.steps*self.N*10
+        GridSteps = (self.xmax - self.xmin) / self.steps*self.N*100
 
         #Xmajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
         Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
@@ -100,5 +104,5 @@ class plotSett():
             f"\033[93m.xmax = \033[0m {self.xmax}\n"
             f"\033[93m.steps = \033[0m {self.steps}\n"
             f"\033[93m.x = \033[0m {self.x[:10]}...\n"
-            f"\033[93m.grid(N = 1)\033[0m\n"
+            f"\033[93m.grid(N = {self.N})\033[0m\n"
         )

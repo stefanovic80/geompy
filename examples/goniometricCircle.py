@@ -1,5 +1,11 @@
-import subprocess
-subprocess.call(['python', 'main.py'])
+#import subprocess
+#subprocess.call(['python', 'main.py'])
+
+import sys
+sys.path.append('../main')  
+# Add the parent directory to the Python path
+import main  # Import the main module
+
 from main import *
 
 # to run:
@@ -9,33 +15,22 @@ from main import *
 
 #random.seed(number)
 
+
 c = circumference()
 c.radius = 1
-c.center = point(0, 0)
+O = c.center = point(0, 0)
 c.color = c.center.color = 'b'
 c.draw("c")
 c.center.draw("O")
 c.grid()
 
+"""
 P = point(c)
 P.draw("P")
 P.draw("P")
-
 R = segment()
 R.erase()
-
 R.point[0] = c.center
 R.point[1] = P
-
-"""
-xLim = []
-for u in R.point:
-    xLim = xLim + [ u.coords[0] ]
-
-xLim.sort()
-
-R.xMin = xLim[0]
-R.xMax = xLim[1]
-"""
-
 R.draw("R = 1", cut = True)
+"""

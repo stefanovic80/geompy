@@ -63,8 +63,10 @@ class parabola(plotSett):
             f"\033[93m.xShift = \033[0m {self.xShift}\n"
             f"\033[93m.yShift = \033[0m {self.yShift}\n"
             f"\033[93m.concavity = \033[0m {self.concavity}\n"
-            f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
-            f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
+            f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
+            f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
+            #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
+            #f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
             f"\033[93m.name:\033[0m {self.name}\n"
             f"\033[93m.color:\033[0m {self.color}\n"
         )
