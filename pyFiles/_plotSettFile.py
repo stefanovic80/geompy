@@ -36,9 +36,9 @@ class plotSett():
         #gridSteps = int(self.steps / 10)
         #GridSteps = int(self.steps / 100)
         gridSteps = (self.xmax - self.xmin) / self.steps*self.N*10
-        gridSteps = round(gridSteps, 2)
+        #gridSteps = round(gridSteps, 2)
         GridSteps = (self.xmax - self.xmin) / self.steps*self.N*100
-        GridSteps = round(GridSteps, 1)
+        #GridSteps = round(GridSteps, 1)
         #Xmajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
         Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
         Ymajor_ticks = Xmajor_ticks
@@ -59,11 +59,12 @@ class plotSett():
             pass
 
         self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_xticks(Xmajor_ticks)
+        #self.ax.set_xticks(Xmajor_ticks)
+        #this is not number labelling
         self.ax.set_xticks(Xminor_ticks, minor=True)
     
         self.ax.set_ylim(self.xmin, self.xmax)
-        self.ax.set_yticks(Ymajor_ticks)
+        #self.ax.set_yticks(Ymajor_ticks)
         self.ax.set_yticks(Yminor_ticks, minor=True)
 
         # And a corresponding grid
