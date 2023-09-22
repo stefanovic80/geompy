@@ -30,7 +30,7 @@ class plotSett():
 
         self.x = np.linspace(self.xmin, self.xmax, steps)
 
-    def grid(self, N = 1, l = None):#roteate x numbers to make them better fit in
+    def grid(self, N = 1):#roteate x numbers to make them better fit in
         
         #max( abs(self.min), abs(self.max) )
 
@@ -45,10 +45,13 @@ class plotSett():
         
         #x grid---------------------------------------
         if (self.xmin < 0) and (self.xmax > 0):
+            #------------ minor ticks
             Xminor_ticksPos = np.arange(0, self.xmax, minorStep)
             Xminor_ticksNeg = np.arange(0, self.xmin, -minorStep)[::-1]
+
             Xminor_ticks = np.append(Xminor_ticksNeg, Xminor_ticksPos)
             
+            #----------- major ticks
             Xmajor_ticksPos = np.arange(0, self.xmax, majorStep)
 
             Xmajor_ticksNeg = np.arange(0, self.xmin, -majorStep)[::-1]
@@ -73,8 +76,6 @@ class plotSett():
         self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
 
         #y grid---------------------------------------
-
-
         Ymajor_ticks = Xmajor_ticks
         Yminor_ticks = Xminor_ticks
         
@@ -82,21 +83,13 @@ class plotSett():
         self.ax.set_yticks(Yminor_ticks, minor=True)
         self.ax.set_yticks(Ymajor_ticks)
         
-
-
         #self.ax.grid(which='both')
         self.ax.grid(which='minor', alpha=0.2)
         self.ax.grid(which='major', alpha=0.6)
+        #self.ax.grid(switch)
+
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
-
-        """
-        try:
-            self.ax.spines['bottom'].set_position('zero')
-            self.ax.spines['left'].set_position('zero')
-        except:
-            pass
-        """
 
 
 
