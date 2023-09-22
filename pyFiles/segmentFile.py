@@ -123,10 +123,10 @@ class segment(plotSett):
     def chooseCalc(self):
         self.__del__()
         try:
-            self.calc1()#intercept, angCoeff
+            self.calc2()#two points
         except:
             try:
-                self.calc2() #two points
+                self.calc1() #angCoeff, intercept
             except:
                 try:
                     self.calc3() # 1point, angCoeff
