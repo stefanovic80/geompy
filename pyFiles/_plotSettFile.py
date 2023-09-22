@@ -30,7 +30,7 @@ class plotSett():
 
         self.x = np.linspace(self.xmin, self.xmax, steps)
 
-    def grid(self, N = 1):#roteate x numbers to make them better fit in
+    def grid(self, N = 1, l = None):#roteate x numbers to make them better fit in
         
         #max( abs(self.min), abs(self.max) )
 
@@ -43,14 +43,21 @@ class plotSett():
         majorStep = (self.xmax - self.xmin) / self.steps*self.N*100
         #GridSteps = round(GridSteps, 1)
         
-
-        
         #x grid---------------------------------------
-        #Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
+        if (self.xmin < 0) and (self.xmax > 0):
+            Xminor_ticksPos = np.arange(0, self.xmax, minorStep)
+            Xminor_ticksNeg = np.arange(0, self.xmin, -minorStep)[::-1]
+            Xminor_ticks = np.append(Xminor_ticksNeg, Xminor_ticksPos)
+            
+            Xmajor_ticksPos = np.arange(0, self.xmax, majorStep)
 
-        Xminor_ticks = np.arange(self.xmin, self.xmax, minorStep)
+            Xmajor_ticksNeg = np.arange(0, self.xmin, -majorStep)[::-1]
+
+            Xmajor_ticks = np.append(Xmajor_ticksNeg, Xmajor_ticksPos)
+        else:
+            Xminor_ticks = np.arange(self.xmin, self.xmax, minorStep)
         
-        Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
+            Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
 
         self.ax.set_xlim(self.xmin, self.xmax)
 
