@@ -54,6 +54,11 @@ class plotSett():
             Xmajor_ticksNeg = np.arange(0, self.xmin, -majorStep)[::-1]
 
             Xmajor_ticks = np.append(Xmajor_ticksNeg, Xmajor_ticksPos)
+
+            self.ax.spines['bottom'].set_position('zero')
+            self.ax.spines['left'].set_position('zero')
+
+
         else:
             Xminor_ticks = np.arange(self.xmin, self.xmax, minorStep)
         
@@ -85,20 +90,13 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
 
-
-
-
-
-
-
-
-
+        """
         try:
             self.ax.spines['bottom'].set_position('zero')
             self.ax.spines['left'].set_position('zero')
         except:
             pass
-
+        """
 
 
 
