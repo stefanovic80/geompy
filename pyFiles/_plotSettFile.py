@@ -32,52 +32,68 @@ class plotSett():
 
     def grid(self, N = 1):#roteate x numbers to make them better fit in
         
-        self.N = N
-        #gridSteps = int(self.steps / 10)
-        #GridSteps = int(self.steps / 100)
-        gridSteps = (self.xmax - self.xmin) / self.steps*self.N*100
+        #max( abs(self.min), abs(self.max) )
+
+        #grid density 
+        self.N = self.N - 0.1*N
+        #fine grid step
+        minorStep = (self.xmax - self.xmin) / self.steps*self.N*10
+        #raw grid step
         #gridSteps = round(gridSteps, 2)
-        GridSteps = (self.xmax - self.xmin) / self.steps*self.N*10
+        majorStep = (self.xmax - self.xmin) / self.steps*self.N*100
         #GridSteps = round(GridSteps, 1)
-        #Xmajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
-        Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
-        Ymajor_ticks = Xmajor_ticks
-
-        #Xminor_ticks = np.linspace(self.xmin, self.xmax, gridSteps)
-
-        Xminor_ticks = np.arange(self.xmin, self.xmax, gridSteps)
-        Xmajor_ticks = np.arange(self.xmin, self.xmax, GridSteps)
-
-        Yminor_ticks = Xminor_ticks
-
-        #Ymajor_ticks = np.linspace(self.xmin, self.xmax, GridSteps)
-        #Yminor_ticks = np.linspace(self.xmin, self.xmax, gridSteps)
         
+
+        
+        #x grid---------------------------------------
+        #Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
+
+        Xminor_ticks = np.arange(self.xmin, self.xmax, minorStep)
+        
+        Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
+
+        self.ax.set_xlim(self.xmin, self.xmax)
+
+        self.ax.set_xticks(Xminor_ticks, minor = True)
+        self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
+
+        # alpha stands for transparency: 0 transparent, 1 opaque
+        self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
+
+        #y grid---------------------------------------
+
+
+        Ymajor_ticks = Xmajor_ticks
+        Yminor_ticks = Xminor_ticks
+        
+        self.ax.set_ylim(self.xmin, self.xmax)
+        self.ax.set_yticks(Yminor_ticks, minor=True)
+        self.ax.set_yticks(Ymajor_ticks)
+        
+
+
+        #self.ax.grid(which='both')
+        self.ax.grid(which='minor', alpha=0.2)
+        self.ax.grid(which='major', alpha=0.6)
+        # alpha stands for transparency: 0 transparent, 1 opaque
+        self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
+
+
+
+
+
+
+
+
+
         try:
             self.ax.spines['bottom'].set_position('zero')
             self.ax.spines['left'].set_position('zero')
         except:
             pass
 
-        self.ax.set_xlim(self.xmin, self.xmax)
-        #self.ax.set_xticks(Xmajor_ticks)
-        #this is not number labelling
-        self.ax.set_xticks(Xminor_ticks, minor = True)
-        self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
 
-        self.ax.set_ylim(self.xmin, self.xmax)
-        #self.ax.set_yticks(Ymajor_ticks)
-        self.ax.set_yticks(Yminor_ticks, minor=True)
 
-        # And a corresponding grid
-        #self.ax.grid(which='both')
-        self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.2)
-        # alpha stands for transparency: 0 transparent, 1 opaque
-        self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
-        #linewidth = self.linewidth
-        self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
-        
 
     def __del__(self):
         try:#removes all lines
