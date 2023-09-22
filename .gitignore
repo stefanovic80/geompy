@@ -2,4 +2,8 @@ __pycache__/
 
 .segmentFile.py.swp
 
+pyFiles/Downloads/
+
+pyFiles/._plotSettFile.py.swp
+
 pyfile/*.swp
