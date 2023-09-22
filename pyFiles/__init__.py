@@ -14,4 +14,5 @@ except:
     xmin = float(input("xmin\n"))
     xmax = float(input("xmax\n"))
 #xmin, xmax, steps, linewidth, seed = -1.2, 1.2, 500, 2, 1
-steps, linewidth, seed = 500, 2, 1
+#steps, linewidth, seed = 500, 2, 1
+steps, linewidth, seed = 1000, 2, 1
