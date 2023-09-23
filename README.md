@@ -1,3 +1,6 @@
+<big>As the project is rapidly evolving, the present README file is only a rough explanation of how does it work. Hopefully a complete README file will be completed soon</big>
+
+
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci by such as
 
  
