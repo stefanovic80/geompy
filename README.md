@@ -1,4 +1,4 @@
-This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci by such as
+This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
 
  
 
@@ -13,14 +13,14 @@ This is meant to be the occasion for high school students to start over computer
 
 # Installation
 
-Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the analyticGeometry folder, where the main.py is located. Run the python intepreter, (type "ipython") and type
+Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the analyticGeometry folder, where the main.py is located. Run the python intepreter (type "ipython"), and type
 
 `run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-In case of different python libraries versions, dysfunctions may accur. In this case create a 'analyticGeomEnv' conda environment (it may take time, depending on internet connection speed)
+In case of any mismatch with the version of such libreries, dysfunctions may accur, than you must create a 'analyticGeomEnv' conda environment (it may take time, depending on the available connection speed)
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -42,9 +42,17 @@ and choose a minimum (xmin) and a maximum (xmax) value for coordinates axes. In 
 
 # Usage
 
+Each representable geometric locus is a python class, the list of all the available python classes and variables can be reported into the intepreter by typing 
+
+`who`
+
+![Alt Text](pictures/who.png)
+
+Now, say you want to draw a circumference
+
 # Draw a (random) circumference
 
-Each geometric locus is a python class. Say you want to draw a circumference, than you have to define a circumference type instance which I suggest you to call 'C1' as follows
+Firstly define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
@@ -60,9 +68,15 @@ You may want to add a grid with both x and y axes
 
 `C1.grid()`
 
-You may want to increase the grid density, than an N argument with values lower than 1 will do the job
+if you are not satisfied with the grid density, just type again `C1.grid()` and you'll see the the grid density to be increased or add a -1 argument into the .grid method
 
-`C1.grid(N = .5)`
+`C1.grid(-1)`
+
+to drop down the grid density. Once you are almost there, you probability gonna have decimal numbers as labelson both the axes, that can be modified by adding, as .grid method argument, the first values after zero on each of the two axes:
+
+`C1.grid(majorStep = 2)`
+
+
 
 by typiing 
 
