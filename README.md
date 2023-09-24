@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 **As the project is rapidly evolving, the present README file is only a rough explanation of how does it work. Hopefully a complete README file will be completed soon**
 
 
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci by such as
+=======
+**As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
+
+
+This is meant to be the occasion for high school students, dealing with geometrical drawings, to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
+>>>>>>> origin/master
 
  
 
@@ -14,40 +21,53 @@ This is meant to be the occasion for high school students to start over computer
 ### - [parabola](#draw-a-random-parabola)
 
 
-# Installation
+# Installation and start up
 
-Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the analyticGeometry folder, where the main.py is located. Run the python intepreter, (type "ipython") and type
+Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the folder where the main.py file is located; which is "analyticGeometry". Run the ipython intepreter (type "ipython"), and type
 
 `run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
-
-In case of different python libraries versions, dysfunctions may accur. In this case create a 'analyticGeomEnv' conda environment (it may take time, depending on internet connection speed)
-
-`conda env create -f analyticGeomEnv.yml`
-
-Once the job is done than activate it
-
-`conda activate analyticGeomEnv`
-
-and try again
-
-`run main.py`
-
-and choose a minimum (xmin) and a maximum (xmax) value for coordinates axes. In this case 
+If everything goes fine (which means there is no need for a specific conda environment), just go ahead with it by choosing the minimum (xmin) and maximum (xmax) values for both the Cartesian axes. In this example, you gonna choose -20 and 20, respectively:
 
 `xmin`
+
 `-20`
 
 `xmax`
+
 `20`
+
+
+in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. Hence, go back to your OS console, on the "analyticGeometry" folder and type
+
+`conda env create -f analyticGeomEnv.yml`
+
+`conda activate analyticGeomEnv`.
+
+(it may take time, depending on the available connection speed). Once the environment is installed and  activated, try again to run main.py on your ipython interpreter, as previously explained.
+
+
 
 # Usage
 
+The 
+
+`who`
+
+command shows the list of all the available python variables and classes 
+
+![Alt Text](pictures/who.png)
+
+
+In analyticGeometry each representable geometric locus is associated with a specific python class.
+
+As an example, say you want to draw a circumference
+
 # Draw a (random) circumference
 
-Each geometric locus is a python class. Say you want to draw a circumference, than you have to define a circumference type instance which I suggest you to call 'C1' as follows
+Firstly, let's define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
@@ -59,15 +79,21 @@ Once the "C1" instance is created, than use the "draw" method as follows
 ![Alt Text](pictures/circumferenceDrawn.png)
 
 
-You may want to add a grid with both x and y axes
+to add both a grid and the two x and y Cattesian axes, write
 
 `C1.grid()`
 
-You may want to increase the grid density, than an N argument with values lower than 1 will do the job
+write it again to increase grid density, or type 
 
-`C1.grid(N = .5)`
+`C1.grid(-1)`
 
-by typiing 
+to drop down grid density. Or add the majorStep argument
+
+`C1.grid(majorStep = 2)`
+
+to define a precise (and possible integer) value for the grid major step size.
+
+By typing
 
 `print(C1)`
 
