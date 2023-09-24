@@ -22,12 +22,14 @@ Ensure you have matplotlib, random and numpy libreries installed on a fully work
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
-If everything goes fine (which means there is no need for a specific conda environment), just go ahead with choosing the minimum (xmin) and maximum (xmax) values for bot x and y axes
+If everything goes fine (which means there is no need for a specific conda environment), just go ahead with it by choosing the minimum (xmin) and maximum (xmax) values for both the Cartesian axes. In this example, you gonna choose -20 and 20, respectively:
 
 `xmin`
+
 `-20`
 
 `xmax`
+
 `20`
 
 
