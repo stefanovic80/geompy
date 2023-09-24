@@ -1,4 +1,4 @@
-**As the project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
+**As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
@@ -16,7 +16,7 @@ This is meant to be the occasion for high school students to start over computer
 
 # Installation and start up
 
-Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the folder where the main.py is located, which is "analyticGeometry". Run the python intepreter (type "ipython"), and type
+Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the folder where the main.py file is located; which is "analyticGeometry". Run the ipython intepreter (type "ipython"), and type
 
 `run main.py`
 
@@ -33,31 +33,30 @@ If everything goes fine (which means there is no need for a specific conda envir
 `20`
 
 
-in case of any error, and particularly if any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment (it may take time, depending on the available connection speed)
+in case of any error, due to any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
-Once the job is done than activate it
-
 `conda activate analyticGeomEnv`.
 
-Try again
-
-`run main.py`
-
-and choose again (xmin) and a maximum (xmax) values.
+(it may take time, depending on the available connection speed). Once activated, try again to run main.py on your ipython interpreter, as previously explained.
 
 
 
 # Usage
 
-Each representable geometric locus is a python class, the list of all the available python classes and variables can be reported into the intepreter by typing 
+The 
 
 `who`
 
+command shows the list of all the available python variables and classes 
+
 ![Alt Text](pictures/who.png)
 
-Now, say you want to draw a circumference
+
+In analyticGeometry each representable geometric locus is associated with a specific python class.
+
+As an example, say you want to draw a circumference
 
 # Draw a (random) circumference
 
