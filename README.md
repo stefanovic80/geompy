@@ -1,4 +1,4 @@
-**As the project is rapidly evolving, the present README file is only a rough explanation of how does it work. Hopefully an exact and complete  README file will be available soon**
+**As the project is rapidly evolving, the present README file is only a rough explanation of what id toes and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
