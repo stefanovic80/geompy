@@ -1,4 +1,4 @@
-**As the project is rapidly evolving, the present README file is only a rough explanation of how does it work. Hopefully a complete README file will be completed soon**
+**As the project is rapidly evolving, the present README file is only a rough explanation of how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
 This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
@@ -14,34 +14,38 @@ This is meant to be the occasion for high school students to start over computer
 ### - [parabola](#draw-a-random-parabola)
 
 
-# Installation
+# Installation and start up
 
-Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the analyticGeometry folder, where the main.py is located. Run the python intepreter (type "ipython"), and type
+Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the folder where the main.py is located, which is "analyticGeometry". Run the python intepreter (type "ipython"), and type
 
 `run main.py`
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
-
-In case of any mismatch with the version of such libreries, dysfunctions may accur, than you must create a 'analyticGeomEnv' conda environment (it may take time, depending on the available connection speed)
-
-`conda env create -f analyticGeomEnv.yml`
-
-Once the job is done than activate it
-
-`conda activate analyticGeomEnv`
-
-and try again
-
-`run main.py`
-
-and choose a minimum (xmin) and a maximum (xmax) value for coordinates axes. In this case 
+If everything goes fine (which means there is no need for a specific conda environment), just go ahead with choosing the minimum (xmin) and maximum (xmax) values for bot x and y axes
 
 `xmin`
 `-20`
 
 `xmax`
 `20`
+
+
+in case of any error, and particularly if any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment (it may take time, depending on the available connection speed)
+
+`conda env create -f analyticGeomEnv.yml`
+
+Once the job is done than activate it
+
+`conda activate analyticGeomEnv`.
+
+Try again
+
+`run main.py`
+
+and choose again (xmin) and a maximum (xmax) values.
+
+
 
 # Usage
 
