@@ -289,17 +289,6 @@ draw the parabola
 
 ![Alt Text](pictures/parabola2.png)
 
-## Delete a parabola
-
-According with previous notes, we suppose the drawn parabola is a "P1" object. Than
-
-`P1.remove()`
-
-erases the parabola you previously have drawn.
-
-
-
-
 
 
 # How to see geometrical locus parameters
