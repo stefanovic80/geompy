@@ -245,13 +245,13 @@ you can change the center coordinates by typing
 
 Say you have drawn a circumference by using a "circunference method" named "C1". To change it's color to red type this
 
-`C1.plot( color = 'red')`
+`C1.draw( color = 'red')`
 
 ![Alt Text](pictures/circumferenceDrawRed.png)
 
 to change to "black" type
 
-`C1.plot( color = 'black' )`
+`C1.draw( color = 'black' )`
 
 
 
@@ -291,6 +291,6 @@ choose a concavity equal to 0.5
 
 draw the parabola
 
-`P1.plot()`
+`P1.draw()`
 
 ![Alt Text](pictures/parabola2.png)
