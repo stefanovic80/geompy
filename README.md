@@ -1,7 +1,7 @@
 **As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
-This is meant to be the occasion for high school students to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
+This is meant to be the occasion for high school students, dealing with geometrical drawings, to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such a
 
  
 
@@ -33,13 +33,13 @@ If everything goes fine (which means there is no need for a specific conda envir
 `20`
 
 
-in case of any error, due to any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. Hence, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
 `conda activate analyticGeomEnv`.
 
-(it may take time, depending on the available connection speed). Once activated, try again to run main.py on your ipython interpreter, as previously explained.
+(it may take time, depending on the available connection speed). Once the environment is installed and  activated, try again to run main.py on your ipython interpreter, as previously explained.
 
 
 
@@ -72,15 +72,16 @@ Point coordinates and point name can choosen as point() and draw() arguments res
 
 `P_1 = draw("P_1")`
 
+
 You may want to add both a grid and x and y axes
 
 `P.grid()`
 
-if you are not satisfied with the grid density, just type again `C1.grid()` and you'll see the the grid density to be increased or add a -1 argument into the .grid method
+write it again to increase grid density, or type 
 
 `P.grid(-1)`
 
-to drop down the grid density. Once you are almost there, you probability gonna have decimal numbers as labelson both the axes, that can be modified by adding, as .grid method argument, the first values after zero on each of the two axes:
+to drop down grid density. Or add the majorStep argument
 
 `P.grid(majorStep = 2)`
 
@@ -90,6 +91,7 @@ to drop down the grid density. Once you are almost there, you probability gonna 
 
 
 As a further example, say you want to draw a circumference
+
 
 # Draw a (random) circumference
 
