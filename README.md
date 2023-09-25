@@ -304,8 +304,5 @@ erases the parabola you previously have drawn.
 
 # How to see geometrical locus parameters
  
-`C1.__dict__`
 
-`P1.__dict__`
-
-`L1.__dict__`
+`print(C1)`
