@@ -86,6 +86,38 @@ otherwise use the majorStep argiment to set the desired scale
 `P.grid(majorStep = 2)`
 
 
+# Draw a (random) segment
+
+`L1 = segment()`
+
+`L1.draw()`
+
+L1 is an object of "segment" class type. Than a segment with random values for both angular coefficient and intercept is drawn. 
+
+
+![Alt Text](pictures/straightLine.png)
+
+
+## Draw a specific straight line
+
+choose the angular coefficient
+
+`L1.angCoeff = 6`
+
+choose the intercept
+
+`L1.intercept = 10`
+
+
+`L1.draw() = 10`
+
+![Alt Text](pictures/straightLine2.png)
+
+
+
+
+
+
 # Draw a (random) circumference
 
 As a further example, say you want to draw a circumference.
@@ -210,43 +242,6 @@ According with previous notes, we suppose the drawn circumference is a "C1" obje
 in order to erase the drawn circomference.
 
 
-
-
-
-# Draw a (random) straight line
-
-
-`L1 = straightLine()`
-
-L1 is an object of "straightLine" class type which choose random values for the angular coefficient (L1.angCoeff) and the intercept (L1.intercept)
-
-`L1.plot()`
-
-L1.plot() draws the geometrical locus
-
-![Alt Text](pictures/straightLine.png)
-
-
-## Draw a specific straight line
-
-choose the angular coefficient
-
-`L1.angCoeff = 6`
-
-choose the intercept
-
-`L1.intercept = 10`
-
-![Alt Text](pictures/straightLine2.png)
-
-
-## Delete a straight line
-
-According with previous notes, we suppose the drawn straight line is a "L1" object. Than
-
-`L1.remove()`
-
-erases the straight line you previously have drawn.
 
 # Draw a (random) Parabola
 
