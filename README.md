@@ -56,7 +56,39 @@ command shows the list of all the available python variables and classes
 
 In analyticGeometry each representable geometric locus is associated with a specific python class.
 
-As an example, say you want to draw a circumference
+# Draw a point
+
+Let's define a point class type instance and draw a point with randomly choosen coordinates
+
+`P = point()`
+
+`P.draw()`
+
+
+Point coordinates and point name can choosen as point() and draw() arguments respectively
+
+
+`P_1 = point(3, -9)`
+`P_1 = draw("P_1")`
+
+You may want to add both a grid and x and y axes
+
+`P.grid()`
+
+if you are not satisfied with the grid density, just type again `C1.grid()` and you'll see the the grid density to be increased or add a -1 argument into the .grid method
+
+`P.grid(-1)`
+
+to drop down the grid density. Once you are almost there, you probability gonna have decimal numbers as labelson both the axes, that can be modified by adding, as .grid method argument, the first values after zero on each of the two axes:
+
+`P.grid(majorStep = 2)`
+
+
+
+
+
+
+As a further example, say you want to draw a circumference
 
 # Draw a (random) circumference
 
@@ -72,21 +104,7 @@ Once the "C1" instance is created, than use the "draw" method as follows
 ![Alt Text](pictures/circumferenceDrawn.png)
 
 
-You may want to add a grid with both x and y axes
-
-`C1.grid()`
-
-if you are not satisfied with the grid density, just type again `C1.grid()` and you'll see the the grid density to be increased or add a -1 argument into the .grid method
-
-`C1.grid(-1)`
-
-to drop down the grid density. Once you are almost there, you probability gonna have decimal numbers as labelson both the axes, that can be modified by adding, as .grid method argument, the first values after zero on each of the two axes:
-
-`C1.grid(majorStep = 2)`
-
-
-
-by typiing 
+by typing 
 
 `print(C1)`
 
