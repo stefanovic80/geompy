@@ -56,11 +56,46 @@ command shows the list of all the available python variables and classes
 
 In analyticGeometry each representable geometric locus is associated with a specific python class.
 
-As an example, say you want to draw a circumference
+# Draw a point
+
+Let's define a point class type instance and draw a point with randomly choosen coordinates
+
+`P = point()`
+
+`P.draw()`
+
+
+Point coordinates and point name can choosen as point() and draw() arguments respectively
+
+
+`P_1 = point(3, -9)`
+
+`P_1 = draw("P_1")`
+
+
+You may want to add both a grid and x and y axes
+
+`P.grid()`
+
+write it again to increase grid density, or type 
+
+`P.grid(-1)`
+
+to drop down grid density. Or add the majorStep argument
+
+`P.grid(majorStep = 2)`
+
+
+
+
+
+
+As a further example, say you want to draw a circumference
+
 
 # Draw a (random) circumference
 
-Firstly, let's define a circumference type instance which I suggest you to call 'C1' as follows
+Firstly define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
@@ -72,21 +107,7 @@ Once the "C1" instance is created, than use the "draw" method as follows
 ![Alt Text](pictures/circumferenceDrawn.png)
 
 
-to add both a grid and the two x and y Cattesian axes, write
-
-`C1.grid()`
-
-write it again to increase grid density, or type 
-
-`C1.grid(-1)`
-
-to drop down grid density. Or add the majorStep argument
-
-`C1.grid(majorStep = 2)`
-
-to define a precise (and possible integer) value for the grid major step size.
-
-By typing
+by typing 
 
 `print(C1)`
 
