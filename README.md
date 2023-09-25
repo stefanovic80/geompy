@@ -119,19 +119,24 @@ L1 is an object of "segment" class type. Than a segment with random values for b
 
 ## Draw a specific straight line
 
-choose the angular coefficient
+Delete all speciments of L1 instance
+
+`L1.erase()`
+
+by typing 
+
+`print(L1)`
+
+you know which attributes to fill up in order to draw a specific segment. Say you want to draw a segment from it's angular coefficient and intercept and you want to call it "L1"
 
 `L1.angCoeff = 6`
 
-choose the intercept
-
 `L1.intercept = 10`
 
+`L1.draw("L1") = 10`
 
-`L1.draw() = 10`
 
 ![Alt Text](pictures/straightLine2.png)
-
 
 
 # Draw a (random) circumference
@@ -249,15 +254,6 @@ to change to "black" type
 `C1.plot( color = 'black' )`
 
 
-# Delete a circumference
-
-According with previous notes, we suppose the drawn circumference is a "C1" object. Than, type
-
-`C1.remove()`
-
-in order to erase the drawn circomference.
-
-
 
 # Draw a (random) Parabola
 
@@ -272,9 +268,9 @@ P1 is an object of "parabola" class type which choose random values for the para
 
 - concavity (P1.concavity)
 
-`P1.plot()`
+`P1.draw()`
 
-P1.plot() draws the geometrical locus
+P1.draw() draws the geometrical locus
 
 ![Alt Text](pictures/parabola.png)
 
@@ -298,10 +294,3 @@ draw the parabola
 `P1.plot()`
 
 ![Alt Text](pictures/parabola2.png)
-
-
-
-# How to see geometrical locus parameters
- 
-
-`print(C1)`
