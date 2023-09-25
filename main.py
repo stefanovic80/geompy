@@ -6,8 +6,8 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
 from pyFiles.segmentFile import segment
 from pyFiles.parabolaFile import parabola
-from pyFiles.triangleFile import triangle
-from pyFiles.angleFile import angle
+#from pyFiles.triangleFile import triangle
+#from pyFiles.angleFile import angle
 
 import matplotlib.pyplot as plt
 import numpy as np
