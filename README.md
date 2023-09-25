@@ -1,7 +1,12 @@
 **As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
-This is meant to be the occasion for high school students, dealing with geometrical drawings, to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
+This is meant to be a python library for fast geometric loci visualization. It's already plenty of software and python libreries with scientific purposes, however their complexity often makes them proibitive for any didactical use.
+
+This project is the occasion for those high school students, who are dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
+
+Here some of the geometrical loci actually available in the present repository
+
 
 ### - [point](#draw-a-point)
 
@@ -12,6 +17,10 @@ This is meant to be the occasion for high school students, dealing with geometri
 ### - [segment](#draw-a-random-straight-line)
 
 ### - [parabola](#draw-a-random-parabola)
+
+
+
+
 
 
 # Installation and start up
