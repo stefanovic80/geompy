@@ -4,8 +4,7 @@
 
 It's already plenty of python libreries and other software dealing with scientific purposes, however their complexity often make them proibitive for any didactical use.
 
-This project is a python library for fast geometric loci visualization. 
-This is meant to be the occasion for high school students and their professors, dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
+This project, mainly built on top of matplotlib and numpy, is a python library for fast geometric loci visualization. This is meant to be the occasion for high school students and their professors, dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
 
 
 
