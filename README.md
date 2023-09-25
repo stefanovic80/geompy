@@ -34,7 +34,7 @@ If everything goes fine (which means there is no need for a specific conda envir
 `20`
 
 
-in case of any error, due to any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -57,6 +57,12 @@ command shows the list of all the available python variables and classes
 
 In analyticGeometry each representable geometric locus is associated with a specific python class.
 
+If you want to draw a point type geometrical locus, than you have to define a point class type instance. 
+
+
+If you want to draw a segment type geometrical locus, than you have to define a segment class type instance. 
+
+
 # Draw a point
 
 Let's draw a point in a cartesian plane. Firstly define a point class type instance and draw a point
@@ -67,7 +73,19 @@ Let's draw a point in a cartesian plane. Firstly define a point class type insta
 
 as no arguments are in between the brackets, than coordinates are randomly choosen, and no names figures on the plot.
 
-Otherwise, coordinates and name can choosen as point() and draw() arguments respectively
+with
+
+`print(P)`
+
+all details of P instance are reported. Furthermore, you can change the point color
+
+
+`P.color = 'blue'`
+
+`P.draw()`
+
+
+Alternatively coordinates and name can choosen as point() and draw() arguments respectively
 
 
 `P_1 = point(3, -9)`
@@ -113,9 +131,6 @@ choose the intercept
 `L1.draw() = 10`
 
 ![Alt Text](pictures/straightLine2.png)
-
-
-
 
 
 
