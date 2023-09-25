@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-
 **As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
 This is meant to be the occasion for high school students, dealing with geometrical drawings, to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such as
-=======
-**As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
-
-This is meant to be the occasion for high school students, dealing with geometrical drawings, to start over computer programming for scientific applications with Python. Particularly, it's a tool for visualizing geometric loci such a
->>>>>>> refs/remotes/origin/master
-
- 
+### - [point](#draw-a-point)
 
 ### - [circumference](#draw-a-random-circumference)
 
@@ -41,13 +33,13 @@ If everything goes fine (which means there is no need for a specific conda envir
 `20`
 
 
-in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. Hence, go back to your OS console, on the "analyticGeometry" folder and type
+in case of any error, due to any package version mismatch accour, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
 `conda activate analyticGeomEnv`.
 
-(it may take time, depending on the available connection speed). Once the environment is installed and  activated, try again to run main.py on your ipython interpreter, as previously explained.
+(it may take time, depending on the available connection speed). Once activated, try again to run main.py on your ipython interpreter, as previously explained.
 
 
 
@@ -64,11 +56,40 @@ command shows the list of all the available python variables and classes
 
 In analyticGeometry each representable geometric locus is associated with a specific python class.
 
-As an example, say you want to draw a circumference
+# Draw a point
+
+Let's draw a point in a cartesian plane. Firstly define a point class type instance and draw a point
+
+`P = point()`
+
+`P.draw()`
+
+as no arguments are in between the brackets, than coordinates are randomly choosen, and no names figures on the plot.
+
+Otherwise, coordinates and name can choosen as point() and draw() arguments respectively
+
+
+`P_1 = point(3, -9)`
+
+`P_1 = draw("P_1")`
+
+You may want to add both a grid and x and y axes
+
+`P.grid()`
+
+by typing it more times, you gonna increase grid density or dropped it down if -1 argument is added
+
+`P.grid(-1)`
+
+otherwise use the majorStep argiment to set the desired scale 
+
+`P.grid(majorStep = 2)`
+
 
 # Draw a (random) circumference
 
-Firstly, let's define a circumference type instance which I suggest you to call 'C1' as follows
+As a further example, say you want to draw a circumference.
+Firstly define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
 
@@ -80,21 +101,7 @@ Once the "C1" instance is created, than use the "draw" method as follows
 ![Alt Text](pictures/circumferenceDrawn.png)
 
 
-to add both a grid and the two x and y Cattesian axes, write
-
-`C1.grid()`
-
-write it again to increase grid density, or type 
-
-`C1.grid(-1)`
-
-to drop down grid density. Or add the majorStep argument
-
-`C1.grid(majorStep = 2)`
-
-to define a precise (and possible integer) value for the grid major step size.
-
-By typing
+by typing 
 
 `print(C1)`
 
@@ -296,9 +303,5 @@ erases the parabola you previously have drawn.
 
 # How to see geometrical locus parameters
  
-`C1.__dict__`
 
-`P1.__dict__`
-
-`L1.__dict__`
-
+`print(C1)`
