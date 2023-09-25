@@ -1,3 +1,12 @@
+## About the Author
+
+This project was created and is maintained by Stefano Fedele. Stefano is the original author and founder of this project.
+
+## License
+
+This project is open-source and is distributed under the terms of the MIT License. 
+
+
 MIT License
 
 Copyright (c) 2023 Stefano Fedele
