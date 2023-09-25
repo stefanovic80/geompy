@@ -6,21 +6,6 @@ This is meant to be a python library for fast geometric loci visualization. It's
 
 This project is the occasion for those high school students, who are dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
 
-Here some of the geometrical loci actually available in the present repository
-
-
-### - [point](#draw-a-point)
-
-### - [circumference](#draw-a-random-circumference)
-
-### - [ellipse] (#draw-a-random-ellipse)
-
-### - [segment](#draw-a-random-straight-line)
-
-### - [parabola](#draw-a-random-parabola)
-
-
-
 
 
 
@@ -64,7 +49,19 @@ command shows the list of all the available python variables and classes
 ![Alt Text](pictures/who.png)
 
 
-In analyticGeometry each representable geometric locus is associated with a specific python class.
+In analyticGeometry for each representable geometric locus there is an associated python class which has the some name. Here the actually available classes
+
+### - [point](#draw-a-point)
+
+### - [circumference](#draw-a-random-circumference)
+
+### - [ellipse] (#draw-a-random-ellipse)
+
+### - [segment](#draw-a-random-straight-line)
+
+### - [parabola](#draw-a-random-parabola)
+
+
 
 If you want to draw a point type geometrical locus, than you have to define a point class type instance. 
 
