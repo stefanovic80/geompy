@@ -99,6 +99,9 @@ Once the "C1" instance is created, than use the "draw" method as follows
 `C1.draw()`
 
 
+and a circumference will take place
+
+
 ![Alt Text](pictures/circumferenceDrawn.png)
 
 
