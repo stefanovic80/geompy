@@ -69,6 +69,7 @@ Point coordinates and point name can choosen as point() and draw() arguments res
 
 
 `P_1 = point(3, -9)`
+
 `P_1 = draw("P_1")`
 
 You may want to add both a grid and x and y axes
