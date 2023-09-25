@@ -1,9 +1,11 @@
 **As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
 
 
-This is meant to be a python library for fast geometric loci visualization. It's already plenty of software and python libreries with scientific purposes, however their complexity often makes them proibitive for any didactical use.
 
-This project is the occasion for those high school students, who are dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
+It's already plenty python libreries and other software dealing with scientific purposes, however their complexity often make them proibitive for any didactical use.
+
+This project is a python library for fast geometric loci visualization. 
+This is meant to be the occasion for high school students and their professors, dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
 
 
 
