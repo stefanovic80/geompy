@@ -51,7 +51,7 @@ command shows the list of all the available python variables
 
 among them, there are some having the some name as some of the most typical geometrical loci
 
-### - [point](#draw-a-point)1
+### - [point](#draw-a-point)
 
 ### - [circumference](#draw-a-random-circumference)
 
@@ -62,7 +62,7 @@ among them, there are some having the some name as some of the most typical geom
 ### - [parabola](#draw-a-random-parabola)
 
 
-Such variables are python classes. For each one of them you can define one or more instances, where the .draw() shows the respective plot
+Such variables are python classes. For each one of them you can define one or more instances. Each instance corresponds with a specific geometrical locus of that type. The .draw() shows the respective plot
 
 As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw() method to provide it's graphycal representation
 
@@ -79,8 +79,14 @@ and also modified from the user
 
 `C.radius = 7`
 
-
 `C.draw()`
+
+In case you want to deal with more than one circumference, than you just have to create other instances of the some type:
+
+
+`C1 = circumference()`
+
+`C1.draw()`
 
 In the some way, if you want to draw a point type geometrical locus, than you have to define a point class type instance. 
 
