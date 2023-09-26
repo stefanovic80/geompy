@@ -2,7 +2,7 @@
 
 
 
-It's already plenty of python libreries and other software dealing with scientific purposes, however their complexity often make them proibitive for any didactical use.
+It's already plenty of python libreries and other software dealing with scientific purposes, however their complexity often make them proibitive for any educational use.
 
 This project, mainly built on top of matplotlib and numpy, is a python library for fast geometric loci visualization. This is meant to be the occasion for high school students and their professors, dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
 
@@ -49,9 +49,9 @@ command shows the list of all the available python variables and classes
 ![Alt Text](pictures/who.png)
 
 
-In analyticGeometry for each representable geometric locus there is an associated python class which has the some name. Here the actually available classes
+as can be seen from the previous picture in analyticGeometry, among many ipython variables (np, plt, etc.), there are some having the some name as some of the most typical geometrical loci
 
-### - [point](#draw-a-point)
+### - [point](#draw-a-point)1
 
 ### - [circumference](#draw-a-random-circumference)
 
@@ -62,8 +62,28 @@ In analyticGeometry for each representable geometric locus there is an associate
 ### - [parabola](#draw-a-random-parabola)
 
 
+such variables are classes. For each one of them you can define one or more instances, having their own methods and attributes. 
 
-If you want to draw a point type geometrical locus, than you have to define a point class type instance. 
+As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw method to provide it's graphycal representation
+
+
+`C = circumference()`
+
+`C.draw()`
+
+by typing 
+
+`print(C)`
+
+you gonna have a list of C attributes, such as `C.radius`, which can be reset in order to modify the drawn circumference
+
+
+`C.radius = 7`
+
+
+`C.draw()`
+
+In the some way, if you want to draw a point type geometrical locus, than you have to define a point class type instance. 
 
 
 If you want to draw a segment type geometrical locus, than you have to define a segment class type instance. 
