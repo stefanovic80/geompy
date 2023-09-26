@@ -64,107 +64,181 @@ among them, there are some having the some name as some of the most typical geom
 
 Such variables are python classes. For each one of them you can define one or more instances. Each instance corresponds with a specific geometrical locus of that type. The .draw() shows the respective plot
 
-As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw() method to provide it's graphycal representation
+As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw() method to provide it's graphic representation
 
 
 `C = circumference()`
 
 `C.draw()`
 
-as a python instance, the C variable has attributes and other methods, which can be shown by typing 
+as a python instance, the C variable has attributes, other methods, or even instance of a different class,  which can be shown by typing 
 
 `print(C)`
 
-and also modified from the user
+each one of them can be constumized by the user as in this example
 
 `C.radius = 7`
 
+`C.color = 'blue'`
+
+`C.center = point(0, 0)`
+
 `C.draw()`
 
-In case you want to deal with more than one circumference, than you just have to create other instances of the some type:
+
+In case you need to deal with more than one circumference, than you just have to create other instances of the some type as follows:
 
 
 `C1 = circumference()`
 
 `C1.draw()`
 
-In the some way, if you want to draw a point type geometrical locus, than you have to define a point class type instance. 
-
-
-If you want to draw a segment type geometrical locus, than you have to define a segment class type instance. 
+In the some way, if you want to draw a point type geometrical locus, than you have to define a point class type instance. If you want to draw a segment type geometrical locus, than you have to define a segment class type instance and so on.
 
 
 # Draw a point
 
-Let's draw a point in a cartesian plane. Firstly define a point class type instance and draw a point
+As already seen from the "who" command, a "point" class is available on analyticGeometry.
+
+Let's draw a point in a cartesian plane.
 
 `P = point()`
 
 `P.draw()`
 
-as no arguments are in between the brackets, than coordinates are randomly choosen, and no names figures on the plot.
+as no arguments are passed in between the brackets, than coordinates are randomly choosen and no names will result on the plot. Otherwise
 
-with
+`P = point(3, -9)`
+
+`P = draw("P_1")`
+
+Details of P instance 
 
 `print(P)`
 
-all details of P instance are reported. Furthermore, you can change the point color
+show that an alternative way to change coordinates is
+
+`P.coords = [6, -4]`
+
+according with matplotlib library, the .color attribute can be choosen from the following list
+
+- ``'b'``          blue
+
+- ``'g'``          green
+
+- ``'r'``          red
+
+- ``'c'``          cyan
+
+- ``'m'``          magenta
+
+- ``'y'``          yellow
+
+- ``'k'``          black
+
+- ``'w'``          white
 
 
-`P.color = 'blue'`
 
-`P.draw()`
+#Add axes and a grid
 
-
-Alternatively coordinates and name can choosen as point() and draw() arguments respectively
-
-
-`P_1 = point(3, -9)`
-
-`P_1 = draw("P_1")`
-
-You may want to add both a grid and x and y axes
+Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
 
 `P.grid()`
 
-by typing it more times, you gonna increase grid density or dropped it down if -1 argument is added
+
+by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
 
 `P.grid(-1)`
 
-otherwise use the majorStep argiment to set the desired scale 
+otherwise use the majorStep argument to set the desired scale 
 
 `P.grid(majorStep = 2)`
 
 
 # Draw a (random) segment
 
-`L1 = segment()`
+`s1 = segment()`
 
-`L1.draw()`
+`s1.draw()`
 
-L1 is an object of "segment" class type. Than a segment with random values for both angular coefficient and intercept is drawn. 
+s1 is an object of "segment" class type. Two random points are generated and a segment pssing through is draw.
 
 
 ![Alt Text](pictures/straightLine.png)
 
 
+print(s1)
+
+shows all specifications of "s1" segment type instance.
+
+
 ## Draw a specific straight line
 
-Delete all speciments of L1 instance
+**Draw a line from angular coefficient and intercept**
 
-`L1.erase()`
+First of all delete all speciments of s1 instance
 
-by typing 
+`s1.erase()`
 
-`print(L1)`
+`s1.angCoeff = 1`
 
-you know which attributes to fill up in order to draw a specific segment. Say you want to draw a segment from it's angular coefficient and intercept and you want to call it "L1"
+`s1.intercept = 10`
 
-`L1.angCoeff = 6`
+`s1.draw("s1") = 10`
 
-`L1.intercept = 10`
+(the optional "s1" string passed into the .draw() method is the straight line name)
 
-`L1.draw("L1") = 10`
+**Draw a line passing through two different point: A and B respectively**
+
+
+`A = point(3, 6)`
+
+`B = point(-2, 1)`
+
+
+`s1.erase()`
+
+`s1.point[0] = A
+
+`s1.point[1] = B`
+
+`s1.draw("s1")`
+
+in case you need a straight line (the optional "s1" string passed into the .draw() method is the straight line name). 
+
+Otherwise 
+
+`s1.draw("s1", cut = True)`
+
+in case you need a segment in between A and B
+
+
+
+**Draw a line passing through one point, say point A, and having a specific angular coefficient **
+
+`A = point(3, 6)`
+
+`s1.erase()`
+
+`s1.point[0] = A
+
+`s1.angCoeff = -1
+
+`s1.draw("s1")`
+
+**Draw a line passing through one point, say point A, and having a specific y-intercept **
+
+`A = point(3, 6)`
+
+`s1.erase()`
+
+`s1.point[0] = A
+
+`s1.intercept = -1
+
+`s1.draw("s1")`
+
 
 
 ![Alt Text](pictures/straightLine2.png)
@@ -218,25 +292,6 @@ Once the attribute is going to be changed, than use again the "draw" method
 ![Alt Text](pictures/changeColor.png)
 
 
-
-according with matplotlib library, you can choose the color you like more from the following list
-
-
-- ``'b'``          blue
-
-- ``'g'``          green
-
-- ``'r'``          red
-
-- ``'c'``          cyan
-
-- ``'m'``          magenta
-
-- ``'y'``          yellow
-
-- ``'k'``          black
-
-- ``'w'``          white
 
 
 ## Draw a specific circumference
