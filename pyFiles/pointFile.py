@@ -66,9 +66,17 @@ class point(plotSett):
 
 
 
-        if self.j%2 != 0:
-            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmax = 4)
-            vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)
+        if self.j%2 != 0: 
+            """
+            xvals = [ 0, self.coords[0] ]
+            xvals.sort()
+            yvals = [ 0, self.coords[1] ]
+            yvals.sort()
+            """
+
+            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmin = xvals[0], xmax = xvals[1] )
+
+            vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)#, ymin = yvals[0], ymax = yvals[1] )
             self.lines.append(hline)
             self.lines.append(vline)
             print("\nrun .draw one more time to erase coordinates\n")
