@@ -44,7 +44,7 @@ The
 
 `who`
 
-command shows the list of all the available python variables 
+command shows the list of all the python variables currently in use
 
 ![Alt Text](pictures/who.png)
 
