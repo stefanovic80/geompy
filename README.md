@@ -116,7 +116,7 @@ Details of P instance
 
 `print(P)`
 
-show that an alternative way to change coordinates is
+show that an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers
 
 `P.coords = [6, -4]`
 
