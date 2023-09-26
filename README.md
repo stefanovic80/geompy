@@ -71,7 +71,7 @@ As an example, say you want to draw a circumference. As first step you have to c
 
 `C.draw()`
 
-as a python instance, the C variable has attributes, other methods, or even instance of a different class,  which can be shown by typing 
+as a python instance, the C variable has attributes, other methods, or even instances of different classes (in this case, there is a point class type instance, which is the circumference center),  which can be shown by typing 
 
 `print(C)`
 
