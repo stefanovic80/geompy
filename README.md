@@ -215,7 +215,7 @@ in case you need a segment in between A and B
 
 
 
-**Draw a line passing through one point, say point A, and having a specific angular coefficient **
+**Draw a line passing through one point, say point A, and having a specific angular coefficient**
 
 `A = point(3, 6)`
 
@@ -227,7 +227,7 @@ in case you need a segment in between A and B
 
 `s1.draw("s1")`
 
-**Draw a line passing through one point, say point A, and having a specific y-intercept **
+**Draw a line passing through one point, say point A, and having a specific y-intercept**
 
 `A = point(3, 6)`
 
