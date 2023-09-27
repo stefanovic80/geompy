@@ -1,6 +1,4 @@
-**As this project is rapidly evolving, the present README file is only a rough explanation of what it does and how does it work. Hopefully an exact and complete  README file will be available soon**
-
-
+**As this project is rapidly evolving, the current README file provides only a preliminary explanation of its functionality and operation. Hopefully, an accurate and comprehensive README file will be available soon.**
 
 It's already plenty of python libreries and other software dealing with scientific purposes, however their complexity often make them prohibitive to use for any educational purpose.
 
