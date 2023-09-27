@@ -60,7 +60,7 @@ among them, there are some having the some name as some of the most typical geom
 ### - [parabola](#draw-a-random-parabola)
 
 
-Such variables are python classes. For each one of them you can define one or more instances. Each instance corresponds with a specific geometrical locus of that type. The .draw() shows the respective plot
+These variables are Python classes. For each of them, you can define one or more instances. Each instance corresponds to a specific geometrical locus of that type. The .draw() method displays the corresponding plot. Both classes and their methods are written with round brackets at the end, with optional argument in between them.
 
 As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw() method to provide it's graphic representation
 
