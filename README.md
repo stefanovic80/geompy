@@ -137,8 +137,16 @@ according with matplotlib library, the .color attribute can be choosen from the 
 - ``'w'``          white
 
 
+You can pass an instance ossociated with a geometric locus into point class
 
-#Add axes and a grid
+
+`c = circumference()`
+`c.draw()`
+`P = point(c)`
+`P.draw("P")`
+
+
+# Add axes and a grid
 
 Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
 
