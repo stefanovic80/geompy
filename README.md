@@ -62,18 +62,19 @@ among them, there are some having the some name as some of the most typical geom
 
 These variables are Python classes. For each of them, you can define one or more instances. Each instance corresponds to a specific geometrical locus of that type. The .draw() method displays the corresponding plot. Both classes and their methods are written with round brackets at the end, with optional argument in between them.
 
-As an example, say you want to draw a circumference. As first step you have to create a circumference type instance, than you gonna use the .draw() method to provide it's graphic representation
+For example, if you'd like to create a circumference, the first step is to instantiate a circumference object, and then you can use the .draw() method to generate its graphical representation.
 
 
 `C = circumference()`
 
 `C.draw()`
 
-as a python instance, the C variable has attributes, other methods, or even instances of different classes (in this case, there is a point class type instance, which is the circumference center),  which can be shown by typing 
+When you create a Python instance like C = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in this case, there is an instance of the point class, representing the center of the circumference. You can explore these attributes and methods by simply typing
+
 
 `print(C)`
 
-each one of them can be constumized by the user as in this example
+Each of these aspects can be customized by the user, as demonstrated in this example:
 
 `C.radius = 7`
 
@@ -84,27 +85,27 @@ each one of them can be constumized by the user as in this example
 `C.draw()`
 
 
-In case you need to deal with more than one circumference, than you just have to create other instances of the some type as follows:
+If you find the need to work with multiple circumferences, you can simply create additional instances in the same manner:
 
 
 `C1 = circumference()`
 
 `C1.draw()`
 
-In the some way, if you want to draw a point type geometrical locus, than you have to define a point class type instance. If you want to draw a segment type geometrical locus, than you have to define a segment class type instance and so on.
 
+
+Similarly, if you wish to create a geometric locus of a point type, you would define a point class instance. Likewise, for a segment type geometric locus, you'd define a segment class instance, and so forth.
 
 # Draw a point
 
-As already seen from the "who" command, a "point" class is available on analyticGeometry.
-
-Let's draw a point in a cartesian plane.
+As you've already seen through the "who" command, there is a "point" class available in analyticGeometry. Now, let's create and draw a point on a Cartesian plane.
 
 `P = point()`
 
 `P.draw()`
 
-as no arguments are passed in between the brackets, than coordinates are randomly choosen and no names will result on the plot. Otherwise
+When no arguments are provided within the parentheses, random coordinates are automatically chosen, and no labels will appear on the plot. However, if you'd like to specify coordinates, you can do so as follows:
+
 
 `P = point(3, -9)`
 
