@@ -98,18 +98,19 @@ Similarly, if you wish to create a geometric locus of a point type, you would de
 
 # Draw a point
 
-As you've already seen through the "who" command, there is a "point" class available in analyticGeometry. Now, let's create and draw a point on a Cartesian plane.
+As you've already discovered using the "who" command, there exists a "point" class within analyticGeometry. Now, let's proceed to create a point instance.
+
 
 `P = point()`
 
-`P.draw()`
-
-When no arguments are provided within the parentheses, random coordinates are automatically chosen, and no labels will appear on the plot. However, if you'd like to specify coordinates, you can do so as follows:
-
+By default, when no arguments are provided within the parentheses, random coordinates are automatically assigned. However, if you wish to define specific coordinates, you can do so as shown below:
 
 `P = point(3, -9)`
 
-`P = draw("P_1")`
+Once the point instance is created, you can visualize it on the Cartesian plane using the .draw() method. Optionally, you can add a label by including a string within the brackets.
+
+
+`P = draw("P")`
 
 Details of P instance 
 
