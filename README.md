@@ -143,8 +143,11 @@ You can pass an instance ossociated with a geometric locus into point class
 
 
 `c = circumference()`
+
 `c.draw()`
+
 `P = point(c)`
+
 `P.draw("P")`
 
 
