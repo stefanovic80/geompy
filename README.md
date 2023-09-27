@@ -1,15 +1,15 @@
 **As this project is rapidly evolving, the current README file provides only a preliminary explanation of its functionality and operation. Hopefully, an accurate and comprehensive README file will be available soon.**
 
-It's already plenty of python libreries and other software dealing with scientific purposes, however their complexity often make them prohibitive to use for any educational purpose.
+There are already plenty of Python libraries and other software designed for scientific purposes. However, their complexity often makes them prohibitive for educational use.
 
-This project, mainly built on top of matplotlib and numpy, is a python library for fast geometric loci visualization. This is meant to be the occasion for high school students and their professors, dealing with geometrical loci drawings, to start over computer programming for scientific applications with Python. 
-
+This project, mainly built on top of matplotlib and numpy, is a python library for fast geometric loci visualization. 
+It is intended to provide high school students and their professors who deal with geometric locus drawings an opportunity to start over computer programming for scientific applications with Python.
 
 
 
 # Installation and start up
 
-Ensure you have matplotlib, random and numpy libreries installed on a fully working Ipython environment. Download the present project, than open a console and move to the folder where the main.py file is located; which is "analyticGeometry". Run the ipython intepreter (type "ipython"), and type
+Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project, then open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". Run the ipython intepreter (type "ipython"), and type
 
 `run main.py`
 
