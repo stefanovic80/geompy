@@ -30,7 +30,7 @@ class plotSett():
 
         self.x = np.linspace(self.xmin, self.xmax, steps)
 
-    def grid(self, N = 1, majorStep = None):#roteate x numbers to make them better fit in
+    def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
         
         #max( abs(self.min), abs(self.max) )
 
@@ -44,7 +44,7 @@ class plotSett():
         else:
             pass
         #fine grid step
-        minorStep = majorStep/10
+        minorStep = majorStep/minorSteps
         #minorStep = (self.xmax - self.xmin) / self.steps*self.N*10
         #GridSteps = round(GridSteps, 1)
         
