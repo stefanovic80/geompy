@@ -61,14 +61,24 @@ among them, there are some having the some name as some of the most typical geom
 ### - [parabola](#draw-a-random-parabola)
 
 
-These variables are Python classes. For each of them, you can define one or more instances. Each instance corresponds to a specific geometrical locus of that type. The .draw() method displays the corresponding plot. According with standard python syntax, both classes and their methods are written with round brackets at the end, with optional arguments in between them.
+each one of these variables is a Python class. According with OOP programming, for each of them you can define one or more instances. Here, each instance is a specific geometrical locus. Finally  the .draw() method displays the corresponding plot. 
 
-For example, if you'd like to create a circumference, the first step is to instantiate a circumference object, and then you can use the .draw() method to generate its graphical representation.
-
+As an example
 
 `c = circumference()`
 
+creates a circumference type instance, called "c". while
+
 `c.draw()`
+
+generates its graphical representation.
+
+According with standard Python syntax, at the end of each method, optional arguments in between the random brackets provide further accessories such as plot labelling
+
+
+`c.draw("c")`
+
+
 
 ![Alt Text](pictures/circumference.png)
 
@@ -87,8 +97,7 @@ If you find the need to work with multiple circumferences, you can simply create
 # Draw a point
 
 
-Similarly, if you wish to create a geometric locus of a point type, you would define a point class instance and than use the .draw() method for it's appearance on the plot. 
-
+Similarly, if you wish to create a point type gemetrical locus, you would define a point class instance and than use the .draw() method for it's appearance on the plot
 
 `P = point()`
 
