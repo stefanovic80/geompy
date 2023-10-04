@@ -103,24 +103,87 @@ If you find the need to work with multiple circumferences, you can simply create
 `c1.draw()`
 
 
-
-Similarly, if you wish to create a geometric locus of a point type, you would define a point class instance. Likewise, for a segment type geometric locus, you'd define a segment class instance, and so forth.
-
-# Draw a point
-
-As you've already discovered using the "who" command, there exists a "point" class within analyticGeometry. Now, let's proceed to create a point instance.
+#Draw a point
 
 
-`P = point()`
+Similarly, if you wish to create a geometric locus of a point type, you would define a point class instance and than use the .draw() method for it's appearance on the plot. 
 
-By default, when no arguments are provided within the parentheses, random coordinates are automatically assigned. However, if you wish to define specific coordinates, you can do so as shown below:
+
+`P = point(c)`
+
+`P.draw("P")`
+
+
+
+
+By default, when no arguments are provided within the parentheses, random coordinates are automatically assigned. However, if you wish to define specific coordinates, you can do so as point arguments:
 
 `P = point(3, -9)`
 
-Once the point instance is created, you can visualize it on the Cartesian plane using the .draw() method. Optionally, you can add a label by including a string within the brackets.
+
+Optionally, you can add a label by passing a string argument into the .draw() method:
+
 
 
 `P = draw("P")`
+
+
+
+
+
+
+# Add axes and a grid
+
+Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
+
+`P.grid()`
+
+
+by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
+
+`P.grid(-1)`
+
+otherwise use the majorStep argument to set the desired "majorStep" size
+
+`P.grid(majorStep = 2)`
+
+optionally you can also set the wanted number of "minorSteps" to be included in each "majorStep
+
+`P.grid(majorStep = 2, minorSteps = 20)`
+
+
+![Alt Text](pictures/grid.png)
+
+
+# Draw a (random) segment
+
+`s1 = segment()`
+
+`s1.draw()`
+
+s1 is an object of "segment" class type. Two random points are generated and a segment pssing through is draw.
+
+
+![Alt Text](pictures/straightLine.png)
+
+
+print(s1)
+
+shows all specifications of "s1" segment type instance.
+
+
+
+
+
+
+
+
+
+
+
+
+Likewise, for a segment type geometric locus, you'd define a segment class instance, and so forth.
+
 
 Details of P instance 
 
@@ -161,44 +224,6 @@ You can pass an instance ossociated with a geometric locus into point class
 `P.draw("P")`
 
 
-# Add axes and a grid
-
-Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
-
-`P.grid()`
-
-
-by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
-
-`P.grid(-1)`
-
-otherwise use the majorStep argument to set the desired scale 
-
-`P.grid(majorStep = 2)`
-
-Finally, you can set the number of minor steps in between each majorStep  as follows
-
-`P.grid(majorStep = 2, minorSteps = 20)`
-
-
-![Alt Text](pictures/grid.png)
-
-
-# Draw a (random) segment
-
-`s1 = segment()`
-
-`s1.draw()`
-
-s1 is an object of "segment" class type. Two random points are generated and a segment pssing through is draw.
-
-
-![Alt Text](pictures/straightLine.png)
-
-
-print(s1)
-
-shows all specifications of "s1" segment type instance.
 
 
 ## Draw a specific straight line
