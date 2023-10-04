@@ -176,6 +176,9 @@ otherwise use the majorStep argument to set the desired scale
 
 `P.grid(majorStep = 2)`
 
+Finally, you can set the number of minor steps in between each majorStep  as follows
+
+`P.grid(majorStep = 2, minorSteps = 20)`
 
 # Draw a (random) segment
 
