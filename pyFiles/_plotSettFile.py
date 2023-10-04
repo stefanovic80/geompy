@@ -76,7 +76,7 @@ class plotSett():
         
             Xmajor_ticks = np.arange(self.xmin, self.xmax, majorStep)
 
-        self.ax.set_xlim(self.xmin, self.xmax)
+        #self.ax.set_xlim(self.xmin, self.xmax)
 
         self.ax.set_xticks(Xminor_ticks, minor = True)
         self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
@@ -88,7 +88,7 @@ class plotSett():
         Ymajor_ticks = Xmajor_ticks
         Yminor_ticks = Xminor_ticks
         
-        self.ax.set_ylim(self.xmin, self.xmax)
+        #self.ax.set_ylim(self.xmin, self.xmax)
         self.ax.set_yticks(Yminor_ticks, minor=True)
         self.ax.set_yticks(Ymajor_ticks)
         

@@ -51,7 +51,8 @@ class point(plotSett):
         """
 
         self.color = random.choice(self.colors)
-        self.j = 0
+        self.j = 0 #for drawing
+        self.k = 0 #for clicking
 
         self.lines = None
         self.tex = None
@@ -117,11 +118,24 @@ class point(plotSett):
 
     def click(self, name = None):
         self.__del__()
-
-        a = plt.ginput()
-        self.coords = [ a[0][0], a[0][1] ]
-        self.draw(name)
-
+         
+                
+        if self.k%2 != 0: 
+            b = plt.ginput()
+            self.coords = [ b[0][0], b[0][1] ]
+            self.draw(name)
+            
+            self.ax.set_xlim( self.xmin, self.xmax  )
+            self.ax.set_ylim( self.xmin, self.xmax  )
+        else: 
+            a = plt.ginput()
+            
+            deltaZoom = (self.xmax - self.xmin)/10
+            
+            self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
+            self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
+            print("\nrun .click('label') one more time to select point coordinates\n")
+        self.k += 1
 
     def __str__(self):
 
