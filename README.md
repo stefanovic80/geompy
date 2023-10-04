@@ -73,18 +73,13 @@ creates a circumference type instance, called "c". while
 
 generates its graphical representation.
 
-According with standard Python syntax, at the end of each method, optional arguments in between the random brackets provide further accessories such as plot labelling
-
-
-`c.draw("c")`
-
-
 
 ![Alt Text](pictures/circumference.png)
 
 
+According to standard Python syntax, at the end of each method, optional arguments enclosed within parentheses allow you to specify additional options, such as custom labels for plots
 
-
+`c.draw("c")`
 
 If you find the need to work with multiple circumferences, you can simply create additional instances in the same manner:
 
