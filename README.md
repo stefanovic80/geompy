@@ -74,25 +74,6 @@ For example, if you'd like to create a circumference, the first step is to insta
 
 
 
-When you create a Python instance like c = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in this case, there is an instance of the point class, representing the center of the circumference. You can explore these attributes and methods by simply typing
-
-
-`print(c)`
-
-
-![Alt Text](pictures/printCircumference.png)
-
-
-
-Each of these aspects can be customized by the user, as demonstrated in this example:
-
-`c.radius = 7`
-
-`c.color = 'blue'`
-
-`c.center = point(0, 0)`
-
-`c.draw()`
 
 
 If you find the need to work with multiple circumferences, you can simply create additional instances in the same manner:
@@ -109,23 +90,32 @@ If you find the need to work with multiple circumferences, you can simply create
 Similarly, if you wish to create a geometric locus of a point type, you would define a point class instance and than use the .draw() method for it's appearance on the plot. 
 
 
-`P = point(c)`
+`P = point()`
 
-`P.draw("P")`
-
-
+`P.draw()`
 
 
-By default, when no arguments are provided within the parentheses, random coordinates are automatically assigned. However, if you wish to define specific coordinates, you can do so as point arguments:
+
+
+By default, when no arguments are provided within the point parentheses, random coordinates are automatically assigned, otherwise you can pass them as point argument:
 
 `P = point(3, -9)`
 
+Furthermore, in order to draw a random point among the ones of the "c" geometrical locus, you can also pass "c" as point argument
 
-Optionally, you can add a label by passing a string argument into the .draw() method:
+
+`P = point(c)`
+
+
+In the some manner, when no arguments are provided into the .draw() method, no label are assigned. While you can optionally add a label by passing a string argument into the .draw() method:
 
 
 
 `P = draw("P")`
+
+
+
+
 
 
 
@@ -161,39 +151,47 @@ optionally you can also set the wanted number of "minorSteps" to be included in 
 
 `s1.draw()`
 
-s1 is an object of "segment" class type. Two random points are generated and a segment pssing through is draw.
+s1 is an object of "segment" class type. Two random points are generated and a segment passing through is drawn.
 
 
 ![Alt Text](pictures/straightLine.png)
 
 
-print(s1)
-
-shows all specifications of "s1" segment type instance.
 
 
 
+# Change geometrical loci paramters
 
 
 
 
 
+When you create a Python instance like c = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in the previous case of a circumference type instance, there is a point class instance in it, which is the center of the circumference. 
+
+You can explore these attributes and methods by simply typing
+
+
+`print(c)`
+
+
+![Alt Text](pictures/printCircumference.png)
+
+
+
+Each of these aspects can be customized by the user, as demonstrated in this example:
+
+`c.radius = 7`
+
+`c.color = 'blue'`
+
+`c.center = point(0, 0)`
+
+`c.draw()`
 
 
 
 
-Likewise, for a segment type geometric locus, you'd define a segment class instance, and so forth.
-
-
-Details of P instance 
-
-`print(P)`
-
-show that an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers
-
-`P.coords = [6, -4]`
-
-according with matplotlib library, the .color attribute can be choosen from the following list
+where, according with matplotlib library, the .color attribute can be choosen from the following list
 
 - ``'b'``          blue
 
@@ -212,17 +210,15 @@ according with matplotlib library, the .color attribute can be choosen from the 
 - ``'w'``          white
 
 
-You can pass an instance ossociated with a geometric locus into point class
 
 
-`c = circumference()`
 
-`c.draw()`
 
-`P = point(c)`
+`print(P)`
 
-`P.draw("P")`
+provides details of P instance; an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers
 
+`P.coords = [6, -4]`
 
 
 
