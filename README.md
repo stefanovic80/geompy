@@ -9,11 +9,10 @@ It is intended to provide high school students and their professors who deal wit
 
 # Installation and start up
 
-Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project, then open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". Run the ipython intepreter (type "ipython"), and type
+Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project, then open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". Run the ipython interpreter (type "ipython"), and type
 
 `run main.py`
 
-![Alt Text](pictures/pythonInterpreter.png)
 
 If everything goes fine (which means there is no need for a specific conda environment), just go ahead with it by choosing the minimum (xmin) and maximum (xmax) values for both the Cartesian axes. In this example, you gonna choose -20 and 20, respectively:
 
@@ -24,6 +23,8 @@ If everything goes fine (which means there is no need for a specific conda envir
 `xmax`
 
 `20`
+
+[Alt Text](pictures/pythonInterpreter.png)
 
 
 in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
@@ -65,32 +66,41 @@ These variables are Python classes. For each of them, you can define one or more
 For example, if you'd like to create a circumference, the first step is to instantiate a circumference object, and then you can use the .draw() method to generate its graphical representation.
 
 
-`C = circumference()`
+`c = circumference()`
 
-`C.draw()`
+`c.draw()`
 
-When you create a Python instance like C = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in this case, there is an instance of the point class, representing the center of the circumference. You can explore these attributes and methods by simply typing
+![Alt Text](pictures/circumference.png)
 
 
-`print(C)`
+
+When you create a Python instance like c = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in this case, there is an instance of the point class, representing the center of the circumference. You can explore these attributes and methods by simply typing
+
+
+`print(c)`
+
+
+![Alt Text](pictures/printCircumference.png)
+
+
 
 Each of these aspects can be customized by the user, as demonstrated in this example:
 
-`C.radius = 7`
+`c.radius = 7`
 
-`C.color = 'blue'`
+`c.color = 'blue'`
 
-`C.center = point(0, 0)`
+`c.center = point(0, 0)`
 
-`C.draw()`
+`c.draw()`
 
 
 If you find the need to work with multiple circumferences, you can simply create additional instances in the same manner:
 
 
-`C1 = circumference()`
+`c1 = circumference()`
 
-`C1.draw()`
+`c1.draw()`
 
 
 
@@ -159,7 +169,7 @@ Choose one of the defined instances, no matter of which class they come from, an
 
 
 by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
-
+
 `P.grid(-1)`
 
 otherwise use the majorStep argument to set the desired scale 
