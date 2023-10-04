@@ -81,25 +81,25 @@ According to standard Python syntax, at the end of each method, optional argumen
 
 `c.draw("c")`
 
-If you find the need to work with multiple circumferences, you can simply create additional instances in the same manner:
+
+
+Similarly, if you wish to create an additional circumference, or a different geometrical locus such as a point or a parabola, you would define the respective class instance and than use the .draw() method for it's appearance on the plot
+
 
 
 `c1 = circumference()`
 
 `c1.draw()`
 
-
-# Draw a point
-
-
-Similarly, if you wish to create a point type gemetrical locus, you would define a point class instance and than use the .draw() method for it's appearance on the plot
-
 `P = point()`
 
 `P.draw()`
 
+`p = parabola()`
 
+`p.draw()`
 
+# Draw a point
 
 By default, when no arguments are provided within the point parentheses, random coordinates are automatically assigned, otherwise you can pass them as point argument:
 
