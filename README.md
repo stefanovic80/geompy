@@ -107,6 +107,11 @@ By default, when no arguments are provided within the point parentheses, random 
 
 `P.draw()`
 
+
+an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers 
+
+`P.coords = [3, -9]`
+
 Furthermore, in order to draw a random point among the ones of the "c" geometrical locus, you can also pass "c" as point argument
 
 
@@ -119,9 +124,6 @@ In the some manner, when no arguments are provided into the .draw() method, no l
 
 
 `P = draw("P")`
-
-
-
 
 
 # Add axes and a grid
@@ -207,11 +209,6 @@ where, according with matplotlib library, the .color attribute can be choosen fr
 
 
 
-`print(P)`
-
-provides details of P instance; an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers
-
-`P.coords = [6, -4]`
 
 ![Alt Text](pictures/grid.png)
 
