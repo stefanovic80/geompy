@@ -169,7 +169,7 @@ Choose one of the defined instances, no matter of which class they come from, an
 
 
 by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
-
+
 `P.grid(-1)`
 
 otherwise use the majorStep argument to set the desired scale 
@@ -179,6 +179,10 @@ otherwise use the majorStep argument to set the desired scale
 Finally, you can set the number of minor steps in between each majorStep  as follows
 
 `P.grid(majorStep = 2, minorSteps = 20)`
+
+
+![Alt Text](pictures/grid.png)
+
 
 # Draw a (random) segment
 
