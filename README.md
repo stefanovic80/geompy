@@ -124,11 +124,6 @@ In the some manner, when no arguments are provided into the .draw() method, no l
 
 
 
-
-
-
-
-
 # Add axes and a grid
 
 Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
@@ -149,19 +144,10 @@ optionally you can also set the wanted number of "minorSteps" to be included in 
 `P.grid(majorStep = 2, minorSteps = 20)`
 
 
+
+
+
 ![Alt Text](pictures/grid.png)
-
-
-# Draw a (random) segment
-
-`s1 = segment()`
-
-`s1.draw()`
-
-s1 is an object of "segment" class type. Two random points are generated and a segment passing through is drawn.
-
-
-![Alt Text](pictures/straightLine.png)
 
 
 
@@ -226,6 +212,22 @@ where, according with matplotlib library, the .color attribute can be choosen fr
 provides details of P instance; an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers
 
 `P.coords = [6, -4]`
+
+![Alt Text](pictures/grid.png)
+
+
+# Draw a (random) segment
+
+`s1 = segment()`
+
+`s1.draw()`
+
+s1 is an object of "segment" class type. Two random points are generated and a segment passing through is drawn.
+
+
+![Alt Text](pictures/straightLine.png)
+
+
 
 
 
