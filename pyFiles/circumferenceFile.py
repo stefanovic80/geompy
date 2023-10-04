@@ -102,7 +102,7 @@ class circumference(plotSett):
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
-            f"\033[93m.linewidth = \033[0m\n"
+            f"\033[93m.linewidth = \033[0m {self.linewidth}  \n"
             f"\033[93m.name = \033[0m {self.name}\n"
         )
         
