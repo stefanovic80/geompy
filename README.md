@@ -101,11 +101,14 @@ By default, when no arguments are provided within the point parentheses, random 
 
 `P = point(3, -9)`
 
+`P.draw()`
+
 Furthermore, in order to draw a random point among the ones of the "c" geometrical locus, you can also pass "c" as point argument
 
 
 `P = point(c)`
 
+`P.draw()`
 
 In the some manner, when no arguments are provided into the .draw() method, no label are assigned. While you can optionally add a label by passing a string argument into the .draw() method:
 
