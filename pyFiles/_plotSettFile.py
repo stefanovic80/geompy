@@ -29,6 +29,10 @@ class plotSett():
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
 
         self.x = np.linspace(self.xmin, self.xmax, steps)
+        
+        
+        self.ax.set_xlim(self.xmin, self.xmax)
+        self.ax.set_ylim(self.xmin, self.xmax)
 
     def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
         
