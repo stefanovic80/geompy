@@ -161,7 +161,7 @@ optionally you can also set the wanted number of "minorSteps" to be included in 
 
 
 
-# Change geometrical loci paramters
+# Change geometrical loci parameters
 
 
 
@@ -322,27 +322,22 @@ Once the "C1" instance is created, than use the "draw" method as follows
 
 by typing 
 
-`print(C1)`
 
-you can see all details of your circumference instance: attributes and methods.
-
-![Alt Text](pictures/circumferenceDraw_withGrid.png)
-
-
-Now you want "C1" instance being not just a random circumference, but you want to choose both it's center position and it's radius. First of all, you need to know attributes, instances and plot settings of "C1" instance, than
+Now you want to see detalils of "C1" instance. By typing
 
 
 `print(C1)`
 
+all C1 details are available
 
 ![Alt Text](pictures/print_C1_screenshot.png)
 
-you can change details such as the color just by typing
+here how to change its attributes
 
 
 `C1.color = 'red'`
 
-or 
+or simply
 
 `C1.color = 'r'`
 
