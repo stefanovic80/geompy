@@ -123,6 +123,14 @@ In the some manner, when no arguments are provided into the .draw() method, no l
 
 `P = draw("P")`
 
+The .click("label") method, allows the user to manually select the point with the mouse. It has to be called two times: 
+
+
+`P.click("P")`
+
+`P.click("P")`
+
+First time it provides a zoom of the area where the point need to be choosen, the second time it select exact position.
 
 # Add axes and a grid
 
