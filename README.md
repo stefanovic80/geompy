@@ -22,7 +22,7 @@ If everything goes fine (which means there is no need for a specific conda envir
 
 `20`
 
-[Alt Text](pictures/pythonInterpreter.png)
+![Alt Text](pictures/pythonInterpreter.png)
 
 
 in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
