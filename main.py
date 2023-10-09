@@ -9,6 +9,8 @@ from pyFiles.parabolaFile import parabola
 #from pyFiles.triangleFile import triangle
 #from pyFiles.angleFile import angle
 
+from pyModules2gen.triangleFile import triangle
+
 import matplotlib.pyplot as plt
 import numpy as np
 import random
