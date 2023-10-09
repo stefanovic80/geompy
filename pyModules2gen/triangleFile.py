@@ -6,6 +6,11 @@ class triangle():
         self.A = point()
         self.B = point()
         self.C = point()
+        self.AB = None
+        self.BC = None
+        self.CA = None
+
+    def calc(self):
         self.AB = segment()
         self.BC = segment()
         self.CA = segment()
@@ -21,8 +26,10 @@ class triangle():
         
         self.A.color = self.B.color = self.C.color
         self.AB.color = self.BC.color = self.CA.color
+        self.data = None
 
     def draw(self):
+        self.calc()
         self.A.draw("A")
         self.B.draw("B")
         self.C.draw("C")
