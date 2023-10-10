@@ -1,8 +1,12 @@
 from pyFiles.segmentFile import segment
 from pyFiles.pointFile import point
+from pyFiles._plotSettFile import plotSett
 
-class triangle():
-    def __init__(self):
+from pyFiles import xmin, xmax, steps, linewidth, seed
+
+class triangle(plotSett):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+        super().__init__(xmin, xmax, steps)
         self.A = point()
         self.B = point()
         self.C = point()

@@ -19,7 +19,8 @@ import random
 def main():
     print("Running main.py")
     
-
+    __set = plotSett()
+    __set.grid()
     # result = my_function()
     #print("Result from module1:", result)
 
