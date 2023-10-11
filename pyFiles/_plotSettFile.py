@@ -1,6 +1,6 @@
 # _plotSett.py
 from . import plt, np, random
-from . import steps, linewidth
+from . import xmin, xmax, steps, linewidth
 
 plt.ion()
 
@@ -10,8 +10,6 @@ plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
 
-from config import xmin, xmax
-#from main import xmin, xmax
 
 class plotSett():
     
