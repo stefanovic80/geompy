@@ -4,9 +4,11 @@ from . import plt, np, random#, ctypes
 plt.ion()
 
 from ._plotSettFile import plotSett
-from . import xmin, xmax, steps, linewidth
+from . import steps, linewidth
 from . import seed
 
+from config import xmin, xmax
+#from main import xmin, xmax
 
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed):

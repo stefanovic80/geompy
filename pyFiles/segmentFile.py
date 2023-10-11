@@ -1,11 +1,13 @@
 # segment.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth, seed
+from . import steps, linewidth, seed
 
 plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
+
+from config import xmin, xmax
 
 class segment(plotSett):
 
