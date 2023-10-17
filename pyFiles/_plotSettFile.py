@@ -128,7 +128,7 @@ class plotSett():
             pass
 
         
-        self.lims()
+        #self.lims()
         
 
     def __str__(self):

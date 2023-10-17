@@ -28,14 +28,35 @@ class parabola(plotSett):
         self.pointLabel.color = 'white'
         #------------------------------------------------------------
 
+        self.rotation = False
 
-    def draw(self, name = None):
-        #self.remove()
+
+    def erase(self):
         self.__del__()
 
-        self.data = [ self.x ]
+        #to remove text label
+        try:
+            self.pointLabel.tex.remove()
+        except:
+            pass
 
+        self.data = None #[None, None]
+
+
+
+
+
+    def calc(self, name = None):
+        #self.__del__()
+        self.data = [ self.x ]
         self.data = self.data + [self.concavity*(self.x - self.xShift)**2 + self.yShift]
+
+
+    def draw(self, name = None):
+        self.__del__()
+        if self.rotation == False:
+            self.calc()
+
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams
         
         self.lines = []

@@ -57,7 +57,8 @@ class point(plotSett):
         self.lines = None
         self.tex = None
         self.name = None
-        
+        #self.rotation = False
+        #self.data = self.coords
     def draw(self, name = None):
         self.__del__()
 
@@ -125,8 +126,7 @@ class point(plotSett):
             self.coords = [ b[0][0], b[0][1] ]
             self.draw(name)
             
-            self.ax.set_xlim( self.xmin, self.xmax  )
-            self.ax.set_ylim( self.xmin, self.xmax  )
+            self.lims()
         else: 
             a = plt.ginput()
             
@@ -136,6 +136,13 @@ class point(plotSett):
             self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
             print("\nrun .click('label') one more time to select point coordinates\n")
         self.k += 1
+
+    def rotation(self, locus = None, angle = 0):
+        locus.rotation = True
+        a1 = (locus.data[0] - self.coords[0])*np.sin(-angle)
+        locus.data[0] = (locus.data[0] - self.coords[0]  )*np.cos(-angle) - (locus.data[1] - self.coords[1]  )*np.sin(-angle) + self.coords[0]
+
+        locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(-angle) + self.coords[1]
 
     def __str__(self):
 
