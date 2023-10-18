@@ -26,14 +26,13 @@ class plotSett():
 
         #density of grid
         self.N = 1
+        
+        self.hline = None
+        self.vline = None
 
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
-
-        self.x = np.linspace(self.xmin, self.xmax, steps)
         
-        
-        self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_ylim(self.xmin, self.xmax)
+        self.lims()
         
     def lims(self):
         self.x = np.linspace(self.xmin, self.xmax, steps)
@@ -89,7 +88,7 @@ class plotSett():
         self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
 
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
+        self.vline = self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
 
         #y grid---------------------------------------
         Ymajor_ticks = Xmajor_ticks
@@ -105,7 +104,50 @@ class plotSett():
         #self.ax.grid(switch)
 
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.ax.axhline(0, color = 'k', linewidth = self.linewidth)
+        self.hline = self.ax.axhline(0, color = 'k', linewidth = self.linewidth)    
+
+    def gridOff(self):
+        plt.minorticks_off()
+        self.ax.grid(False)
+    
+        # Hide the x and y axes along with their tick values
+        self.ax.spines['bottom'].set_color('none')
+        self.ax.spines['left'].set_color('none')
+
+        # Hide the x and y tick values
+        self.ax.set_xticks([])
+        self.ax.set_yticks([])
+        
+        # Hide the x and y labels
+        self.ax.set_xlabel('')
+        self.ax.set_ylabel('')
+        
+        self.hline.set_visible(False)
+        self.vline.set_visible(False)
+        self.ax.figure.canvas.draw()
+    
+
+    """
+    def gridOff(self):
+        plt.minorticks_off()
+        self.ax.grid(False)
+        
+        # Hide the x and y axes and their associated elements
+        self.ax.spines['bottom'].set_color('none')
+        self.ax.spines['left'].set_color('none')
+        self.ax.spines['top'].set_color('none')
+        self.ax.spines['right'].set_color('none')
+        
+        # Hide the x and y tick values and labels
+        self.ax.set_xticks([])
+        self.ax.set_yticks([])
+        self.ax.set_xlabel('')
+        self.ax.set_ylabel('')
+        
+        self.hline.set_visible(False)
+        self.vline.set_visible(False)
+        self.ax.figure.canvas.draw()
+    """
 
 
 
