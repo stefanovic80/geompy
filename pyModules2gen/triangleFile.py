@@ -17,6 +17,7 @@ class triangle(plotSett):
         self.CA = None
         self.data = None
         self.rotate = False
+        self.name = None
         self.color = random.choice(self.colors)
 
     def calc(self):
@@ -47,9 +48,9 @@ class triangle(plotSett):
 
         #self.data = [ np.concatenate( [ self.AB.data[0], self.BC.data[0], self.CA.data[0] ), np.concatenate( [ self.AB.data[1], self.BC.data[1], self.CA.data[1] ) ]
 
-    def draw(self):
+    def draw(self, name = None):
         self.__del__()
-
+        self.name = name
         if self.rotate == False:
             self.calc()
 
