@@ -48,13 +48,9 @@ class segment(plotSett):
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self.cut == False:
-            #a, b = self.xMin, self.xMax
             self.xMin = self.xmin
             self.xMax = self.xmax
-        #else:
-        #    self.xMin = a
-        #    self.xMax = b
-
+        
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
