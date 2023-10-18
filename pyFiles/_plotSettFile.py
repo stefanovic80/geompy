@@ -15,6 +15,7 @@ class plotSett():
     
     fig = plt.figure()
     ax = fig.add_subplot(111)
+    plt.tight_layout()
     #ax.set_xlim(self.xmin, self.xmax)
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
         self.xmin = xmin
