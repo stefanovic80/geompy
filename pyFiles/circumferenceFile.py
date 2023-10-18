@@ -16,7 +16,7 @@ class circumference(plotSett):
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = point()
-
+        
         self.rotation = False        
         #three points passing through the circumference
         self.point = [None, None, None]
@@ -39,7 +39,7 @@ class circumference(plotSett):
 
 
     def calc(self, name = None):
-        self.__del__()
+        #self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
 
@@ -74,13 +74,30 @@ class circumference(plotSett):
         self.center = point(a, b)
         self.radius = np.sqrt( (x0-a)**2 + (y0 - b)**2)
         self.calc()
+
+    def calc3(self, name = None):
+        x1 = self.point[0].coords[0]
+        y1 = self.point[0].coords[1]
+
+        x0 = self.center.coords[0]
+        y0 = self.center.coords[1]
+
+        self.radius = np.sqrt( ( x0 - x1  )**2 + ( x0 - x1 )**2  )
+        self.calc()
+
     def draw(self, name = None):
         self.__del__()
         if self.rotation == False:
             try:
                 self.calc()
             except:
-                self.calc2()
+                try:
+                    self.calc2()
+                except:
+                    try:
+                        self.calc3()
+                    except:
+                        pass
 
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
         #self.ax.legend()

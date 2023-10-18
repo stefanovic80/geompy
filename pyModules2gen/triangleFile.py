@@ -14,6 +14,8 @@ class triangle(plotSett):
         self.AB = None
         self.BC = None
         self.CA = None
+        self.rotation = False
+        #self.data still is missing!
 
     def calc(self):
         self.AB = segment()
@@ -34,7 +36,8 @@ class triangle(plotSett):
         self.data = None
 
     def draw(self):
-        self.calc()
+        if self.rotation == False:
+            self.calc()
         self.A.draw("A")
         self.B.draw("B")
         self.C.draw("C")
