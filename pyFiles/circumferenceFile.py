@@ -8,7 +8,6 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 
 class circumference(plotSett):
-#class circumference(point):
 
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
         
@@ -17,6 +16,11 @@ class circumference(plotSett):
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = point()
+        
+        self.rotation = False        
+        #three points passing through the circumference
+        self.point = [None, None, None]
+        
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
         self.lines = None
         self.data = None
@@ -35,7 +39,7 @@ class circumference(plotSett):
 
 
     def calc(self, name = None):
-        self.__del__()
+        #self.__del__()
         
         circ = np.sqrt( self.radius**2 - (self.x- self.center.coords[0])**2)#circumference equation      
 
@@ -55,9 +59,45 @@ class circumference(plotSett):
         self.data[0] = np.append( self.data[0], self.data[0][0] )
         self.data[1] = np.append( self.data[1], self.data[1][0] )
 
+    def calc2(self, name = None):
+        x0 = self.point[0].coords[0]
+        x1 = self.point[1].coords[0]
+        x2 = self.point[2].coords[0]
+        
+        y0 = self.point[0].coords[1]
+        y1 = self.point[1].coords[1]
+        y2 = self.point[2].coords[1]
+        
+        a = (x0 + x1 + x2)/3
+        b = (y0 + y1 + y2)/3
+        
+        self.center = point(a, b)
+        self.radius = np.sqrt( (x0-a)**2 + (y0 - b)**2)
+        self.calc()
+
+    def calc3(self, name = None):
+        x1 = self.point[0].coords[0]
+        y1 = self.point[0].coords[1]
+
+        x0 = self.center.coords[0]
+        y0 = self.center.coords[1]
+
+        self.radius = np.sqrt( ( x0 - x1  )**2 + ( x0 - x1 )**2  )
+        self.calc()
+
     def draw(self, name = None):
         self.__del__()
-        self.calc()
+        if self.rotation == False:
+            try:
+                self.calc()
+            except:
+                try:
+                    self.calc2()
+                except:
+                    try:
+                        self.calc3()
+                    except:
+                        pass
 
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
         #self.ax.legend()

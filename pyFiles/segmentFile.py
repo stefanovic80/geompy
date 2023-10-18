@@ -7,6 +7,7 @@ plt.ion()
 from ._plotSettFile import plotSett
 from .pointFile import point
 
+
 class segment(plotSett):
 
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
@@ -42,18 +43,14 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.name = None
-        
+        self.rotation = False
         self.cut = False
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self.cut == False:
-            #a, b = self.xMin, self.xMax
             self.xMin = self.xmin
             self.xMax = self.xmax
-        #else:
-        #    self.xMin = a
-        #    self.xMax = b
-
+        
         self.idxMin = np.where( self.x >= self.xMin)[0][0]
         self.idxMax = np.where( self.x >= self.xMax)[0][0]
         self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
@@ -122,19 +119,20 @@ class segment(plotSett):
 
     def chooseCalc(self):
         self.__del__()
-        try:
-            self.calc2()#two points
-        except:
+        if self.rotation == False:
             try:
-                self.calc1() #angCoeff, intercept
+                self.calc2()#two points
             except:
                 try:
-                    self.calc3() # 1point, angCoeff
+                    self.calc1() #angCoeff, intercept
                 except:
                     try:
-                        self.calc4()# 1point, intercept
+                        self.calc3() # 1point, angCoeff
                     except:
-                        pass
+                        try:
+                            self.calc4()# 1point, intercept
+                        except:
+                            pass
 
 
     def draw(self, name = None, cut = False ):

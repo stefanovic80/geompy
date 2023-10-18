@@ -10,6 +10,7 @@ plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
 
+
 class plotSett():
     
     fig = plt.figure()
@@ -33,6 +34,12 @@ class plotSett():
         
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
+        
+    def lims(self):
+        self.x = np.linspace(self.xmin, self.xmax, steps)
+        self.ax.set_xlim(self.xmin, self.xmax)
+        self.ax.set_ylim(self.xmin, self.xmax)
+
 
     def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
         
@@ -119,6 +126,10 @@ class plotSett():
             self.pointLabel.remove()
         except:
             pass
+
+        
+        #self.lims()
+        
 
     def __str__(self):
         self.plotSettings = (

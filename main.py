@@ -9,15 +9,21 @@ from pyFiles.parabolaFile import parabola
 #from pyFiles.triangleFile import triangle
 #from pyFiles.angleFile import angle
 
+from pyModules2gen.triangleFile import triangle
+
 import matplotlib.pyplot as plt
 import numpy as np
 import random
 
 
+
+
+
 def main():
     print("Running main.py")
     
-
+    __set = plotSett()
+    __set.grid()
     # result = my_function()
     #print("Result from module1:", result)
 
