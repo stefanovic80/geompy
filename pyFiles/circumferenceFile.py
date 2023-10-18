@@ -17,7 +17,7 @@ class circumference(plotSett):
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = point()
         
-        self.rotation = False        
+        self.rotate = False        
         #three points passing through the circumference
         self.point = [None, None, None]
         
@@ -87,7 +87,7 @@ class circumference(plotSett):
 
     def draw(self, name = None):
         self.__del__()
-        if self.rotation == False:
+        if self.rotate == False:
             try:
                 self.calc()
             except:
