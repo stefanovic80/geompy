@@ -28,7 +28,7 @@ class parabola(plotSett):
         self.pointLabel.color = 'white'
         #------------------------------------------------------------
 
-        self.rotation = False
+        self.rotate = False
 
 
     def erase(self):
@@ -54,7 +54,7 @@ class parabola(plotSett):
 
     def draw(self, name = None):
         self.__del__()
-        if self.rotation == False:
+        if self.rotate == False:
             self.calc()
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams

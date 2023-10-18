@@ -26,6 +26,7 @@ class ellipse(plotSett):
         self.color = random.choice(self.colors)
 
         self.center.color = self.color
+        self.rotate = False
 
     def draw(self):
         self.__del__()

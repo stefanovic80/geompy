@@ -43,7 +43,7 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.name = None
-        self.rotation = False
+        self.rotate = False
         self.cut = False
 
     def calc1(self): #calculate equation from angCoeff and intercept
@@ -119,7 +119,7 @@ class segment(plotSett):
 
     def chooseCalc(self):
         self.__del__()
-        if self.rotation == False:
+        if self.rotate == False:
             try:
                 self.calc2()#two points
             except:

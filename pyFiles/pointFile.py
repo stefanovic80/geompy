@@ -57,10 +57,15 @@ class point(plotSett):
         self.lines = None
         self.tex = None
         self.name = None
-        #self.rotation = False
-        #self.data = self.coords
+        self.rotate = False
+        
+
+    def calc(self):
+        self.data = self.coords
     def draw(self, name = None):
         self.__del__()
+        if self.rotate == False:
+            self.calc()
 
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
         self.lines = []
@@ -138,12 +143,13 @@ class point(plotSett):
         self.k += 1
 
     def rotation(self, locus = None, angle = 0):
-        locus.rotation = True
-        a1 = (locus.data[0] - self.coords[0])*np.sin(-angle)
-        locus.data[0] = (locus.data[0] - self.coords[0]  )*np.cos(-angle) - (locus.data[1] - self.coords[1]  )*np.sin(-angle) + self.coords[0]
+        locus.rotate = True
+        a1 = (locus.data[0] - self.coords[0])*np.sin(angle)
+        locus.data[0] = (locus.data[0] - self.coords[0]  )*np.cos(angle) - (locus.data[1] - self.coords[1]  )*np.sin(angle) + self.coords[0]
 
-        locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(-angle) + self.coords[1]
-
+        locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
+        
+        locus.draw(name = locus.name)
     def __str__(self):
 
         super().__str__()

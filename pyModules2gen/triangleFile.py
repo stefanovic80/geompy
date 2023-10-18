@@ -16,7 +16,7 @@ class triangle(plotSett):
         self.BC = None
         self.CA = None
         self.data = None
-        self.rotation = False
+        self.rotate = False
         self.color = random.choice(self.colors)
 
     def calc(self):
@@ -50,7 +50,7 @@ class triangle(plotSett):
     def draw(self):
         self.__del__()
 
-        if self.rotation == False:
+        if self.rotate == False:
             self.calc()
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
