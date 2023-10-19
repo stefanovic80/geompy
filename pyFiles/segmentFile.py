@@ -134,6 +134,18 @@ class segment(plotSett):
                         except:
                             pass
 
+    def length(self):
+        return ( ( self.point[0].coords[0] - self.point[1].coords[0]  )**2 + (  self.point[1].coords[1] - self.point[1].coords[1] )**2 )**.5
+
+    def positionFind(self, length = None ):#to be fixed
+        # \cos(\alpha) = ( 1 + \tan(\alpha)^2 )^{-1/2}
+        value = length*( 1 + self.angCoeff**2  )**-.5
+        if self.angCoeff > 0:
+            idx = np.where( self.data[0] > value )[0][0]
+        elif self.angCoeff < 0:
+            idx = np.where( self.data[0] < value )[0][0]
+
+        return [ self.data[0][idx], self.data[1][idx] ]
 
     def draw(self, name = None, cut = False ):
         #self.pointLabel.set_text("")
