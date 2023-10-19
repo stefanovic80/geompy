@@ -42,6 +42,7 @@ class segment(plotSett):
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
+        self.length = None
         self.name = None
         self.rotate = False
         self.cut = False
@@ -63,6 +64,8 @@ class segment(plotSett):
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
         x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
         
+        self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
+
         if x1 != x0:
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
@@ -134,16 +137,9 @@ class segment(plotSett):
                         except:
                             pass
 
-    def length(self):
-        return ( ( self.point[0].coords[0] - self.point[1].coords[0]  )**2 + (  self.point[1].coords[1] - self.point[1].coords[1] )**2 )**.5
-
-    def positionFind(self, length = None ):#to be fixed
-        # \cos(\alpha) = ( 1 + \tan(\alpha)^2 )^{-1/2}
-        value = length*( 1 + self.angCoeff**2  )**-.5
-        if self.angCoeff > 0:
-            idx = np.where( self.data[0] > value )[0][0]
-        elif self.angCoeff < 0:
-            idx = np.where( self.data[0] < value )[0][0]
+    
+    def dist(self, length = None ):#to be fixed
+        idx = round( len( self.data[0] )*length/self.length )
 
         return [ self.data[0][idx], self.data[1][idx] ]
 
