@@ -62,6 +62,7 @@ class point(plotSett):
 
     def calc(self):
         self.data = self.coords
+
     def draw(self, name = None):
         self.__del__()
         if self.rotate == False:

@@ -42,6 +42,7 @@ class segment(plotSett):
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
+        self.length = None
         self.name = None
         self.rotate = False
         self.cut = False
@@ -63,6 +64,8 @@ class segment(plotSett):
         x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
         x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
         
+        self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
+
         if x1 != x0:
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
@@ -134,6 +137,11 @@ class segment(plotSett):
                         except:
                             pass
 
+    
+    def dist(self, length = None ):#to be fixed
+        idx = round( len( self.data[0] )*length/self.length )
+
+        return [ self.data[0][idx], self.data[1][idx] ]
 
     def draw(self, name = None, cut = False ):
         #self.pointLabel.set_text("")
