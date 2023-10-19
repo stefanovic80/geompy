@@ -13,12 +13,18 @@ As I personally believe that coding is a skill that can be acquired only by tack
 
 # Installation and start up
 
-Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project, then open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". Run the ipython interpreter (type "ipython"), and type
+Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project.
+
+# Usage
+
+Open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". 
+
+Run the ipython interpreter (type "ipython"), and type
 
 `run main.py`
 
 
-If everything goes fine (which means there is no need for a specific conda environment), just go ahead with it by choosing the minimum (xmin) and maximum (xmax) values for both the Cartesian axes. In this example, you gonna choose -20 and 20, respectively:
+In this example, you gonna choose -20 and 20, respectively:
 
 `xmin`
 
@@ -31,7 +37,7 @@ If everything goes fine (which means there is no need for a specific conda envir
 ![Alt Text](pictures/pythonInterpreter.png)
 
 
-in case of any error, due to any package version mismatch, than you must create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+in case of any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -41,7 +47,7 @@ in case of any error, due to any package version mismatch, than you must create 
 
 
 
-# Usage
+
 
 The 
 
