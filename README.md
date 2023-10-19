@@ -1,9 +1,15 @@
 **As this project is rapidly evolving, the current README file provides only a preliminary explanation of its functionality and operation. Hopefully, an accurate and comprehensive README file will be available soon.**
 
 
-While there are numerous Python libraries and software tools available for scientific purposes, many of them can be quite complex and challenging for educational use. Our project, primarily built on top of matplotlib and numpy, presents a Python library designed specifically for fast and easy geometric loci visualization. It offers a unique approach, aiming to empower high school students and their educators who work with geometric locus drawings. 
+The present project, primarily built on top of matplotlib and numpy python libreries, is designed specifically for fast and easy geometric loci visualization with python.
 
-Unlike traditional educational software like GeoGebra, which often operates as a standalone application, our project is a Python library. This distinct concept not only assists students in understanding mathematical concepts but also introduces them to computer programming with Python, fostering a valuable combination of mathematical and programming skills.
+Although there are already many existing standalone applications such as GeoGebra, the different concept of the present project makes it suitable as a valuable tool for coding learning. 
+
+ 
+In fact, while there are numerous Python libraries and software tools available for scientific purposes, many of them are often too much complex and challenging; which makes them prohibitive for educational use. 
+
+
+As I personally believe that coding is a skill that can be acquired only by tackling real tasks rather than through simple exercises, the present project is intended to be a valuable occasion to introduce students to computer programming with python, while supporting them with their mathematical tasks.
 
 # Installation and start up
 
