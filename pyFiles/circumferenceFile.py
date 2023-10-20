@@ -39,20 +39,26 @@ class circumference(plotSett):
 
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None):
-        left = self.center.coords[0] - self.radius
-        right = self.center.coords[0] + self.radius
-        
-        
-        xvalues = self.x[ (self.x >= left) & (self.x <= right)]
          
-        self.data = [ np.concatenate( [ np.flip(xvalues), xvalues  ] ), np.zeros(2*len(xvalues) ) ]
+        data = [None, None]
+        data[0] = self.x[ (self.x >= 0 ) & (self.x <= self.radius/2**.5)]
+        data[1] = list( np.sqrt( ( self.radius  )**2 - ( data[0]  )**2  ) )
+        
+        data[0] = list(data[0])
+        idx = len(data[0])
+        data[0] = data[0] + data[1][::-1]
+        data[1] = data[1] + data[0][:idx][::-1]
 
-        lastValuex = np.array( [ xvalues[-1] ] )
-        #to be fixed as last value is still missing
-        circ = np.sqrt( ( self.radius  )**2 - ( xvalues - self.center.coords[0]  )**2  )
-        self.data[1] = self.data[1] + np.concatenate( [ self.center.coords[1] + circ, self.center.coords[1] - circ  ] )
+        #data[0] = data[1] + data[0][::-1]
+        #data[1] = data[0][idx:] + data[1][::-1]
         
-        
+        data[0] = data[0] + [-x for x in data[0][::-1] ]
+        data[1] = data[1] + data[1][::-1]
+
+        data[0] = data[0] + data[0][::-1]
+        data[1] = data[1] + [-x for x in data[1][::-1] ]
+        self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
+
     def calc2(self, name = None):
         x0 = self.point[0].coords[0]
         x1 = self.point[1].coords[0]
