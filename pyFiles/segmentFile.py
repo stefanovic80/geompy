@@ -58,6 +58,7 @@ class segment(plotSett):
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         
+        #[ [x, y] for x, y in zip(r.data[0], r.data[1])]
 
     def calc2(self): #calculate equation from two points
 
@@ -108,7 +109,8 @@ class segment(plotSett):
                 pass
         
         self.calc1()
-
+    
+    
     def calc4(self): #calculate equation from 1 point and intercept
 
         for j in range(2):
@@ -120,24 +122,7 @@ class segment(plotSett):
         
         self.calc1()
     
-    """
-    def chooseCalc(self):
-        self.__del__()
-        if self.rotate == False:
-            try:
-                self.calc2()#two points
-            except:
-                try:
-                    self.calc1() #angCoeff, intercept
-                except:
-                    try:
-                        self.calc3() # 1point, angCoeff
-                    except:
-                        try:
-                            self.calc4()# 1point, intercept
-                        except:
-                            pass
-    """
+
     def chooseCalc(self):
         self.__del__()
         calculation_functions = [self.calc2, self.calc1, self.calc3, self.calc4]
