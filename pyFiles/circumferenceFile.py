@@ -41,31 +41,33 @@ class circumference(plotSett):
     def calc(self, name = None):
          
         data = [None, None]
+
+        #1) (pi/2 pi/4)
         data[0] = self.x[ (self.x >= 0 ) & (self.x <= self.radius/2**.5)]
         data[1] = list( np.sqrt( ( self.radius  )**2 - ( data[0]  )**2  ) )
         
-
-
         data[0] = list(data[0])
         idx = len(data[0])
-        #data[0] = data[0] + data[1][::-1]
-        #data[1] = data[1] + data[0][:idx][::-1]
         
-        
-        #extended from (pi/2 pi/4) to (pi/2 0)
+        #2) extended from (pi/2 pi/4) to (pi/2 0)
         data[0] = data[1] + data[0][::-1]
         data[1] = data[0][idx:][::-1] + data[1][::-1]
         
-        #extended from (pi/2 0) to (pi 0)
+        #3) extended from (pi/2 0) to (pi 0)
         data[0] = data[0] + [ -x for x in data[0][::-1] ]
         data[1] = data[1] + data[1][::-1]
 
-        #extended from (pi 0) to (2pi 0
+        #4) extended from (pi 0) to (2pi 0)
         data[0] = data[0] + data[0][::-1]
         data[1] = data[1] + [ -x for x in data[1][::-1] ]
         
+        #5) connect at the end of the circle
+        #data[0] = data[0] + data[0][0]
+        #data[1] = data[1] + data[1][1]
+
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
 
+    # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
         x0 = self.point[0].coords[0]
         x1 = self.point[1].coords[0]
@@ -82,6 +84,7 @@ class circumference(plotSett):
         self.radius = np.sqrt( (x0-a)**2 + (y0 - b)**2)
         self.calc()
 
+    # calculate from center coordinates and a point passing through
     def calc3(self, name = None):
         x1 = self.point[0].coords[0]
         y1 = self.point[0].coords[1]
@@ -108,23 +111,7 @@ class circumference(plotSett):
         
         self.chooseCalc()
 
-        """
-        self.__del__()
-        if self.rotate == False:
-            try:
-                self.calc()
-            except:
-                try:
-                    self.calc2()
-                except:
-                    try:
-                        self.calc3()
-                    except:
-                        pass
-        """
-
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
-        #self.ax.legend()
         
         self.lines = []
         self.lines.append(line1)
@@ -152,8 +139,6 @@ class circumference(plotSett):
         self.data = [None, None]
         self.center.coords = [None, None]
         self.radius = None
-        #print(self.__str__() )
-
 
     def __str__(self):
 
