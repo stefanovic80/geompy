@@ -121,6 +121,7 @@ class circumference(plotSett):
         #-------------------------------------------
         if isinstance(name, str):
             self.name = name
+        
 
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
@@ -128,7 +129,7 @@ class circumference(plotSett):
         self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
 
         self.pointLabel.color = self.color
-        self.pointLabel.label(name)
+        self.pointLabel.label(self.name)
 
         #-------------------------------------------
 
