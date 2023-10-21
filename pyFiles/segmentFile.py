@@ -119,7 +119,8 @@ class segment(plotSett):
                 pass
         
         self.calc1()
-
+    
+    """
     def chooseCalc(self):
         self.__del__()
         if self.rotate == False:
@@ -136,7 +137,17 @@ class segment(plotSett):
                             self.calc4()# 1point, intercept
                         except:
                             pass
-
+    """
+    def chooseCalc(self):
+        self.__del__()
+        calculation_functions = [self.calc2, self.calc1, self.calc3, self.calc4]
+        
+        for calc_function in calculation_functions:
+            if self.rotate == False:
+                try:
+                    calc_function()
+                except:
+                    pass
     
     def dist(self, length = None ):#to be fixed
         idx = round( len( self.data[0] )*length/self.length )
