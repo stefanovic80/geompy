@@ -44,19 +44,26 @@ class circumference(plotSett):
         data[0] = self.x[ (self.x >= 0 ) & (self.x <= self.radius/2**.5)]
         data[1] = list( np.sqrt( ( self.radius  )**2 - ( data[0]  )**2  ) )
         
+
+
         data[0] = list(data[0])
         idx = len(data[0])
-        data[0] = data[0] + data[1][::-1]
-        data[1] = data[1] + data[0][:idx][::-1]
-
-        #data[0] = data[1] + data[0][::-1]
-        #data[1] = data[0][idx:] + data[1][::-1]
+        #data[0] = data[0] + data[1][::-1]
+        #data[1] = data[1] + data[0][:idx][::-1]
         
-        data[0] = data[0] + [-x for x in data[0][::-1] ]
+        
+        #extended from (pi/2 pi/4) to (pi/2 0)
+        data[0] = data[1] + data[0][::-1]
+        data[1] = data[0][idx:][::-1] + data[1][::-1]
+        
+        #extended from (pi/2 0) to (pi 0)
+        data[0] = data[0] + [ -x for x in data[0][::-1] ]
         data[1] = data[1] + data[1][::-1]
 
+        #extended from (pi 0) to (2pi 0
         data[0] = data[0] + data[0][::-1]
-        data[1] = data[1] + [-x for x in data[1][::-1] ]
+        data[1] = data[1] + [ -x for x in data[1][::-1] ]
+        
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
 
     def calc2(self, name = None):
