@@ -103,6 +103,7 @@ class circumference(plotSett):
             if self.rotate == False:
                 try:
                     calc_function()
+                    break
                 except:
                     pass
 
