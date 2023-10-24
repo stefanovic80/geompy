@@ -157,7 +157,7 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
         
-        #locus.draw(name = locus.name)
+        locus.draw(name = locus.name)
     def __str__(self):
 
         super().__str__()

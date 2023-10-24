@@ -65,6 +65,7 @@ class circumference(plotSett):
         #data[0] = data[0] + data[0][0]
         #data[1] = data[1] + data[1][1]
 
+
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -77,22 +78,28 @@ class circumference(plotSett):
         y1 = self.point[1].coords[1]
         y2 = self.point[2].coords[1]
         
-        a = (x0 + x1 + x2)/3
-        b = (y0 + y1 + y2)/3
-        
-        self.center = point(a, b)
-        self.radius = np.sqrt( (x0-a)**2 + (y0 - b)**2)
+        A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ]) 
+        Ainv = np.linalg.inv(A)
+        squares = np.array( [ -x0**2 - y0**2  , -x1**2 - y1**2  , -x2**2 - y2**2 ] )
+        circParams = np.dot(Ainv, squares)
+        self.center = point(-circParams[0, 0]/2, -circParams[0, 1]/2)
+        self.radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc()
 
     # calculate from center coordinates and a point passing through
     def calc3(self, name = None):
-        x1 = self.point[0].coords[0]
-        y1 = self.point[0].coords[1]
+        for point in self.point:
+            try:
+                x1 = point.coords[0]
+                y1 = point.coords[1]
+                break
+            except:
+                pass
 
         x0 = self.center.coords[0]
         y0 = self.center.coords[1]
 
-        self.radius = np.sqrt( ( x0 - x1  )**2 + ( x0 - x1 )**2  )
+        self.radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1 )**2  )
         self.calc()
     
     def chooseCalc(self):
@@ -103,6 +110,7 @@ class circumference(plotSett):
             if self.rotate == False:
                 try:
                     calc_function()
+                    break
                 except:
                     pass
 
