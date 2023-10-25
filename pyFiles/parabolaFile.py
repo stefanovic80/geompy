@@ -17,6 +17,12 @@ class parabola(plotSett):
         #self.yShift = np.random.randint(xmin, xmax)
         self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
+        
+        
+        self.a = None
+        self.b = None
+        self.c = None
+        
         self.lines = []
         self.point = [None, None, None]
         self.data = None
@@ -35,7 +41,9 @@ class parabola(plotSett):
 
     def erase(self):
         self.__del__()
-
+        
+        self.vertex = None
+        self.concavity = None
         #to remove text label
         try:
             self.pointLabel.tex.remove()
@@ -54,6 +62,11 @@ class parabola(plotSett):
         self.data = self.data + [self.concavity*(self.x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
+    def calc1(self, name = None):
+
+        
+        self.calc()
+
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
@@ -67,11 +80,20 @@ class parabola(plotSett):
 
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
-        squares = np.array( [ -x0**2 - y0**2  , -x1**2 - y1**2  , -x2**2 - y2**2 ] )
-        parabParams = np.dot(Ainv, squares)
-        Delta = -parabParams[1]**2 - 4*parabParams[0]*parabParams[2]
-        self.vertex = point( -parabParams[1]/(2*parabParams[0]), -Delta/(4*parabParams[0]) )
-        self.concavity = parabParams[0]
+        y = np.array( [ y0  , y1  , y2 ] )#.reshape(-1, 1)
+        parabParams = np.dot(Ainv, y)
+        
+        self.a = parabParams[0, 0]
+        self.b = parabParams[0, 1]
+        self.c = parabParams[0, 2]
+        
+        self.calc1() 
+    
+    def calc1(self, name = None):
+
+        Delta = self.b**2 - 4*self.a*self.c
+        self.vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a)  )
+        self.concavity = self.a
         self.calc()
 
 
@@ -79,7 +101,7 @@ class parabola(plotSett):
     def chooseCalc(self):
         self.__del__()
 
-        calculation_functions = [self.calc, self.calc2]#, self.calc3]
+        calculation_functions = [self.calc, self.calc1, self.calc2]#, self.calc3]
 
         for calc_function in calculation_functions:
             if self.rotate == False:
