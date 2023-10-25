@@ -13,8 +13,9 @@ class parabola(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
 
         super().__init__(xmin, xmax, steps)
-        self.xShift = np.random.randint(xmin, xmax)
-        self.yShift = np.random.randint(xmin, xmax)
+        #self.xShift = np.random.randint(xmin, xmax)
+        #self.yShift = np.random.randint(xmin, xmax)
+        self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         self.lines = []
         self.data = None
@@ -49,7 +50,7 @@ class parabola(plotSett):
     def calc(self, name = None):
         #self.__del__()
         self.data = [ self.x ]
-        self.data = self.data + [self.concavity*(self.x - self.xShift)**2 + self.yShift]
+        self.data = self.data + [self.concavity*(self.x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
     def draw(self, name = None):
@@ -82,8 +83,8 @@ class parabola(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
-            f"\033[93m.xShift = \033[0m {self.xShift}\n"
-            f"\033[93m.yShift = \033[0m {self.yShift}\n"
+            f"\033[93m.xShift = \033[0m {self.vertex.coords[0]}\n"
+            f"\033[93m.yShift = \033[0m {self.vertex.coords[1]}\n"
             f"\033[93m.concavity = \033[0m {self.concavity}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
