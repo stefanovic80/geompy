@@ -72,10 +72,19 @@ class circumference(plotSett):
 
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
         
+        if self.cut == True:
+            for point in self.point:
+                try:
+                    condition = self.data[0] > point.coords[0]
+                    idxs = np.where(self.data[0][condition])
+                    self.data[0] = self.data[0][idxs]
+                    self.data[1] = self.data[1][idxs]
+                    break
+                except:
+                    pass
 
-        #self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        #self.data = [ self.x[ :self.idxMin] ]
-        
+
+
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -101,7 +110,7 @@ class circumference(plotSett):
         
         for point in self.point:
             try:
-
+                        
                 x0 = point.coords[0]
                 y0 = point.coords[1]
                 x1 = self.center.coords[0]
@@ -128,22 +137,10 @@ class circumference(plotSett):
 
     def draw(self, name = None, cut = False):
         
+        if isinstance(cut, bool):
+            self.cut = cut
+        
         self.chooseCalc()
-        self.cut = cut
-        
-        if self.cut == True:
-            for p in self.point:
-                #for p in [ self.point[0] ]:
-                try:
-                    condition = self.data[0] > p.coords[0]
-                    #condition = self.data[0] > self.point[0].coords[0]
-                    idxs = np.where(self.data[0][condition])
-                    self.data[0] = self.data[0][idxs]
-                    self.data[1] = self.data[1][idxs]
-                    break
-                except:
-                    pass
-        
     
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
         
@@ -152,11 +149,12 @@ class circumference(plotSett):
 
         #self.ax.set_xlim(self.xmin, self.xmax)
         #self.ax.set_ylim(self.xmin, self.xmax)
+
         #-------------------------------------------
         if isinstance(name, str):
             self.name = name
         
-
+        
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
@@ -169,7 +167,7 @@ class circumference(plotSett):
         
 
 
-    def erase(self):#add self.remove()
+    def erase(self):
         self.__del__()
 
         self.data = [None, None]
