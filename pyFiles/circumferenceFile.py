@@ -40,9 +40,8 @@ class circumference(plotSett):
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None):
         
-
-        if self.cut == False:
-            self.xMin = self.xmin
+        #if self.cut == False:
+        #    self.xMin = self.xmin
         
         data = [None, None]
 
@@ -82,9 +81,6 @@ class circumference(plotSett):
                     break
                 except:
                     pass
-
-
-
 
 
     # calculate from three points the circumference passing through (to be fixed!)
