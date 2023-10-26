@@ -28,7 +28,7 @@ class circumference(plotSett):
         self.color = random.choice(self.colors)
 
         self.center.color = self.color
-        
+        self.cut = False 
         #------------------------------------------------------
         #point choosen for labeling
         self.pointLabel = point()
@@ -39,7 +39,11 @@ class circumference(plotSett):
 
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None):
-         
+        
+
+        if self.cut == False:
+            self.xMin = self.xmin
+        
         data = [None, None]
 
         #1) (pi/2 pi/4)
@@ -67,6 +71,12 @@ class circumference(plotSett):
 
 
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
+        
+
+        #self.idxMin = np.where( self.x >= self.xMin)[0][0]
+        #self.data = [ self.x[ :self.idxMin] ]
+        
+
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
@@ -88,18 +98,19 @@ class circumference(plotSett):
 
     # calculate from center coordinates and a point passing through
     def calc3(self, name = None):
+        
         for point in self.point:
             try:
-                x1 = point.coords[0]
-                y1 = point.coords[1]
+
+                x0 = point.coords[0]
+                y0 = point.coords[1]
+                x1 = self.center.coords[0]
+                y1 = self.center.coords[1]
+                self.radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
                 break
             except:
                 pass
 
-        x0 = self.center.coords[0]
-        y0 = self.center.coords[1]
-
-        self.radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1 )**2  )
         self.calc()
     
     def chooseCalc(self):
@@ -115,10 +126,25 @@ class circumference(plotSett):
                     pass
 
 
-    def draw(self, name = None):
+    def draw(self, name = None, cut = False):
         
         self.chooseCalc()
-
+        self.cut = cut
+        
+        if self.cut == True:
+            for p in self.point:
+                #for p in [ self.point[0] ]:
+                try:
+                    condition = self.data[0] > p.coords[0]
+                    #condition = self.data[0] > self.point[0].coords[0]
+                    idxs = np.where(self.data[0][condition])
+                    self.data[0] = self.data[0][idxs]
+                    self.data[1] = self.data[1][idxs]
+                    break
+                except:
+                    pass
+        
+    
         line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
         
         self.lines = []
@@ -140,6 +166,7 @@ class circumference(plotSett):
         self.pointLabel.label(self.name)
 
         #-------------------------------------------
+        
 
 
     def erase(self):#add self.remove()
