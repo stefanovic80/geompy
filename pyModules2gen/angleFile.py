@@ -60,16 +60,7 @@ class angle(plotSett):
         self.lines = []
         self.lines.append(line)
 
-        #copied from segment class, not completed
-        """
-        self.A.draw("A")
-        self.B.draw("B")
-        self.C.draw("C")
-        self.AB.draw(cut = True)
-        self.BC.draw(cut = True)
-        self.CA.draw(cut = True)
-        """
-
+        
     def erase(self):
         self.__del__()
 
@@ -80,12 +71,6 @@ class angle(plotSett):
             pass
 
         self.data = [None, None]
-
-        for j in range(2):
-            self.point[j].coords = [None, None]
-        #for u in self.point:
-        #    u.coords = [None, None]
-
-        self.angCoeff = None
-        self.intercept = None
-
+        self.segment = [None, None]
+        #self.arc.erase()
+        #self.center = None
