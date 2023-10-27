@@ -27,6 +27,7 @@ class angle(plotSett):
         q = [None, None]
         j = 0
         for segment in self.segment:
+            segment.color = self.color
             segment.draw()
             m[j] = segment.angCoeff
             q[j] = segment.intercept
@@ -35,14 +36,16 @@ class angle(plotSett):
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
         self.arc.center = point( x, y  )
+        
         radius = (self.xmax - self.xmin)/20
         self.arc.radius = radius
         
+        self.arc.color = self.color
+
         arcSize = np.arctan( m[1] ) - np.arctan( m[0] )
-        self.arc.center = point( x, m[0]*x + q[0]  )
         self.arc.calc(angle = arcSize)
         
-        #self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
+        self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
 
         self.data = self.arc.data
 
