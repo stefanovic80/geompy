@@ -39,8 +39,8 @@ class circumference(plotSett):
 
 
     #circumference equation calculation from center coordinates and radius
-    def calc(self, name = None, angle = np.pi):
-        
+    def calc(self, name = None, angle = 2*np.pi):
+        # 
         #if self.cut == False:
         #    self.xMin = self.xmin
         
@@ -79,25 +79,25 @@ class circumference(plotSett):
 
         self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
        
-        self.anglesCalc(angle = angle)
+        self.pointsSelect(angle = angle)
 
-    def anglesCalc(self, angle = 2*np.pi):
+    def pointsSelect(self, angle = 2*np.pi):
         
         #self.angles = np.arctan( ( self.data[1] - self.center.coords[1]) / (self.data[0] - self.center.coords[0]) )
 
-        if angle != 2*np.pi:
-            for point in self.point:
-                try:
-                    #condition = self.data[0] > point.coords[0]
-                    #idxs = np.where(self.data[0][condition])
-                    condition = self.angles < angle
-                    idxs = np.where(self.angles[condition])
-                    idxs = np.where(self.data[0][condition])
-                    self.data[0] = self.data[0][idxs]
-                    self.data[1] = self.data[1][idxs]
-                    break
-                except:
-                    pass
+        #if angle != 2*np.pi:
+        for point in self.point:
+            try:
+                #condition = self.data[0] > point.coords[0]
+                #idxs = np.where(self.data[0][condition])
+                condition = self.angles < angle
+                idxs = np.where(self.angles[condition])
+                idxs = np.where(self.data[0][condition])
+                self.data[0] = self.data[0][idxs]
+                self.data[1] = self.data[1][idxs]
+                break
+            except:
+                pass
 
 
 
