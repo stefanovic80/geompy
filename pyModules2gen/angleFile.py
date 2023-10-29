@@ -19,6 +19,8 @@ class angle(plotSett):
         self.name = None
         self.data = None
 
+        self.j = 0
+
     def calc(self):
         self.__del__()
 
@@ -81,15 +83,17 @@ class angle(plotSett):
 
         self.arc.color = self.color
 
-        arcSize = abs( np.arctan( m[1] ) - np.arctan( m[0] ) )
+        #arcSize = abs( (self.j%2)*np.pi/2 - np.arctan( m[1] ) + np.arctan( m[0] ) )
+        #arcSize = abs( (self.j%2)*np.pi - np.arctan( m[1] ) + np.arctan( m[0] ) )
+        arcSize = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.arc.calc(angle = arcSize)
         #to be modified!
 
-        self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
+        self.arc.center.rotation( locus = self.arc, angle = self.j*np.pi/2 + np.arctan( m[0] ) )
 
         self.data = self.arc.data
 
-
+        self.j+=1
 
 
     def chooseCalc(self):
