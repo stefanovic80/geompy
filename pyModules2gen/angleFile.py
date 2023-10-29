@@ -59,18 +59,69 @@ class angle(plotSett):
 
         self.data = self.arc.data
 
-    def draw(self, name = None):
+    def calc2(self):
+        #for segment in self.segment:
+        #    segment.chooseCalc()
+        m = [None, None]
+        q = [None, None]
+
+        m[0] = self.segment[0].angCoeff
+        q[0] = self.segment[0].intercept
+
+        m[1] = self.segment[1].angCoeff
+        q[1] = self.segment[1].intercept
+
+        x = (q[1] - q[0])/(m[0] - m[1])
+        y = m[0]*x + q[0]
+        
+        self.arc.center = point( x, y  )
+
+        radius = (self.xmax - self.xmin)/20
+        self.arc.radius = radius
+
+        self.arc.color = self.color
+
+        arcSize = abs( np.arctan( m[1] ) - np.arctan( m[0] ) )
+        self.arc.calc(angle = arcSize)
+        #to be modified!
+
+        self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
+
+        self.data = self.arc.data
+
+
+
+
+    def chooseCalc(self):
         self.__del__()
+
+        calculation_functions = [self.calc2]
+        
+        #for segment in self.segment:
+        for calc_function in calculation_functions:
+            if self.rotate == False:
+                try:
+                    calc_function()
+                    break
+                except:
+                    pass
+
+
+
+    def draw(self, name = None):
+        #self.__del__()
         self.name = name
-        if self.rotate == False:
-            self.calc()
+        #if self.rotate == False:
+        #    self.calc()
+
+        self.chooseCalc()
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
         
-        self.segment[0].draw()
-        self.segment[1].draw()
-        self.segment[0].point[0].color = 'r'
-        self.segment[0].point[0].draw()
+        #self.segment[0].draw()
+        #self.segment[1].draw()
+        #self.segment[0].point[0].color = 'r'
+        #self.segment[0].point[0].draw()
 
         self.lines = []
         self.lines.append(line)
