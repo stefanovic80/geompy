@@ -25,14 +25,24 @@ class angle(plotSett):
 
         m = [None, None]
         q = [None, None]
-        j = 0
-        for segment in self.segment:
-            segment.color = self.color
-            segment.draw()
-            m[j] = segment.angCoeff
-            q[j] = segment.intercept
-            j+=1
         
+        #for segment in self.segment:
+        self.segment[0].color = self.color
+        self.segment[0].calc2()
+        
+        self.segment[1].color = self.color
+        self.segment[1].erase()
+        self.segment[1].point[0] = self.segment[0].point[0]
+        self.segment[1].intercept = np.random.uniform(self.xmin, self.xmax)
+        self.segment[1].calc4()
+        
+        m[0] = self.segment[0].angCoeff
+        q[0] = self.segment[0].intercept
+        
+        m[1] = self.segment[1].angCoeff
+        q[1] = self.segment[1].intercept
+
+
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
         self.arc.center = point( x, y  )
@@ -56,6 +66,11 @@ class angle(plotSett):
             self.calc()
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+        
+        self.segment[0].draw()
+        self.segment[1].draw()
+        self.segment[0].point[0].color = 'r'
+        self.segment[0].point[0].draw()
 
         self.lines = []
         self.lines.append(line)
