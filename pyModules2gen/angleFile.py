@@ -72,6 +72,16 @@ class angle(plotSett):
 
         m[1] = self.segment[1].angCoeff
         q[1] = self.segment[1].intercept
+        
+        #------------- from chatGPT
+        # Get the indices that would sort 'm'
+        sorted_indices = np.argsort(m)
+        
+        # Sort 'm' and 'q' based on the sorted indices
+        m = [m[i] for i in sorted_indices]
+        q = [q[i] for i in sorted_indices]
+        #------------- from chatGPT
+
 
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
@@ -83,13 +93,16 @@ class angle(plotSett):
 
         self.arc.color = self.color
 
-        #arcSize = abs( (self.j%2)*np.pi/2 - np.arctan( m[1] ) + np.arctan( m[0] ) )
-        #arcSize = abs( (self.j%2)*np.pi - np.arctan( m[1] ) + np.arctan( m[0] ) )
         arcSize = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.arc.calc(angle = arcSize)
         #to be modified!
 
-        self.arc.center.rotation( locus = self.arc, angle = self.j*np.pi/2 + np.arctan( m[0] ) )
+        
+        #self.arc.center.rotation( locus = self.arc, angle = (self.j%2)*np.arctan( m[1] ) + ((self.j+1)%2)*np.arctan( m[0])  )# + np.arctan( m[0] )  )
+        
+        formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
+        self.arc.center.rotation( locus = self.arc, angle = formula)
+
 
         self.data = self.arc.data
 
