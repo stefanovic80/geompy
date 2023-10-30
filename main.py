@@ -10,6 +10,7 @@ from pyFiles.parabolaFile import parabola
 #from pyFiles.angleFile import angle
 
 from pyModules2gen.triangleFile import triangle
+from pyModules2gen.angleFile import angle
 
 import matplotlib.pyplot as plt
 import numpy as np
