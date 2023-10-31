@@ -60,6 +60,8 @@ class angle(plotSett):
         self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
 
         self.data = self.arc.data
+        
+        self.size = None
 
     def calc2(self):
         #for segment in self.segment:
@@ -93,8 +95,8 @@ class angle(plotSett):
 
         self.arc.color = self.color
 
-        arcSize = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
-        self.arc.calc(angle = arcSize)
+        self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
+        self.arc.calc(angle = self.size)
         #to be modified!
 
         
