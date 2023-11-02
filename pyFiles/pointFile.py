@@ -52,7 +52,7 @@ class point(plotSett):
 
         self.color = random.choice(self.colors)
         self.j = 0 #for drawing
-        self.k = 0 #for clicking
+        self.k = 1 #for clicking
 
         self.lines = None
         self.tex = None
@@ -122,26 +122,40 @@ class point(plotSett):
         idx = random.choice(indices[0])
         self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
     #-------------------------------------------------------------
+    def zoom(self):
+
+        a = plt.ginput()
+        
+        m = self.xmin
+        M = self.xmax
+
+        deltaZoom = (M - m)/10
+
+        self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
+        self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
+        #print("\nrun .click('label') one more time to select point coordinates\n")
+        self.k += 1
+
 
     def click(self, name = None):
         self.__del__()
          
                 
-        if self.k%2 != 0: 
-            b = plt.ginput()
-            self.coords = [ b[0][0], b[0][1] ]
-            self.draw(name)
+        #if self.k%2 != 0: 
+        b = plt.ginput()
+        self.coords = [ b[0][0], b[0][1] ]
+        self.draw(name)
             
-            self.lims()
-        else: 
-            a = plt.ginput()
-            
-            deltaZoom = (self.xmax - self.xmin)/10
-            
-            self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
-            self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
-            print("\nrun .click('label') one more time to select point coordinates\n")
-        self.k += 1
+        self.lims()
+        #else: 
+        #    a = plt.ginput()
+        #    
+        #    deltaZoom = (self.xmax - self.xmin)/10
+        #    
+        #    self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
+        #    self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
+        #    print("\nrun .click('label') one more time to select point coordinates\n")
+        #self.k += 1
 
     def rotateData(self, data = [None, None], angle = 0):
         a1 = (data[0] - self.coords[0])*np.sin(angle)
