@@ -7,3 +7,5 @@ pyFiles/Downloads/
 pyFiles/._plotSettFile.py.swp
 
 pyfile/*.swp
+
+.ipynb_checkpoints

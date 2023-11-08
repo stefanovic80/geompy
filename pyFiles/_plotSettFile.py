@@ -36,7 +36,7 @@ class plotSett():
         self.lims()
         
     def lims(self):
-        self.x = np.linspace(self.xmin, self.xmax, steps)
+        self._x = np.linspace(self.xmin, self.xmax, steps)
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
 

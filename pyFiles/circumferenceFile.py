@@ -47,7 +47,7 @@ class circumference(plotSett):
         data = [None, None]
 
         #1) (pi/2 pi/4)
-        data[0] = self.x[ (self.x >= 0 ) & (self.x <= self.radius/2**.5)]
+        data[0] = self._x[ (self._x >= 0 ) & (self._x <= self.radius/2**.5)]
         data[1] = list( np.sqrt( ( self.radius  )**2 - ( data[0]  )**2  ) )
         
         data[0] = list(data[0])

@@ -58,7 +58,24 @@ class point(plotSett):
         self.tex = None
         self.name = None
         self.rotate = False
-        
+    
+    @property
+    def x(self):
+        return self.coords[0]
+
+    @x.setter
+    def x(self, value):
+        self.coords[0] = value
+
+    @property
+    def y(self):
+        return self.coords[0]
+
+    @y.setter
+    def y(self, value):
+        self.coords[1] = value
+
+
 
     def calc(self):
         self.data = self.coords

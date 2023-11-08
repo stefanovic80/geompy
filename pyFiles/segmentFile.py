@@ -52,9 +52,9 @@ class segment(plotSett):
             self.xMin = self.xmin
             self.xMax = self.xmax
         
-        self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
+        self.idxMin = np.where( self._x >= self.xMin)[0][0]
+        self.idxMax = np.where( self._x >= self.xMax)[0][0]
+        self.data = [ self._x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         
@@ -80,9 +80,9 @@ class segment(plotSett):
             
             self.calc1()
         else:
-            L = len(self.x)
+            L = len(self._x)
             self.data = [np.zeros(L) + x1]
-            self.data = self.data + [ self.x ]
+            self.data = self.data + [ self._x ]
 
             if self.cut == True:
                 j = 1

@@ -31,17 +31,17 @@ class ellipse(plotSett):
     def draw(self):
         self.__del__()
 
-        ellip = self.focus2*np.sqrt( 1 - ( ( self.x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
+        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 
         #it removes not a number terms due to root of negative values
         #idx1 = np.argmax(~np.isnan(circ))
         #idx2 = len(circ) - np.argmax(np.flip(~np.isnan(circ)))
         #x values for the graph upper side
-        #self.data = [self.x[idx1:idx2]]
+        #self.data = [self._x[idx1:idx2]]
         #circ = circ[idx1:idx2]
         
         #y values as second column of self.data matrix
-        self.data = [self.x]
+        self.data = [self._x]
         self.data = self.data + [ np.append( self.center.coords[1] + ellip, self.center.coords[1] - ellip[::-1] ) ]
 
         #x values for the graph of the lower side

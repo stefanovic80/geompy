@@ -58,8 +58,8 @@ class parabola(plotSett):
 
     def calc(self, name = None):
         #self.__del__()
-        self.data = [ self.x ]
-        self.data = self.data + [self.concavity*(self.x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
+        self.data = [ self._x ]
+        self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
     def calc1(self, name = None):
