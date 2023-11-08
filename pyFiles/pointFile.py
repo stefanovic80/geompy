@@ -66,6 +66,7 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.coords[0] = value
+        self.draw(self.name)
 
     @property
     def y(self):
@@ -74,7 +75,7 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.coords[1] = value
-
+        self.draw(self.name)
 
 
     def calc(self):
