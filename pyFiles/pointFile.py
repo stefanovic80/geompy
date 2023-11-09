@@ -40,16 +40,7 @@ class point(plotSett):
             self.coords[0] = x
             self.coords[1] = y
             
-        """
-        @property
-        def y(self):
-            return self._coords[1]
-
-        @y.setter
-        def y(self, value):
-            self._coords[1] = value
-        """
-
+        
         self.color = random.choice(self.colors)
         self.j = 0 #for drawing
         self.k = 1 #for clicking
@@ -58,7 +49,9 @@ class point(plotSett):
         self.tex = None
         self.name = None
         self.rotate = False
-    
+   
+        #self.draw(name = None)
+
     @property
     def x(self):
         return self.coords[0]
@@ -93,13 +86,7 @@ class point(plotSett):
 
 
         if self.j%2 != 0: 
-            """
-            xvals = [ 0, self.coords[0] ]
-            xvals.sort()
-            yvals = [ 0, self.coords[1] ]
-            yvals.sort()
-            """
-
+            
             hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmin = xvals[0], xmax = xvals[1] )
 
             vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)#, ymin = yvals[0], ymax = yvals[1] )
@@ -165,16 +152,7 @@ class point(plotSett):
         self.draw(name)
             
         self.lims()
-        #else: 
-        #    a = plt.ginput()
-        #    
-        #    deltaZoom = (self.xmax - self.xmin)/10
-        #    
-        #    self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
-        #    self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
-        #    print("\nrun .click('label') one more time to select point coordinates\n")
-        #self.k += 1
-
+        
     def rotateData(self, data = [None, None], angle = 0):
         a1 = (data[0] - self.coords[0])*np.sin(angle)
         data[0] = (data[0] - self.coords[0]  )*np.cos(angle) - (data[1] - self.coords[1]  )*np.sin(angle) + self.coords[0]
