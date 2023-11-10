@@ -10,7 +10,7 @@ from .pointFile import point
 
 class segment(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed, draw = True):
         
         super().__init__(xmin, xmax, steps)
         
@@ -46,6 +46,9 @@ class segment(plotSett):
         self.name = None
         self.rotate = False
         self.cut = False
+
+        if draw == True:
+            self.draw(name = None)
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self.cut == False:

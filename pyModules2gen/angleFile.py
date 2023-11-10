@@ -11,7 +11,7 @@ class angle(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         super().__init__(xmin, xmax, steps)
         
-        self.segment = [segment(), segment()]
+        self.segment = [segment(draw = False), segment(draw = False)]
         self.arc = circumference()
         
         self.rotate = False

@@ -9,6 +9,7 @@ from . import seed
 
 
 class point(plotSett):
+    #def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
     def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
         super().__init__( xmin, xmax, steps, linewidth)
         
@@ -19,6 +20,7 @@ class point(plotSett):
         #return True if var is a  number
         pf_isnumber = isinstance(pickFrom, (int, float) )
 
+        
         #check if x and y are numbers
         xy_arenumber =  ( isinstance(x, (int, float) ) ) and ( isinstance(y, (int, float) ) )
 
@@ -38,12 +40,26 @@ class point(plotSett):
         
         elif xy_arenumber == True:
             self.coords[0] = x
-            self.coords[1] = y
-            
+            self.coords[1] = y 
         
-        self.color = random.choice(self.colors)
-        self.j = 0 #for drawing
-        self.k = 1 #for clicking
+        """
+        #------------------------------------------------------------
+        # Get local variables as a dictionary
+        local_vars = locals()
+
+        # Convert the dictionary values to a list
+        args_list = list(local_vars.values())
+        #------------------------------------------------------------
+        """
+
+
+
+
+
+
+        self._color = random.choice(self.colors)
+        #self.j = 0 #for drawing
+        #self.k = 1 #for clicking
 
         self.lines = None
         self.tex = None
@@ -62,6 +78,17 @@ class point(plotSett):
     def name(self, n):
         self._name = n
         self.draw(name = n)
+
+    """
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def name(self, c):
+        self._color = c
+        self.draw(name = self._name)
+    """
 
     @property
     def x(self):
@@ -90,25 +117,12 @@ class point(plotSett):
         if self.rotate == False:
             self.calc()
 
-        line = self.ax.scatter( self.coords[0], self.coords[1], color = self.color, linewidth = self.linewidth)
+        line = self.ax.scatter( self.coords[0], self.coords[1], color = self._color, linewidth = self.linewidth)
         self.lines = []
         self.lines.append(line)
 
-
-
-        #if self.j%2 != 0: 
-            
-        #    hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmin = xvals[0], xmax = xvals[1] )
-
-        #   vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)#, ymin = yvals[0], ymax = yvals[1] )
-        #   self.lines.append(hline)
-        #   self.lines.append(vline)
-        #   print("\nrun .draw one more time to erase coordinates\n")
-
         self.label(name)
-        self.j += 1 
-        # used by .draw() method to make it working in 1 maner fist and in another once it's called again
-
+        #self.j += 1 
 
     def label(self, name):
         try:
@@ -120,7 +134,7 @@ class point(plotSett):
             self._name = name
 
         shift = (self.xmax - self.xmin)/40
-        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self._name, fontsize = 12, color = self.color, ha="center", va="center")
+        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self._name, fontsize = 12, color = self._color, ha="center", va="center")
         
 
     #-----------------------------------------------
@@ -150,7 +164,7 @@ class point(plotSett):
         self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
         self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
         #print("\nrun .click('label') one more time to select point coordinates\n")
-        self.k += 1
+        #self.k += 1
 
 
     def click(self, name = None):
@@ -178,7 +192,7 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
         
-        locus.draw(name = locus._name)
+        locus.draw(name = locus.name)#, draw = False)
     def __str__(self):
 
         super().__str__()
@@ -188,7 +202,7 @@ class point(plotSett):
             f"\nAttributes:\n"
             f"\033[93mcoords:\033[0m [{self.coords[0]}, {self.coords[1]}] \n"
             f"\033[93mname:\033[0m {self.name}\n"
-            f"\033[93mcolor:\033[0m {self.color}\n"
+            f"\033[93mcolor:\033[0m {self._color}\n"
         )
 
         methods = (

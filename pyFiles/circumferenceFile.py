@@ -28,13 +28,13 @@ class circumference(plotSett):
         self.name = None
         self.color = random.choice(self.colors)
 
-        self.center.color = self.color
+        self.center._color = self.color
         self.cut = False 
         #------------------------------------------------------
         #point choosen for labeling
         self.pointLabel = point(draw = False)
         self.pointLabel.coords = [None, None]
-        self.pointLabel.color = 'white'
+        self.pointLabel._color = 'white'
         #------------------------------------------------------
 
 
@@ -176,7 +176,7 @@ class circumference(plotSett):
         idx = random.choice(indices[0])
         self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
 
-        self.pointLabel.color = self.color
+        self.pointLabel._color = self.color
         self.pointLabel.label(self.name)
 
         #-------------------------------------------
