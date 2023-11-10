@@ -43,7 +43,7 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.length = None
-        self.name = None
+        #self._name = None
         self.rotate = False
         self.cut = False
 
@@ -143,6 +143,7 @@ class segment(plotSett):
 
         return [ self.data[0][idx], self.data[1][idx] ]
 
+    """
     def draw(self, name = None, cut = False ):
         #self.pointLabel.set_text("")
         self.cut = cut
@@ -162,6 +163,7 @@ class segment(plotSett):
 
         self.pointLabel.color = self.color
         self.pointLabel.label(name)
+    """
 
     def erase(self):
         self.__del__()

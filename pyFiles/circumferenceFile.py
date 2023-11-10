@@ -25,7 +25,7 @@ class circumference(plotSett):
         self.lines = None
         self.data = None
         self.angles = None
-        self.name = None
+        #self._name = None
         self.color = random.choice(self.colors)
 
         self.center._color = self.color
@@ -153,7 +153,7 @@ class circumference(plotSett):
                 except:
                     pass
 
-
+    """
     def draw(self, name = None, angle = 2*np.pi):
         
         #if isinstance(cut, bool):
@@ -161,7 +161,7 @@ class circumference(plotSett):
         
         self.chooseCalc(angle = angle)
     
-        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
+        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self._name, linewidth = self.linewidth)
         
         self.lines = []
         self.lines.append(line1)
@@ -171,7 +171,7 @@ class circumference(plotSett):
 
         #-------------------------------------------
         if isinstance(name, str):
-            self.name = name
+            self._name = name
         
         
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
@@ -180,10 +180,10 @@ class circumference(plotSett):
         self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
 
         self.pointLabel._color = self.color
-        self.pointLabel.label(self.name)
+        self.pointLabel.label(self._name)
 
         #-------------------------------------------
-        
+    """ 
 
 
     def erase(self):
@@ -205,7 +205,7 @@ class circumference(plotSett):
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             f"\033[93m.color = \033[0m {self.color}\n"
             f"\033[93m.linewidth = \033[0m {self.linewidth}  \n"
-            f"\033[93m.name = \033[0m {self.name}\n"
+            f"\033[93m.name = \033[0m {self._name}\n"
         )
         
         instances = (

@@ -26,7 +26,7 @@ class parabola(plotSett):
         self.lines = []
         self.point = [None, None, None]
         self.data = None
-        self.name =  None
+        #self._name =  None
         self.color = random.choice(self.colors)
 
         #------------------------------------------------------------
@@ -115,18 +115,18 @@ class parabola(plotSett):
                     pass
 
 
-
+    """
     def draw(self, name = None):
         
         self.chooseCalc()
 
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self._name) # can be optimized for ALL pictures vi rmParams
         
         self.lines = []
         self.lines.append(line)
 
         if isinstance(name, str):
-            self.name = name
+            self._name = name
 
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         indices = np.where(condition_mask)
@@ -135,7 +135,7 @@ class parabola(plotSett):
 
         self.pointLabel.color = self.color
         self.pointLabel.label(name)
-
+    """
 
 
     def __str__(self):
@@ -152,7 +152,7 @@ class parabola(plotSett):
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
             #f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
-            f"\033[93m.name:\033[0m {self.name}\n"
+            f"\033[93m.name:\033[0m {self._name}\n"
             f"\033[93m.color:\033[0m {self.color}\n"
         )
         

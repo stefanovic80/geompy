@@ -16,7 +16,7 @@ class angle(plotSett):
         
         self.rotate = False
         self.color = random.choice(self.colors)
-        self.name = None
+        self._name = None
         self.data = None
 
         self.j = 0
@@ -129,7 +129,7 @@ class angle(plotSett):
 
     def draw(self, name = None):
         #self.__del__()
-        self.name = name
+        self._name = name
         #if self.rotate == False:
         #    self.calc()
 

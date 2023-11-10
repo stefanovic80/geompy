@@ -34,7 +34,56 @@ class plotSett():
         plt.rcParams [ 'lines.linewidth' ] = self.linewidth
         
         self.lims()
-        
+
+
+
+
+
+
+
+
+        self._name = None
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, n):
+        self._name = n
+        self.draw(name = n)
+
+
+
+
+
+    def draw(self, name = None, cut = False ):
+        #self.pointLabel.set_text("")
+        self.cut = cut
+        self.chooseCalc()
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+
+        self.lines = []
+        self.lines.append(line)
+
+        if isinstance(name, str):
+            self.name = name
+
+        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        indices = np.where(condition_mask)
+        idx = random.choice(indices[0])
+        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
+
+        self.pointLabel.color = self.color
+        self.pointLabel.label(name)
+
+
+
+
+
+
+
+
     def lims(self):
         self._x = np.linspace(self.xmin, self.xmax, steps)
         self.ax.set_xlim(self.xmin, self.xmax)

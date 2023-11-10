@@ -63,13 +63,14 @@ class point(plotSett):
 
         self.lines = None
         self.tex = None
-        self._name = None
+        #self._name = None
         self.rotate = False
         
 
         if draw == True:
             self.draw(name = None)
 
+    """
     @property
     def name(self):
         return self._name
@@ -78,6 +79,7 @@ class point(plotSett):
     def name(self, n):
         self._name = n
         self.draw(name = n)
+    """
 
     """
     @property

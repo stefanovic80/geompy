@@ -9,21 +9,21 @@ from . import plt, np, random
 class triangle(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         super().__init__(xmin, xmax, steps)
-        self.A = point()
-        self.B = point()
-        self.C = point()
+        self.A = point( draw = False )
+        self.B = point( draw = False )
+        self.C = point( draw = False )
         self.AB = None
         self.BC = None
         self.CA = None
         self.data = None
         self.rotate = False
-        self.name = None
+        self._name = None
         self.color = random.choice(self.colors)
 
     def calc(self):
-        self.AB = segment()
-        self.BC = segment()
-        self.CA = segment()
+        self.AB = segment( draw = False )
+        self.BC = segment( draw = False )
+        self.CA = segment( draw = False )
         self.AB.erase()
         self.BC.erase()
         self.CA.erase()
