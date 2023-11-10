@@ -12,7 +12,7 @@ class angle(plotSett):
         super().__init__(xmin, xmax, steps)
         
         self.segment = [segment(draw = False), segment(draw = False)]
-        self.arc = circumference()
+        self.arc = circumference(draw = False)
         
         self.rotate = False
         self.color = random.choice(self.colors)

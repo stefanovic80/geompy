@@ -10,7 +10,7 @@ from .pointFile import point
 
 class parabola(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
 
         super().__init__(xmin, xmax, steps)
         #self.xShift = np.random.randint(xmin, xmax)
@@ -38,6 +38,9 @@ class parabola(plotSett):
 
         self.rotate = False
 
+
+        if draw == True:
+            self.draw(name = None)
 
     def erase(self):
         self.__del__()

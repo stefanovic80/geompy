@@ -9,7 +9,7 @@ from .pointFile import point
 
 class circumference(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
@@ -37,6 +37,9 @@ class circumference(plotSett):
         self.pointLabel._color = 'white'
         #------------------------------------------------------
 
+        
+        if draw == True:
+            self.draw(name = None)
 
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None, angle = 2*np.pi):
