@@ -30,12 +30,12 @@ class segment(plotSett):
         self.data = None #[None, None]
 
         #random points from which the straight line is identified
-        point1 = point(xmin = xmin, xmax = xmax)
-        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1)
+        point1 = point(xmin = xmin, xmax = xmax, draw = False)
+        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1, draw = False)
         self.point = [point1, point2]
         
         #point choosen for labeling
-        self.pointLabel = point()
+        self.pointLabel = point(draw = False)
         self.pointLabel.coords = [None, None]
         self.pointLabel.color = 'white'
 

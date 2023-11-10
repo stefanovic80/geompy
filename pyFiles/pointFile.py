@@ -9,7 +9,7 @@ from . import seed
 
 
 class point(plotSett):
-    def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed):
+    def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
         super().__init__( xmin, xmax, steps, linewidth)
         
         self.seed = seed
@@ -47,10 +47,21 @@ class point(plotSett):
 
         self.lines = None
         self.tex = None
-        self.name = None
+        self._name = None
         self.rotate = False
-   
-        #self.draw(name = None)
+        
+
+        if draw == True:
+            self.draw(name = None)
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, n):
+        self._name = n
+        self.draw(name = n)
 
     @property
     def x(self):
@@ -59,7 +70,7 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.coords[0] = value
-        self.draw(self.name)
+        self.draw(self._name)
 
     @property
     def y(self):
@@ -68,7 +79,7 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.coords[1] = value
-        self.draw(self.name)
+        self.draw(self._name)
 
 
     def calc(self):
@@ -85,14 +96,14 @@ class point(plotSett):
 
 
 
-        if self.j%2 != 0: 
+        #if self.j%2 != 0: 
             
-            hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmin = xvals[0], xmax = xvals[1] )
+        #    hline = self.ax.axhline(y = self.coords[1], linestyle = '--', color = 'k', linewidth = 1)#, xmin = xvals[0], xmax = xvals[1] )
 
-            vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)#, ymin = yvals[0], ymax = yvals[1] )
-            self.lines.append(hline)
-            self.lines.append(vline)
-            print("\nrun .draw one more time to erase coordinates\n")
+        #   vline = self.ax.axvline(x = self.coords[0], linestyle = '--', color = 'k', linewidth = 1)#, ymin = yvals[0], ymax = yvals[1] )
+        #   self.lines.append(hline)
+        #   self.lines.append(vline)
+        #   print("\nrun .draw one more time to erase coordinates\n")
 
         self.label(name)
         self.j += 1 
@@ -106,10 +117,10 @@ class point(plotSett):
             pass
 
         if isinstance(name, str):
-            self.name = name
+            self._name = name
 
         shift = (self.xmax - self.xmin)/40
-        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self.name, fontsize = 12, color = self.color, ha="center", va="center")
+        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self._name, fontsize = 12, color = self.color, ha="center", va="center")
         
 
     #-----------------------------------------------
@@ -167,7 +178,7 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
         
-        locus.draw(name = locus.name)
+        locus.draw(name = locus._name)
     def __str__(self):
 
         super().__str__()

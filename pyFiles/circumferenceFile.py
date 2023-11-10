@@ -15,7 +15,7 @@ class circumference(plotSett):
         #plotSett.__init__(self)
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
-        self.center = point()
+        self.center = point(draw = False)
         
         self.rotate = False        
         #three points passing through the circumference
@@ -32,7 +32,7 @@ class circumference(plotSett):
         self.cut = False 
         #------------------------------------------------------
         #point choosen for labeling
-        self.pointLabel = point()
+        self.pointLabel = point(draw = False)
         self.pointLabel.coords = [None, None]
         self.pointLabel.color = 'white'
         #------------------------------------------------------
@@ -101,22 +101,7 @@ class circumference(plotSett):
 
 
 
-        """
-        if self.cut == True:
-            for point in self.point:
-                try:
-                    condition = self.data[0] > point.coords[0]
-                    idxs = np.where(self.data[0][condition])
-                    #condition = self.angle < angle
-                    #idxs = np.where(self.angle[condition])
-                    idxs = np.where(self.data[0][condition])
-                    self.data[0] = self.data[0][idxs]
-                    self.data[1] = self.data[1][idxs]
-                    break
-                except:
-                    pass
-        """
-
+        
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
         x0 = self.point[0].coords[0]
@@ -131,7 +116,7 @@ class circumference(plotSett):
         Ainv = np.linalg.inv(A)
         squares = np.array( [ -x0**2 - y0**2  , -x1**2 - y1**2  , -x2**2 - y2**2 ] )
         circParams = np.dot(Ainv, squares)
-        self.center = point(-circParams[0, 0]/2, -circParams[0, 1]/2)
+        self.center = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
         self.radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc()
 

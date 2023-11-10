@@ -47,7 +47,7 @@ class angle(plotSett):
 
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
-        self.arc.center = point( x, y  )
+        self.arc.center = point( x, y, draw = False  )
         
         radius = (self.xmax - self.xmin)/20
         self.arc.radius = radius
@@ -88,7 +88,7 @@ class angle(plotSett):
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
         
-        self.arc.center = point( x, y  )
+        self.arc.center = point( x, y, draw = False )
 
         radius = (self.xmax - self.xmin)/20
         self.arc.radius = radius
