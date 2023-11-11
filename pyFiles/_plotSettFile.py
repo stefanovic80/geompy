@@ -101,7 +101,9 @@ class plotSett():
        
     def condition_mask(self):
 
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        condition_mask0 = ( self.data[0] > self.xmin) & (self.data[0] < self.xmax)
+        condition_mask1 = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
+        condition_mask = condition_mask0 & condition_mask1
         return np.where(condition_mask)
         
 
@@ -252,6 +254,6 @@ class plotSett():
             f"\033[93m.xmin = \033[0m {self.xmin}\n"
             f"\033[93m.xmax = \033[0m {self.xmax}\n"
             f"\033[93m.steps = \033[0m {self.steps}\n"
-            f"\033[93m.x = \033[0m {self.x[:10]}...\n"
+            f"\033[93m.x = \033[0m {self._x[:10]}...\n"
             f"\033[93m.grid(N = {self.N})\033[0m\n"
         )
