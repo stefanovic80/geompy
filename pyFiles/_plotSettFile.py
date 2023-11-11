@@ -89,10 +89,10 @@ class plotSett():
 
 
 
-    def draw(self, cut = False ):
+    def draw(self, cut = False):#, angle = 2*np.pi ):
         
         self.cut = cut
-        self.chooseCalc()
+        self.chooseCalc()#angle = 2*np.pi)
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
 
         self.lines = []

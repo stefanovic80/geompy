@@ -35,9 +35,9 @@ class segment(plotSett):
         self.point = [point1, point2]
         
         #point choosen for labeling
-        self.pointLabel = point(draw = False)
-        self.pointLabel.coords = [None, None]
-        self.pointLabel.color = 'white'
+        #self.pointLabel = point(draw = False)
+        #self.pointLabel.coords = [None, None]
+        #self.pointLabel.color = 'white'
 
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
@@ -143,44 +143,22 @@ class segment(plotSett):
 
         return [ self.data[0][idx], self.data[1][idx] ]
 
-    """
-    def draw(self, name = None, cut = False ):
-        #self.pointLabel.set_text("")
-        self.cut = cut
-        self.chooseCalc()
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
-
-        self.lines = []
-        self.lines.append(line)
-        
-        if isinstance(name, str):
-            self.name = name
-        
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
-    """
+    
 
     def erase(self):
         self.__del__()
         
         #to remove text label
-        try:
-            self.pointLabel.tex.remove()
-        except:
-            pass
+        #try:
+        #    self.pointLabel.tex.remove()
+        #except:
+        #    pass
 
         self.data = [None, None]
 
         for j in range(2):
             self.point[j].coords = [None, None]
-        #for u in self.point:
-        #    u.coords = [None, None]
-
+        
         self.angCoeff = None
         self.intercept = None
 

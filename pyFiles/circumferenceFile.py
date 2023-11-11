@@ -16,37 +16,64 @@ class circumference(plotSett):
 
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = point(draw = False)
-        
-        #self.rotate = False        
+
         #three points passing through the circumference
         self.point = [None, None, None]
         
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
+        #do I still need this?
         self.lines = None
-        #self.data = None
+
         self.angles = None
-        #self._name = None
+        self._angle = 2*np.pi
         self._color = random.choice(self.colors)
 
         self.center._color = self._color
         self.cut = False 
         #------------------------------------------------------
         #point choosen for labeling
-        self.pointLabel = point(draw = False)
-        self.pointLabel.coords = [None, None]
-        self.pointLabel._color = 'white'
+        #self.pointLabel = point(draw = False)
+        #self.pointLabel.coords = [None, None]
+        #self.pointLabel._color = 'white'
         #------------------------------------------------------
 
         
         if draw == True:
             self.draw()
+       
 
+
+
+    @property
+    def angle(self):
+        return self._angle
+
+    @angle.setter
+    def angle(self, angle):
+        self.__del__()
+        self._angle = angle
+        self.chooseCalc(angle = self._angle )
+        
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
+
+        self.lines = []
+        self.lines.append(line)
+        #self.draw()
+        self.label(self._name)
+
+
+
+
+
+
+
+
+
+
+    
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None, angle = 2*np.pi):
-        # 
-        #if self.cut == False:
-        #    self.xMin = self.xmin
-        
+         
         data = [None, None]
 
         #1) (pi/2 pi/4)
@@ -84,15 +111,11 @@ class circumference(plotSett):
        
         self.pointsSelect(angle = angle)
 
+    #Do I still need this?
     def pointsSelect(self, angle = 2*np.pi):
         
-        #self.angles = np.arctan( ( self.data[1] - self.center.coords[1]) / (self.data[0] - self.center.coords[0]) )
-
-        #if angle != 2*np.pi:
         for point in self.point:
             try:
-                #condition = self.data[0] > point.coords[0]
-                #idxs = np.where(self.data[0][condition])
                 condition = self.angles < angle
                 idxs = np.where(self.angles[condition])
                 idxs = np.where(self.data[0][condition])
@@ -143,6 +166,8 @@ class circumference(plotSett):
 
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
+
+        self._angle = angle
         calculation_functions = [self.calc, self.calc2, self.calc3]
 
         for calc_function in calculation_functions:
