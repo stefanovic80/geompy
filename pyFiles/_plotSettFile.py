@@ -37,12 +37,22 @@ class plotSett():
         
         self.lims()
 
-
-
-
-
         self.rotate = False
         self._name = None
+
+    @property
+    def color(self):
+        return self._color
+
+    @color.setter
+    def color(self, c):
+        if c in self.colors:
+            self._color = c
+            self.draw()
+            self.label(self._name)
+        else:
+            pass
+
 
     @property
     def name(self):
@@ -94,17 +104,6 @@ class plotSett():
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
         return np.where(condition_mask)
         
-        #random.choice(indices[0])
-        #self.data = [self.data[0][idx], self.data[1][idx] ]
-
-        #self.pointLabel.color = self.color
-        #self.pointLabel.label(name)
-
-
-
-
-
-
 
 
     def lims(self):
