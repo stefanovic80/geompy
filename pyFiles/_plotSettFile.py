@@ -52,22 +52,7 @@ class plotSett():
     def name(self, n):
         self._name = n
         self.draw()
-        
-        #random_index = np.random.randint(len(self.data[0]))
-        #labelx = self.data[0][random_index]
-        #labely = self.data[1][random_index]
         self.label( n )
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -91,21 +76,6 @@ class plotSett():
         
         #labelx, labely may necessitte to be attributes
         self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -268,7 +238,8 @@ class plotSett():
             pass
 
         try:#removes point texts (.remove() doesn't work!)
-            self.pointLabel.remove()
+            #self.pointLabel.remove()
+            self.tex.remove()
         except:
             pass
 

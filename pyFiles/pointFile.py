@@ -93,7 +93,7 @@ class point(plotSett):
     def x(self, value):
         self.coords[0] = value
         self.draw()
-        #self.label(
+        self.label(self._name)
 
     @property
     def y(self):
@@ -103,7 +103,7 @@ class point(plotSett):
     def y(self, value):
         self.coords[1] = value
         self.draw()
-
+        self.label(self._name)
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
