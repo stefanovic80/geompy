@@ -25,6 +25,8 @@ class plotSett():
         self.linewidth = linewidth
         self.plotSettings = None
 
+        self.data = [None, None]
+        self.tex = [None, None]  # label text
         #density of grid
         self.N = 1
         
@@ -39,9 +41,7 @@ class plotSett():
 
 
 
-
-
-
+        self.rotate = False
         self._name = None
 
     @property
@@ -51,31 +51,84 @@ class plotSett():
     @name.setter
     def name(self, n):
         self._name = n
-        self.draw(name = n)
+        self.draw()
+        
+        #random_index = np.random.randint(len(self.data[0]))
+        #labelx = self.data[0][random_index]
+        #labely = self.data[1][random_index]
+        self.label( n )
 
 
 
 
 
-    def draw(self, name = None, cut = False ):
-        #self.pointLabel.set_text("")
+
+
+
+
+
+
+
+
+
+
+    def label(self, name):
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        if isinstance(name, str):
+            self._name = name
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        
+        #labelx, labely may necessitte to be attributes
+        self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def draw(self, cut = False ):
+        
         self.cut = cut
         self.chooseCalc()
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
 
         self.lines = []
         self.lines.append(line)
 
-        if isinstance(name, str):
-            self.name = name
+       
+    def condition_mask(self):
 
         condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
+        return np.where(condition_mask)
+        
+        #random.choice(indices[0])
+        #self.data = [self.data[0][idx], self.data[1][idx] ]
 
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
+        #self.pointLabel.color = self.color
+        #self.pointLabel.label(name)
 
 
 

@@ -15,7 +15,7 @@ class angle(plotSett):
         self.arc = circumference(draw = False)
         
         self.rotate = False
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
         self._name = None
         self.data = None
 
@@ -29,10 +29,10 @@ class angle(plotSett):
         q = [None, None]
         
         #for segment in self.segment:
-        self.segment[0].color = self.color
+        self.segment[0]._color = self._color
         self.segment[0].calc2()
         
-        self.segment[1].color = self.color
+        self.segment[1]._color = self._color
         self.segment[1].erase()
         self.segment[1].point[0] = self.segment[0].point[0]
         self.segment[1].intercept = np.random.uniform(self.xmin, self.xmax)
@@ -52,7 +52,7 @@ class angle(plotSett):
         radius = (self.xmax - self.xmin)/20
         self.arc.radius = radius
         
-        self.arc.color = self.color
+        self.arc._color = self._color
 
         arcSize = np.arctan( m[1] ) - np.arctan( m[0] )
         self.arc.calc(angle = arcSize)
@@ -93,7 +93,7 @@ class angle(plotSett):
         radius = (self.xmax - self.xmin)/20
         self.arc.radius = radius
 
-        self.arc.color = self.color
+        self.arc._color = self._color
 
         self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.arc.calc(angle = self.size)
@@ -135,11 +135,11 @@ class angle(plotSett):
 
         self.chooseCalc()
 
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
         
         #self.segment[0].draw()
         #self.segment[1].draw()
-        #self.segment[0].point[0].color = 'r'
+        #self.segment[0].point[0]._color = 'r'
         #self.segment[0].point[0].draw()
 
         self.lines = []

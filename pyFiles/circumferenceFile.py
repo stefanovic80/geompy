@@ -17,18 +17,18 @@ class circumference(plotSett):
         self.radius = random.uniform(0, (self.xmax-self.xmin)/2)
         self.center = point(draw = False)
         
-        self.rotate = False        
+        #self.rotate = False        
         #three points passing through the circumference
         self.point = [None, None, None]
         
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
         self.lines = None
-        self.data = None
+        #self.data = None
         self.angles = None
         #self._name = None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
-        self.center._color = self.color
+        self.center._color = self._color
         self.cut = False 
         #------------------------------------------------------
         #point choosen for labeling
@@ -39,7 +39,7 @@ class circumference(plotSett):
 
         
         if draw == True:
-            self.draw(name = None)
+            self.draw()
 
     #circumference equation calculation from center coordinates and radius
     def calc(self, name = None, angle = 2*np.pi):

@@ -25,9 +25,9 @@ class parabola(plotSett):
         
         self.lines = []
         self.point = [None, None, None]
-        self.data = None
+        #self.data = None
         #self._name =  None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
         #------------------------------------------------------------
         #point choosen for labeling
@@ -36,11 +36,11 @@ class parabola(plotSett):
         self.pointLabel.color = 'white'
         #------------------------------------------------------------
 
-        self.rotate = False
+        #self.rotate = False
 
 
         if draw == True:
-            self.draw(name = None)
+            self.draw()
 
     def erase(self):
         self.__del__()

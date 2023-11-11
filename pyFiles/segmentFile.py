@@ -20,14 +20,14 @@ class segment(plotSett):
         self.idxMin = None
         self.idxMax = None
 
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
         #self.xMin and self.xMax cut off the straight line into a segment
         self.xMin = self.xmin
         self.xMax = self.xmax
 
         #according with matplotlib self.lines.remove() removes the plot
         self.lines = None
-        self.data = None #[None, None]
+        #self.data = None #[None, None]
 
         #random points from which the straight line is identified
         point1 = point(xmin = xmin, xmax = xmax, draw = False)
@@ -44,11 +44,11 @@ class segment(plotSett):
         self.intercept = None
         self.length = None
         #self._name = None
-        self.rotate = False
+        #self.rotate = False
         self.cut = False
 
         if draw == True:
-            self.draw(name = None)
+            self.draw()
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self.cut == False:

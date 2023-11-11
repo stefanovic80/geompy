@@ -53,22 +53,15 @@ class point(plotSett):
         """
 
 
-
-
-
-
         self._color = random.choice(self.colors)
-        #self.j = 0 #for drawing
-        #self.k = 1 #for clicking
-
         self.lines = None
-        self.tex = None
-        #self._name = None
-        self.rotate = False
-        
+        self.tex = None 
 
         if draw == True:
-            self.draw(name = None)
+            self.draw()
+            #self.label(name = None)
+
+    #def label(self):
 
     """
     @property
@@ -99,7 +92,8 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.coords[0] = value
-        self.draw(self._name)
+        self.draw()
+        #self.label(
 
     @property
     def y(self):
@@ -108,13 +102,17 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.coords[1] = value
-        self.draw(self._name)
+        self.draw()
 
 
+    #coords as a list of two numpy arrays of one element each
     def calc(self):
-        self.data = self.coords
+        self.data = [ None, None  ]
+        for j in range(2):
+            self.data[j] = np.array([ self.coords[j] ] )
 
-    def draw(self, name = None):
+    #it overwrites the .draw method in _plotSett
+    def draw(self):
         self.__del__()
         if self.rotate == False:
             self.calc()
@@ -122,10 +120,8 @@ class point(plotSett):
         line = self.ax.scatter( self.coords[0], self.coords[1], color = self._color, linewidth = self.linewidth)
         self.lines = []
         self.lines.append(line)
-
-        self.label(name)
-        #self.j += 1 
-
+    
+    """
     def label(self, name):
         try:
             self.tex.remove()
@@ -137,7 +133,7 @@ class point(plotSett):
 
         shift = (self.xmax - self.xmin)/40
         self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self._name, fontsize = 12, color = self._color, ha="center", va="center")
-        
+    """ 
 
     #-----------------------------------------------
     def randomCoords(self, seed):
@@ -165,27 +161,24 @@ class point(plotSett):
 
         self.ax.set_xlim( a[0][0] - deltaZoom, a[0][0] + deltaZoom)
         self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
-        #print("\nrun .click('label') one more time to select point coordinates\n")
-        #self.k += 1
 
 
     def click(self, name = None):
         self.__del__()
-         
-                
-        #if self.k%2 != 0: 
+          
         b = plt.ginput()
         self.coords = [ b[0][0], b[0][1] ]
         self.draw(name)
             
         self.lims()
-        
+    
+    """
     def rotateData(self, data = [None, None], angle = 0):
         a1 = (data[0] - self.coords[0])*np.sin(angle)
         data[0] = (data[0] - self.coords[0]  )*np.cos(angle) - (data[1] - self.coords[1]  )*np.sin(angle) + self.coords[0]
         data[1] = a1 + ( data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
         return data
-
+    """
 
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
@@ -194,7 +187,7 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
         
-        locus.draw(name = locus.name)#, draw = False)
+        locus.draw()#, draw = False)
     def __str__(self):
 
         super().__str__()
@@ -203,7 +196,7 @@ class point(plotSett):
             f"\033[93mClass type:\033[0m point\n"
             f"\nAttributes:\n"
             f"\033[93mcoords:\033[0m [{self.coords[0]}, {self.coords[1]}] \n"
-            f"\033[93mname:\033[0m {self.name}\n"
+            f"\033[93mname:\033[0m {self._name}\n"
             f"\033[93mcolor:\033[0m {self._color}\n"
         )
 
