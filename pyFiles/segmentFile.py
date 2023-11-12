@@ -45,6 +45,10 @@ class segment(plotSett):
         if draw == True:
             self.draw()
 
+    @property
+    def cut(self):
+        self._cut = not self._cut
+        self.draw(cut = self._cut)
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self._cut == False:
