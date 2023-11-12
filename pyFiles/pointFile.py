@@ -61,30 +61,7 @@ class point(plotSett):
             self.draw()
             #self.label(name = None)
 
-    #def label(self):
-
-    """
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, n):
-        self._name = n
-        self.draw(name = n)
-    """
-
-    """
-    @property
-    def color(self):
-        return self._color
-
-    @color.setter
-    def name(self, c):
-        self._color = c
-        self.draw(name = self._name)
-    """
-
+    
     @property
     def x(self):
         return self.coords[0]
@@ -121,20 +98,7 @@ class point(plotSett):
         self.lines = []
         self.lines.append(line)
     
-    """
-    def label(self, name):
-        try:
-            self.tex.remove()
-        except:
-            pass
-
-        if isinstance(name, str):
-            self._name = name
-
-        shift = (self.xmax - self.xmin)/40
-        self.tex = self.ax.text(self.coords[0] + shift, self.coords[1] + shift, self._name, fontsize = 12, color = self._color, ha="center", va="center")
-    """ 
-
+    
     #-----------------------------------------------
     def randomCoords(self, seed):
         self.coords[0] = random.uniform(self.xmin, self.xmax)
@@ -172,14 +136,7 @@ class point(plotSett):
             
         self.lims()
     
-    """
-    def rotateData(self, data = [None, None], angle = 0):
-        a1 = (data[0] - self.coords[0])*np.sin(angle)
-        data[0] = (data[0] - self.coords[0]  )*np.cos(angle) - (data[1] - self.coords[1]  )*np.sin(angle) + self.coords[0]
-        data[1] = a1 + ( data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
-        return data
-    """
-
+    
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
         a1 = (locus.data[0] - self.coords[0])*np.sin(angle)
