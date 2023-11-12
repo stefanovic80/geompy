@@ -127,12 +127,13 @@ class point(plotSett):
         self.ax.set_ylim( a[0][1] - deltaZoom, a[0][1] + deltaZoom)
 
 
-    def click(self, name = None):
+    def click(self):
         self.__del__()
           
         b = plt.ginput()
         self.coords = [ b[0][0], b[0][1] ]
-        self.draw(name)
+        self.draw()
+        self.label(self._name)
             
         self.lims()
     
