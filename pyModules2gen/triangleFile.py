@@ -38,7 +38,7 @@ class triangle(plotSett):
         self.A.color = self.B.color = self.C.color
         self.AB.color = self.BC.color = self.CA.color
         """
-        self.AB.cut = self.BC.cut = self.CA.cut = True
+        self.AB._cut = self.BC._cut = self.CA._cut = True
 
         self.AB.calc2()#two points
         self.BC.calc2()#two points

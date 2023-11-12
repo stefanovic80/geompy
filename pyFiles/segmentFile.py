@@ -34,24 +34,20 @@ class segment(plotSett):
         point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1, draw = False)
         self.point = [point1, point2]
         
-        #point choosen for labeling
-        #self.pointLabel = point(draw = False)
-        #self.pointLabel.coords = [None, None]
-        #self.pointLabel.color = 'white'
-
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.length = None
         #self._name = None
         #self.rotate = False
-        self.cut = False
+        self._cut = False
 
         if draw == True:
             self.draw()
 
+
     def calc1(self): #calculate equation from angCoeff and intercept
-        if self.cut == False:
+        if self._cut == False:
             self.xMin = self.xmin
             self.xMax = self.xmax
         
@@ -74,7 +70,7 @@ class segment(plotSett):
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
-            if self.cut == True:
+            if self._cut == True:
                 j = 0
                 lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
                 lims.sort()
@@ -87,7 +83,7 @@ class segment(plotSett):
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._x ]
 
-            if self.cut == True:
+            if self._cut == True:
                 j = 1
                 lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
                 lims.sort()

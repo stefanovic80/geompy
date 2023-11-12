@@ -19,11 +19,20 @@ def update_config(new_xmin, new_xmax):
         config_file.write(f'xmin = {xmin}\n')
         config_file.write(f'xmax = {xmax}\n')
 """
+
 try:
     xmin
 except:
     xmin = float(input("xmin\n"))
     xmax = float(input("xmax\n"))
 
+"""
+@property
+def xmin():
+    return a
+
+@xmin.setter
+def xmin(
+"""
 
 steps, linewidth, seed = 1000, 2, 1

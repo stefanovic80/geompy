@@ -97,7 +97,7 @@ class point(plotSett):
 
     @property
     def y(self):
-        return self.coords[0]
+        return self.coords[1]
 
     @y.setter
     def y(self, value):
