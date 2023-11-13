@@ -21,8 +21,8 @@ class plotSett():
     plt.tight_layout()
     #ax.set_xlim(self.xmin, self.xmax)
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
-        self.xmin = xmin
-        self.xmax = xmax
+        self.xmin = xmin[0]
+        self.xmax = xmax[0]
         self.steps = steps
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth
@@ -52,7 +52,8 @@ class plotSett():
         self.xmin = value
         majorStep = (self.xmax - self.xmin)/20
         self.grid(majorStep = majorStep)
-    
+        self.lims()
+
     @property
     def right(self):
         return self.xmax
@@ -62,6 +63,7 @@ class plotSett():
         self.xmax = value
         majorStep = (self.xmax - self.xmin)/20
         self.grid(majorStep = majorStep)
+        self.lims()
 
     @property
     def color(self):

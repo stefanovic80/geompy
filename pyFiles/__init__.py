@@ -23,9 +23,9 @@ def update_config(new_xmin, new_xmax):
 
 #xmin, xmax = -10, 10
 
-xmin = -10
+xmin = [-10]
 
-xmax = 10
+xmax = [10]
 
 """
 @property

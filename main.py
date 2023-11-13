@@ -28,8 +28,8 @@ def main():
 
     global xmin, xmax
     
-    xmin = -20
-    xmax = 20
+    xmin = [-20]
+    xmax = [20]
 
     _set = plotSett()
     _set.grid()

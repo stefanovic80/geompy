@@ -15,7 +15,7 @@ class parabola(plotSett):
         super().__init__(xmin, xmax, steps)
         #self.xShift = np.random.randint(xmin, xmax)
         #self.yShift = np.random.randint(xmin, xmax)
-        self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax), draw = False  )
+        self.vertex = point( np.random.randint(xmin[0], xmax[0]), np.random.randint(xmin[0], xmax[0]), draw = False  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         
         
