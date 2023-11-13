@@ -18,7 +18,7 @@ class triangle(plotSett):
         self.data = None
         self.rotate = False
         self._name = None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
     def calc(self):
         self.AB = segment( draw = False )
@@ -50,7 +50,7 @@ class triangle(plotSett):
 
     def draw(self, name = None):
         self.__del__()
-        self.name = name
+        self._name = name
         if self.rotate == False:
             self.calc()
 
@@ -60,15 +60,7 @@ class triangle(plotSett):
         self.lines.append(line)
 
         #copied from segment class, not completed
-        """
-        self.A.draw("A")
-        self.B.draw("B")
-        self.C.draw("C")
-        self.AB.draw(cut = True)
-        self.BC.draw(cut = True)
-        self.CA.draw(cut = True)
-        """
-
+        
     def erase(self):
         self.__del__()
 
