@@ -23,9 +23,7 @@ class circumference(plotSett):
         #three points passing through the circumference
         self.point = [None, None, None]
         
-        #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
-        #do I still need this?
-        self.lines = None
+        #self.lines = None
 
         self.angles = None
         self._angle = 2*np.pi
@@ -33,13 +31,6 @@ class circumference(plotSett):
 
         self.center._color = self._color
         self.cut = False 
-        #------------------------------------------------------
-        #point choosen for labeling
-        #self.pointLabel = point(draw = False)
-        #self.pointLabel.coords = [None, None]
-        #self.pointLabel._color = 'white'
-        #------------------------------------------------------
-
         
         if draw == True:
             self.draw()
@@ -63,14 +54,6 @@ class circumference(plotSett):
         self.lines.append(line)
         #self.draw()
         self.label(self._name)
-
-
-
-
-
-
-
-
 
 
     
@@ -114,7 +97,7 @@ class circumference(plotSett):
        
         self.pointsSelect(angle = angle)
 
-    #Do I still need this?
+    
     def pointsSelect(self, angle = 2*np.pi):
         
         for point in self.point:
@@ -181,39 +164,7 @@ class circumference(plotSett):
                 except:
                     pass
 
-    """
-    def draw(self, name = None, angle = 2*np.pi):
-        
-        #if isinstance(cut, bool):
-        #    self.cut = cut
-        
-        self.chooseCalc(angle = angle)
-    
-        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self._name, linewidth = self.linewidth)
-        
-        self.lines = []
-        self.lines.append(line1)
-
-        #self.ax.set_xlim(self.xmin, self.xmax)
-        #self.ax.set_ylim(self.xmin, self.xmax)
-
-        #-------------------------------------------
-        if isinstance(name, str):
-            self._name = name
-        
-        
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel._color = self.color
-        self.pointLabel.label(self._name)
-
-        #-------------------------------------------
-    """ 
-
-
+    #to be partially inherited
     def erase(self):
         self.__del__()
 

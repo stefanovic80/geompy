@@ -3,7 +3,7 @@ from . import plt, np, random
 from . import xmin, xmax, steps, linewidth
 
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
@@ -12,9 +12,7 @@ class parabola(plotSett):
 
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
 
-        super().__init__(xmin, xmax, steps)
-        #self.xShift = np.random.randint(xmin, xmax)
-        #self.yShift = np.random.randint(xmin, xmax)
+        super().__init__(xmin, xmax, steps, linewidth)
         self.vertex = point( np.random.randint(xmin[0], xmax[0]), np.random.randint(xmin[0], xmax[0]), draw = False  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         
@@ -25,18 +23,7 @@ class parabola(plotSett):
         
         self.lines = []
         self.point = [None, None, None]
-        #self.data = None
-        #self._name =  None
         self._color = random.choice(self.colors)
-
-        #------------------------------------------------------------
-        #point choosen for labeling
-        self.pointLabel = point( draw = False )
-        self.pointLabel.coords = [None, None]
-        self.pointLabel.color = 'white'
-        #------------------------------------------------------------
-
-        #self.rotate = False
 
 
         if draw == True:
@@ -47,13 +34,7 @@ class parabola(plotSett):
         
         self.vertex = None
         self.concavity = None
-        #to remove text label
-        try:
-            self.pointLabel.tex.remove()
-        except:
-            pass
-
-        self.data = None #[None, None]
+        self.data = [None, None]
 
 
 
@@ -113,29 +94,6 @@ class parabola(plotSett):
                     break
                 except:
                     pass
-
-
-    """
-    def draw(self, name = None):
-        
-        self.chooseCalc()
-
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self._name) # can be optimized for ALL pictures vi rmParams
-        
-        self.lines = []
-        self.lines.append(line)
-
-        if isinstance(name, str):
-            self._name = name
-
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
-    """
 
 
     def __str__(self):
