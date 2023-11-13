@@ -1,6 +1,10 @@
 # segment.py
 from . import plt, np, random
 from . import xmin, xmax, steps, linewidth, seed
+#from . import steps, linewidth, seed
+
+#global xmin, xmax
+
 
 plt.ion()
 

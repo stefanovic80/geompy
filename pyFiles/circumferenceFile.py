@@ -1,6 +1,9 @@
 # circumference.py
 from . import plt, np, random
 from . import xmin, xmax, steps, linewidth
+from . import steps, linewidth
+
+#global xmin, xmax
 
 #plt.ion()
 

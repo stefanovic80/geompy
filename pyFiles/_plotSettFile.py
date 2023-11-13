@@ -1,6 +1,9 @@
 # _plotSett.py
 from . import plt, np, random
 from . import xmin, xmax, steps, linewidth
+#from . import steps, linewidth
+
+#global xmin, xmax
 
 plt.ion()
 
@@ -39,6 +42,26 @@ class plotSett():
 
         self.rotate = False
         self._name = None
+
+    @property
+    def left(self):
+        return self.xmin
+
+    @left.setter
+    def left(self, value):
+        self.xmin = value
+        majorStep = (self.xmax - self.xmin)/20
+        self.grid(majorStep = majorStep)
+    
+    @property
+    def right(self):
+        return self.xmax
+
+    @right.setter
+    def right(self, value):
+        self.xmax = value
+        majorStep = (self.xmax - self.xmin)/20
+        self.grid(majorStep = majorStep)
 
     @property
     def color(self):

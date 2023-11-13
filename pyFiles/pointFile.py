@@ -1,4 +1,7 @@
 #pointFile.py
+
+#global xmin, xmax
+
 from . import plt, np, random#, ctypes
 
 plt.ion()

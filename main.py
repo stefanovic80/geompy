@@ -1,3 +1,6 @@
+from pyFiles import xmin, xmax
+
+
 # Import functions and classes from your package
 #from pyFiles.module2 import MyClass
 from pyFiles._plotSettFile import plotSett
@@ -6,8 +9,7 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
 from pyFiles.segmentFile import segment
 from pyFiles.parabolaFile import parabola
-#from pyFiles.triangleFile import triangle
-#from pyFiles.angleFile import angle
+
 
 from pyModules2gen.triangleFile import triangle
 from pyModules2gen.angleFile import angle
@@ -23,9 +25,14 @@ from copy import copy
 
 def main():
     print("Running main.py")
+
+    global xmin, xmax
     
-    __set = plotSett()
-    __set.grid()
+    xmin = -20
+    xmax = 20
+
+    _set = plotSett()
+    _set.grid()
     # result = my_function()
     #print("Result from module1:", result)
 
