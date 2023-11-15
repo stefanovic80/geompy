@@ -20,12 +20,9 @@ def update_config(new_xmin, new_xmax):
         config_file.write(f'xmax = {xmax}\n')
 """
 
+#xmin = [-10]
 
-#xmin, xmax = -10, 10
-
-xmin = [-10]
-
-xmax = [10]
+#xmax = [10]
 
 """
 @property

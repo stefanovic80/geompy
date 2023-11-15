@@ -1,7 +1,12 @@
 # _plotSett.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
+from . import steps, linewidth
 #from . import steps, linewidth
+
+#xmin = [-10]
+#xmax = [10]
+
+from .config import xmin, xmax
 
 #global xmin, xmax
 
@@ -21,8 +26,8 @@ class plotSett():
     plt.tight_layout()
     #ax.set_xlim(self.xmin, self.xmax)
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
-        self.xmin = xmin[0]
-        self.xmax = xmax[0]
+        self.xmin = xmin#[0]
+        self.xmax = xmax#[0]
         self.steps = steps
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self.linewidth = linewidth

@@ -7,8 +7,10 @@ from . import plt, np, random#, ctypes
 plt.ion()
 
 from ._plotSettFile import plotSett
-from . import xmin, xmax, steps, linewidth
+#from . import xmin, xmax, steps, linewidth
+from . import steps, linewidth
 from . import seed
+from .config import xmin, xmax
 
 
 class point(plotSett):

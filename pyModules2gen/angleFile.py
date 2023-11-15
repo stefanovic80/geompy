@@ -3,7 +3,9 @@ from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 from pyFiles.circumferenceFile import circumference
 
-from pyFiles import xmin, xmax, steps, linewidth, seed
+from pyFiles import steps, linewidth, seed
+
+from pyFiles.config import xmin, xmax
 
 from . import plt, np, random
 

@@ -1,11 +1,8 @@
 # circumference.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
 from . import steps, linewidth
 
-#global xmin, xmax
-
-#plt.ion()
+from .config import xmin, xmax
 
 from ._plotSettFile import plotSett
 from .pointFile import point

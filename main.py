@@ -1,4 +1,4 @@
-from pyFiles import xmin, xmax
+#from pyFiles import xmin, xmax
 
 
 # Import functions and classes from your package
@@ -9,7 +9,7 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
 from pyFiles.segmentFile import segment
 from pyFiles.parabolaFile import parabola
-
+from pyFiles.config import xmin, xmax
 
 from pyModules2gen.triangleFile import triangle
 from pyModules2gen.angleFile import angle
@@ -28,8 +28,7 @@ def main():
 
     global xmin, xmax
     
-    xmin = [-20]
-    xmax = [20]
+    
 
     _set = plotSett()
     _set.grid()
