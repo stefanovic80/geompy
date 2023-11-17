@@ -1,2 +1,3 @@
-xmin = -10
-xmax = 10
+
+xmin = -12
+xmax = 13

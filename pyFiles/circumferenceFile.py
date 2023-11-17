@@ -20,8 +20,6 @@ class circumference(plotSett):
         #three points passing through the circumference
         self.point = [None, None, None]
         
-        #self.lines = None
-
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)

@@ -16,31 +16,19 @@ class ellipse(plotSett):
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
-        self.center = point()
+        self.center = point(draw = False)
         self.focus1 = random.uniform(0, (self.xmax-self.xmin)/4)
         self.focus2 = random.uniform(0, (self.xmax-self.xmin)/4)
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
-        self.lines = None
-        self.data = None
-        self.name = None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
-        self.center.color = self.color
-        self.rotate = False
+        self.center._color = self._color
 
-    def draw(self):
+    def calc(self):
         self.__del__()
 
         ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 
-        #it removes not a number terms due to root of negative values
-        #idx1 = np.argmax(~np.isnan(circ))
-        #idx2 = len(circ) - np.argmax(np.flip(~np.isnan(circ)))
-        #x values for the graph upper side
-        #self.data = [self._x[idx1:idx2]]
-        #circ = circ[idx1:idx2]
-        
-        #y values as second column of self.data matrix
         self.data = [self._x]
         self.data = self.data + [ np.append( self.center.coords[1] + ellip, self.center.coords[1] - ellip[::-1] ) ]
 

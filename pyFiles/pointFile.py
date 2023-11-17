@@ -74,6 +74,7 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.coords[0] = value
+        self.lims()
         self.draw()
         self.label(self._name)
 
@@ -84,6 +85,7 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.coords[1] = value
+        self.lims()
         self.draw()
         self.label(self._name)
 
@@ -96,6 +98,7 @@ class point(plotSett):
     #it overwrites the .draw method in _plotSett
     def draw(self):
         self.__del__()
+        self.lims()
         if self.rotate == False:
             self.calc()
 
