@@ -1,4 +1,4 @@
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 from pyFiles.circumferenceFile import circumference
@@ -13,7 +13,7 @@ class angle(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         super().__init__(xmin, xmax, steps)
         
-        self.segment = [segment(draw = False), segment(draw = False)]
+        self.line = [line(draw = False), line(draw = False)]
         self.arc = circumference(draw = False)
         
         self.rotate = False
@@ -30,21 +30,21 @@ class angle(plotSett):
         m = [None, None]
         q = [None, None]
         
-        #for segment in self.segment:
-        self.segment[0]._color = self._color
-        self.segment[0].calc2()
+        #for line in self.line:
+        self.line[0]._color = self._color
+        self.line[0].calc2()
         
-        self.segment[1]._color = self._color
-        self.segment[1].erase()
-        self.segment[1].point[0] = self.segment[0].point[0]
-        self.segment[1].intercept = np.random.uniform(self.xmin, self.xmax)
-        self.segment[1].calc4()
+        self.line[1]._color = self._color
+        self.line[1].erase()
+        self.line[1].point[0] = self.line[0].point[0]
+        self.line[1].intercept = np.random.uniform(self.xmin, self.xmax)
+        self.line[1].calc4()
         
-        m[0] = self.segment[0].angCoeff
-        q[0] = self.segment[0].intercept
+        m[0] = self.line[0].angCoeff
+        q[0] = self.line[0].intercept
         
-        m[1] = self.segment[1].angCoeff
-        q[1] = self.segment[1].intercept
+        m[1] = self.line[1].angCoeff
+        q[1] = self.line[1].intercept
 
 
         x = (q[1] - q[0])/(m[0] - m[1])
@@ -66,16 +66,16 @@ class angle(plotSett):
         self.size = None
 
     def calc2(self):
-        #for segment in self.segment:
-        #    segment.chooseCalc()
+        #for line in self.line:
+        #    line.chooseCalc()
         m = [None, None]
         q = [None, None]
 
-        m[0] = self.segment[0].angCoeff
-        q[0] = self.segment[0].intercept
+        m[0] = self.line[0].angCoeff
+        q[0] = self.line[0].intercept
 
-        m[1] = self.segment[1].angCoeff
-        q[1] = self.segment[1].intercept
+        m[1] = self.line[1].angCoeff
+        q[1] = self.line[1].intercept
         
         #------------- from chatGPT
         # Get the indices that would sort 'm'
@@ -118,7 +118,7 @@ class angle(plotSett):
 
         calculation_functions = [self.calc2]
         
-        #for segment in self.segment:
+        #for line in self.line:
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
@@ -139,10 +139,10 @@ class angle(plotSett):
 
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
         
-        #self.segment[0].draw()
-        #self.segment[1].draw()
-        #self.segment[0].point[0]._color = 'r'
-        #self.segment[0].point[0].draw()
+        #self.line[0].draw()
+        #self.line[1].draw()
+        #self.line[0].point[0]._color = 'r'
+        #self.line[0].point[0].draw()
 
         self.lines = []
         self.lines.append(line)
@@ -158,6 +158,6 @@ class angle(plotSett):
             pass
 
         self.data = [None, None]
-        self.segment = [None, None]
+        self.line = [None, None]
         #self.arc.erase()
         #self.center = None

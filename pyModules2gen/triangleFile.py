@@ -1,4 +1,4 @@
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 
@@ -23,9 +23,9 @@ class triangle(plotSett):
         self._color = random.choice(self.colors)
 
     def calc(self):
-        self.AB = segment( draw = False )
-        self.BC = segment( draw = False )
-        self.CA = segment( draw = False )
+        self.AB = line( draw = False )
+        self.BC = line( draw = False )
+        self.CA = line( draw = False )
         self.AB.erase()
         self.BC.erase()
         self.CA.erase()
@@ -61,7 +61,7 @@ class triangle(plotSett):
         self.lines = []
         self.lines.append(line)
 
-        #copied from segment class, not completed
+        #copied from line class, not completed
         
     def erase(self):
         self.__del__()

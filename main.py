@@ -7,7 +7,7 @@ from pyFiles._plotSettFile import plotSett
 from pyFiles.pointFile import point
 from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.parabolaFile import parabola
 from pyFiles.config import xmin, xmax
 

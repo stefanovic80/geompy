@@ -1,4 +1,4 @@
-# segment.py
+# lineFile.py
 from . import plt, np, random
 #from . import xmin, xmax, steps, linewidth, seed
 
@@ -11,7 +11,7 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 
 
-class segment(plotSett):
+class line(plotSett):
 
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed, draw = True):
         
@@ -19,12 +19,12 @@ class segment(plotSett):
         
         self.seed = seed
 
-        #.xMin and .xMax indexes to cut off the straight line into a segment
+        #.xMin and .xMax indexes to cut off the straight line into a line
         self.idxMin = None
         self.idxMax = None
 
         self._color = random.choice(self.colors)
-        #self.xMin and self.xMax cut off the straight line into a segment
+        #self.xMin and self.xMax cut off the straight line into a line
         self.xMin = self.xmin
         self.xMax = self.xmax
 
@@ -159,7 +159,7 @@ class segment(plotSett):
 
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
-            f"\033[93mClass type = \033[0m Segment\n"
+            f"\033[93mClass type = \033[0m line\n"
             f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
             f"\033[93m.xMin = \033[0m {self.xMin}\n"
