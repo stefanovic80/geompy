@@ -30,7 +30,7 @@ class plotSett():
         self.xmax = xmax#[0]
         self.steps = steps
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
-        self.linewidth = linewidth
+        self._linewidth = linewidth
         self.plotSettings = None
 
         self.data = [None, None]
@@ -93,6 +93,15 @@ class plotSett():
         self._name = n
         self.draw()
         self.label( n )
+    
+    @property
+    def linewidth(self):
+        return self._linewidth
+
+    @linewidth.setter
+    def linewidth(self, n):
+        self._linewidth = n
+        self.draw()
 
 
 
@@ -124,7 +133,7 @@ class plotSett():
         self.lims()
         #self._cut = cut
         self.chooseCalc()#angle = 2*np.pi)
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
 
         self.lines = []
         self.lines.append(line)
@@ -146,8 +155,6 @@ class plotSett():
 
 
     def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
-        
-        #max( abs(self.min), abs(self.max) )
 
         #grid density 
         self.N = self.N - 0.1*N
@@ -193,7 +200,7 @@ class plotSett():
         self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
 
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.vline = self.ax.axvline(0, color = 'k', linewidth = self.linewidth)
+        self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
         #y grid---------------------------------------
         Ymajor_ticks = Xmajor_ticks
@@ -209,7 +216,7 @@ class plotSett():
         #self.ax.grid(switch)
 
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.hline = self.ax.axhline(0, color = 'k', linewidth = self.linewidth)    
+        self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
 
     def gridOff(self):
         plt.minorticks_off()

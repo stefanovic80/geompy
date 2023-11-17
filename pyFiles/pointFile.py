@@ -101,7 +101,7 @@ class point(plotSett):
         if self.rotate == False:
             self.calc()
 
-        line = self.ax.scatter( self.coords[0], self.coords[1], color = self._color, linewidth = self.linewidth)
+        line = self.ax.scatter( self.coords[0], self.coords[1], color = self._color, linewidth = self._linewidth)
         self.lines = []
         self.lines.append(line)
     
