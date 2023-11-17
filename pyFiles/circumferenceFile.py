@@ -25,7 +25,7 @@ class circumference(plotSett):
         self._color = random.choice(self.colors)
 
         self.center._color = self._color
-        self.cut = False 
+        #self.cut = False 
         
         if draw == True:
             self.draw()

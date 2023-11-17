@@ -11,7 +11,7 @@ from .pointFile import point
 class ellipse(plotSett):
 #class circumference(point):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, draw = True):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
@@ -23,6 +23,11 @@ class ellipse(plotSett):
         self._color = random.choice(self.colors)
 
         self.center._color = self._color
+
+        if draw == True:
+            self.draw()
+
+
 
     def calc(self):
         self.__del__()
@@ -48,7 +53,28 @@ class ellipse(plotSett):
 
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
-    
+
+
+
+
+
+    def chooseCalc(self):#, angle = 2*np.pi):
+        self.__del__()
+
+        #self._angle = angle
+        calculation_functions = [self.calc]#, self.calc2, self.calc3]
+
+        for calc_function in calculation_functions:
+            if self.rotate == False:
+                try:
+                    calc_function()#angle = angle)
+                    break
+                except:
+                    pass
+
+
+
+
     def __str__(self):
 
         super().__str__()
