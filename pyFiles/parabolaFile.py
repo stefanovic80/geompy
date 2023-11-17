@@ -1,8 +1,8 @@
 # parabolaFile.py
 from . import plt, np, random
-from . import steps, linewidth
+#from . import steps, linewidth
 
-from .config import xmin, xmax
+from .config import xmin, xmax, steps, linewidth
 
 #plt.ion()
 

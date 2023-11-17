@@ -1,12 +1,12 @@
 # _plotSett.py
 from . import plt, np, random
-from . import steps, linewidth
+#from . import steps, linewidth
 #from . import steps, linewidth
 
 #xmin = [-10]
 #xmax = [10]
 
-from .config import xmin, xmax
+from .config import xmin, xmax, linewidth, steps
 
 #global xmin, xmax
 

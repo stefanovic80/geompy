@@ -2,8 +2,8 @@
 from . import plt, np, random
 #from . import xmin, xmax, steps, linewidth, seed
 
-from . import steps, linewidth, seed
-from .config import xmin, xmax
+from . import seed#steps, linewidth, seed
+from .config import xmin, xmax, linewidth, steps
 
 plt.ion()
 

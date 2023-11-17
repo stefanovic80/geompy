@@ -2,9 +2,9 @@ from pyFiles.lineFile import line
 from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 
-from pyFiles import steps, linewidth, seed
+from pyFiles import seed #steps, linewidth, seed
 
-from pyFiles.config import xmin, xmax
+from pyFiles.config import xmin, xmax, linewidth, steps
 
 from . import plt, np, random
 

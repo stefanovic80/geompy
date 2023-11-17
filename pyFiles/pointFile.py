@@ -8,9 +8,9 @@ plt.ion()
 
 from ._plotSettFile import plotSett
 #from . import xmin, xmax, steps, linewidth
-from . import steps, linewidth
+#from . import steps, linewidth
 from . import seed
-from .config import xmin, xmax
+from .config import xmin, xmax, linewidth, steps
 
 
 class point(plotSett):
