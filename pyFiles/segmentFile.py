@@ -28,10 +28,6 @@ class segment(plotSett):
         self.xMin = self.xmin
         self.xMax = self.xmax
 
-        #according with matplotlib self.lines.remove() removes the plot
-        self.lines = None
-        #self.data = None #[None, None]
-
         #random points from which the straight line is identified
         point1 = point(xmin = xmin, xmax = xmax, draw = False)
         point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1, draw = False)
@@ -41,8 +37,6 @@ class segment(plotSett):
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.length = None
-        #self._name = None
-        #self.rotate = False
         self._cut = False
 
         if draw == True:
@@ -151,15 +145,8 @@ class segment(plotSett):
 
     def erase(self):
         self.__del__()
-        
-        #to remove text label
-        #try:
-        #    self.pointLabel.tex.remove()
-        #except:
-        #    pass
 
         self.data = [None, None]
-
         for j in range(2):
             self.point[j].coords = [None, None]
         

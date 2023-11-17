@@ -14,7 +14,6 @@ from .config import xmin, xmax
 
 
 class point(plotSett):
-    #def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
     def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
         super().__init__( xmin, xmax, steps, linewidth)
         

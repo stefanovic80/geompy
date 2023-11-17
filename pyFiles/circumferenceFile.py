@@ -24,8 +24,7 @@ class circumference(plotSett):
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
 
-        self.center._color = self._color
-        #self.cut = False 
+        self.center._color = self._color 
         
         if draw == True:
             self.draw()

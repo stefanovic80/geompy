@@ -269,13 +269,11 @@ class plotSett():
         except:
             pass
 
-        try:#removes point texts (.remove() doesn't work!)
-            #self.pointLabel.remove()
+        try:#removes point texts
             self.tex.remove()
         except:
             pass
 
-        
         #self.lims()
         
 
