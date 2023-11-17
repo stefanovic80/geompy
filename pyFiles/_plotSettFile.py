@@ -131,10 +131,11 @@ class plotSett():
     def draw(self):#, cut = False):#, angle = 2*np.pi ):
 
         self.lims()
-        #self._cut = cut
-        self.chooseCalc()#angle = 2*np.pi)
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
 
+        self.chooseCalc()
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
+        
+        #to check!
         self.lines = []
         self.lines.append(line)
 
