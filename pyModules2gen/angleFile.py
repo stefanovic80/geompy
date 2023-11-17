@@ -52,7 +52,7 @@ class angle(plotSett):
         self.arc.center = point( x, y, draw = False  )
         
         radius = (self.xmax - self.xmin)/20
-        self.arc.radius = radius
+        self.arc._radius = radius
         
         self.arc._color = self._color
 
@@ -93,7 +93,7 @@ class angle(plotSett):
         self.arc.center = point( x, y, draw = False )
 
         radius = (self.xmax - self.xmin)/20
-        self.arc.radius = radius
+        self.arc._radius = radius
 
         self.arc._color = self._color
 
@@ -128,7 +128,7 @@ class angle(plotSett):
                     pass
 
 
-
+    """
     def draw(self, name = None):
         #self.__del__()
         self._name = name
@@ -137,16 +137,12 @@ class angle(plotSett):
 
         self.chooseCalc()
 
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
-        #self.line[0].draw()
-        #self.line[1].draw()
-        #self.line[0].point[0]._color = 'r'
-        #self.line[0].point[0].draw()
 
         self.lines = []
         self.lines.append(line)
-
+    """
         
     def erase(self):
         self.__del__()
