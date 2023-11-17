@@ -27,8 +27,9 @@ class ellipse(plotSett):
         if draw == True:
             self.draw()
 
+    
 
-
+    #to be revisited: y = f(x) for derivative > 1, x = f(y) for derivative < 1
     def calc(self):
         self.__del__()
 

@@ -47,7 +47,6 @@ class circumference(plotSett):
 
         self.lines = []
         self.lines.append(line)
-        #self.draw()
         self.label(self._name)
 
 
