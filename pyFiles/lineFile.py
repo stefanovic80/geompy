@@ -43,6 +43,23 @@ class line(plotSett):
             self.draw()
 
     @property
+    def m(self):
+        return self.angCoeff
+
+    @m.setter
+    def m(self, value):
+        self.angCoeff = value
+
+    @property
+    def q(self):
+        return self.intercept
+
+    @q.setter
+    def q(self, value):
+        self.intercept = value
+
+
+    @property
     def cut(self):
         self._cut = not self._cut
         self.draw()#cut = self._cut)

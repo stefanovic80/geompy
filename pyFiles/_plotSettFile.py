@@ -26,8 +26,8 @@ class plotSett():
     plt.tight_layout()
     #ax.set_xlim(self.xmin, self.xmax)
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
-        self.xmin = xmin#[0]
-        self.xmax = xmax#[0]
+        self.xmin = xmin
+        self.xmax = xmax
         self.steps = steps
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self._linewidth = linewidth
@@ -41,7 +41,7 @@ class plotSett():
         self.hline = None
         self.vline = None
 
-        plt.rcParams [ 'lines.linewidth' ] = self.linewidth
+        plt.rcParams [ 'lines.linewidth' ] = self._linewidth
         
         self.lims()
 
@@ -238,30 +238,6 @@ class plotSett():
         self.hline.set_visible(False)
         self.vline.set_visible(False)
         self.ax.figure.canvas.draw()
-    
-
-    """
-    def gridOff(self):
-        plt.minorticks_off()
-        self.ax.grid(False)
-        
-        # Hide the x and y axes and their associated elements
-        self.ax.spines['bottom'].set_color('none')
-        self.ax.spines['left'].set_color('none')
-        self.ax.spines['top'].set_color('none')
-        self.ax.spines['right'].set_color('none')
-        
-        # Hide the x and y tick values and labels
-        self.ax.set_xticks([])
-        self.ax.set_yticks([])
-        self.ax.set_xlabel('')
-        self.ax.set_ylabel('')
-        
-        self.hline.set_visible(False)
-        self.vline.set_visible(False)
-        self.ax.figure.canvas.draw()
-    """
-
 
 
     def __del__(self):
