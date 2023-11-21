@@ -56,7 +56,7 @@ class point(plotSett):
         #------------------------------------------------------------
         """
 
-
+        self.j = 0
         self._color = random.choice(self.colors)
         self.lines = None
         self.tex = None 
@@ -65,7 +65,8 @@ class point(plotSett):
             self.draw()
             #self.label(name = None)
 
-    
+
+
     @property
     def x(self):
         return self.coords[0]
@@ -87,6 +88,43 @@ class point(plotSett):
         self.lims()
         self.draw()
         self.label(self._name)
+
+
+
+
+
+
+
+    @property
+    def equation(self):
+        #super.__str__() from label
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+
+        
+        x = str(round(self.coords[0], 2))
+        y = str(round(self.coords[1], 2))
+        eq = "(" + x + ";" + y + ")"
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
+
+
+
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):

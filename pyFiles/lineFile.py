@@ -38,6 +38,7 @@ class line(plotSett):
         self.intercept = None
         self.length = None
         self._cut = False
+        self.j = 0
 
         if draw == True:
             self.draw()
@@ -64,6 +65,47 @@ class line(plotSett):
         self._cut = not self._cut
         self.draw()#cut = self._cut)
         self.label( self._name )
+
+
+
+
+
+    @property
+    def equation(self):
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+        
+        if self.q > 0:
+            sign = '+'
+        elif self.q <0:
+            sign = '-'
+        
+        q = str(round(abs( self.q), 2))
+        m = str(round(self.m, 2))
+        eq = "y = " + m + "x" + sign + q
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
+
+
+
+
+
+
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self._cut == False:
@@ -164,8 +206,8 @@ class line(plotSett):
         self.__del__()
 
         self.data = [None, None]
-        for j in range(2):
-            self.point[j].coords = [None, None]
+        #for j in range(2):
+        #    self.point[j].coords = [None, None]
         
         self.angCoeff = None
         self.intercept = None

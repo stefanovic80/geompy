@@ -21,7 +21,8 @@ class parabola(plotSett):
         self.a = None
         self.b = None
         self.c = None
-        
+       
+        self.j = 0
         #self.lines = []
         self.point = [None, None, None]
         self._color = random.choice(self.colors)
@@ -29,6 +30,55 @@ class parabola(plotSett):
 
         if draw == True:
             self.draw()
+
+
+
+
+
+    @property
+    def equation(self):
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+
+        if self.b > 0:
+            signb = '+'
+        elif self.b <0:
+            signb = '-'
+
+        if self.c > 0:
+            signc = '+'
+        elif self.c <0:
+            signc = '-'
+
+
+
+        a = str(round(self.a, 2))
+        b = str(abs(round(self.b, 2)))
+        c = str(abs(round(self.c, 2)))
+        eq = "y = " + a + r"$x^2$" + signb + b + "x" + signc + c
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
+
+
+
+
+
+
 
     def erase(self):
         self.__del__()
