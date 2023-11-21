@@ -210,8 +210,9 @@ class line(plotSett):
         self.__del__()
 
         self.data = [None, None]
-        #for j in range(2):
-        #    self.point[j].coords = [None, None]
+        #points to be removed or not to be removed. This is the problem!!!
+        for j in range(2):
+            self.point[j].coords = [None, None]
         
         self.angCoeff = None
         self.intercept = None
