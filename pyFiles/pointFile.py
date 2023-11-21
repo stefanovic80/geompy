@@ -116,6 +116,10 @@ class point(plotSett):
         x = str(round(self.coords[0], 2))
         y = str(round(self.coords[1], 2))
         eq = "(" + x + ";" + y + ")"
+        try:
+            eq = self._name + eq
+        except:
+            pass
         #labelx, labely may necessitte to be attributes
         if self.j%2 == 0:
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")

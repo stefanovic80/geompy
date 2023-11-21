@@ -67,6 +67,10 @@ class parabola(plotSett):
         b = str(abs(round(self.b, 2)))
         c = str(abs(round(self.c, 2)))
         eq = "y = " + a + r"$x^2$" + signb + b + "x" + signc + c
+        try:
+            eq = self._name + ": " + eq
+        except:
+            pass
         #labelx, labely may necessitte to be attributes
         if self.j%2 == 0:
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")

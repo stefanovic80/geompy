@@ -25,7 +25,8 @@ class circumference(plotSett):
         self._color = random.choice(self.colors)
 
         self.center._color = self._color 
-        
+        self.j = 0
+
         if draw == True:
             self.draw()
        
@@ -58,6 +59,40 @@ class circumference(plotSett):
         self._radius = r
         self.chooseCalc()
         self.name = self._name
+
+
+    """
+    @property
+    def equation(self):
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+
+        if self.a > 0:
+            siga = '+'
+        elif self.b <0:
+            signb = '-'
+
+        a = str(round(abs( self.a), 2))
+        b = str(round(abs( self.b), 2))
+        b = str(round(abs( self.c), 2))
+        eq = r"$y^2$ = " + m + "x" + sign + q
+        #labelx, labely may necessitte to be attributes
+        self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+    """
+
+
+
 
     
     #circumference equation calculation from center coordinates and radius
