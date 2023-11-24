@@ -48,6 +48,8 @@ class plotSett():
         self.rotate = False
         self._name = None
 
+        self._majorStep = None
+
     @property
     def left(self):
         return self.xmin
@@ -55,9 +57,10 @@ class plotSett():
     @left.setter
     def left(self, value):
         self.xmin = value
-        majorStep = (self.xmax - self.xmin)/20
-        self.grid(majorStep = majorStep)
+        _majorStep = (self.xmax - self.xmin)/20
+        self.grid(majorStep = _majorStep)
         self.lims()
+        self.draw()
 
     @property
     def right(self):
@@ -66,9 +69,12 @@ class plotSett():
     @right.setter
     def right(self, value):
         self.xmax = value
-        majorStep = (self.xmax - self.xmin)/20
-        self.grid(majorStep = majorStep)
+        _majorStep = (self.xmax - self.xmin)/20
+        self.grid(majorStep = _majorStep)
         self.lims()
+        self.draw()
+
+
 
     @property
     def color(self):
@@ -104,7 +110,14 @@ class plotSett():
         self.draw()
 
 
+    @property
+    def majorStep(self):
+        return self.majorStep
 
+    @majorStep.setter
+    def majorStep(self, value):
+        self._majorStep = value
+        self.grid(majorStep = self._majorStep)
 
     def label(self, name):
         try:
@@ -154,8 +167,9 @@ class plotSett():
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
 
-
     def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
+        
+        #self._majorStep = majorStep
 
         #grid density 
         self.N = self.N - 0.1*N
@@ -163,6 +177,7 @@ class plotSett():
         #raw grid step
         #gridSteps = round(gridSteps, 2)
         if majorStep == None:
+            majorStep = self._majorStep
             majorStep = (self.xmax - self.xmin) / self.steps*self.N*100
         else:
             pass
