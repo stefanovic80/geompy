@@ -10,13 +10,15 @@ from ._plotSettFile import plotSett
 #from . import xmin, xmax, steps, linewidth
 #from . import steps, linewidth
 from . import seed
-from .config import xmin, xmax, linewidth, steps
+from .Settings import settings#xmin, xmax, linewidth, steps
 
 
 class point(plotSett):
-    def __init__(self, pickFrom = None, x = None, y = None, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, seed = seed, draw = True):
-        super().__init__( xmin, xmax, steps, linewidth)
+    def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):#, xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, linewidth = settings.linewidth, seed = seed, draw = True):
+        #super().__init__( xmin, xmax, steps, linewidth)
+        super().__init__()
         
+
         self.seed = seed
         
         self.coords = [None, None]
@@ -107,7 +109,7 @@ class point(plotSett):
         idx = self.condition_mask()
         data = [self.data[0][idx], self.data[1][idx] ]
         random_index = np.random.randint(len(data[0]))
-        shift = (self.xmax - self.xmin)/40
+        shift = (settings.xmax - settings.xmin)/40
         labelx = data[0][random_index] + shift
         labely = data[1][random_index] + shift
         #--------------------
@@ -150,15 +152,15 @@ class point(plotSett):
     
     #-----------------------------------------------
     def randomCoords(self, seed):
-        self.coords[0] = random.uniform(self.xmin, self.xmax)
-        self.coords[1] = random.uniform(self.xmin, self.xmax)
+        self.coords[0] = random.uniform(settings.xmin, settings.xmax)
+        self.coords[1] = random.uniform(settings.xmin, settings.xmax)
         self.seed += 1
         seed = self.seed
 
     
     #random Point from a geometrical locus
     def randomPoint(self):
-        condition_mask = ( self.pickFrom[1] > self.xmin) & (self.pickFrom[1] < self.xmax)
+        condition_mask = ( self.pickFrom[1] > settings.xmin) & (self.pickFrom[1] < settings.xmax)
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
         self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
@@ -167,8 +169,8 @@ class point(plotSett):
 
         a = plt.ginput()
         
-        m = self.xmin
-        M = self.xmax
+        m = settings.xmin
+        M = settings.xmax
 
         deltaZoom = (M - m)/10
 

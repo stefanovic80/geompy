@@ -3,7 +3,7 @@ from . import plt, np, random
 #from . import xmin, xmax, steps, linewidth, seed
 
 from . import seed#steps, linewidth, seed
-from .config import xmin, xmax, linewidth, steps
+from .Settings import settings#xmin, xmax, linewidth, steps
 
 plt.ion()
 
@@ -13,9 +13,9 @@ from .pointFile import point
 
 class line(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed, draw = True):
+    def __init__(self, seed = seed, draw = True):# xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, seed = seed, draw = True):
         
-        super().__init__(xmin, xmax, steps)
+        super().__init__()#xmin, xmax, steps)
         
         self.seed = seed
 
@@ -25,12 +25,12 @@ class line(plotSett):
 
         self._color = random.choice(self.colors)
         #self.xMin and self.xMax cut off the straight line into a line
-        self.xMin = self.xmin
-        self.xMax = self.xmax
+        self.xMin = settings.xmin
+        self.xMax = settings.xmax
 
         #random points from which the straight line is identified
-        point1 = point(xmin = xmin, xmax = xmax, draw = False)
-        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1, draw = False)
+        point1 = point(draw = False)
+        point2 = point(seed = seed + 1, draw = False)
         self.point = [point1, point2]
         
         #values to calculate straight line data (self.data[1])
@@ -81,7 +81,7 @@ class line(plotSett):
         idx = self.condition_mask()
         data = [self.data[0][idx], self.data[1][idx] ]
         random_index = np.random.randint(len(data[0]))
-        shift = (self.xmax - self.xmin)/40
+        shift = (settings.xmax - settings.xmin)/40
         labelx = data[0][random_index] + shift
         labely = data[1][random_index] + shift
         #--------------------
@@ -113,8 +113,8 @@ class line(plotSett):
 
     def calc1(self): #calculate equation from angCoeff and intercept
         if self._cut == False:
-            self.xMin = self.xmin
-            self.xMax = self.xmax
+            self.xMin = settings.xmin
+            self.xMax = settings.xmax
         
         self.idxMin = np.where( self._x >= self.xMin)[0][0]
         self.idxMax = np.where( self._x >= self.xMax)[0][0]

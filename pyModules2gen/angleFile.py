@@ -5,13 +5,13 @@ from pyFiles.circumferenceFile import circumference
 
 from pyFiles import seed#steps, linewidth, seed
 
-from pyFiles.config import xmin, xmax, linewidth, steps
+from pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 
 from . import plt, np, random
 
 class angle(plotSett):
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
-        super().__init__(xmin, xmax, steps)
+    def __init__(self, seed = seed):#xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+        super().__init__()
         
         self.line = [line(draw = False), line(draw = False)]
         self.arc = circumference(draw = False)
@@ -37,7 +37,7 @@ class angle(plotSett):
         self.line[1]._color = self._color
         self.line[1].erase()
         self.line[1].point[0] = self.line[0].point[0]
-        self.line[1].intercept = np.random.uniform(self.xmin, self.xmax)
+        self.line[1].intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.line[1].calc4()
         
         m[0] = self.line[0].angCoeff
@@ -51,7 +51,7 @@ class angle(plotSett):
         y = m[0]*x + q[0]
         self.arc.center = point( x, y, draw = False  )
         
-        radius = (self.xmax - self.xmin)/20
+        radius = (settings.xmax - settings.xmin)/20
         self.arc._radius = radius
         
         self.arc._color = self._color
@@ -92,7 +92,7 @@ class angle(plotSett):
         
         self.arc.center = point( x, y, draw = False )
 
-        radius = (self.xmax - self.xmin)/20
+        radius = (settings.xmax - settings.xmin)/20
         self.arc._radius = radius
 
         self.arc._color = self._color

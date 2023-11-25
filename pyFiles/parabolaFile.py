@@ -2,7 +2,7 @@
 from . import plt, np, random
 #from . import steps, linewidth
 
-from .config import xmin, xmax, steps, linewidth
+from .Settings import settings#xmin, xmax, steps, linewidth
 
 #plt.ion()
 
@@ -11,10 +11,10 @@ from .pointFile import point
 
 class parabola(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
+    def __init__(self, draw = True):
 
-        super().__init__(xmin, xmax, steps, linewidth)
-        self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax), draw = False  )
+        super().__init__()
+        self.vertex = point( np.random.randint(settings.xmin, settings.xmax), np.random.randint(settings.xmin, settings.xmax), draw = False  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         
         
@@ -46,7 +46,7 @@ class parabola(plotSett):
         idx = self.condition_mask()
         data = [self.data[0][idx], self.data[1][idx] ]
         random_index = np.random.randint(len(data[0]))
-        shift = (self.xmax - self.xmin)/40
+        shift = (settings.xmax - settings.xmin)/40
         labelx = data[0][random_index] + shift
         labely = data[1][random_index] + shift
         #--------------------
