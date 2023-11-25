@@ -4,13 +4,13 @@ from pyFiles._plotSettFile import plotSett
 
 from pyFiles import seed #steps, linewidth, seed
 
-from pyFiles.config import xmin, xmax, linewidth, steps
+from pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 
 from . import plt, np, random
 
 class triangle(plotSett):
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
-        super().__init__(xmin, xmax, steps)
+    def __init__(self, seed = seed):#, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+        super().__init__()#xmin, xmax, steps)
         self.A = point( draw = False )
         self.B = point( draw = False )
         self.C = point( draw = False )

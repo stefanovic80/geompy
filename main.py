@@ -24,7 +24,7 @@ from copy import copy
 
 
 
-
+"""
 import threading
 #chatGPT---------------------------------------------
 class ConfigWriter(threading.Thread):
@@ -51,7 +51,7 @@ xmax = {xmax}
         except Exception as e:
             print(f"An error occurred: {e}")
 #chatGPT---------------------------------------------
-
+"""
 
 def main():
     print("Running main.py")
