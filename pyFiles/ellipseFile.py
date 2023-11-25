@@ -2,23 +2,22 @@
 from . import plt, np, random
 #from . import steps, linewidth
 
-from .config import xmin, xmax, linewidth, steps
+from .Settings import settings#xmin, xmax, linewidth, steps
 #plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
 
 class ellipse(plotSett):
-#class circumference(point):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, draw = True):
+    def __init__(self, draw = True):
         
-        super().__init__(xmin, xmax, steps, linewidth)
+        super().__init__()#xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
         self.center = point(draw = False)
-        self.focus1 = random.uniform(0, (self.xmax-self.xmin)/4)
-        self.focus2 = random.uniform(0, (self.xmax-self.xmin)/4)
+        self.focus1 = random.uniform(0, (settings.xmax-settings.xmin)/4)
+        self.focus2 = random.uniform(0, (settings.xmax-settings.xmin)/4)
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
         self._color = random.choice(self.colors)
 
@@ -52,8 +51,8 @@ class ellipse(plotSett):
         self.lines = []
         self.lines.append(line1)
 
-        self.ax.set_xlim(self.xmin, self.xmax)
-        self.ax.set_ylim(self.xmin, self.xmax)
+        self.ax.set_xlim(settings.xmin, settings.xmax)
+        self.ax.set_ylim(settings.xmin, settings.xmax)
 
 
 
