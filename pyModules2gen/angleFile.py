@@ -1,9 +1,11 @@
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 from pyFiles.circumferenceFile import circumference
 
-from pyFiles import xmin, xmax, steps, linewidth, seed
+from pyFiles import seed#steps, linewidth, seed
+
+from pyFiles.config import xmin, xmax, linewidth, steps
 
 from . import plt, np, random
 
@@ -11,12 +13,12 @@ class angle(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         super().__init__(xmin, xmax, steps)
         
-        self.segment = [segment(), segment()]
-        self.arc = circumference()
+        self.line = [line(draw = False), line(draw = False)]
+        self.arc = circumference(draw = False)
         
         self.rotate = False
-        self.color = random.choice(self.colors)
-        self.name = None
+        self._color = random.choice(self.colors)
+        self._name = None
         self.data = None
 
         self.j = 0
@@ -28,31 +30,31 @@ class angle(plotSett):
         m = [None, None]
         q = [None, None]
         
-        #for segment in self.segment:
-        self.segment[0].color = self.color
-        self.segment[0].calc2()
+        #for line in self.line:
+        self.line[0]._color = self._color
+        self.line[0].calc2()
         
-        self.segment[1].color = self.color
-        self.segment[1].erase()
-        self.segment[1].point[0] = self.segment[0].point[0]
-        self.segment[1].intercept = np.random.uniform(self.xmin, self.xmax)
-        self.segment[1].calc4()
+        self.line[1]._color = self._color
+        self.line[1].erase()
+        self.line[1].point[0] = self.line[0].point[0]
+        self.line[1].intercept = np.random.uniform(self.xmin, self.xmax)
+        self.line[1].calc4()
         
-        m[0] = self.segment[0].angCoeff
-        q[0] = self.segment[0].intercept
+        m[0] = self.line[0].angCoeff
+        q[0] = self.line[0].intercept
         
-        m[1] = self.segment[1].angCoeff
-        q[1] = self.segment[1].intercept
+        m[1] = self.line[1].angCoeff
+        q[1] = self.line[1].intercept
 
 
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
-        self.arc.center = point( x, y  )
+        self.arc.center = point( x, y, draw = False  )
         
         radius = (self.xmax - self.xmin)/20
-        self.arc.radius = radius
+        self.arc._radius = radius
         
-        self.arc.color = self.color
+        self.arc._color = self._color
 
         arcSize = np.arctan( m[1] ) - np.arctan( m[0] )
         self.arc.calc(angle = arcSize)
@@ -64,16 +66,16 @@ class angle(plotSett):
         self.size = None
 
     def calc2(self):
-        #for segment in self.segment:
-        #    segment.chooseCalc()
+        #for line in self.line:
+        #    line.chooseCalc()
         m = [None, None]
         q = [None, None]
 
-        m[0] = self.segment[0].angCoeff
-        q[0] = self.segment[0].intercept
+        m[0] = self.line[0].angCoeff
+        q[0] = self.line[0].intercept
 
-        m[1] = self.segment[1].angCoeff
-        q[1] = self.segment[1].intercept
+        m[1] = self.line[1].angCoeff
+        q[1] = self.line[1].intercept
         
         #------------- from chatGPT
         # Get the indices that would sort 'm'
@@ -88,12 +90,12 @@ class angle(plotSett):
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
         
-        self.arc.center = point( x, y  )
+        self.arc.center = point( x, y, draw = False )
 
         radius = (self.xmax - self.xmin)/20
-        self.arc.radius = radius
+        self.arc._radius = radius
 
-        self.arc.color = self.color
+        self.arc._color = self._color
 
         self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.arc.calc(angle = self.size)
@@ -116,7 +118,7 @@ class angle(plotSett):
 
         calculation_functions = [self.calc2]
         
-        #for segment in self.segment:
+        #for line in self.line:
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
@@ -126,25 +128,21 @@ class angle(plotSett):
                     pass
 
 
-
+    """
     def draw(self, name = None):
         #self.__del__()
-        self.name = name
+        self._name = name
         #if self.rotate == False:
         #    self.calc()
 
         self.chooseCalc()
 
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
+        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
-        #self.segment[0].draw()
-        #self.segment[1].draw()
-        #self.segment[0].point[0].color = 'r'
-        #self.segment[0].point[0].draw()
 
         self.lines = []
         self.lines.append(line)
-
+    """
         
     def erase(self):
         self.__del__()
@@ -156,6 +154,6 @@ class angle(plotSett):
             pass
 
         self.data = [None, None]
-        self.segment = [None, None]
+        self.line = [None, None]
         #self.arc.erase()
         #self.center = None

@@ -1,29 +1,31 @@
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.pointFile import point
 from pyFiles._plotSettFile import plotSett
 
-from pyFiles import xmin, xmax, steps, linewidth, seed
+from pyFiles import seed #steps, linewidth, seed
+
+from pyFiles.config import xmin, xmax, linewidth, steps
 
 from . import plt, np, random
 
 class triangle(plotSett):
     def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
         super().__init__(xmin, xmax, steps)
-        self.A = point()
-        self.B = point()
-        self.C = point()
+        self.A = point( draw = False )
+        self.B = point( draw = False )
+        self.C = point( draw = False )
         self.AB = None
         self.BC = None
         self.CA = None
         self.data = None
         self.rotate = False
-        self.name = None
-        self.color = random.choice(self.colors)
+        self._name = None
+        self._color = random.choice(self.colors)
 
     def calc(self):
-        self.AB = segment()
-        self.BC = segment()
-        self.CA = segment()
+        self.AB = line( draw = False )
+        self.BC = line( draw = False )
+        self.CA = line( draw = False )
         self.AB.erase()
         self.BC.erase()
         self.CA.erase()
@@ -38,7 +40,7 @@ class triangle(plotSett):
         self.A.color = self.B.color = self.C.color
         self.AB.color = self.BC.color = self.CA.color
         """
-        self.AB.cut = self.BC.cut = self.CA.cut = True
+        self.AB._cut = self.BC._cut = self.CA._cut = True
 
         self.AB.calc2()#two points
         self.BC.calc2()#two points
@@ -50,7 +52,7 @@ class triangle(plotSett):
 
     def draw(self, name = None):
         self.__del__()
-        self.name = name
+        self._name = name
         if self.rotate == False:
             self.calc()
 
@@ -59,16 +61,8 @@ class triangle(plotSett):
         self.lines = []
         self.lines.append(line)
 
-        #copied from segment class, not completed
-        """
-        self.A.draw("A")
-        self.B.draw("B")
-        self.C.draw("C")
-        self.AB.draw(cut = True)
-        self.BC.draw(cut = True)
-        self.CA.draw(cut = True)
-        """
-
+        #copied from line class, not completed
+        
     def erase(self):
         self.__del__()
 

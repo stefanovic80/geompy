@@ -1,13 +1,15 @@
+#from pyFiles import xmin, xmax
+
+
 # Import functions and classes from your package
 #from pyFiles.module2 import MyClass
 from pyFiles._plotSettFile import plotSett
 from pyFiles.pointFile import point
 from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
-from pyFiles.segmentFile import segment
+from pyFiles.lineFile import line
 from pyFiles.parabolaFile import parabola
-#from pyFiles.triangleFile import triangle
-#from pyFiles.angleFile import angle
+from pyFiles.config import xmin, xmax
 
 from pyModules2gen.triangleFile import triangle
 from pyModules2gen.angleFile import angle
@@ -15,17 +17,51 @@ from pyModules2gen.angleFile import angle
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import os
 
 from numpy import pi
 from copy import copy
 
 
 
+
+import threading
+#chatGPT---------------------------------------------
+class ConfigWriter(threading.Thread):
+    @classmethod
+    def write_config_file(cls, xmin, xmax):
+        try:
+            # Your configuration data with external variables
+            config_data = f"""
+xmin = {xmin}
+xmax = {xmax}
+"""
+
+            # Construct the file path within the "pyFiles" folder
+            file_path = os.path.join("pyFiles", "config.py")
+
+
+            # Open the file in write mode ('w')
+            with open(file_path, 'w') as file:
+                # Write the configuration data to the file
+                file.write(config_data)
+
+            print("Configuration file 'config.py' has been successfully created.")
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+#chatGPT---------------------------------------------
+
+
 def main():
     print("Running main.py")
+
+    global xmin, xmax
     
-    __set = plotSett()
-    __set.grid()
+    
+
+    _set = plotSett()
+    _set.grid()
     # result = my_function()
     #print("Result from module1:", result)
 

@@ -1,8 +1,8 @@
 # circumference.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
+#from . import steps, linewidth
 
-
+from .config import xmin, xmax, linewidth, steps
 #plt.ion()
 
 from ._plotSettFile import plotSett
@@ -11,37 +11,31 @@ from .pointFile import point
 class ellipse(plotSett):
 #class circumference(point):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, linewidth = linewidth, draw = True):
         
         super().__init__(xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
-        self.center = point()
+        self.center = point(draw = False)
         self.focus1 = random.uniform(0, (self.xmax-self.xmin)/4)
         self.focus2 = random.uniform(0, (self.xmax-self.xmin)/4)
         #self.center = point(xmin = self.xmin + self.radius, xmax = self.xmax -self.radius)
-        self.lines = None
-        self.data = None
-        self.name = None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
-        self.center.color = self.color
-        self.rotate = False
+        self.center._color = self._color
 
-    def draw(self):
+        if draw == True:
+            self.draw()
+
+    
+
+    #to be revisited: y = f(x) for derivative > 1, x = f(y) for derivative < 1
+    def calc(self):
         self.__del__()
 
-        ellip = self.focus2*np.sqrt( 1 - ( ( self.x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
+        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 
-        #it removes not a number terms due to root of negative values
-        #idx1 = np.argmax(~np.isnan(circ))
-        #idx2 = len(circ) - np.argmax(np.flip(~np.isnan(circ)))
-        #x values for the graph upper side
-        #self.data = [self.x[idx1:idx2]]
-        #circ = circ[idx1:idx2]
-        
-        #y values as second column of self.data matrix
-        self.data = [self.x]
+        self.data = [self._x]
         self.data = self.data + [ np.append( self.center.coords[1] + ellip, self.center.coords[1] - ellip[::-1] ) ]
 
         #x values for the graph of the lower side
@@ -60,7 +54,28 @@ class ellipse(plotSett):
 
         self.ax.set_xlim(self.xmin, self.xmax)
         self.ax.set_ylim(self.xmin, self.xmax)
-    
+
+
+
+
+
+    def chooseCalc(self):#, angle = 2*np.pi):
+        self.__del__()
+
+        #self._angle = angle
+        calculation_functions = [self.calc]#, self.calc2, self.calc3]
+
+        for calc_function in calculation_functions:
+            if self.rotate == False:
+                try:
+                    calc_function()#angle = angle)
+                    break
+                except:
+                    pass
+
+
+
+
     def __str__(self):
 
         super().__str__()

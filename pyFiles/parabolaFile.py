@@ -1,42 +1,87 @@
 # parabolaFile.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth
+#from . import steps, linewidth
 
+from .config import xmin, xmax, steps, linewidth
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
 
 class parabola(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
 
-        super().__init__(xmin, xmax, steps)
-        #self.xShift = np.random.randint(xmin, xmax)
-        #self.yShift = np.random.randint(xmin, xmax)
-        self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax)  )
+        super().__init__(xmin, xmax, steps, linewidth)
+        self.vertex = point( np.random.randint(xmin, xmax), np.random.randint(xmin, xmax), draw = False  )
         self.concavity = np.random.randint(-10, 10)/5#to be checked out!
         
         
         self.a = None
         self.b = None
         self.c = None
-        
-        self.lines = []
+       
+        self.j = 0
+        #self.lines = []
         self.point = [None, None, None]
-        self.data = None
-        self.name =  None
-        self.color = random.choice(self.colors)
+        self._color = random.choice(self.colors)
 
-        #------------------------------------------------------------
-        #point choosen for labeling
-        self.pointLabel = point()
-        self.pointLabel.coords = [None, None]
-        self.pointLabel.color = 'white'
-        #------------------------------------------------------------
 
-        self.rotate = False
+        if draw == True:
+            self.draw()
+
+
+
+
+
+    @property
+    def equation(self):
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+
+        if self.b > 0:
+            signb = '+'
+        elif self.b <0:
+            signb = '-'
+
+        if self.c > 0:
+            signc = '+'
+        elif self.c <0:
+            signc = '-'
+
+
+
+        a = str(round(self.a, 2))
+        b = str(abs(round(self.b, 2)))
+        c = str(abs(round(self.c, 2)))
+        eq = "y = " + a + r"$x^2$" + signb + b + "x" + signc + c
+        try:
+            eq = self._name + ": " + eq
+        except:
+            pass
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
+
+
+
+
+
 
 
     def erase(self):
@@ -44,28 +89,19 @@ class parabola(plotSett):
         
         self.vertex = None
         self.concavity = None
-        #to remove text label
-        try:
-            self.pointLabel.tex.remove()
-        except:
-            pass
-
-        self.data = None #[None, None]
+        self.data = [None, None]
 
 
 
 
 
     def calc(self, name = None):
-        #self.__del__()
-        self.data = [ self.x ]
-        self.data = self.data + [self.concavity*(self.x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
+        self.data = [ self._x ]
+        self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
-    def calc1(self, name = None):
-
-        
-        self.calc()
+    #def calc1(self, name = None):
+        #self.calc()
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -112,29 +148,6 @@ class parabola(plotSett):
                     pass
 
 
-
-    def draw(self, name = None):
-        
-        self.chooseCalc()
-
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color, label = self.name) # can be optimized for ALL pictures vi rmParams
-        
-        self.lines = []
-        self.lines.append(line)
-
-        if isinstance(name, str):
-            self.name = name
-
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
-
-
-
     def __str__(self):
 
         super().__str__()
@@ -149,7 +162,7 @@ class parabola(plotSett):
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
             #f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
-            f"\033[93m.name:\033[0m {self.name}\n"
+            f"\033[93m.name:\033[0m {self._name}\n"
             f"\033[93m.color:\033[0m {self.color}\n"
         )
         

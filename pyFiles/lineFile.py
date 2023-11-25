@@ -1,6 +1,9 @@
-# segment.py
+# lineFile.py
 from . import plt, np, random
-from . import xmin, xmax, steps, linewidth, seed
+#from . import xmin, xmax, steps, linewidth, seed
+
+from . import seed#steps, linewidth, seed
+from .config import xmin, xmax, linewidth, steps
 
 plt.ion()
 
@@ -8,53 +11,114 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 
 
-class segment(plotSett):
+class line(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, seed = seed, draw = True):
         
         super().__init__(xmin, xmax, steps)
         
         self.seed = seed
 
-        #.xMin and .xMax indexes to cut off the straight line into a segment
+        #.xMin and .xMax indexes to cut off the straight line into a line
         self.idxMin = None
         self.idxMax = None
 
-        self.color = random.choice(self.colors)
-        #self.xMin and self.xMax cut off the straight line into a segment
+        self._color = random.choice(self.colors)
+        #self.xMin and self.xMax cut off the straight line into a line
         self.xMin = self.xmin
         self.xMax = self.xmax
 
-        #according with matplotlib self.lines.remove() removes the plot
-        self.lines = None
-        self.data = None #[None, None]
-
         #random points from which the straight line is identified
-        point1 = point(xmin = xmin, xmax = xmax)
-        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1)
+        point1 = point(xmin = xmin, xmax = xmax, draw = False)
+        point2 = point(xmin = xmin, xmax = xmax, seed = seed + 1, draw = False)
         self.point = [point1, point2]
         
-        #point choosen for labeling
-        self.pointLabel = point()
-        self.pointLabel.coords = [None, None]
-        self.pointLabel.color = 'white'
-
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
         self.intercept = None
         self.length = None
-        self.name = None
-        self.rotate = False
-        self.cut = False
+        self._cut = False
+        self.j = 0
+
+        if draw == True:
+            self.draw()
+
+    @property
+    def m(self):
+        return self.angCoeff
+
+    @m.setter
+    def m(self, value):
+        self.angCoeff = value
+
+    @property
+    def q(self):
+        return self.intercept
+
+    @q.setter
+    def q(self, value):
+        self.intercept = value
+
+
+    @property
+    def cut(self):
+        self._cut = not self._cut
+        self.draw()#cut = self._cut)
+        self.label( self._name )
+
+
+
+
+
+    @property
+    def equation(self):
+        #to be inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (self.xmax - self.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+        
+        if self.q > 0:
+            sign = '+'
+        elif self.q <0:
+            sign = '-'
+        
+        q = str(round(abs( self.q), 2))
+        m = str(round(self.m, 2))
+        eq = "y = " + m + "x" + sign + q
+        try:
+            eq = self._name + ": " + eq
+        except:
+            pass
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
+
+
+
+
+
+
 
     def calc1(self): #calculate equation from angCoeff and intercept
-        if self.cut == False:
+        if self._cut == False:
             self.xMin = self.xmin
             self.xMax = self.xmax
         
-        self.idxMin = np.where( self.x >= self.xMin)[0][0]
-        self.idxMax = np.where( self.x >= self.xMax)[0][0]
-        self.data = [ self.x[ self.idxMin: self.idxMax] ] # a local copy of x values
+        self.idxMin = np.where( self._x >= self.xMin)[0][0]
+        self.idxMax = np.where( self._x >= self.xMax)[0][0]
+        self.data = [ self._x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         
@@ -71,7 +135,7 @@ class segment(plotSett):
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
-            if self.cut == True:
+            if self._cut == True:
                 j = 0
                 lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
                 lims.sort()
@@ -80,11 +144,11 @@ class segment(plotSett):
             
             self.calc1()
         else:
-            L = len(self.x)
+            L = len(self._x)
             self.data = [np.zeros(L) + x1]
-            self.data = self.data + [ self.x ]
+            self.data = self.data + [ self._x ]
 
-            if self.cut == True:
+            if self._cut == True:
                 j = 1
                 lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
                 lims.sort()
@@ -140,42 +204,16 @@ class segment(plotSett):
 
         return [ self.data[0][idx], self.data[1][idx] ]
 
-    def draw(self, name = None, cut = False ):
-        #self.pointLabel.set_text("")
-        self.cut = cut
-        self.chooseCalc()
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
-
-        self.lines = []
-        self.lines.append(line)
-        
-        if isinstance(name, str):
-            self.name = name
-        
-        condition_mask = ( self.data[1] > self.xmin) & (self.data[1] < self.xmax)
-        indices = np.where(condition_mask)
-        idx = random.choice(indices[0])
-        self.pointLabel.coords = [self.data[0][idx], self.data[1][idx] ]
-
-        self.pointLabel.color = self.color
-        self.pointLabel.label(name)
+    
 
     def erase(self):
         self.__del__()
-        
-        #to remove text label
-        try:
-            self.pointLabel.tex.remove()
-        except:
-            pass
 
         self.data = [None, None]
-
+        #points to be removed or not to be removed. This is the problem!!!
         for j in range(2):
             self.point[j].coords = [None, None]
-        #for u in self.point:
-        #    u.coords = [None, None]
-
+        
         self.angCoeff = None
         self.intercept = None
 
@@ -185,7 +223,7 @@ class segment(plotSett):
 
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
-            f"\033[93mClass type = \033[0m Segment\n"
+            f"\033[93mClass type = \033[0m line\n"
             f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
             f"\033[93m.xMin = \033[0m {self.xMin}\n"

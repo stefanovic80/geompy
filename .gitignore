@@ -1,9 +1,20 @@
 __pycache__/
 
-.segmentFile.py.swp
+
+.lineFile.py.swp
 
 pyFiles/Downloads/
 
 pyFiles/._plotSettFile.py.swp
 
 pyfile/*.swp
+
+.ipynb_checkpoints
+
+pyFiles/.__init__.py.swp
+
+pyFiles/.pointFile.py.swp
+
+pyFiles/.circumferenceFile.py.swn
+pyFiles/.circumferenceFile.py.swo
+
