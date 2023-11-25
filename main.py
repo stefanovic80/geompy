@@ -9,7 +9,7 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
 from pyFiles.lineFile import line
 from pyFiles.parabolaFile import parabola
-from pyFiles.config import xmin, xmax
+#from pyFiles.config import xmin, xmax
 
 from pyModules2gen.triangleFile import triangle
 from pyModules2gen.angleFile import angle
@@ -33,8 +33,8 @@ class ConfigWriter(threading.Thread):
         try:
             # Your configuration data with external variables
             config_data = f"""
-xmin = {xmin}
-xmax = {xmax}
+#xmin = {xmin}
+#xmax = {xmax}
 """
 
             # Construct the file path within the "pyFiles" folder
