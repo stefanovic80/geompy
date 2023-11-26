@@ -2,19 +2,21 @@
 from . import plt, np, random
 #from . import steps, linewidth
 
-from .config import xmin, xmax, linewidth, steps
+#from .config import xmin, xmax, linewidth, steps
+
+from .Settings import settings
 
 from ._plotSettFile import plotSett
 from .pointFile import point
 
 class circumference(plotSett):
 
-    def __init__(self, xmin = xmin, xmax = xmax, steps = steps, draw = True):
+    def __init__(self, draw = True): #xmin = xmin, xmax = xmax, steps = steps, draw = True):
         
-        super().__init__(xmin, xmax, steps, linewidth)
+        super().__init__()#xmin, xmax, steps, linewidth)
         #plotSett.__init__(self)
 
-        self._radius = random.uniform(0, (self.xmax-self.xmin)/2)
+        self._radius = random.uniform(0, (settings.xmax-settings.xmin)/2)
         self.center = point(draw = False)
 
         #three points passing through the circumference

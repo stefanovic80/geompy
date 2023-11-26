@@ -9,7 +9,7 @@ from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse
 from pyFiles.lineFile import line
 from pyFiles.parabolaFile import parabola
-from pyFiles.config import xmin, xmax
+#from pyFiles.config import xmin, xmax
 
 from pyModules2gen.triangleFile import triangle
 from pyModules2gen.angleFile import angle
@@ -21,36 +21,6 @@ import os
 
 from numpy import pi
 from copy import copy
-
-
-
-
-import threading
-#chatGPT---------------------------------------------
-class ConfigWriter(threading.Thread):
-    @classmethod
-    def write_config_file(cls, xmin, xmax):
-        try:
-            # Your configuration data with external variables
-            config_data = f"""
-xmin = {xmin}
-xmax = {xmax}
-"""
-
-            # Construct the file path within the "pyFiles" folder
-            file_path = os.path.join("pyFiles", "config.py")
-
-
-            # Open the file in write mode ('w')
-            with open(file_path, 'w') as file:
-                # Write the configuration data to the file
-                file.write(config_data)
-
-            print("Configuration file 'config.py' has been successfully created.")
-
-        except Exception as e:
-            print(f"An error occurred: {e}")
-#chatGPT---------------------------------------------
 
 
 def main():
