@@ -24,6 +24,18 @@ class myClass:
 
 obj = myClass(3)
 print(obj.name())  # Output will be "obj"
+
+#------------------
+
+class A:
+
+    def __init__(self):
+        self.a = 0
+
+    def get_name(self):
+        for k in globals():
+            if self is globals()[k]:
+                return k
 """
 
 class point(plotSett):
