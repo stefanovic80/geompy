@@ -42,6 +42,8 @@ class plotSett():
         self._name = None
 
         self._majorStep = None
+        
+        #self.name
 
     @property
     def left(self):
@@ -81,6 +83,17 @@ class plotSett():
             self.label(self._name)
         else:
             pass
+
+
+    #@property
+    #def name(self):
+    #    for name, obj in globals().items():
+    #        if obj is self:
+    #            self._name = name
+    #
+    #    self.label(self._name)
+    #    return self._name
+
 
 
     @property
