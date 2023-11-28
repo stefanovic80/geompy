@@ -52,8 +52,9 @@ class plotSett():
     @left.setter
     def left(self, value):
         settings.xmin = value
-        _majorStep = (settings.xmax - settings.xmin)/20
-        self.grid(majorStep = _majorStep)
+        #_majorStep = (settings.xmax - settings.xmin)/20
+        #self.grid(majorStep = _majorStep)
+        self.majorStep = self._majorStep
         self.lims()
         self.draw()
 
@@ -64,8 +65,9 @@ class plotSett():
     @right.setter
     def right(self, value):
         settings.xmax = value
-        _majorStep = (settings.xmax - settings.xmin)/20
-        self.grid(majorStep = _majorStep)
+        #_majorStep = (settings.xmax - settings.xmin)/20
+        #self.grid(majorStep = _majorStep)
+        self.majorStep = self._majorStep
         self.lims()
         self.draw()
 
@@ -84,18 +86,17 @@ class plotSett():
         else:
             pass
 
-
+    """
     #@property
-    #def name(self):
-    #    for name, obj in globals().items():
-    #        if obj is self:
-    #            self._name = name
-    #
-    #    self.label(self._name)
-    #    return self._name
-
-
-
+    def nameX(self):
+        for name, obj in globals().items():
+            if obj is self:
+                self._name = name
+                break
+                #self.label(name )
+                #return name
+    """
+    
     @property
     def name(self):
         return self._name
