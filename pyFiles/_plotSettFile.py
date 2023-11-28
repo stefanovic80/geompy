@@ -68,6 +68,7 @@ class plotSett():
         #_majorStep = (settings.xmax - settings.xmin)/20
         #self.grid(majorStep = _majorStep)
         self.majorStep = self._majorStep
+        self.minorSteps = 10
         self.lims()
         self.draw()
 
@@ -125,6 +126,16 @@ class plotSett():
     def majorStep(self, value):
         self._majorStep = value
         self.grid(majorStep = self._majorStep)
+
+    @property
+    def minorSteps(self):
+            return self._minorSteps
+
+    @minorSteps.setter
+    def minorSteps(self, value):
+        self._minorSteps = value
+        self.grid(majorStep = self._majorStep, minorSteps = value)
+
 
     def label(self, name):
         try:
