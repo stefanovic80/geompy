@@ -195,8 +195,8 @@ class plotSett():
         #raw grid step
         #gridSteps = round(gridSteps, 2)
         if majorStep == None:
-            majorStep = self._majorStep
-            majorStep = (settings.xmax - settings.xmin) / settings.steps*self.N*100
+            #majorStep = self._majorStep
+            majorStep = 2#(settings.xmax - settings.xmin) / settings.steps*self.N*100
         else:
             pass
         #fine grid step
