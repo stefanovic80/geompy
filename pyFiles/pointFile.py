@@ -12,6 +12,31 @@ from ._plotSettFile import plotSett
 from . import seed
 from .Settings import settings#xmin, xmax, linewidth, steps
 
+"""
+class myClass:
+    def __init__(self, a):
+        self.a = a
+
+    def name(self):
+        for name, obj in globals().items():
+            if obj is self:
+                return name
+
+obj = myClass(3)
+print(obj.name())  # Output will be "obj"
+
+#------------------
+
+class A:
+
+    def __init__(self):
+        self.a = 0
+
+    def get_name(self):
+        for k in globals():
+            if self is globals()[k]:
+                return k
+"""
 
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):#, xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, linewidth = settings.linewidth, seed = seed, draw = True):
@@ -21,6 +46,8 @@ class point(plotSett):
 
         self.seed = seed
         
+        #self._name = str(self)
+
         self.coords = [None, None]
 
         #return True if var is a  number

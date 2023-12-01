@@ -42,6 +42,8 @@ class plotSett():
         self._name = None
 
         self._majorStep = None
+        
+        #self.name
 
     @property
     def left(self):
@@ -50,8 +52,9 @@ class plotSett():
     @left.setter
     def left(self, value):
         settings.xmin = value
-        _majorStep = (settings.xmax - settings.xmin)/20
-        self.grid(majorStep = _majorStep)
+        #_majorStep = (settings.xmax - settings.xmin)/20
+        #self.grid(majorStep = _majorStep)
+        self.majorStep = self._majorStep
         self.lims()
         self.draw()
 
@@ -62,8 +65,10 @@ class plotSett():
     @right.setter
     def right(self, value):
         settings.xmax = value
-        _majorStep = (settings.xmax - settings.xmin)/20
-        self.grid(majorStep = _majorStep)
+        #_majorStep = (settings.xmax - settings.xmin)/20
+        #self.grid(majorStep = _majorStep)
+        self.majorStep = self._majorStep
+        self.minorSteps = 10
         self.lims()
         self.draw()
 
@@ -82,7 +87,17 @@ class plotSett():
         else:
             pass
 
-
+    """
+    #@property
+    def nameX(self):
+        for name, obj in globals().items():
+            if obj is self:
+                self._name = name
+                break
+                #self.label(name )
+                #return name
+    """
+    
     @property
     def name(self):
         return self._name
@@ -111,6 +126,16 @@ class plotSett():
     def majorStep(self, value):
         self._majorStep = value
         self.grid(majorStep = self._majorStep)
+
+    @property
+    def minorSteps(self):
+            return self._minorSteps
+
+    @minorSteps.setter
+    def minorSteps(self, value):
+        self._minorSteps = value
+        self.grid(majorStep = self._majorStep, minorSteps = value)
+
 
     def label(self, name):
         try:
@@ -170,8 +195,8 @@ class plotSett():
         #raw grid step
         #gridSteps = round(gridSteps, 2)
         if majorStep == None:
-            majorStep = self._majorStep
-            majorStep = (settings.xmax - settings.xmin) / settings.steps*self.N*100
+            #majorStep = self._majorStep
+            majorStep = 2#(settings.xmax - settings.xmin) / settings.steps*self.N*100
         else:
             pass
         #fine grid step
