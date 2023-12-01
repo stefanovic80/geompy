@@ -20,6 +20,7 @@ class plotSett():
     def __init__(self):
 
         #azure = '#006d77'
+        self.j = 0
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
         self.plotSettings = None
@@ -71,6 +72,9 @@ class plotSett():
     @property
     def color(self):
         return self._color
+        #if self.j %2 == 0:
+        #    self.j += 1
+        #    self.color = self._color[self.j]
 
     @color.setter
     def color(self, c):
