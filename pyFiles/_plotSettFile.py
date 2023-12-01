@@ -19,7 +19,8 @@ class plotSett():
     
     def __init__(self):
 
-        self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
+        #azure = '#006d77'
+        self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
         self.plotSettings = None
 
@@ -77,6 +78,8 @@ class plotSett():
             self._color = c
             self.draw()
             self.label(self._name)
+        elif c == "azure":
+            self.color = settings.azure
         else:
             pass
 
