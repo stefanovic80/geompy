@@ -1,5 +1,5 @@
 class settings():
-    linewidth = 1
+    linewidth = 2
     steps = 1000
     xmin = -10
     xmax = 10

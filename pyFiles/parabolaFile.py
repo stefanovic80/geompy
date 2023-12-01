@@ -168,7 +168,6 @@ class parabola(plotSett):
         
         methods = (
             f"\nMethods:\n"
-            f"\033[93m.draw()\033[0m\n"
             f"\033[93m.erase()\033[0m\n"
         )
 
