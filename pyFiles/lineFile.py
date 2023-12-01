@@ -72,7 +72,9 @@ class line(plotSett):
 
     @property
     def equation(self):
-        #to be inherited
+        #super().equation
+        
+        #to be (properly) inherited
         try:
             self.tex.remove()
         except:
