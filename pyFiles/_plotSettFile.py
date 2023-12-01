@@ -20,7 +20,7 @@ class plotSett():
     def __init__(self):
 
         #azure = '#006d77'
-        self.j = 0
+        #self.j = 0
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
         self.plotSettings = None
@@ -28,7 +28,7 @@ class plotSett():
         self.data = [None, None]
         self.tex = [None, None]  # label text
         #density of grid
-        self.N = 1
+        #self.N = 1
         
         self.hline = None
         self.vline = None
@@ -41,8 +41,6 @@ class plotSett():
         self._name = None
 
         self._majorStep = None
-        
-        #self.name
 
     @property
     def left(self):
@@ -185,10 +183,10 @@ class plotSett():
         self.ax.set_xlim(settings.xmin, settings.xmax)
         self.ax.set_ylim(settings.xmin, settings.xmax)
 
-    def grid(self, N = 1, majorStep = None, minorSteps = 10):
+    def grid(self, majorStep = None, minorSteps = 10):
 
         #grid density 
-        self.N = self.N - 0.1*N
+        #self.N = self.N - 0.1*N
         
         #raw grid step
         #gridSteps = round(gridSteps, 2)
