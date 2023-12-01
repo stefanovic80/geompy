@@ -226,8 +226,8 @@ class point(plotSett):
 
         methods = (
             f"\nMethods:\n"
-            f"\033[93mdraw()\033[0m\n"
             f"\033[93mclick()\033[0m\n"
+            f"\033[93mrotation(locus, angle = radiants)\033[0m\n"
             f"\033[93merase()\033[0m\n"
         )
 

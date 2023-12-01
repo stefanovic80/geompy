@@ -294,6 +294,5 @@ class plotSett():
             f"\033[93m.xmin = \033[0m {settings.xmin}\n"
             f"\033[93m.xmax = \033[0m {settings.xmax}\n"
             f"\033[93m.steps = \033[0m {settings.steps}\n"
-            f"\033[93m.x = \033[0m {self._x[:10]}...\n"
-            f"\033[93m.grid(N = {self.N})\033[0m\n"
+            f"\033[93m._x = \033[0m {self._x[:10]}...\n"
         )
