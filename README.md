@@ -17,22 +17,14 @@ Make sure you have matplotlib, random and numpy libraries installed on a fully w
 
 # Usage
 
-Open a console and move to the folder where the main.py file is located; which is named "analyticGeometry". 
+Open a console and move to the geompy folder, where the main.py file is located. 
 
 Run the ipython interpreter (type "ipython"), and type
 
 `run main.py`
 
 
-In this example, you gonna choose -20 and 20, respectively:
-
-`xmin`
-
-`-20`
-
-`xmax`
-
-`20`
+A Cartesian plane opens by side of th ipython interpreter
 
 ![Alt Text](pictures/pythonInterpreter.png)
 
@@ -77,45 +69,42 @@ As an example
 
 `c = circumference()`
 
-creates a circumference type instance, called "c". while
-
-`c.draw()`
-
-generates its graphical representation.
+generates a circumference type instance, labeled with "c" which draws a random circumference into the Cartesian Plane
 
 
 ![Alt Text](pictures/circumference.png)
 
+typing
 
-According to standard Python syntax, at the end of each method, optional arguments enclosed within parentheses allow you to specify additional options, such as custom labels for plots
+`c = name = "c"`
 
-`c.draw("c")`
+the "c" circumference is now named "c" on the Cartesian plane
 
 
-
-Similarly, if you wish to create an additional circumference, or a different geometrical locus such as a point or a parabola, you would define the respective class instance and than use the .draw() method for it's appearance on the plot
+Similarly, if you wish to create an additional circumference, or a different geometrical locus such as a point or a parabola, you would define the respective instance and you may name each one of them as follows
 
 
 
 `c1 = circumference()`
 
-`c1.draw()`
+`c1 = name = "c1"`
+
 
 `P = point()`
 
-`P.draw()`
+`P.name = "P"`
 
 `p = parabola()`
 
-`p.draw()`
+`p.name = "p"`
 
 # Draw a point
 
 By default, when no arguments are provided within the point parentheses, random coordinates are automatically assigned, otherwise you can pass them as point argument:
 
-`P = point(3, -9)`
+`A = point(3, -9)`
 
-`P.draw()`
+`A.name = "A"`
 
 
 an alternative way to change coordinates is passing them into the .coords attribute as a python list of two numbers 
@@ -127,13 +116,7 @@ Furthermore, in order to draw a random point among the ones of the "c" geometric
 
 `P = point(c)`
 
-`P.draw()`
-
-In the some manner, when no arguments are provided into the .draw() method, no label are assigned. While you can optionally add a label by passing a string argument into the .draw() method:
-
-
-
-`P = draw("P")`
+In the some manner, when no arguments are provided into the .draw() method, no label are assigned.
 
 The .click("label") method, allows the user to manually select the point with the mouse. It has to be called two times: 
 
@@ -199,10 +182,6 @@ Each of these aspects can be customized by the user, as demonstrated in this exa
 
 `c.center = point(0, 0)`
 
-`c.draw()`
-
-
-
 
 where, according with matplotlib library, the .color attribute can be choosen from the following list
 
@@ -225,19 +204,15 @@ where, according with matplotlib library, the .color attribute can be choosen fr
 
 
 
-
-
-
 ![Alt Text](pictures/grid.png)
 
 
 # Draw a (random) segment
 
-`s1 = segment()`
+`l1 = line()`
 
-`s1.draw()`
 
-s1 is an object of "segment" class type. Two random points are generated and a segment passing through is drawn.
+l1 is an object of "line" class type. Two random points are generated and a segment passing through is drawn.
 
 
 ![Alt Text](pictures/straightLine.png)
@@ -252,15 +227,15 @@ s1 is an object of "segment" class type. Two random points are generated and a s
 
 First of all delete all speciments of s1 instance
 
-`s1.erase()`
+`l1.erase()`
 
-`s1.angCoeff = 1`
+`l1.angCoeff = 1`
 
-`s1.intercept = 10`
+`l1.intercept = 10`
 
-`s1.draw("s1") = 10`
 
-(the optional "s1" string passed into the .draw() method is the straight line name)
+`l1.name = "l1"`
+
 
 **Draw a line passing through two different point: A and B respectively**
 
@@ -270,19 +245,18 @@ First of all delete all speciments of s1 instance
 `B = point(-2, 1)`
 
 
-`s1.erase()`
+`l1.erase()`
 
-`s1.point[0] = A
+`l1.point[0] = A
 
-`s1.point[1] = B`
+`l1.point[1] = B`
 
-`s1.draw("s1")`
+`l1.draw("s1")`
 
-in case you need a straight line (the optional "s1" string passed into the .draw() method is the straight line name). 
 
 Otherwise 
 
-`s1.draw("s1", cut = True)`
+`l1.cut`
 
 in case you need a segment in between A and B
 
@@ -298,19 +272,19 @@ in case you need a segment in between A and B
 
 `s1.angCoeff = -1
 
-`s1.draw("s1")`
+`s1.name = "s1"`
 
 **Draw a line passing through one point, say point A, and having a specific y-intercept**
 
 `A = point(3, 6)`
 
-`s1.erase()`
+`l1.erase()`
 
-`s1.point[0] = A
+`l1.point[0] = A
 
-`s1.intercept = -1
+`l1.intercept = -1
 
-`s1.draw("s1")`
+`l1.name = "s1"`
 
 
 
@@ -323,10 +297,6 @@ As a further example, say you want to draw a circumference.
 Firstly define a circumference type instance which I suggest you to call 'C1' as follows
 
 `C1 = circumference()`
-
-Once the "C1" instance is created, than use the "draw" method as follows
-
-`C1.draw()`
 
 
 ![Alt Text](pictures/circumferenceDrawn.png)
@@ -355,7 +325,7 @@ or simply
 
 Once the attribute is going to be changed, than use again the "draw" method
 
-`C1.draw()`
+`C1.name = "C1"`
 
 ![Alt Text](pictures/changeColor.png)
 
@@ -370,8 +340,6 @@ In the some way you can change the radius size or you can add a name
 `C1.radius = 4`
 
 `C1.name = "first circumference"`
-
-`C1.draw()`
 
 "center" is an instance of point class which is conteined into C1 instance. This means that typing
 
@@ -389,7 +357,7 @@ you can change the center coordinates by typing
 
 `C1.center.coords = [2, 5]`
 
-`C1.draw()`
+`C1.name = "C1"`
 
 
 ![Alt Text](pictures/circumferenceDraw2.png)
@@ -399,32 +367,29 @@ you can change the center coordinates by typing
 
 Say you have drawn a circumference by using a "circunference method" named "C1". To change it's color to red type this
 
-`C1.draw( color = 'red')`
+`C1.color = "red"`
 
 ![Alt Text](pictures/circumferenceDrawRed.png)
 
 to change to "black" type
 
-`C1.draw( color = 'black' )`
+`C1.color = 'black'`
 
 
 
 # Draw a (random) Parabola
 
 
-`P1 = parabola()`
+`p1 = parabola()`
 
-P1 is an object of "parabola" class type which choose random values for the parabola parameters:
+p1 is an object of "parabola" class type which choose random values for the parabola parameters:
 
-- x-shift (P1.xShift)
+- x-shift (p1.xShift)
 
-- y-shift (P1.yShift)
+- y-shift (p1.yShift)
 
-- concavity (P1.concavity)
+- concavity (p1.concavity)
 
-`P1.draw()`
-
-P1.draw() draws the geometrical locus
 
 ![Alt Text](pictures/parabola.png)
 
@@ -433,18 +398,15 @@ P1.draw() draws the geometrical locus
 
 choose an x-Shift of 
 
-`P1.xShift = 5`
+`p1.xShift = 5`
 
 choose a y-Shift of 0
 
-`P1.YShift = 0`
+`p1.YShift = 0`
 
 choose a concavity equal to 0.5
 
-`P1.concavity = 0.5`
+`p1.concavity = 0.5`
 
-draw the parabola
-
-`P1.draw()`
 
 ![Alt Text](pictures/parabola2.png)
