@@ -6,7 +6,6 @@ from .Settings import settings#xmin, xmax, linewidth, steps
 plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
-plt.rcParams [ 'lines.linewidth' ] = 2
 plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
@@ -17,11 +16,9 @@ class plotSett():
     fig = plt.figure()
     ax = fig.add_subplot(111)
     plt.tight_layout()
-    #ax.set_xlim(self.xmin, self.xmax)
-    def __init__(self):#, xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, linewidth = settings.linewidth):
-        #self.xmin = xmin
-        #self.xmax = xmax
-        #self.steps = steps
+    
+    def __init__(self):
+
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'c', 'cyan', 'm', 'magenta', 'k', 'black']
         self._linewidth = settings.linewidth
         self.plotSettings = None
@@ -52,8 +49,6 @@ class plotSett():
     @left.setter
     def left(self, value):
         settings.xmin = value
-        #_majorStep = (settings.xmax - settings.xmin)/20
-        #self.grid(majorStep = _majorStep)
         self.majorStep = self._majorStep
         self.lims()
         self.draw()
@@ -65,8 +60,6 @@ class plotSett():
     @right.setter
     def right(self, value):
         settings.xmax = value
-        #_majorStep = (settings.xmax - settings.xmin)/20
-        #self.grid(majorStep = _majorStep)
         self.majorStep = self._majorStep
         self.minorSteps = 10
         self.lims()
@@ -159,7 +152,7 @@ class plotSett():
 
 
 
-    def draw(self):#, cut = False):#, angle = 2*np.pi ):
+    def draw(self):
 
         self.lims()
 
@@ -185,9 +178,7 @@ class plotSett():
         self.ax.set_xlim(settings.xmin, settings.xmax)
         self.ax.set_ylim(settings.xmin, settings.xmax)
 
-    def grid(self, N = 1, majorStep = None, minorSteps = 10):#roteate x numbers to make them better fit in
-        
-        #self._majorStep = majorStep
+    def grid(self, N = 1, majorStep = None, minorSteps = 10):
 
         #grid density 
         self.N = self.N - 0.1*N
@@ -195,13 +186,11 @@ class plotSett():
         #raw grid step
         #gridSteps = round(gridSteps, 2)
         if majorStep == None:
-            #majorStep = self._majorStep
-            majorStep = 2#(settings.xmax - settings.xmin) / settings.steps*self.N*100
+            majorStep = 2
         else:
             pass
         #fine grid step
         minorStep = majorStep/minorSteps
-        #minorStep = (settings.xmax - settings.xmin) / self.steps*self.N*10
         #GridSteps = round(GridSteps, 1)
         
         #x grid---------------------------------------

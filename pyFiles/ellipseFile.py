@@ -23,6 +23,11 @@ class ellipse(plotSett):
 
         self.center._color = self._color
 
+        self.a = None
+        self.b = None
+        self.c = None
+
+
         if draw == True:
             self.draw()
 

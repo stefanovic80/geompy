@@ -39,15 +39,11 @@ class A:
 """
 
 class point(plotSett):
-    def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):#, xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, linewidth = settings.linewidth, seed = seed, draw = True):
-        #super().__init__( xmin, xmax, steps, linewidth)
+    def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):
         super().__init__()
         
 
         self.seed = seed
-        
-        #self._name = str(self)
-
         self.coords = [None, None]
 
         #return True if var is a  number
@@ -92,8 +88,6 @@ class point(plotSett):
 
         if draw == True:
             self.draw()
-            #self.label(name = None)
-
 
 
     @property
@@ -119,15 +113,9 @@ class point(plotSett):
         self.label(self._name)
 
 
-
-
-
-
-
     @property
     def equation(self):
-        #super.__str__() from label
-        #to be inherited
+        
         try:
             self.tex.remove()
         except:
@@ -149,7 +137,7 @@ class point(plotSett):
             eq = self._name + eq
         except:
             pass
-        #labelx, labely may necessitte to be attributes
+        
         if self.j%2 == 0:
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
         self.j += 1
@@ -172,7 +160,7 @@ class point(plotSett):
         if self.rotate == False:
             self.calc()
 
-        line = self.ax.scatter( self.coords[0], self.coords[1], color = self._color, linewidth = self._linewidth)
+        line = self.ax.scatter( self.data[0], self.data[1], color = self._color, linewidth = self._linewidth)
         self.lines = []
         self.lines.append(line)
     
