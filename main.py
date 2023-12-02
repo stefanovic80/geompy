@@ -2,6 +2,7 @@
 from pyFiles._plotSettFile import plotSett
 
 #may be deleted
+#from geompy.pyFiles import plotSett
 from pyFiles.pointFile import point
 from pyFiles.circumferenceFile import circumference
 from pyFiles.ellipseFile import ellipse

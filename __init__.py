@@ -8,8 +8,8 @@ from .pyFiles.ellipseFile import ellipse
 from .pyFiles.lineFile import line
 from .pyFiles.parabolaFile import parabola
 
-#from .pyModules2gen.triangleFile import triangle
-#from .pyModules2gen.angleFile import angle
+from .pyModules2gen.triangleFile import triangle
+from .pyModules2gen.angleFile import angle
 
 import matplotlib.pyplot as plt
 import numpy as np

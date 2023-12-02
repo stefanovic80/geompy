@@ -1,13 +1,13 @@
-from pyFiles.lineFile import line
-from pyFiles.pointFile import point
-from pyFiles._plotSettFile import plotSett
-from pyFiles.circumferenceFile import circumference
+from ..pyFiles.lineFile import line
+from ..pyFiles.pointFile import point
+from ..pyFiles._plotSettFile import plotSett
+from ..pyFiles.circumferenceFile import circumference
 
-from pyFiles import seed#steps, linewidth, seed
+from ..pyFiles import seed#steps, linewidth, seed
 
-from pyFiles.Settings import settings#xmin, xmax, linewidth, steps
+from ..pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 
-from . import plt, np, random
+from ..pyFiles import plt, np, random
 
 class angle(plotSett):
     def __init__(self, seed = seed):#xmin = xmin, xmax = xmax, steps = steps, seed = seed):
