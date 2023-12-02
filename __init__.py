@@ -12,6 +12,7 @@ from .pyModules2gen.triangleFile import triangle
 from .pyModules2gen.angleFile import angle
 
 import matplotlib.pyplot as plt
+from numpy import pi
 import numpy as np
 import random
 import os
