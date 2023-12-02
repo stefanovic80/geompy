@@ -48,7 +48,7 @@ class ellipse(plotSett):
         self.data[0] = np.append( self.data[0], self.data[0][0] )
         self.data[1] = np.append( self.data[1], self.data[1][0] )
 
-        line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
+        #line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
 
 
         self.ax.legend()
@@ -77,6 +77,16 @@ class ellipse(plotSett):
                 except:
                     pass
 
+
+
+    #to be partially inherited
+    def erase(self):
+        self.__del__()
+
+        self.data = [None, None]
+        self.center.coords = [None, None]
+        self.focus1 = None
+        self.focus2 = None
 
 
 
