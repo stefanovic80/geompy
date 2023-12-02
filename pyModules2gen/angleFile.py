@@ -10,10 +10,10 @@ from ..pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 from ..pyFiles import plt, np, random
 
 class angle(plotSett):
-    def __init__(self, seed = seed):#xmin = xmin, xmax = xmax, steps = steps, seed = seed):
+    def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed ):
         super().__init__()
         
-        self.line = [line(draw = False), line(draw = False)]
+        self.line = [line0, line1]
         self.arc = circumference(draw = False)
         
         self.rotate = False
