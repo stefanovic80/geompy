@@ -79,6 +79,16 @@ class ellipse(plotSett):
 
 
 
+    #to be partially inherited
+    def erase(self):
+        self.__del__()
+
+        self.data = [None, None]
+        self.center.coords = [None, None]
+        self.focus1 = None
+        self.focus2 = None
+
+
 
     def __str__(self):
 

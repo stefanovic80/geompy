@@ -1,7 +1,7 @@
 # _plotSett.py
 from . import plt, np, random
 
-from .Settings import settings#xmin, xmax, linewidth, steps
+from .Settings import settings
 
 plt.ion()
 
