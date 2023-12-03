@@ -145,10 +145,9 @@ class point(plotSett):
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
-        pass
         #self.data = [ None, None  ]
-        #for j in range(2):
-        #    self.data[j] = np.array([ self.data[j] ] )
+        for j in range(2):
+            self.data[j] = np.array([ self.data[j] ] )
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
