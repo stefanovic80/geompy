@@ -1,6 +1,5 @@
 # _plotSett.py
 from . import plt, np, random
-
 from .Settings import settings
 
 plt.ion()
@@ -19,8 +18,6 @@ class plotSett():
     
     def __init__(self):
 
-        #azure = '#006d77'
-        #self.j = 0
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
         self.plotSettings = None
@@ -28,7 +25,6 @@ class plotSett():
         self.data = [None, None]
         self.tex = [None, None]  # label text
         #density of grid
-        #self.N = 1
         
         self.hline = None
         self.vline = None
@@ -91,24 +87,27 @@ class plotSett():
     def x(self):
         return self.data[0]
 
+    """ 
     @x.setter
     def x(self, value):
-        self.data[0] = value
+        self.data[0] = np.array( [ value ] )
         self.lims()
-        self.draw()
-        self.label(self._name)
+        #self.draw()
+        #self.label(self._name)
+    """
 
     @property
     def y(self):
         return self.data[1]
 
+    """
     @y.setter
     def y(self, value):
-        self.data[1] = value
+        self.data[1] = np.array( [ value ] )
         self.lims()
-        self.draw()
-        self.label(self._name)
-
+        #self.draw()
+        #self.label(self._name)
+    """
 
 
     """

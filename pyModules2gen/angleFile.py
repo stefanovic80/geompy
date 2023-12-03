@@ -23,8 +23,9 @@ class angle(plotSett):
 
         self.j = 0
         
-        if draw == True:
-            self.name = r"$\alpha$"
+        
+        #if draw == True:
+        #    self.name = r"$\alpha$"
 
     def calc(self):
         self.__del__()
@@ -74,11 +75,11 @@ class angle(plotSett):
         m = [None, None]
         q = [None, None]
 
-        m[0] = self.line[0].angCoeff
-        q[0] = self.line[0].intercept
+        m[0] = self.line[0].angCoeff[0]
+        q[0] = self.line[0].intercept[0]
 
-        m[1] = self.line[1].angCoeff
-        q[1] = self.line[1].intercept
+        m[1] = self.line[1].angCoeff[0]
+        q[1] = self.line[1].intercept[0]
         
         #------------- from chatGPT
         # Get the indices that would sort 'm'
@@ -110,7 +111,7 @@ class angle(plotSett):
         formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
         self.arc.center.rotation( locus = self.arc, angle = formula)
 
-
+        #to be checked out!
         self.data = self.arc.data
 
         self.j+=1
