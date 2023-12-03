@@ -1,9 +1,7 @@
 # lineFile.py
 from . import plt, np, random
-#from . import xmin, xmax, steps, linewidth, seed
-
-from . import seed#steps, linewidth, seed
-from .Settings import settings#xmin, xmax, linewidth, steps
+from . import seed
+from .Settings import settings
 
 plt.ion()
 

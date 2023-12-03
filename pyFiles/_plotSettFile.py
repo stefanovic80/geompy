@@ -85,6 +85,32 @@ class plotSett():
         else:
             pass
 
+
+
+    @property
+    def x(self):
+        return self.data[0]
+
+    @x.setter
+    def x(self, value):
+        self.data[0] = value
+        self.lims()
+        self.draw()
+        self.label(self._name)
+
+    @property
+    def y(self):
+        return self.data[1]
+
+    @y.setter
+    def y(self, value):
+        self.data[1] = value
+        self.lims()
+        self.draw()
+        self.label(self._name)
+
+
+
     """
     #@property
     def nameX(self):

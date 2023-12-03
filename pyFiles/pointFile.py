@@ -85,7 +85,7 @@ class point(plotSett):
         if draw == True:
             self.draw()
 
-
+    """
     @property
     def x(self):
         return self.data[0]
@@ -107,7 +107,7 @@ class point(plotSett):
         self.lims()
         self.draw()
         self.label(self._name)
-
+    """
 
     @property
     def equation(self):
@@ -147,7 +147,8 @@ class point(plotSett):
     def calc(self):
         #self.data = [ None, None  ]
         for j in range(2):
-            self.data[j] = np.array([ self.data[j] ] )
+            #self.data[j] = np.array( self.data[j] )
+            self.data[j] = np.array( [ self.data[j] ] )
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
