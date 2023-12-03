@@ -8,31 +8,6 @@ from ._plotSettFile import plotSett
 from . import seed
 from .Settings import settings
 
-"""
-class myClass:
-    def __init__(self, a):
-        self.a = a
-
-    def name(self):
-        for name, obj in globals().items():
-            if obj is self:
-                return name
-
-obj = myClass(3)
-print(obj.name())  # Output will be "obj"
-
-#------------------
-
-class A:
-
-    def __init__(self):
-        self.a = 0
-
-    def get_name(self):
-        for k in globals():
-            if self is globals()[k]:
-                return k
-"""
 
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):
@@ -85,30 +60,7 @@ class point(plotSett):
         if draw == True:
             self.draw()
 
-    """
-    @property
-    def x(self):
-        return self.data[0]
-
-    @x.setter
-    def x(self, value):
-        self.data[0] = value
-        self.lims()
-        self.draw()
-        self.label(self._name)
-
-    @property
-    def y(self):
-        return self.data[1]
-
-    @y.setter
-    def y(self, value):
-        self.data[1] = value
-        self.lims()
-        self.draw()
-        self.label(self._name)
-    """
-
+    
     @property
     def equation(self):
         
@@ -137,9 +89,6 @@ class point(plotSett):
         if self.j%2 == 0:
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
         self.j += 1
-
-
-
 
 
 

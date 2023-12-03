@@ -1,9 +1,5 @@
 # circumference.py
 from . import plt, np, random
-#from . import steps, linewidth
-
-#from .config import xmin, xmax, linewidth, steps
-
 from .Settings import settings
 
 from ._plotSettFile import plotSett
@@ -11,9 +7,9 @@ from .pointFile import point
 
 class circumference(plotSett):
 
-    def __init__(self, draw = True): #xmin = xmin, xmax = xmax, steps = steps, draw = True):
+    def __init__(self, draw = True):
         
-        super().__init__()#xmin, xmax, steps, linewidth)
+        super().__init__()
         #plotSett.__init__(self)
 
         self._radius = random.uniform(0, (settings.xmax-settings.xmin)/2)
@@ -94,9 +90,6 @@ class circumference(plotSett):
         #labelx, labely may necessitte to be attributes
         self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
     """
-
-
-
 
     
     #circumference equation calculation from center coordinates and radius

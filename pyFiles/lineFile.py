@@ -11,7 +11,7 @@ from .pointFile import point
 
 class line(plotSett):
 
-    #def __init__(self, point1 = point(draw = False), point2 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
+    #def __init__(self, point0 = point(draw = False), point1 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
     def __init__(self, seed = seed, draw = True):
         
         super().__init__()#xmin, xmax, steps)
@@ -29,9 +29,9 @@ class line(plotSett):
 
         #random points from which the straight line is identified
         #should replace with point0 and point1
-        point1 = point(draw = False)
-        point2 = point(seed = seed + 1, draw = False)
-        self.point = [point1, point2]
+        point0 = point(draw = False)
+        point1 = point(seed = seed + 1, draw = False)
+        self.point = [point0, point1]
         
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)

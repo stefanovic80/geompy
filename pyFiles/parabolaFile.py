@@ -1,11 +1,6 @@
 # parabolaFile.py
 from . import plt, np, random
-#from . import steps, linewidth
-
-from .Settings import settings#xmin, xmax, steps, linewidth
-
-#plt.ion()
-
+from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
 
