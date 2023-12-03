@@ -135,13 +135,13 @@ class circumference(plotSett):
 
         self.angles = np.array(angles)
 
-        self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
+        self.data = [np.array(data[0]) + self.center.data[0], np.array(data[1]) + self.center.data[1] ]
        
         self.pointsSelect(angle = angle)
         
-        self.a = -2*self.center.coords[0]
-        self.b = -2*self.center.coords[1]
-        self.c = self.center.coords[0]**2 + self.center.coords[1]**2 - self._radius**2
+        self.a = -2*self.center.data[0]
+        self.b = -2*self.center.data[1]
+        self.c = self.center.data[0]**2 + self.center.data[1]**2 - self._radius**2
 
     
     def pointsSelect(self, angle = 2*np.pi):
@@ -162,13 +162,13 @@ class circumference(plotSett):
         
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
-        x0 = self.point[0].coords[0]
-        x1 = self.point[1].coords[0]
-        x2 = self.point[2].coords[0]
+        x0 = self.point[0].data[0]
+        x1 = self.point[1].data[0]
+        x2 = self.point[2].data[0]
         
-        y0 = self.point[0].coords[1]
-        y1 = self.point[1].coords[1]
-        y2 = self.point[2].coords[1]
+        y0 = self.point[0].data[1]
+        y1 = self.point[1].data[1]
+        y2 = self.point[2].data[1]
         
         A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ]) 
         Ainv = np.linalg.inv(A)
@@ -189,10 +189,10 @@ class circumference(plotSett):
         for point in self.point:
             try:
                         
-                x0 = point.coords[0]
-                y0 = point.coords[1]
-                x1 = self.center.coords[0]
-                y1 = self.center.coords[1]
+                x0 = point.data[0]
+                y0 = point.data[1]
+                x1 = self.center.data[0]
+                y1 = self.center.data[1]
                 self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
                 
                 self.a = -2*x1
@@ -225,7 +225,7 @@ class circumference(plotSett):
         self.__del__()
 
         self.data = [None, None]
-        self.center.coords = [None, None]
+        self.center.data = [None, None]
         self._radius = None
 
     def __str__(self):

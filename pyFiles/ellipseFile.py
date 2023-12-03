@@ -37,10 +37,10 @@ class ellipse(plotSett):
     def calc(self):
         self.__del__()
 
-        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.coords[0]  )/( self.focus1  )  )**2  )#ellipse equation      
+        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.data[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 
         self.data = [self._x]
-        self.data = self.data + [ np.append( self.center.coords[1] + ellip, self.center.coords[1] - ellip[::-1] ) ]
+        self.data = self.data + [ np.append( self.center.data[1] + ellip, self.center.data[1] - ellip[::-1] ) ]
 
         #x values for the graph of the lower side
         self.data[0] = np.append( self.data[0], self.data[0][::-1])
@@ -84,7 +84,7 @@ class ellipse(plotSett):
         self.__del__()
 
         self.data = [None, None]
-        self.center.coords = [None, None]
+        self.center.data = [None, None]
         self.focus1 = None
         self.focus2 = None
 

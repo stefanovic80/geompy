@@ -40,7 +40,7 @@ class point(plotSett):
         
 
         self.seed = seed
-        self.coords = [None, None]
+        self.data = [None, None]
 
         #return True if var is a  number
         pf_isnumber = isinstance(pickFrom, (int, float) )
@@ -51,8 +51,8 @@ class point(plotSett):
 
         #shift of variables:pickFrom become x, x become y
         if pf_isnumber == True:
-            self.coords[0] = pickFrom
-            self.coords[1] = x
+            self.data[0] = pickFrom
+            self.data[1] = x
 
         #no arguments return random coords
         elif pickFrom is None and x is None and y is None:
@@ -64,8 +64,8 @@ class point(plotSett):
             self.randomPoint()
         
         elif xy_arenumber == True:
-            self.coords[0] = x
-            self.coords[1] = y 
+            self.data[0] = x
+            self.data[1] = y 
         
         """
         #------------------------------------------------------------
@@ -88,22 +88,22 @@ class point(plotSett):
 
     @property
     def x(self):
-        return self.coords[0]
+        return self.data[0]
 
     @x.setter
     def x(self, value):
-        self.coords[0] = value
+        self.data[0] = value
         self.lims()
         self.draw()
         self.label(self._name)
 
     @property
     def y(self):
-        return self.coords[1]
+        return self.data[1]
 
     @y.setter
     def y(self, value):
-        self.coords[1] = value
+        self.data[1] = value
         self.lims()
         self.draw()
         self.label(self._name)
@@ -126,8 +126,8 @@ class point(plotSett):
         #--------------------
 
         
-        x = str(round(self.coords[0], 2))
-        y = str(round(self.coords[1], 2))
+        x = str(round(self.data[0], 2))
+        y = str(round(self.data[1], 2))
         eq = "(" + x + ";" + y + ")"
         try:
             eq = self._name + eq
@@ -145,9 +145,10 @@ class point(plotSett):
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
-        self.data = [ None, None  ]
-        for j in range(2):
-            self.data[j] = np.array([ self.coords[j] ] )
+        pass
+        #self.data = [ None, None  ]
+        #for j in range(2):
+        #    self.data[j] = np.array([ self.data[j] ] )
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
@@ -163,8 +164,8 @@ class point(plotSett):
     
     #-----------------------------------------------
     def randomCoords(self, seed):
-        self.coords[0] = random.uniform(settings.xmin, settings.xmax)
-        self.coords[1] = random.uniform(settings.xmin, settings.xmax)
+        self.data[0] = random.uniform(settings.xmin, settings.xmax)
+        self.data[1] = random.uniform(settings.xmin, settings.xmax)
         self.seed += 1
         seed = self.seed
 
@@ -174,7 +175,7 @@ class point(plotSett):
         condition_mask = ( self.pickFrom[1] > settings.xmin) & (self.pickFrom[1] < settings.xmax)
         indices = np.where(condition_mask)
         idx = random.choice(indices[0])
-        self.coords = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
+        self.data = [self.pickFrom[0][idx], self.pickFrom[1][idx] ]
     #-------------------------------------------------------------
     def zoom(self):
 
@@ -193,7 +194,7 @@ class point(plotSett):
         self.__del__()
           
         b = plt.ginput()
-        self.coords = [ b[0][0], b[0][1] ]
+        self.data = [ b[0][0], b[0][1] ]
         self.draw()
         self.label(self._name)
             
@@ -202,10 +203,10 @@ class point(plotSett):
     
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
-        a1 = (locus.data[0] - self.coords[0])*np.sin(angle)
-        locus.data[0] = (locus.data[0] - self.coords[0]  )*np.cos(angle) - (locus.data[1] - self.coords[1]  )*np.sin(angle) + self.coords[0]
+        a1 = (locus.data[0] - self.data[0])*np.sin(angle)
+        locus.data[0] = (locus.data[0] - self.data[0]  )*np.cos(angle) - (locus.data[1] - self.data[1]  )*np.sin(angle) + self.data[0]
 
-        locus.data[1] = a1 + ( locus.data[1] - self.coords[1])*np.cos(angle) + self.coords[1]
+        locus.data[1] = a1 + ( locus.data[1] - self.data[1])*np.cos(angle) + self.data[1]
         
         locus.draw()#, draw = False)
     def __str__(self):
@@ -215,7 +216,7 @@ class point(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m point\n"
             f"\nAttributes:\n"
-            f"\033[93mcoords:\033[0m [{self.coords[0]}, {self.coords[1]}] \n"
+            f"\033[93mcoords:\033[0m [{self.data[0]}, {self.data[1]}] \n"
             f"\033[93mname:\033[0m {self._name}\n"
             f"\033[93mcolor:\033[0m {self._color}\n"
         )

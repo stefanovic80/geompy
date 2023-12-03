@@ -75,9 +75,9 @@ class triangle(plotSett):
         self.data = [None, None]
 
         for j in range(2):
-            self.point[j].coords = [None, None]
+            self.point[j].data = [None, None]
         #for u in self.point:
-        #    u.coords = [None, None]
+        #    u.data = [None, None]
 
         self.angCoeff = None
         self.intercept = None

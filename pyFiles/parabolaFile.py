@@ -97,7 +97,7 @@ class parabola(plotSett):
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
+        self.data = self.data + [self.concavity*(self._x - self.vertex.data[0])**2 + self.vertex.data[1] ]
 
 
     #def calc1(self, name = None):
@@ -106,13 +106,13 @@ class parabola(plotSett):
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
-        x0 = self.point[0].coords[0]
-        x1 = self.point[1].coords[0]
-        x2 = self.point[2].coords[0]
+        x0 = self.point[0].data[0]
+        x1 = self.point[1].data[0]
+        x2 = self.point[2].data[0]
 
-        y0 = self.point[0].coords[1]
-        y1 = self.point[1].coords[1]
-        y2 = self.point[2].coords[1]
+        y0 = self.point[0].data[1]
+        y1 = self.point[1].data[1]
+        y2 = self.point[2].data[1]
 
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
@@ -155,8 +155,8 @@ class parabola(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
-            f"\033[93m.xShift = \033[0m {self.vertex.coords[0]}\n"
-            f"\033[93m.yShift = \033[0m {self.vertex.coords[1]}\n"
+            f"\033[93m.xShift = \033[0m {self.vertex.data[0]}\n"
+            f"\033[93m.yShift = \033[0m {self.vertex.data[1]}\n"
             f"\033[93m.concavity = \033[0m {self.concavity}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
