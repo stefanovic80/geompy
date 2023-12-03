@@ -159,6 +159,14 @@ class plotSett():
         self._minorSteps = value
         self.grid(majorStep = self._majorStep, minorSteps = value)
 
+    @property
+    def points(self):
+        j = 0
+        for u in zip(self.data[0], self.data[1]):
+            print(str(j) + ' ' + str(u))
+            j+=1
+
+
 
     def label(self, name):
         try:

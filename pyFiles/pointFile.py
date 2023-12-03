@@ -115,8 +115,6 @@ class point(plotSett):
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
         self.j += 1
 
-
-
     #coords as a list of two numpy arrays of one element each
     def calc(self):
         pass
