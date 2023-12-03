@@ -86,9 +86,6 @@ class point(plotSett):
         self.label(self._name)
 
 
-
-
-    
     @property
     def equation(self):
         

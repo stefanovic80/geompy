@@ -92,7 +92,7 @@ class parabola(plotSett):
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.concavity*(self._x - self.vertex.data[0])**2 + self.vertex.data[1] ]
+        self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
     #def calc1(self, name = None):
@@ -101,13 +101,13 @@ class parabola(plotSett):
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
-        x0 = self.point[0].data[0]
-        x1 = self.point[1].data[0]
-        x2 = self.point[2].data[0]
+        x0 = self.point[0].coords[0]
+        x1 = self.point[1].coords[0]
+        x2 = self.point[2].coords[0]
 
-        y0 = self.point[0].data[1]
-        y1 = self.point[1].data[1]
-        y2 = self.point[2].data[1]
+        y0 = self.point[0].coords[1]
+        y1 = self.point[1].coords[1]
+        y2 = self.point[2].coords[1]
 
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
