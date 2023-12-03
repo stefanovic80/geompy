@@ -13,7 +13,8 @@ from .pointFile import point
 
 class line(plotSett):
 
-    def __init__(self, seed = seed, draw = True):# xmin = settings.xmin, xmax = settings.xmax, steps = settings.steps, seed = seed, draw = True):
+    #def __init__(self, point1 = point(draw = False), point2 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
+    def __init__(self, seed = seed, draw = True):
         
         super().__init__()#xmin, xmax, steps)
         
@@ -29,6 +30,7 @@ class line(plotSett):
         self.xMax = settings.xmax
 
         #random points from which the straight line is identified
+        #should replace with point0 and point1
         point1 = point(draw = False)
         point2 = point(seed = seed + 1, draw = False)
         self.point = [point1, point2]

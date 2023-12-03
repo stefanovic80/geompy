@@ -10,7 +10,7 @@ from ..pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 from ..pyFiles import plt, np, random
 
 class angle(plotSett):
-    def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed ):
+    def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
         super().__init__()
         
         self.line = [line0, line1]
@@ -22,6 +22,9 @@ class angle(plotSett):
         self.data = None
 
         self.j = 0
+        
+        if draw == True:
+            self.name = r"$\alpha$"
 
     def calc(self):
         self.__del__()

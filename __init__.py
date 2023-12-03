@@ -21,6 +21,6 @@ _set = plotSett()
 _set.grid()
 
 # Alternatively, you can define a function to be run upon import
-def initialize():
-    _set = plotSett()
-    _set.grid()
+#def initialize():
+#    _set = plotSett()
+#    _set.grid()

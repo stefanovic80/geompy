@@ -1,16 +1,12 @@
 #pointFile.py
 
-#global xmin, xmax
-
 from . import plt, np, random#, ctypes
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
-#from . import xmin, xmax, steps, linewidth
-#from . import steps, linewidth
 from . import seed
-from .Settings import settings#xmin, xmax, linewidth, steps
+from .Settings import settings
 
 """
 class myClass:
