@@ -1,9 +1,7 @@
 # lineFile.py
 from . import plt, np, random
-#from . import xmin, xmax, steps, linewidth, seed
-
-from . import seed#steps, linewidth, seed
-from .Settings import settings#xmin, xmax, linewidth, steps
+from . import seed
+from .Settings import settings
 
 plt.ion()
 
@@ -13,7 +11,7 @@ from .pointFile import point
 
 class line(plotSett):
 
-    #def __init__(self, point1 = point(draw = False), point2 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
+    #def __init__(self, point0 = point(draw = False), point1 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
     def __init__(self, seed = seed, draw = True):
         
         super().__init__()#xmin, xmax, steps)
@@ -31,9 +29,9 @@ class line(plotSett):
 
         #random points from which the straight line is identified
         #should replace with point0 and point1
-        point1 = point(draw = False)
-        point2 = point(seed = seed + 1, draw = False)
-        self.point = [point1, point2]
+        point0 = point(draw = False)
+        point1 = point(seed = seed + 1, draw = False)
+        self.point = [point0, point1]
         
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
@@ -130,8 +128,8 @@ class line(plotSett):
 
     def calc2(self): #calculate equation from two points
 
-        x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
-        x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
+        x0, y0 = self.point[0].data[0], self.point[0].data[1]
+        x1, y1 = self.point[1].data[0], self.point[1].data[1]
         
         self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
 
@@ -141,7 +139,7 @@ class line(plotSett):
             j = 0 
             if self._cut == True:
                 j = 0
-                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims = [ self.point[0].data[j], self.point[1].data[j] ]
                 lims.sort()
                 self.xMin = lims[0]
                 self.xMax = lims[1]
@@ -154,7 +152,7 @@ class line(plotSett):
 
             if self._cut == True:
                 j = 1
-                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims = [ self.point[0].data[j], self.point[1].data[j] ]
                 lims.sort()
                 self.xMin = lims[0]
                 self.xMax = lims[1]
@@ -171,7 +169,7 @@ class line(plotSett):
         
         for j in range(2):
             try:
-                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                x0, y0 = self.point[j].data[0], self.point[j].data[1]
                 self.intercept = -self.angCoeff*x0 + y0
             except:
                 pass
@@ -183,7 +181,7 @@ class line(plotSett):
 
         for j in range(2):
             try:
-                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                x0, y0 = self.point[j].data[0], self.point[j].data[1]
                 self.angCoeff = (y0 - self.intercept)/x0
             except:
                 pass
@@ -216,7 +214,7 @@ class line(plotSett):
         self.data = [None, None]
         #points to be removed or not to be removed. This is the problem!!!
         for j in range(2):
-            self.point[j].coords = [None, None]
+            self.point[j].data = [None, None]
         
         self.angCoeff = None
         self.intercept = None
@@ -239,8 +237,8 @@ class line(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.erase()\033\n"
-            f"\033[93m.point[0].coords = [{self.point[0].coords[0]}, {self.point[0].coords[1]}]\033\n "
-            f"\033[93m.point[1].coords = [{self.point[1].coords[0]}, {self.point[1].coords[1]}]\033[0m\n"
+            f"\033[93m.point[0].data = [{self.point[0].data[0]}, {self.point[0].data[1]}]\033\n "
+            f"\033[93m.point[1].data = [{self.point[1].data[0]}, {self.point[1].data[1]}]\033[0m\n"
         )            
         
         return attributes + methods + self.plotSettings
