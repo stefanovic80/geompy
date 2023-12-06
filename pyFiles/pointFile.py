@@ -68,6 +68,7 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.data[0] = np.array( [ value ] )
+        self.coords[0] = value
         self.lims()
         self.draw()
         self.label(self._name)
@@ -81,6 +82,7 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.data[1] = np.array( [ value ] )
+        self.coords[1] = value
         self.lims()
         self.draw()
         self.label(self._name)
@@ -103,8 +105,8 @@ class point(plotSett):
         #--------------------
 
         
-        x = str(round(self.data[0], 2))
-        y = str(round(self.data[1], 2))
+        x = str(round(self.coords[0], 2))
+        y = str(round(self.coords[1], 2))
         eq = "(" + x + ";" + y + ")"
         try:
             eq = self._name + eq
