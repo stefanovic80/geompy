@@ -1,9 +1,6 @@
 #pointFile.py
 
-from . import plt, np, random#, ctypes
-
-#plt.ion()
-
+from . import plt, np, random
 from ._plotSettFile import plotSett
 from . import seed
 from .Settings import settings
@@ -56,11 +53,41 @@ class point(plotSett):
         self._color = random.choice(self.colors)
         self.lines = None
         self.tex = None 
-
+        
+        self.coords = self.data
+        self.data = [ np.array([u]) for u in self.data  ]
+        
         if draw == True:
             self.draw()
 
-    
+    @property
+    def x(self):
+        return self.data[0]
+
+
+    @x.setter
+    def x(self, value):
+        self.data[0] = np.array( [ value ] )
+        self.coords[0] = value
+        self.lims()
+        self.draw()
+        self.label(self._name)
+
+
+    @property
+    def y(self):
+        return self.data[1]
+
+
+    @y.setter
+    def y(self, value):
+        self.data[1] = np.array( [ value ] )
+        self.coords[1] = value
+        self.lims()
+        self.draw()
+        self.label(self._name)
+
+
     @property
     def equation(self):
         
@@ -78,8 +105,8 @@ class point(plotSett):
         #--------------------
 
         
-        x = str(round(self.data[0], 2))
-        y = str(round(self.data[1], 2))
+        x = str(round(self.coords[0], 2))
+        y = str(round(self.coords[1], 2))
         eq = "(" + x + ";" + y + ")"
         try:
             eq = self._name + eq
@@ -90,14 +117,10 @@ class point(plotSett):
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
         self.j += 1
 
-
-
     #coords as a list of two numpy arrays of one element each
     def calc(self):
-        #self.data = [ None, None  ]
-        for j in range(2):
-            #self.data[j] = np.array( self.data[j] )
-            self.data[j] = np.array( [ self.data[j] ] )
+        pass
+        #self.data = [ np.array([u]) for u in self.data  ]
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
