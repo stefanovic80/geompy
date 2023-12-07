@@ -16,7 +16,7 @@ class circumference(plotSett):
         self.center = point(draw = False)
 
         #three points passing through the circumference
-        self._points = [None, None, None]
+        #self._points = [None, None, None]
         
         self.angles = None
         self._angle = 2*np.pi

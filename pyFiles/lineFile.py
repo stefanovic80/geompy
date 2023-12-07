@@ -28,10 +28,11 @@ class line(plotSett):
         self.xMax = settings.xmax
 
         #random points from which the straight line is identified
-        #should replace with point0 and point1
+        
+        #may have to move it into if statement
         point0 = point(draw = False)
         point1 = point(seed = seed + 1, draw = False)
-        self._points = [point0, point1]
+        
         
         #values to calculate straight line data (self.data[1])
         self.angCoeff = None #np.tan(angle)
@@ -41,6 +42,7 @@ class line(plotSett):
         self.j = 0
 
         if draw == True:
+            self._points = [point0, point1]
             self.draw()
 
     @property
@@ -209,7 +211,8 @@ class line(plotSett):
         self.data = [None, None]
         #points to be removed or not to be removed. This is the problem!!!
         for j in range(2):
-            self._points[j].coords = [None, None]
+            self._points = []
+            #self._points[j].coords = [None, None]
         
         self.angCoeff = None
         self.intercept = None

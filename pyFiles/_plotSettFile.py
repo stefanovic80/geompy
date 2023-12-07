@@ -35,7 +35,7 @@ class plotSett():
 
         self.rotate = False
         self._name = None
-        self._points = None
+        self._points = []
 
         self._majorStep = None
 
@@ -167,7 +167,14 @@ class plotSett():
             print(str(j) + ' ' + str(u))
             j+=1
 
-
+    @points.setter
+    def points(self, value):
+        #self.erase()
+        self._points = self._points + [ value ]
+        try:
+            self.draw()
+        except:
+            pass
 
     def label(self, name):
         try:

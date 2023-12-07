@@ -19,7 +19,7 @@ class parabola(plotSett):
        
         self.j = 0
         #self.lines = []
-        self._points = [None, None, None]
+        #self._points = [None, None, None]
         self._color = random.choice(self.colors)
 
 
