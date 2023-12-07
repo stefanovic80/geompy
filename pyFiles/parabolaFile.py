@@ -19,7 +19,7 @@ class parabola(plotSett):
        
         self.j = 0
         #self.lines = []
-        self.point = [None, None, None]
+        self._points = [None, None, None]
         self._color = random.choice(self.colors)
 
 
@@ -101,13 +101,13 @@ class parabola(plotSett):
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None):
-        x0 = self.point[0].coords[0]
-        x1 = self.point[1].coords[0]
-        x2 = self.point[2].coords[0]
+        x0 = self._points[0].coords[0]
+        x1 = self._points[1].coords[0]
+        x2 = self._points[2].coords[0]
 
-        y0 = self.point[0].coords[1]
-        y1 = self.point[1].coords[1]
-        y2 = self.point[2].coords[1]
+        y0 = self._points[0].coords[1]
+        y1 = self._points[1].coords[1]
+        y2 = self._points[2].coords[1]
 
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)

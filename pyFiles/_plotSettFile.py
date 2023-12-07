@@ -35,6 +35,7 @@ class plotSett():
 
         self.rotate = False
         self._name = None
+        self._points = None
 
         self._majorStep = None
 

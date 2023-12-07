@@ -16,7 +16,7 @@ class circumference(plotSett):
         self.center = point(draw = False)
 
         #three points passing through the circumference
-        self.point = [None, None, None]
+        self._points = [None, None, None]
         
         self.angles = None
         self._angle = 2*np.pi
@@ -139,7 +139,7 @@ class circumference(plotSett):
     
     def pointsSelect(self, angle = 2*np.pi):
         
-        for point in self.point:
+        for point in self._points:
             try:
                 condition = self.angles < angle
                 idxs = np.where(self.angles[condition])
@@ -155,13 +155,13 @@ class circumference(plotSett):
         
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
-        x0 = self.point[0].coords[0]
-        x1 = self.point[1].coords[0]
-        x2 = self.point[2].coords[0]
+        x0 = self._points[0].coords[0]
+        x1 = self._points[1].coords[0]
+        x2 = self._points[2].coords[0]
         
-        y0 = self.point[0].coords[1]
-        y1 = self.point[1].coords[1]
-        y2 = self.point[2].coords[1]
+        y0 = self._points[0].coords[1]
+        y1 = self._points[1].coords[1]
+        y2 = self._points[2].coords[1]
         
         A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ]) 
         Ainv = np.linalg.inv(A)
@@ -179,7 +179,7 @@ class circumference(plotSett):
     # calculate from center coordinates and a point passing through
     def calc3(self, name = None, angle = 2*np.pi):
         
-        for point in self.point:
+        for point in self._points:
             try:
                         
                 x0 = point.coords[0]
