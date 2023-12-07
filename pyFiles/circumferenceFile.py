@@ -14,9 +14,6 @@ class circumference(plotSett):
 
         self._radius = random.uniform(0, (settings.xmax-settings.xmin)/2)
         self.center = point(draw = False)
-
-        #three points passing through the circumference
-        #self._points = [None, None, None]
         
         self.angles = None
         self._angle = 2*np.pi
@@ -41,7 +38,7 @@ class circumference(plotSett):
     def angle(self, angle):
         self.__del__()
         self._angle = angle
-        self.chooseCalc(angle = self._angle )
+        self.chooseCalc( angle = self._angle )
         
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
 
@@ -139,22 +136,23 @@ class circumference(plotSett):
     
     def pointsSelect(self, angle = 2*np.pi):
         
-        for point in self._points:
-            try:
-                condition = self.angles < angle
-                idxs = np.where(self.angles[condition])
-                idxs = np.where(self.data[0][condition])
-                self.data[0] = self.data[0][idxs]
-                self.data[1] = self.data[1][idxs]
-                break
-            except:
-                pass
+        #for point in self._points:
+        try:
+            condition = self.angles < angle
+            idxs = np.where(self.angles[condition])
+            idxs = np.where(self.data[0][condition])
+            self.data[0] = self.data[0][idxs]
+            self.data[1] = self.data[1][idxs]
+            #break
+        except:
+            pass
 
 
 
         
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
+        
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
         x2 = self._points[2].coords[0]
@@ -217,6 +215,7 @@ class circumference(plotSett):
     def erase(self):
         self.__del__()
 
+        self._points = []
         self.data = [None, None]
         self.center.coords = [None, None]
         self._radius = None

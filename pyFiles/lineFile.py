@@ -90,9 +90,9 @@ class line(plotSett):
         labely = data[1][random_index] + shift
         #--------------------
         
-        if self.q > 0:
+        if self.intercept > 0:
             sign = '+'
-        elif self.q <0:
+        elif self.intercept <0:
             sign = '-'
         
         q = str(round(abs( self.q), 2))

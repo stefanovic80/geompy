@@ -18,15 +18,11 @@ class parabola(plotSett):
         self.c = None
        
         self.j = 0
-        #self.lines = []
-        #self._points = [None, None, None]
         self._color = random.choice(self.colors)
 
 
         if draw == True:
             self.draw()
-
-
 
 
 
@@ -73,20 +69,14 @@ class parabola(plotSett):
 
 
 
-
-
-
-
-
-
     def erase(self):
         self.__del__()
         
+        #self._points = [] may have to be moved into _plotSett
+        self._points = []
         self.vertex = None
         self.concavity = None
         self.data = [None, None]
-
-
 
 
 
@@ -95,11 +85,7 @@ class parabola(plotSett):
         self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
-    #def calc1(self, name = None):
-        #self.calc()
-
-
-    # calculate from three points the circumference passing through (to be fixed!)
+    # calculate from three points the parabola passing through (to be fixed!)
     def calc2(self, name = None):
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
@@ -120,6 +106,7 @@ class parabola(plotSett):
         
         self.calc1() 
     
+    #what is this?
     def calc1(self, name = None):
 
         Delta = self.b**2 - 4*self.a*self.c
