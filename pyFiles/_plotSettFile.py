@@ -122,9 +122,7 @@ class plotSett():
     @property
     def color(self):
         return self._color
-        #if self.j %2 == 0:
-        #    self.j += 1
-        #    self.color = self._color[self.j]
+        
 
     @color.setter
     def color(self, c):
@@ -143,39 +141,9 @@ class plotSett():
     def x(self):
         return self.data[0]
 
-    """ 
-    @x.setter
-    def x(self, value):
-        self.data[0] = np.array( [ value ] )
-        self.lims()
-        #self.draw()
-        #self.label(self._name)
-    """
-
     @property
     def y(self):
         return self.data[1]
-
-    """
-    @y.setter
-    def y(self, value):
-        self.data[1] = np.array( [ value ] )
-        self.lims()
-        #self.draw()
-        #self.label(self._name)
-    """
-
-
-    """
-    #@property
-    def nameX(self):
-        for name, obj in globals().items():
-            if obj is self:
-                self._name = name
-                break
-                #self.label(name )
-                #return name
-    """
     
     @property
     def name(self):
@@ -214,6 +182,22 @@ class plotSett():
     def minorSteps(self, value):
         self._minorSteps = value
         self.grid(majorStep = self._majorStep, minorSteps = value)
+
+
+    @property
+    def integral(self):
+        j = 0
+        space = ' '
+        integral = 0
+        init = self.data[0][0]
+        for u, v in zip(self.data[0], self.data[1]):
+            #to be fixed!"
+            integral = integral + (u- init)*v
+            init = u
+            print(str(j) + space + str(u) + space + str(v) + ' ' + str(integral) )
+            j+=1
+
+
 
     @property
     def points(self):
