@@ -35,15 +35,14 @@ class line(plotSett):
         
         
         #values to calculate straight line data (self.data[1])
-        self.angCoeff = None #np.tan(angle)
-        self.intercept = None
+        angle = random.uniform(0, np.pi)
+        self.angCoeff =  np.tan(angle)
+        self.intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.length = None
         self._cut = False
         self.j = 0
-        self._points = [point0, point1]
         
         if draw == True:
-            #self._points = [point0, point1]
             self.draw()
 
 
@@ -159,7 +158,7 @@ class line(plotSett):
 
                 self.data[0] = self.data[0][self.idxMin: self.idxMax]
                 self.data[1] = self.data[1][self.idxMin: self.idxMax]
-        self._points = []
+        #self._points = []
 
 
 
