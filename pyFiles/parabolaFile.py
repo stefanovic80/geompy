@@ -9,8 +9,8 @@ class parabola(plotSett):
     def __init__(self, draw = True):
 
         super().__init__()
-        self.vertex = point( np.random.randint(settings.xmin, settings.xmax), np.random.randint(settings.xmin, settings.xmax), draw = False  )
-        self.concavity = np.random.randint(-10, 10)/5#to be checked out!
+        self.vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
+        self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
         self.a = None
