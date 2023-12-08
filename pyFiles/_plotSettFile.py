@@ -175,6 +175,32 @@ class plotSett():
             self.draw()
         except:
             pass
+    """
+    @property
+    def cutOff(self, n):
+        self.data = [arr[n:] for arr in self.data]
+        self.onlyDraw()
+    """
+
+
+    @property
+    def cutOff(self):
+        return self._cutOff
+
+    @cutOff.setter
+    def cutOff(self, n):
+        self._cutOff = n
+        self.cut_data()
+
+    def cut_data(self):
+        if self._cutOff is not None:
+            self.data = [arr[self._cutOff:] for arr in self.data]
+            self.__del__()
+            self.onlyDraw()  
+
+
+
+
 
     def label(self, name):
         try:
@@ -203,6 +229,9 @@ class plotSett():
         self.lims()
 
         self.chooseCalc()
+        self.onlyDraw()
+
+    def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
         #to check!
