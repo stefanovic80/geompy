@@ -233,8 +233,6 @@ class line(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.erase()\033\n"
-            f"\033[93m.point[0].data = [{self._points[0].data[0]}, {self._points[0].data[1]}]\033\n "
-            f"\033[93m.point[1].data = [{self._points[1].data[0]}, {self._points[1].data[1]}]\033[0m\n"
         )            
         
         return attributes + methods + self.plotSettings
