@@ -2,6 +2,7 @@
 from . import plt, np, random
 from .Settings import settings
 
+# to be removed in case of coding
 plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
@@ -38,6 +39,10 @@ class plotSett():
         self._points = []
 
         self._majorStep = None
+
+        #used in cutOff method
+        self.j = 0
+        self._cutOff = 0
 
     @property
     def left(self):
@@ -169,18 +174,12 @@ class plotSett():
 
     @points.setter
     def points(self, value):
-        #self.erase()
+        self.erase()
         self._points = self._points + [ value ]
         try:
             self.draw()
         except:
             pass
-    """
-    @property
-    def cutOff(self, n):
-        self.data = [arr[n:] for arr in self.data]
-        self.onlyDraw()
-    """
 
 
     @property
@@ -191,15 +190,17 @@ class plotSett():
     def cutOff(self, n):
         self._cutOff = n
         self.cut_data()
+        
 
     def cut_data(self):
         if self._cutOff is not None:
-            self.data = [arr[self._cutOff:] for arr in self.data]
+            if self.j%2 == 0:
+                self.data = [arr[self._cutOff:] for arr in self.data]
+            else:
+                self.data = [arr[:-self._cutOff] for arr in self.data]
+            self.j += 1
             self.__del__()
             self.onlyDraw()  
-
-
-
 
 
     def label(self, name):
@@ -315,7 +316,8 @@ class plotSett():
 
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
-
+    
+    #may be deprecated
     def gridOff(self):
         plt.minorticks_off()
         self.ax.grid(False)

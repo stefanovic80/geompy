@@ -3,7 +3,7 @@ from . import plt, np, random
 from . import seed
 from .Settings import settings
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
@@ -40,18 +40,22 @@ class line(plotSett):
         self.length = None
         self._cut = False
         self.j = 0
-
+        self._points = [point0, point1]
+        
         if draw == True:
-            self._points = [point0, point1]
+            #self._points = [point0, point1]
             self.draw()
+
 
     @property
     def m(self):
         return self.angCoeff
 
+
     @m.setter
     def m(self, value):
         self.angCoeff = value
+
 
     @property
     def q(self):
@@ -67,9 +71,6 @@ class line(plotSett):
         self._cut = not self._cut
         self.draw()#cut = self._cut)
         self.label( self._name )
-
-
-
 
 
     @property
@@ -158,6 +159,7 @@ class line(plotSett):
 
                 self.data[0] = self.data[0][self.idxMin: self.idxMax]
                 self.data[1] = self.data[1][self.idxMin: self.idxMax]
+        self._points = []
 
 
 
@@ -210,10 +212,7 @@ class line(plotSett):
 
         self.data = [None, None]
         #points to be removed or not to be removed. This is the problem!!!
-        for j in range(2):
-            self._points = []
-            #self._points[j].coords = [None, None]
-        
+        #self._points = []
         self.angCoeff = None
         self.intercept = None
 

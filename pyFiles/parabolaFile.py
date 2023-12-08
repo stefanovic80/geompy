@@ -68,12 +68,11 @@ class parabola(plotSett):
         self.j += 1
 
 
-
+    #to be partially inherited
     def erase(self):
         self.__del__()
         
         #self._points = [] may have to be moved into _plotSett
-        self._points = []
         self.vertex = None
         self.concavity = None
         self.data = [None, None]

@@ -215,7 +215,7 @@ class circumference(plotSett):
     def erase(self):
         self.__del__()
 
-        self._points = []
+        #self._points = []
         self.data = [None, None]
         self.center.coords = [None, None]
         self._radius = None

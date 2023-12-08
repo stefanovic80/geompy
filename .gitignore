@@ -6,7 +6,8 @@ __pycache__/
 pyFiles/Downloads/
 
 pyFiles/._plotSettFile.py.swp
-
+pyFiles/._plotSettFile.py.swn
+pyFiles/._plotSettFile.py.swo
 pyfile/*.swp
 
 .ipynb_checkpoints
