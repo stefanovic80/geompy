@@ -12,55 +12,6 @@ plt.rcParams [ 'font.weight'] = 'bold'
 
 
 
-"""
-class YourClass:
-    def __init__(self):
-        self._cutOff = None
-        self._x = None
-
-    @property
-    def cutOff(self):
-        class CutOffProperty:
-            def __set__(self, instance, value):
-                instance.erase()
-                instance._cutOff = value
-                try:
-                    instance.draw()
-                except:
-                    pass
-
-            @property
-            def x(self):
-                return instance._x
-
-            @x.setter
-            def x(self, value):
-                instance._x = value
-                # Define the behavior for x here
-                print(f"x set to {value}")
-
-        return CutOffProperty()
-
-    def erase(self):
-        # Define erase logic
-        pass
-
-    def draw(self):
-        # Define draw logic
-        pass
-
-# Example usage:
-obj = YourClass()
-
-# Setting cutOff property
-obj.cutOff = "something"
-
-# Setting x property within cutOff
-obj.cutOff.x = "something_else"
-
-"""
-
-
 class plotSett():
     
     fig = plt.figure()
@@ -218,27 +169,37 @@ class plotSett():
 
     @property
     def cutOff(self):
-        # return self._cutOff
-        
+        return self._cutOff
 
         #x-----------
-        @property
-        def x(self):
-            return "it's working"
+        class coordsSel():
+            @property
+            def x(self):
+                return self._cutOff
+            
+            @x.setter
+            def x(self, xvalue):
+                idx = np.where( self.data[0] > xvalue)[0][0]
+                self.cutOff = idx
 
+        obj = coordsSel()
+        #return obj.x(xvalue)
+
+
+        """
         @x.setter
         def x(self, value):
             #instance._x = value
             # Define the behavior for x here
             print(f"x set to {value}")
-
+        """
 
         #y-----------
         @property
         def y(self):
             return "it's working"
 
-        @x.setter
+        @y.setter
         def y(self, value):
             #instance._x = value
             # Define the behavior for x here
