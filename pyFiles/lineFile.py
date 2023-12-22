@@ -3,7 +3,7 @@ from . import plt, np, random
 from . import seed
 from .Settings import settings
 
-plt.ion()
+#plt.ion()
 
 from ._plotSettFile import plotSett
 from .pointFile import point
@@ -28,28 +28,33 @@ class line(plotSett):
         self.xMax = settings.xmax
 
         #random points from which the straight line is identified
-        #should replace with point0 and point1
+        
+        #may have to move it into if statement
         point0 = point(draw = False)
         point1 = point(seed = seed + 1, draw = False)
-        self.point = [point0, point1]
+        
         
         #values to calculate straight line data (self.data[1])
-        self.angCoeff = None #np.tan(angle)
-        self.intercept = None
+        angle = random.uniform(0, np.pi)
+        self.angCoeff =  np.tan(angle)
+        self.intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.length = None
         self._cut = False
         self.j = 0
-
+        
         if draw == True:
             self.draw()
+
 
     @property
     def m(self):
         return self.angCoeff
 
+
     @m.setter
     def m(self, value):
         self.angCoeff = value
+
 
     @property
     def q(self):
@@ -65,9 +70,6 @@ class line(plotSett):
         self._cut = not self._cut
         self.draw()#cut = self._cut)
         self.label( self._name )
-
-
-
 
 
     @property
@@ -88,9 +90,9 @@ class line(plotSett):
         labely = data[1][random_index] + shift
         #--------------------
         
-        if self.q > 0:
+        if self.intercept > 0:
             sign = '+'
-        elif self.q <0:
+        elif self.intercept <0:
             sign = '-'
         
         q = str(round(abs( self.q), 2))
@@ -123,8 +125,8 @@ class line(plotSett):
 
     def calc2(self): #calculate equation from two points
 
-        x0, y0 = self.point[0].coords[0], self.point[0].coords[1]
-        x1, y1 = self.point[1].coords[0], self.point[1].coords[1]
+        x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
+        x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
         
         self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
 
@@ -134,7 +136,7 @@ class line(plotSett):
             j = 0 
             if self._cut == True:
                 j = 0
-                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
                 lims.sort()
                 self.xMin = lims[0]
                 self.xMax = lims[1]
@@ -147,7 +149,7 @@ class line(plotSett):
 
             if self._cut == True:
                 j = 1
-                lims = [ self.point[0].coords[j], self.point[1].coords[j] ]
+                lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
                 lims.sort()
                 self.xMin = lims[0]
                 self.xMax = lims[1]
@@ -156,6 +158,7 @@ class line(plotSett):
 
                 self.data[0] = self.data[0][self.idxMin: self.idxMax]
                 self.data[1] = self.data[1][self.idxMin: self.idxMax]
+        #self._points = []
 
 
 
@@ -164,7 +167,7 @@ class line(plotSett):
         
         for j in range(2):
             try:
-                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
                 self.intercept = -self.angCoeff*x0 + y0
             except:
                 pass
@@ -176,7 +179,7 @@ class line(plotSett):
 
         for j in range(2):
             try:
-                x0, y0 = self.point[j].coords[0], self.point[j].coords[1]
+                x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
                 self.angCoeff = (y0 - self.intercept)/x0
             except:
                 pass
@@ -208,9 +211,7 @@ class line(plotSett):
 
         self.data = [None, None]
         #points to be removed or not to be removed. This is the problem!!!
-        for j in range(2):
-            self.point[j].coords = [None, None]
-        
+        #self._points = []
         self.angCoeff = None
         self.intercept = None
 
@@ -232,8 +233,6 @@ class line(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.erase()\033\n"
-            f"\033[93m.point[0].data = [{self.point[0].data[0]}, {self.point[0].data[1]}]\033\n "
-            f"\033[93m.point[1].data = [{self.point[1].data[0]}, {self.point[1].data[1]}]\033[0m\n"
         )            
         
         return attributes + methods + self.plotSettings

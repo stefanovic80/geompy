@@ -2,12 +2,14 @@
 from . import plt, np, random
 from .Settings import settings
 
+# to be removed in case of coding
 plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
 plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
+
 
 
 class plotSett():
@@ -35,8 +37,13 @@ class plotSett():
 
         self.rotate = False
         self._name = None
+        self._points = []
 
         self._majorStep = None
+
+        #used in cutOff method
+        self.j = 0
+        self._cutOff = 0
 
     @property
     def left(self):
@@ -66,9 +73,7 @@ class plotSett():
     @property
     def color(self):
         return self._color
-        #if self.j %2 == 0:
-        #    self.j += 1
-        #    self.color = self._color[self.j]
+        
 
     @color.setter
     def color(self, c):
@@ -87,39 +92,9 @@ class plotSett():
     def x(self):
         return self.data[0]
 
-    """ 
-    @x.setter
-    def x(self, value):
-        self.data[0] = np.array( [ value ] )
-        self.lims()
-        #self.draw()
-        #self.label(self._name)
-    """
-
     @property
     def y(self):
         return self.data[1]
-
-    """
-    @y.setter
-    def y(self, value):
-        self.data[1] = np.array( [ value ] )
-        self.lims()
-        #self.draw()
-        #self.label(self._name)
-    """
-
-
-    """
-    #@property
-    def nameX(self):
-        for name, obj in globals().items():
-            if obj is self:
-                self._name = name
-                break
-                #self.label(name )
-                #return name
-    """
     
     @property
     def name(self):
@@ -159,6 +134,22 @@ class plotSett():
         self._minorSteps = value
         self.grid(majorStep = self._majorStep, minorSteps = value)
 
+
+    @property
+    def integral(self):
+        j = 0
+        space = ' '
+        integral = 0
+        init = self.data[0][0]
+        for u, v in zip(self.data[0], self.data[1]):
+            #to be fixed!"
+            integral = integral + (u- init)*v
+            init = u
+            print(str(j) + space + str(u) + space + str(v) + ' ' + str(integral) )
+            j+=1
+
+
+
     @property
     def points(self):
         j = 0
@@ -166,6 +157,73 @@ class plotSett():
             print(str(j) + ' ' + str(u))
             j+=1
 
+    @points.setter
+    def points(self, value):
+        self.erase()
+        self._points = self._points + [ value ]
+        try:
+            self.draw()
+        except:
+            pass
+
+
+    @property
+    def cutOff(self):
+        return self._cutOff
+
+        #x-----------
+        class coordsSel():
+            @property
+            def x(self):
+                return self._cutOff
+            
+            @x.setter
+            def x(self, xvalue):
+                idx = np.where( self.data[0] > xvalue)[0][0]
+                self.cutOff = idx
+
+        obj = coordsSel()
+        #return obj.x(xvalue)
+
+
+        """
+        @x.setter
+        def x(self, value):
+            #instance._x = value
+            # Define the behavior for x here
+            print(f"x set to {value}")
+        """
+
+        #y-----------
+        @property
+        def y(self):
+            return "it's working"
+
+        @y.setter
+        def y(self, value):
+            #instance._x = value
+            # Define the behavior for x here
+            print(f"x set to {value}")
+
+        
+        return self._cutOff
+
+    @cutOff.setter
+    def cutOff(self, n):
+        self._cutOff = n
+        self.cut_data()
+
+
+
+    def cut_data(self):
+        if self._cutOff is not None:
+            if self.j%2 == 0:
+                self.data = [arr[self._cutOff:] for arr in self.data]
+            else:
+                self.data = [arr[:-self._cutOff] for arr in self.data]
+            self.j += 1
+            self.__del__()
+            self.onlyDraw()  
 
 
     def label(self, name):
@@ -195,6 +253,9 @@ class plotSett():
         self.lims()
 
         self.chooseCalc()
+        self.onlyDraw()
+
+    def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
         #to check!
@@ -278,7 +339,8 @@ class plotSett():
 
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
-
+    
+    #may be deprecated
     def gridOff(self):
         plt.minorticks_off()
         self.ax.grid(False)

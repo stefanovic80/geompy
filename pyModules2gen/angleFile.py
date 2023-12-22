@@ -40,7 +40,7 @@ class angle(plotSett):
         
         self.line[1]._color = self._color
         self.line[1].erase()
-        self.line[1].point[0] = self.line[0].point[0]
+        self.line[1]._points[0] = self.line[0]._points[0]
         self.line[1].intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.line[1].calc4()
         

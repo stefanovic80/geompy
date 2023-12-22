@@ -6,7 +6,8 @@ __pycache__/
 pyFiles/Downloads/
 
 pyFiles/._plotSettFile.py.swp
-
+pyFiles/._plotSettFile.py.swn
+pyFiles/._plotSettFile.py.swo
 pyfile/*.swp
 
 .ipynb_checkpoints
@@ -17,6 +18,9 @@ pyFiles/.pointFile.py.swp
 
 pyFiles/.circumferenceFile.py.swn
 pyFiles/.circumferenceFile.py.swo
+pyFiles/.circumferenceFile.py.swp
+
+pyFiles/.pointFile.py.swo
 
 pyModules2gen/.angleFile.py.swo
 

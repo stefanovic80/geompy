@@ -29,12 +29,12 @@ class triangle(plotSett):
         self.AB.erase()
         self.BC.erase()
         self.CA.erase()
-        self.AB.point[0] = self.A
-        self.AB.point[1] = self.B
-        self.BC.point[0] = self.B
-        self.BC.point[1] = self.C
-        self.CA.point[0] = self.C
-        self.CA.point[1] = self.A
+        self.AB._points[0] = self.A
+        self.AB._points[1] = self.B
+        self.BC._points[0] = self.B
+        self.BC._points[1] = self.C
+        self.CA._points[0] = self.C
+        self.CA._points[1] = self.A
         
         """
         self.A.color = self.B.color = self.C.color
@@ -75,8 +75,8 @@ class triangle(plotSett):
         self.data = [None, None]
 
         for j in range(2):
-            self.point[j].data = [None, None]
-        #for u in self.point:
+            self._points[j].data = [None, None]
+        #for u in self._points:
         #    u.data = [None, None]
 
         self.angCoeff = None

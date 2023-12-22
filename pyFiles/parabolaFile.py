@@ -9,8 +9,8 @@ class parabola(plotSett):
     def __init__(self, draw = True):
 
         super().__init__()
-        self.vertex = point( np.random.randint(settings.xmin, settings.xmax), np.random.randint(settings.xmin, settings.xmax), draw = False  )
-        self.concavity = np.random.randint(-10, 10)/5#to be checked out!
+        self.vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
+        self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
         self.a = None
@@ -18,15 +18,11 @@ class parabola(plotSett):
         self.c = None
        
         self.j = 0
-        #self.lines = []
-        self.point = [None, None, None]
         self._color = random.choice(self.colors)
 
 
         if draw == True:
             self.draw()
-
-
 
 
 
@@ -72,21 +68,14 @@ class parabola(plotSett):
         self.j += 1
 
 
-
-
-
-
-
-
-
+    #to be partially inherited
     def erase(self):
         self.__del__()
         
+        #self._points = [] may have to be moved into _plotSett
         self.vertex = None
         self.concavity = None
         self.data = [None, None]
-
-
 
 
 
@@ -95,19 +84,15 @@ class parabola(plotSett):
         self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
 
 
-    #def calc1(self, name = None):
-        #self.calc()
-
-
-    # calculate from three points the circumference passing through (to be fixed!)
+    # calculate from three points the parabola passing through (to be fixed!)
     def calc2(self, name = None):
-        x0 = self.point[0].coords[0]
-        x1 = self.point[1].coords[0]
-        x2 = self.point[2].coords[0]
+        x0 = self._points[0].coords[0]
+        x1 = self._points[1].coords[0]
+        x2 = self._points[2].coords[0]
 
-        y0 = self.point[0].coords[1]
-        y1 = self.point[1].coords[1]
-        y2 = self.point[2].coords[1]
+        y0 = self._points[0].coords[1]
+        y1 = self._points[1].coords[1]
+        y2 = self._points[2].coords[1]
 
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
@@ -120,6 +105,7 @@ class parabola(plotSett):
         
         self.calc1() 
     
+    #what is this?
     def calc1(self, name = None):
 
         Delta = self.b**2 - 4*self.a*self.c
