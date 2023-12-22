@@ -15,21 +15,18 @@ As I personally believe that coding is a skill that can be acquired only by tack
 
 Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project.
 
-# Usage
 
-Open a console and move to the geompy folder, where the main.py file is located. 
+Open a console, move it where the geompy folder is located, start off an ipython session and type and import all modules
 
-Run the ipython interpreter (type "ipython"), and type
-
-`run main.py`
+`from geompy import *`
 
 
-A Cartesian plane opens by side of th ipython interpreter
+a new window with a Cartesian plane comes up
 
 ![Alt Text](pictures/pythonInterpreter.png)
+ 
 
-
-in case of any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+If everything works fine, than jump over this section. In case of any error message, due to any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -40,17 +37,41 @@ in case of any package version mismatch, than you need to create a 'analyticGeom
 
 
 
+# Usage
 
-The 
+
+
+Say you want to draw a circumference, than you must type
+
+`c1 = circumference()`
+
+and a circumference into the plot window comes up
+
+
+![Alt Text](pictures/circumference.png)
+
+
+c1 is a python variable. More precisely, it's a circumference class type instance. Say you need a circumference centered in P(1, 2) with radius r = 4, than you get it by typing
+
+
+`c1.center = point(1, 2)`
+
+
+`c1.radius = 4`
+
+in the some manner you can draw many other geometrical loci, each one of them being a class loaded with geompy. The 
 
 `who`
 
-command shows the list of all the python variables currently in use
+command shows a list of all loaded classes 
+
+
 
 ![Alt Text](pictures/who.png)
 
 
-among them, there are some having the some name as some of the most typical geometrical loci
+
+among them, the following classes 
 
 ### - [point](#draw-a-point)
 
@@ -63,7 +84,11 @@ among them, there are some having the some name as some of the most typical geom
 ### - [parabola](#draw-a-random-parabola)
 
 
-each one of these variables is a Python class. According with OOP programming, for each of them you can define one or more instances. Here, each instance is a specific geometrical locus. Finally  the .draw() method displays the corresponding plot. 
+
+draw a specific geometric locus.
+
+
+According with OOP programming, for each of them you can define one or more instances. Here, each instance is a specific geometrical locus.  
 
 As an example
 
