@@ -73,12 +73,46 @@ As an example, one of the listed attributes is "color," allowing you to set the 
 `c1.color = "blue" # or simply c1.color = "b"`
 
 
+the .color attribute can be choosen from the following list
 
-This flexibility extends to drawing and managing all other geometrical loci. Explore the following examples:
+- ``'b'``          blue
+
+- ``'g'``          green
+
+- ``'r'``          red
+
+- ``'azure'``      azure
+
+- ``'m'``          magenta
+
+- ``'y'``          yellow
+
+- ``'k'``          black
+
+- ``'w'``          white
 
 
 
 
+![Alt Text](pictures/grid.png)
+
+
+
+This flexibility extends to drawing and managing all other geometrical loci which are available as geompy classes and can be found from the list of ipython variables
+
+`who`
+ 
+
+
+![Alt Text](pictures/who.png)
+
+
+
+
+# Change geometrical loci parameters
+
+
+Explore the following examples:
 
 
 ### - [point](#draw-a-point)
@@ -110,15 +144,11 @@ This flexibility extends to drawing and managing all other geometrical loci. Exp
 `p.vertex = point(0, 0)`
 
 
- According with ipython syntax, the 
-
-`who`
-
-command shows a complete list of all variables currently in use, which includes all classes loaded from geompy 
 
 
 
-![Alt Text](pictures/who.png)
+![Alt Text](pictures/printCircumference.png)
+
 
 
 
@@ -148,16 +178,16 @@ or
 
 # Data visualization
 
-A numbered list of all points coordinates calculated into c instance
+- A numbered list of all points coordinates calculated into c instance
 
 `c.points `
 
-A list of all x values calculated into c instance
+- A list of all x values calculated into c instance
 
 `c.x`
 
 
-A list of all y values calculated into c instance
+- A list of all y values calculated into c instance
 
 `c.y`
 
@@ -177,27 +207,27 @@ last 100 points are removed. In both cases points are removed both from the plot
 # Draw a point
 
 
-Random point (no arguments passed within the parentheses)
+- Random point (no arguments passed within the parentheses)
 
 `A = point()`
 
-A specific point, sai A(3; -9)
+- A specific point, sai A(3; -9)
 
 `A = point(3, -9)`
 
-Change coordinates to (1; 7)
+- Change coordinates to (1; 7)
 
 `A.x = 1`
 
 `A.y = 7`
 
 
-A random point among the ones of the "c" geometrical locus 
+- A random point among the ones of the "c" geometrical locus 
 
 `P = point(c)`
 
 
-Choose point with mouse:
+- Choose point with mouse:
 
 the .click method, allows the user to manually select the point with the mouse. It has to be called two times: 
 
@@ -209,70 +239,27 @@ the .click method, allows the user to manually select the point with the mouse. 
 
 Choose one of the instances you have used so far (in this example P) and change the plot size and grid as follows
 
-`P.left = -20`
+- `P.left = -20`
 
-`P.right = 20`
+set both left and bottom coordinates to -20
 
-`P.majorStep = 2`
+- `P.right = 20`
 
-`P.minorSteps = 20`
+set both right and up coordinates to -20
 
+- `P.majorStep = 2`
 
-![Alt Text](pictures/grid.png)
+set major grid step to 2
 
+- `P.minorSteps = 20`
 
-
-
-
-# Change geometrical loci parameters
-
-
-
-
-
-When you create a Python instance like c = circumference(), it becomes a versatile object with various attributes, methods, and even instances of different classes. For instance, in the previous case of a circumference type instance, there is a point class instance in it, which is the center of the circumference. 
-
-You can explore these attributes and methods by simply typing
-
-
-`print(c)`
-
-
-![Alt Text](pictures/printCircumference.png)
-
-
-
-Each of these aspects can be customized by the user, as demonstrated in this example:
-
-`c.radius = 7`
-
-`c.color = 'blue'`
-
-`c.center = point(0, 0)`
-
-
-the .color attribute can be choosen from the following list
-
-- ``'b'``          blue
-
-- ``'g'``          green
-
-- ``'r'``          red
-
-- ``'azure'``      azure
-
-- ``'m'``          magenta
-
-- ``'y'``          yellow
-
-- ``'k'``          black
-
-- ``'w'``          white
-
-
-
+set the number of minor steps in between two adjacent major steps to 20
 
 ![Alt Text](pictures/grid.png)
+
+
+
+
 
 
 # Draw a (random) segment
@@ -384,7 +371,7 @@ or simply
 
 Once the attribute is going to be changed, than use again the "draw" method
 
-`c1.name = "C1"`
+`c1.name = "c1"`
 
 ![Alt Text](pictures/changeColor.png)
 
@@ -443,9 +430,9 @@ to change to "black" type
 
 p1 is an object of "parabola" class type which choose random values for the parabola parameters:
 
-- x-shift (p1.xShift)
+- x vertex coordinte (p1.vertex.x)
 
-- y-shift (p1.yShift)
+- y vertex coordinate (p1.vertex.y)
 
 - concavity (p1.concavity)
 
