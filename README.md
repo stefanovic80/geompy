@@ -16,7 +16,7 @@ As I personally believe that coding is a skill that can be acquired only by tack
 Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project.
 
 
-Open a console, move it where the geompy folder is located, start off an ipython session and type and import all modules
+Open a console, move it where the geompy folder is located, start off an ipython session and import all modules
 
 `from geompy import *`
 
@@ -59,7 +59,7 @@ c1 is a python variable. More precisely, it's a circumference class type instanc
 
 `c1.radius = 4`
 
-in the some manner you can draw many other geometrical loci, each one of them being a class loaded with geompy. The 
+in the some manner you can draw many other geometrical loci, each one of them being a class previously from geompy. The 
 
 `who`
 
@@ -71,7 +71,7 @@ command shows a list of all loaded classes
 
 
 
-among them, the following classes 
+among them, each one of the following classes draws a specific geometric locus 
 
 ### - [point](#draw-a-point)
 
@@ -85,23 +85,17 @@ among them, the following classes
 
 
 
-draw a specific geometric locus.
+So if you want to draw a line, than you must type
+
+`l1 = line()`
 
 
-According with OOP programming, for each of them you can define one or more instances. Here, each instance is a specific geometrical locus.  
-
-As an example
-
-`c = circumference()`
-
-generates a circumference type instance, labeled with "c" which draws a random circumference into the Cartesian Plane
 
 
-![Alt Text](pictures/circumference.png)
 
 typing
 
-`c = name = "c"`
+`c1 = name = "c1"`
 
 the "c" circumference is now named "c" on the Cartesian plane
 
@@ -110,9 +104,9 @@ Similarly, if you wish to create an additional circumference, or a different geo
 
 
 
-`c1 = circumference()`
+`c2 = circumference()`
 
-`c1 = name = "c1"`
+`c2 = name = "c2"`
 
 
 `P = point()`
@@ -122,6 +116,10 @@ Similarly, if you wish to create an additional circumference, or a different geo
 `p = parabola()`
 
 `p.name = "p"`
+
+
+
+
 
 # Draw a point
 
