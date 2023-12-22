@@ -154,27 +154,17 @@ The .click("label") method, allows the user to manually select the point with th
 
 First time it provides a zoom of the area where the point need to be choosen, the second time it select exact position.
 
-# Add axes and a grid
+# Plot settings
 
-Choose one of the defined instances, no matter of which class they come from, and use the .grid() method
+Choose one of the instances you have used so far (in this example P) and change the plot size and grid as follows
 
-`P.grid()`
+`P.left = -20`
 
+`P.right = 20`
 
-by typing it more times, you gonna increase grid density or dropped it down if -1 is passed as grid argument
+`P.majorStep = 2`
 
-`P.grid(-1)`
-
-otherwise use the majorStep argument to set the desired "majorStep" size
-
-`P.grid(majorStep = 2)`
-
-optionally you can also set the wanted number of "minorSteps" to be included in each "majorStep
-
-`P.grid(majorStep = 2, minorSteps = 20)`
-
-
-
+`P.minorSteps = 20`
 
 
 ![Alt Text](pictures/grid.png)
