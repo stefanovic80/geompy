@@ -40,47 +40,46 @@ If everything works fine, than jump over next section. In case of any error mess
 # Usage
 
 
-Once geompy is loaded into ipython, say you want to draw a circumference, than you must type
+After loading geompy into IPython, let's consider drawing a circumference. You can create an instance by typing:
 
 `c1 = circumference()`
 
 
-and a circumference with random center and radius is drawn into the plot window
+This will display a circumference with a random center and radius in the plot window.
 
 ![Alt Text](pictures/circumference.png)
 
 
 
 
-here "c1" is a python variable. More precisely, it's a "circumference" class type instance. Say you need a circumference centered in P(1, 2) having a radius r = 4, than
-
-
-`c1.center = point(1, 2)`
+Here "c1" is a python variable, specifically a "circumference" class instance. Should you need a circumference with a radius of 4 and centered at P(1, 2), you can modify its attributes accordingly:
 
 `c1.radius = 4`
 
-by typing
+`c1.center = point(1, 2)`
+
+
+To view a comprehensive list of attributes that can be modified by the user, simply type:
 
 `print(c1)`
 
-You gonna have a list of all Attributes, methods and settings related to the c1 which can be changed by the user
+This will display a list of all attributes, methods, and settings related to "c1" that are customizable by the user.
 
 
 ![Alt Text](pictures/printC1center.png)
 
-as an example, one of the attributes reported here is color, which means that by typing
+As an example, one of the listed attributes is "color," allowing you to set the color of the circumference:
+
+`c1.color = "blue" # or simply c1.color = "b"`
 
 
-`c1.color = "blue"`
 
-or simply
-
-`c1.color = "b"`
+This flexibility extends to drawing and managing all other geometrical loci. Explore the following examples:
 
 
-you can set the color you like more. 
 
-In the some manner you can draw and mangage all other geometrical loci; as in the following examples
+
+
 
 ### - [point](#draw-a-point)
 
