@@ -80,16 +80,19 @@ or simply
 
 you can set the color you like more. 
 
-In the some manner you can draw many other geometrical loci, each one of them being a python class loaded from the geompy library; as follows
+In the some manner you can draw and mangage all other geometrical loci; as in the following examples
 
 ### - [point](#draw-a-point)
 
 `P = point()`
 
+`P.y = -5`
 
 ### - [circumference](#draw-a-random-circumference)
 
 `c = circumference()`
+
+`c.linewidth = 1`
 
 ### - [ellipse] (#draw-a-random-ellipse)
 
@@ -99,12 +102,13 @@ In the some manner you can draw many other geometrical loci, each one of them be
 
 `l = line()`
 
+`l.m = -1.4`
 
 ### - [parabola](#draw-a-random-parabola)
 
 `p = parabola()`
 
-
+`p.vertex = point(0, 0)`
 
 
  According with ipython syntax, the 
@@ -163,11 +167,11 @@ A list of all y values calculated into c instance
 
 Typing one time 
 
-c.cutOff = 150
+`c.cutOff = 150`
 
 the first 150 points are removed. By typing it one more time
 
-c.cutOff = 100
+`c.cutOff = 100`
 
 last 100 points are removed. In both cases points are removed both from the plot and from the instance itself.
 
