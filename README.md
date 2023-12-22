@@ -40,26 +40,27 @@ If everything works fine, than jump over next section. In case of any error mess
 # Usage
 
 
-
-Say you want to draw a circumference, than you must type
+Once geompy is loaded into ipython, say you want to draw a circumference, than you must type
 
 `c1 = circumference()`
 
-and a circumference into the plot window comes up
 
+and a circumference with random center and radius is drawn into the plot window
 
 ![Alt Text](pictures/circumference.png)
 
 
-c1 is a python variable. More precisely, it's a circumference class type instance. Say you need a circumference centered in P(1, 2) with radius r = 4, than you get it by typing
+
+
+here "c1" is a python variable. More precisely, it's a "circumference" class type instance. Say you need a circumference centered in P(1, 2) having a radius r = 4, than
 
 
 `c1.center = point(1, 2)`
 
-
 `c1.radius = 4`
 
-in the some manner you can draw many other geometrical loci, each one of them being a python class loaded from the geompy library, as follows
+
+in the some manner you can draw many other geometrical loci, each one of them being a python class loaded from the geompy library; as follows
 
 ### - [point](#draw-a-point)
 
@@ -101,33 +102,24 @@ command shows a complete list of all variables currently in use, which includes 
 
 
 
+# Labeling
+
+You can choose a simple string type labeling or even a latex formula, as follows
+
+`c1.name = "c1"`
+
+or
+
+`c1.name = r"$(x -1 )^2 + (y - 2)^2 = 16$"`
 
 
-
-
-typing
-
-`c1 = name = "c1"`
-
-the "c" circumference is now named "c" on the Cartesian plane
-
-
-Similarly, if you wish to create an additional circumference, or a different geometrical locus such as a point or a parabola, you would define the respective instance and you may name each one of them as follows
-
-
-
-`c2 = circumference()`
-
-`c2 = name = "c2"`
-
-
-`P = point()`
+`P = point(4, 1)`
 
 `P.name = "P"`
 
-`p = parabola()`
+or
 
-`p.name = "p"`
+`P.name = "P(4, 1)"`
 
 
 
