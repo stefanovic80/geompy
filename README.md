@@ -26,7 +26,7 @@ a new window with a Cartesian plane comes up
 ![Alt Text](pictures/pythonInterpreter.png)
  
 
-If everything works fine, than jump over this section. In case of any error message, due to any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+If everything works fine, than jump over next section. In case of any error message, due to any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -59,11 +59,38 @@ c1 is a python variable. More precisely, it's a circumference class type instanc
 
 `c1.radius = 4`
 
-in the some manner you can draw many other geometrical loci, each one of them being a class previously from geompy. The 
+in the some manner you can draw many other geometrical loci, each one of them being a python class loaded from the geompy library, as follows
+
+### - [point](#draw-a-point)
+
+`P = point()`
+
+
+### - [circumference](#draw-a-random-circumference)
+
+`c = circumferece()`
+
+### - [ellipse] (#draw-a-random-ellipse)
+
+`el = ellipse()`
+
+### - [segment](#draw-a-random-straight-line)
+
+`l = line()`
+
+
+### - [parabola](#draw-a-random-parabola)
+
+`p = parabola`
+
+
+
+
+ According with ipython syntax, the 
 
 `who`
 
-command shows a list of all loaded classes 
+command shows a complete list of all variables currently in use, which includes all classes loaded from geompy 
 
 
 
@@ -71,23 +98,8 @@ command shows a list of all loaded classes
 
 
 
-among them, each one of the following classes draws a specific geometric locus 
-
-### - [point](#draw-a-point)
-
-### - [circumference](#draw-a-random-circumference)
-
-### - [ellipse] (#draw-a-random-ellipse)
-
-### - [segment](#draw-a-random-straight-line)
-
-### - [parabola](#draw-a-random-parabola)
 
 
-
-So if you want to draw a line, than you must type
-
-`l1 = line()`
 
 
 
