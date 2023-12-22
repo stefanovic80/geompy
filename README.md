@@ -68,7 +68,7 @@ in the some manner you can draw many other geometrical loci, each one of them be
 
 ### - [circumference](#draw-a-random-circumference)
 
-`c = circumferece()`
+`c = circumference()`
 
 ### - [ellipse] (#draw-a-random-ellipse)
 
@@ -81,7 +81,7 @@ in the some manner you can draw many other geometrical loci, each one of them be
 
 ### - [parabola](#draw-a-random-parabola)
 
-`p = parabola`
+`p = parabola()`
 
 
 
