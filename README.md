@@ -16,7 +16,7 @@ As I personally believe that coding is a skill that can be acquired only by tack
 Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project.
 
 
-Open a console, move it where the geompy folder is located, start off an ipython session and type and import all modules
+Open a console, move it where the geompy folder is located, start off an ipython session and import all modules
 
 `from geompy import *`
 
@@ -26,7 +26,7 @@ a new window with a Cartesian plane comes up
 ![Alt Text](pictures/pythonInterpreter.png)
  
 
-If everything works fine, than jump over this section. In case of any error message, due to any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
+If everything works fine, than jump over next section. In case of any error message, due to any package version mismatch, than you need to create a 'analyticGeomEnv' conda environment. So, go back to your OS console, on the "analyticGeometry" folder and type
 
 `conda env create -f analyticGeomEnv.yml`
 
@@ -59,11 +59,38 @@ c1 is a python variable. More precisely, it's a circumference class type instanc
 
 `c1.radius = 4`
 
-in the some manner you can draw many other geometrical loci, each one of them being a class loaded with geompy. The 
+in the some manner you can draw many other geometrical loci, each one of them being a python class loaded from the geompy library, as follows
+
+### - [point](#draw-a-point)
+
+`P = point()`
+
+
+### - [circumference](#draw-a-random-circumference)
+
+`c = circumference()`
+
+### - [ellipse] (#draw-a-random-ellipse)
+
+`el = ellipse()`
+
+### - [segment](#draw-a-random-straight-line)
+
+`l = line()`
+
+
+### - [parabola](#draw-a-random-parabola)
+
+`p = parabola()`
+
+
+
+
+ According with ipython syntax, the 
 
 `who`
 
-command shows a list of all loaded classes 
+command shows a complete list of all variables currently in use, which includes all classes loaded from geompy 
 
 
 
@@ -71,37 +98,16 @@ command shows a list of all loaded classes
 
 
 
-among them, the following classes 
-
-### - [point](#draw-a-point)
-
-### - [circumference](#draw-a-random-circumference)
-
-### - [ellipse] (#draw-a-random-ellipse)
-
-### - [segment](#draw-a-random-straight-line)
-
-### - [parabola](#draw-a-random-parabola)
 
 
 
-draw a specific geometric locus.
 
 
-According with OOP programming, for each of them you can define one or more instances. Here, each instance is a specific geometrical locus.  
 
-As an example
-
-`c = circumference()`
-
-generates a circumference type instance, labeled with "c" which draws a random circumference into the Cartesian Plane
-
-
-![Alt Text](pictures/circumference.png)
 
 typing
 
-`c = name = "c"`
+`c1 = name = "c1"`
 
 the "c" circumference is now named "c" on the Cartesian plane
 
@@ -110,9 +116,9 @@ Similarly, if you wish to create an additional circumference, or a different geo
 
 
 
-`c1 = circumference()`
+`c2 = circumference()`
 
-`c1 = name = "c1"`
+`c2 = name = "c2"`
 
 
 `P = point()`
@@ -122,6 +128,10 @@ Similarly, if you wish to create an additional circumference, or a different geo
 `p = parabola()`
 
 `p.name = "p"`
+
+
+
+
 
 # Draw a point
 
