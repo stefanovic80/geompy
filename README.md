@@ -52,18 +52,17 @@ This will display a circumference with a random center and radius in the plot wi
 
 
 
-Here "c1" is a python variable, specifically a "circumference" class instance. Should you need a circumference with a radius of 4 and centered at P(1, 2), you can modify its attributes accordingly:
+Here "c1" is a python variable, specifically a "circumference" class instance. Should you need your "c1" circumference being with radius of 4, centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
 
 `c1.radius = 4`
 
 `c1.center = point(1, 2)`
 
+`c1.linewidth = 1`
 
-To view a comprehensive list of attributes that can be modified by the user, simply type:
+Some of these attributes are the some for all types of instance, while others are specific of that type. To view a comprehensive list of attributes that can be modified, simply type:
 
 `print(c1)`
-
-This will display a list of all attributes, methods, and settings related to "c1" that are customizable by the user.
 
 
 ![Alt Text](pictures/printC1center.png)
