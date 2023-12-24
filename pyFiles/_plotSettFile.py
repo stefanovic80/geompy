@@ -68,6 +68,25 @@ class plotSett():
         self.lims()
         self.draw()
 
+    @property
+    def bottom(self):
+        return settings.xmin
+
+    @bottom.setter
+    def bottom(self, value):
+        self.ax.set_ylim( bottom = value )
+
+
+    @property
+    def up(self):
+        return settings.max
+
+    @up.setter
+    def up(self, value):
+        self.ax.set_ylim( top = value )
+        #self.majorStep = self._majorStep
+        #self.minorSteps = 10
+
 
 
     @property
@@ -276,14 +295,11 @@ class plotSett():
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
         self.ax.set_xlim(settings.xmin, settings.xmax)
         self.ax.set_ylim(settings.xmin, settings.xmax)
-
+        
+        #arguments may be removed
     def grid(self, majorStep = None, minorSteps = 10):
 
-        #grid density 
-        #self.N = self.N - 0.1*N
-        
-        #raw grid step
-        #gridSteps = round(gridSteps, 2)
+        #may be deprecated
         if majorStep == None:
             majorStep = 2
         else:
@@ -325,6 +341,7 @@ class plotSett():
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
         #y grid---------------------------------------
+        #it may be inverted
         Ymajor_ticks = Xmajor_ticks
         Yminor_ticks = Xminor_ticks
         
