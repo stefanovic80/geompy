@@ -261,32 +261,16 @@ set the number of minor steps in between two adjacent major steps to 20
 
 
 
-# Draw a (random) segment
-
-`l1 = line()`
 
 
-l1 is an object of "line" class type. Two random points are generated and a segment passing through is drawn.
-
-
-![Alt Text](pictures/straightLine.png)
-
-
-
-
-
-## Draw a specific straight line
+# Draw a line
 
 **Draw a line from angular coefficient and intercept**
 
-First of all delete all speciments of s1 instance
-
-`l1.erase()`
 
 `l1.m = 1`
 
 `l1.q = 10`
-
 
 `l1.name = "l1"`
 
@@ -298,12 +282,9 @@ First of all delete all speciments of s1 instance
 
 `B = point(-2, 1)`
 
+`l1.points = A`
 
-`l1.erase()`
-
-`l1.point[0] = [A, B]`
-
-
+`l1.points = B`
 
 
 
@@ -311,21 +292,17 @@ First of all delete all speciments of s1 instance
 
 `A = point(3, 6)`
 
-`s1.erase()`
+`l1.points = A`
 
-`s1.point = [A, None]`
+`l1.m = -1`
 
-`s1.m = -1`
-
-`s1.name = "s1"`
+`l1.name = "s1"`
 
 **Draw a line passing through one point, say point A, and having a specific y-intercept**
 
 `A = point(3, 6)`
 
-`l1.erase()`
-
-`l1.point = [A, None]`
+`l1.points = A`
 
 `l1.q = -1`
 

@@ -54,6 +54,10 @@ class line(plotSett):
     @m.setter
     def m(self, value):
         self.angCoeff = value
+        try:
+            self.draw()
+        except:
+            pass
 
 
     @property
@@ -63,6 +67,10 @@ class line(plotSett):
     @q.setter
     def q(self, value):
         self.intercept = value
+        try:
+            self.draw()
+        except:
+            pass
 
 
     @property
