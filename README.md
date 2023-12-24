@@ -42,7 +42,7 @@ If everything works fine, than jump over next section. In case of any error mess
 
 After loading geompy into IPython, let's consider drawing a circumference. You can create an instance by typing:
 
-`c1 = circumference()`
+`c = circumference()`
 
 
 This will display a circumference with a random center and radius in the plot window.
@@ -54,18 +54,18 @@ This will display a circumference with a random center and radius in the plot wi
 
 Here "c1" is a python variable, specifically a "circumference" class instance. Should you need your "c1" circumference being with radius of 4, centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
 
-`c1.radius = 4`
+`c.radius = 4`
 
-`c1.center = point(1, 2)`
+`c.center = point(1, 2)`
 
-`c1.linewidth = 1`
+`c.linewidth = 1`
 
 Some of these attributes are the some for all types of instance, while others are specific of that type. To view a comprehensive list of attributes that can be modified, simply type:
 
-`print(c1)`
+`print(c)`
 
 
-![Alt Text](pictures/printC1center.png)
+![Alt Text](pictures/circumference_02.png)
 
 As an example, one of the listed attributes is "color," allowing you to set the color of the circumference:
 
