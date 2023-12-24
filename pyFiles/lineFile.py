@@ -10,8 +10,6 @@ from .pointFile import point
 
 
 class line(plotSett):
-
-    #def __init__(self, point0 = point(draw = False), point1 = point( seed = seed + 1 , draw = False), seed = seed, draw = True):
     def __init__(self, seed = seed, draw = True):
         
         super().__init__()#xmin, xmax, steps)
@@ -241,6 +239,8 @@ class line(plotSett):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.erase()\033\n"
+            f"\033[93m.left = \033[0m {self.xMin}\n"
+            f"\033[93m.right = \033[0m {self.xMax}\n"
         )            
         
         return attributes + methods + self.plotSettings
