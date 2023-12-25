@@ -84,6 +84,7 @@ class plotSett():
     @up.setter
     def up(self, value):
         self.ax.set_ylim( top = value )
+        self.grid(topConcat = value)
         #self.majorStep = self._majorStep
         #self.minorSteps = 10
 
@@ -297,7 +298,7 @@ class plotSett():
         self.ax.set_ylim(settings.xmin, settings.xmax)
         
         #arguments may be removed
-    def grid(self, majorStep = None, minorSteps = 10):
+    def grid(self, majorStep = None, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
         #may be deprecated
         if majorStep == None:
@@ -342,8 +343,16 @@ class plotSett():
 
         #y grid---------------------------------------
         #it may be inverted
-        Ymajor_ticks = Xmajor_ticks
-        Yminor_ticks = Xminor_ticks
+        another_array = np.array([])  # Empty array
+
+        topArrayMinor = np.arange(settings.xmax, topConcat, minorStep)
+        
+        topArrayMajor = np.arange(settings.xmax, topConcat, majorStep)
+
+        Yminor_ticks = np.concatenate((Xminor_ticks, topArrayMinor))
+        Ymajor_ticks = np.concatenate((Xmajor_ticks, topArrayMajor))
+        #Ymajor_ticks = Xmajor_ticks
+        #Yminor_ticks = Xminor_ticks
         
         #self.ax.set_ylim(self.xmin, self.xmax)
         self.ax.set_yticks(Yminor_ticks, minor=True)

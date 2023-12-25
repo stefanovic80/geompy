@@ -136,8 +136,8 @@ class parabola(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
-            f"\033[93m.xShift = \033[0m {self.vertex.data[0]}\n"
-            f"\033[93m.yShift = \033[0m {self.vertex.data[1]}\n"
+            f"\033[93m.vertex.x = \033[0m {self.vertex.data[0]}\n"
+            f"\033[93m.vertex.y = \033[0m {self.vertex.data[1]}\n"
             f"\033[93m.concavity = \033[0m {self.concavity}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
