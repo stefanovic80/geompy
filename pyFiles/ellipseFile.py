@@ -12,13 +12,13 @@ class ellipse(plotSett):
         super().__init__()
         #plotSett.__init__(self)
 
-        self.center = point(draw = False)
+        self._center = point(draw = False)
         self.focus1 = random.uniform(0, (settings.xmax-settings.xmin)/4)
         self.focus2 = random.uniform(0, (settings.xmax-settings.xmin)/4)
         
         self._color = random.choice(self.colors)
 
-        self.center._color = self._color
+        self._center._color = self._color
 
         self.a = None
         self.b = None
@@ -34,10 +34,10 @@ class ellipse(plotSett):
     def calc(self):
         self.__del__()
 
-        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self.center.data[0]  )/( self.focus1  )  )**2  )#ellipse equation      
+        ellip = self.focus2*np.sqrt( 1 - ( ( self._x - self._center.data[0]  )/( self.focus1  )  )**2  )#ellipse equation      
 
         self.data = [self._x]
-        self.data = self.data + [ np.append( self.center.data[1] + ellip, self.center.data[1] - ellip[::-1] ) ]
+        self.data = self.data + [ np.append( self._center.data[1] + ellip, self._center.data[1] - ellip[::-1] ) ]
 
         #x values for the graph of the lower side
         self.data[0] = np.append( self.data[0], self.data[0][::-1])
@@ -81,7 +81,7 @@ class ellipse(plotSett):
         self.__del__()
 
         self.data = [None, None]
-        self.center.data = [None, None]
+        self._center.data = [None, None]
         self.focus1 = None
         self.focus2 = None
 

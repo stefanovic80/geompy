@@ -13,13 +13,13 @@ class circumference(plotSett):
         #plotSett.__init__(self)
 
         self._radius = random.uniform(0, (settings.xmax-settings.xmin)/2)
-        self.center = point(draw = False)
+        self._center = point(draw = False)
         
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
 
-        self.center._color = self._color 
+        self._center._color = self._color 
         self.j = 0
 
         if draw == True:
@@ -46,7 +46,17 @@ class circumference(plotSett):
         self.lines.append(line)
         self.label(self._name)
 
-    
+   
+    @property
+    def center(self):
+        return self._center.coords
+
+    @center.setter
+    def center(self, point):
+        self._center = point
+        self.chooseCalc()
+        self.name = self._name
+
     @property
     def radius(self):
         return self._radius
@@ -125,13 +135,13 @@ class circumference(plotSett):
 
         self.angles = np.array(angles)
 
-        self.data = [np.array(data[0]) + self.center.coords[0], np.array(data[1]) + self.center.coords[1] ]
+        self.data = [np.array(data[0]) + self._center.coords[0], np.array(data[1]) + self._center.coords[1] ]
        
         self.pointsSelect(angle = angle)
         
-        self.a = -2*self.center.coords[0]
-        self.b = -2*self.center.coords[1]
-        self.c = self.center.coords[0]**2 + self.center.coords[1]**2 - self._radius**2
+        self.a = -2*self._center.coords[0]
+        self.b = -2*self._center.coords[1]
+        self.c = self._center.coords[0]**2 + self._center.coords[1]**2 - self._radius**2
 
     
     def pointsSelect(self, angle = 2*np.pi):
@@ -169,7 +179,7 @@ class circumference(plotSett):
 
         self.a, self.b, self.c = circParams[0, 0], circParams[0, 1], circParams[0, 2]
 
-        self.center = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
+        self._center = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
         
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc()
@@ -182,8 +192,8 @@ class circumference(plotSett):
                         
                 x0 = point.coords[0]
                 y0 = point.coords[1]
-                x1 = self.center.coords[0]
-                y1 = self.center.coords[1]
+                x1 = self._center.coords[0]
+                y1 = self._center.coords[1]
                 self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
                 
                 self.a = -2*x1
@@ -217,7 +227,7 @@ class circumference(plotSett):
 
         #self._points = []
         self.data = [None, None]
-        self.center.coords = [None, None]
+        self._center.coords = [None, None]
         self._radius = None
 
     def __str__(self):

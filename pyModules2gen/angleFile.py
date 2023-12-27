@@ -53,7 +53,7 @@ class angle(plotSett):
 
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
-        self.arc.center = point( x, y, draw = False  )
+        self.arc._center = point( x, y, draw = False  )
         
         radius = (settings.xmax - settings.xmin)/20
         self.arc._radius = radius
@@ -63,7 +63,7 @@ class angle(plotSett):
         arcSize = np.arctan( m[1] ) - np.arctan( m[0] )
         self.arc.calc(angle = arcSize)
         
-        self.arc.center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
+        self.arc._center.rotation( locus = self.arc, angle = np.arctan( m[0] ) )
 
         self.data = self.arc.data
         
@@ -94,7 +94,7 @@ class angle(plotSett):
         x = (q[1] - q[0])/(m[0] - m[1])
         y = m[0]*x + q[0]
         
-        self.arc.center = point( x, y, draw = False )
+        self.arc._center = point( x, y, draw = False )
 
         radius = (settings.xmax - settings.xmin)/20
         self.arc._radius = radius
@@ -106,10 +106,10 @@ class angle(plotSett):
         #to be modified!
 
         
-        #self.arc.center.rotation( locus = self.arc, angle = (self.j%2)*np.arctan( m[1] ) + ((self.j+1)%2)*np.arctan( m[0])  )# + np.arctan( m[0] )  )
+        #self.arc._center.rotation( locus = self.arc, angle = (self.j%2)*np.arctan( m[1] ) + ((self.j+1)%2)*np.arctan( m[0])  )# + np.arctan( m[0] )  )
         
         formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
-        self.arc.center.rotation( locus = self.arc, angle = formula)
+        self.arc._center.rotation( locus = self.arc, angle = formula)
 
         #to be checked out!
         self.data = self.arc.data
