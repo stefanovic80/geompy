@@ -33,6 +33,9 @@ class plotSett():
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
         
+        self.yMin = settings.xmin
+        self.yMax = settings.xmax
+
         self.lims()
 
         self.rotate = False
@@ -74,9 +77,9 @@ class plotSett():
 
     @bottom.setter
     def bottom(self, value):
+        self.yMin = value
         self.ax.set_ylim( bottom = value )
-        self.grid(bottomConcat = value)
-        #self.ax.set_ylim( bottom = value )
+        self.grid( bottomConcat = value, topConcat = self.yMax )
 
 
     @property
@@ -85,11 +88,9 @@ class plotSett():
 
     @up.setter
     def up(self, value):
+        self.yMax = value
         self.ax.set_ylim( top = value )
-        self.grid(topConcat = value)
-        #self.majorStep = self._majorStep
-        #self.minorSteps = 10
-
+        self.grid(topConcat = value, bottomConcat = self.yMin)
 
 
     @property
