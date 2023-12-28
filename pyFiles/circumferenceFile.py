@@ -49,7 +49,7 @@ class circumference(plotSett):
    
     @property
     def center(self):
-        return self._center.coords
+        return self._center#.coords
 
     @center.setter
     def center(self, point):

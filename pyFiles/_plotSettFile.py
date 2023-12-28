@@ -75,6 +75,8 @@ class plotSett():
     @bottom.setter
     def bottom(self, value):
         self.ax.set_ylim( bottom = value )
+        self.grid(bottomConcat = value)
+        #self.ax.set_ylim( bottom = value )
 
 
     @property
@@ -343,14 +345,19 @@ class plotSett():
 
         #y grid---------------------------------------
         #it may be inverted
-        another_array = np.array([])  # Empty array
+        #another_array = np.array([])  # Empty array
 
         topArrayMinor = np.arange(settings.xmax, topConcat, minorStep)
         
         topArrayMajor = np.arange(settings.xmax, topConcat, majorStep)
 
-        Yminor_ticks = np.concatenate((Xminor_ticks, topArrayMinor))
-        Ymajor_ticks = np.concatenate((Xmajor_ticks, topArrayMajor))
+        bottomArrayMinor = np.arange( bottomConcat, settings.xmin, minorStep)
+
+
+        bottomArrayMajor = np.arange( bottomConcat, settings.xmin, majorStep)
+
+        Yminor_ticks = np.concatenate((bottomArrayMinor, Xminor_ticks, topArrayMinor))
+        Ymajor_ticks = np.concatenate((bottomArrayMajor, Xmajor_ticks, topArrayMajor))
         #Ymajor_ticks = Xmajor_ticks
         #Yminor_ticks = Xminor_ticks
         
