@@ -9,7 +9,7 @@ class parabola(plotSett):
     def __init__(self, draw = True):
 
         super().__init__()
-        self.vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
+        self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
         self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
@@ -24,7 +24,15 @@ class parabola(plotSett):
         if draw == True:
             self.draw()
 
+    @property
+    def vertex(self):
+        return self._vertex
 
+    @vertex.setter
+    def vertex(self, point):
+        self._vertex = point
+        self.chooseCalc()
+        self.name = self._name
 
     @property
     def equation(self):
@@ -73,7 +81,7 @@ class parabola(plotSett):
         self.__del__()
         
         #self._points = [] may have to be moved into _plotSett
-        self.vertex = None
+        self._vertex = None
         self.concavity = None
         self.data = [None, None]
 
@@ -81,7 +89,7 @@ class parabola(plotSett):
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.concavity*(self._x - self.vertex.coords[0])**2 + self.vertex.coords[1] ]
+        self.data = self.data + [self.concavity*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
 
 
     # calculate from three points the parabola passing through (to be fixed!)
@@ -109,7 +117,7 @@ class parabola(plotSett):
     def calc1(self, name = None):
 
         Delta = self.b**2 - 4*self.a*self.c
-        self.vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a)  )
+        self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a)  )
         self.concavity = self.a
         self.calc()
 
@@ -136,8 +144,8 @@ class parabola(plotSett):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
-            f"\033[93m.vertex.x = \033[0m {self.vertex.data[0]}\n"
-            f"\033[93m.vertex.y = \033[0m {self.vertex.data[1]}\n"
+            f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
+            f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
             f"\033[93m.concavity = \033[0m {self.concavity}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"

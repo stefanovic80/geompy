@@ -33,8 +33,14 @@ class plotSett():
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
         
+
+        #------------------------
+        self.xMin = settings.xmin
+        self.xMax = settings.xmax
+
         self.yMin = settings.xmin
         self.yMax = settings.xmax
+        #------------------------
 
         self.lims()
 
@@ -55,9 +61,11 @@ class plotSett():
     @left.setter
     def left(self, value):
         settings.xmin = value
+        self.xMin = value
+        self.yMin = value
         self.majorStep = self._majorStep
         self.lims()
-        self.draw()
+        #self.draw()
 
     @property
     def right(self):
@@ -66,10 +74,12 @@ class plotSett():
     @right.setter
     def right(self, value):
         settings.xmax = value
+        self.xMax = value
+        self.yMax = value
         self.majorStep = self._majorStep
-        self.minorSteps = 10
+        #self.minorSteps = 10
         self.lims()
-        self.draw()
+        #self.draw()
 
     @property
     def bottom(self):
@@ -78,9 +88,8 @@ class plotSett():
     @bottom.setter
     def bottom(self, value):
         self.yMin = value
-        self.ax.set_ylim( bottom = value )
         self.grid( bottomConcat = value, topConcat = self.yMax )
-
+        self.ax.set_ylim( bottom = value )
 
     @property
     def up(self):
@@ -89,9 +98,8 @@ class plotSett():
     @up.setter
     def up(self, value):
         self.yMax = value
-        self.ax.set_ylim( top = value )
         self.grid(topConcat = value, bottomConcat = self.yMin)
-
+        self.ax.set_ylim( top = value )
 
     @property
     def color(self):
@@ -146,7 +154,7 @@ class plotSett():
     @majorStep.setter
     def majorStep(self, value):
         self._majorStep = value
-        self.grid(majorStep = self._majorStep)
+        self.grid(majorStep = self._majorStep, bottomConcat = self.yMin, topConcat = self.yMax )
 
     @property
     def minorSteps(self):
@@ -155,7 +163,7 @@ class plotSett():
     @minorSteps.setter
     def minorSteps(self, value):
         self._minorSteps = value
-        self.grid(majorStep = self._majorStep, minorSteps = value)
+        self.grid(majorStep = self._majorStep, minorSteps = value, bottomConcat = self.yMin, topConcat = self.yMax)
 
 
     @property
@@ -262,7 +270,7 @@ class plotSett():
         data = [self.data[0][idx], self.data[1][idx] ]
 
         random_index = np.random.randint(len(data[0]))
-        shift = (settings.xmax - settings.xmin)/40
+        shift = (self.xMax - self.xMin)/40
         labelx = data[0][random_index] + shift
         labely = data[1][random_index] + shift
         
@@ -288,19 +296,19 @@ class plotSett():
        
     def condition_mask(self):
 
-        condition_mask0 = ( self.data[0] > settings.xmin) & (self.data[0] < settings.xmax)
-        condition_mask1 = ( self.data[1] > settings.xmin) & (self.data[1] < settings.xmax)
+        condition_mask0 = ( self.data[0] > self.xMin) & (self.data[0] < self.xMax)
+        condition_mask1 = ( self.data[1] > self.xMin) & (self.data[1] < self.xMax)
         condition_mask = condition_mask0 & condition_mask1
         return np.where(condition_mask)
         
 
 
     def lims(self):
-        self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        self.ax.set_xlim(settings.xmin, settings.xmax)
-        self.ax.set_ylim(settings.xmin, settings.xmax)
+        self._x = np.linspace(self.xMin, self.xMax, settings.steps)
+        self.ax.set_xlim(self.xMin, self.xMax)
+        self.ax.set_ylim(self.xMin, self.xMax)
         
-        #arguments may be removed
+        
     def grid(self, majorStep = None, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
         #may be deprecated
@@ -308,22 +316,22 @@ class plotSett():
             majorStep = 2
         else:
             pass
-        #fine grid step
+        #may be deprecated
         minorStep = majorStep/minorSteps
         #GridSteps = round(GridSteps, 1)
         
         #x grid---------------------------------------
-        if (settings.xmin < 0) and (settings.xmax > 0):
+        if (self.xMin < 0) and (self.xMax > 0):
             #------------ minor ticks
-            Xminor_ticksPos = np.arange(0, settings.xmax, minorStep)
-            Xminor_ticksNeg = np.arange(0, settings.xmin, -minorStep)[::-1]
+            Xminor_ticksPos = np.arange(0, self.xMax, minorStep)
+            Xminor_ticksNeg = np.arange(0, self.xMin, -minorStep)[::-1]
 
             Xminor_ticks = np.append(Xminor_ticksNeg, Xminor_ticksPos)
             
             #----------- major ticks
-            Xmajor_ticksPos = np.arange(0, settings.xmax, majorStep)
+            Xmajor_ticksPos = np.arange(0, self.xMax, majorStep)
 
-            Xmajor_ticksNeg = np.arange(0, settings.xmin, -majorStep)[::-1]
+            Xmajor_ticksNeg = np.arange(0, self.xMin, -majorStep)[::-1]
 
             Xmajor_ticks = np.append(Xmajor_ticksNeg, Xmajor_ticksPos)
 
@@ -332,11 +340,9 @@ class plotSett():
 
 
         else:
-            Xminor_ticks = np.arange(settings.xmin, settings.xmax, minorStep)
+            Xminor_ticks = np.arange(self.xMin, self.xMax, minorStep)
         
-            Xmajor_ticks = np.arange(settings.xmin, settings.xmax, majorStep)
-
-        #self.ax.set_xlim(settings.xmin, self.xmax)
+            Xmajor_ticks = np.arange(self.xMin, self.xMax, majorStep)
 
         self.ax.set_xticks(Xminor_ticks, minor = True)
         self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
@@ -345,23 +351,20 @@ class plotSett():
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
         #y grid---------------------------------------
-        #it may be inverted
-        #another_array = np.array([])  # Empty array
-
-        topArrayMinor = np.arange(settings.xmax, topConcat, minorStep)
+        topArrayMinor = np.arange(self.xMax, topConcat, minorStep)
         
-        topArrayMajor = np.arange(settings.xmax, topConcat, majorStep)
+        topArrayMajor = np.arange(self.xMax, topConcat, majorStep)
 
-        bottomArrayMinor = np.arange( bottomConcat, settings.xmin, minorStep)
+        bottomArrayMinor = np.arange( bottomConcat, self.xMin, minorStep)
+
+        bottomArrayMajor = np.arange( bottomConcat, self.xMin, majorStep)
 
 
-        bottomArrayMajor = np.arange( bottomConcat, settings.xmin, majorStep)
 
         Yminor_ticks = np.concatenate((bottomArrayMinor, Xminor_ticks, topArrayMinor))
+
         Ymajor_ticks = np.concatenate((bottomArrayMajor, Xmajor_ticks, topArrayMajor))
-        #Ymajor_ticks = Xmajor_ticks
-        #Yminor_ticks = Xminor_ticks
-        
+
         #self.ax.set_ylim(self.xmin, self.xmax)
         self.ax.set_yticks(Yminor_ticks, minor=True)
         self.ax.set_yticks(Ymajor_ticks)
