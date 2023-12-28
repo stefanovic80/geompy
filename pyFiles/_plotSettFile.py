@@ -12,6 +12,14 @@ plt.rcParams [ 'font.weight'] = 'bold'
 
 
 
+def first_non_zero_digit(num):
+    num_str = str(num)
+    for char in num_str:
+        if char != '0' and char != '.':
+            return char
+    return None  # Return None if all digits are zero
+
+
 class plotSett():
     
     fig = plt.figure()
@@ -55,8 +63,16 @@ class plotSett():
         self._cutOff = 0
 
     @property
+    def gridReset(self):
+        self.left = -10
+        self.right = 10
+        self.majorStep = 2
+        self.minorSteps = 10
+
+
+    @property
     def left(self):
-        return settings.xmin
+        return self.xMin
 
     @left.setter
     def left(self, value):
@@ -69,7 +85,7 @@ class plotSett():
 
     @property
     def right(self):
-        return settings.xmax
+        return self.xMax
 
     @right.setter
     def right(self, value):
@@ -83,23 +99,28 @@ class plotSett():
 
     @property
     def bottom(self):
-        return settings.xmin
+        return self.yMin
 
     @bottom.setter
     def bottom(self, value):
         self.yMin = value
         self.grid( bottomConcat = value, topConcat = self.yMax )
         self.ax.set_ylim( bottom = value )
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
+
+
 
     @property
     def up(self):
-        return settings.max
+        return self.yMax
 
     @up.setter
     def up(self, value):
         self.yMax = value
         self.grid(topConcat = value, bottomConcat = self.yMin)
         self.ax.set_ylim( top = value )
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
+    
 
     @property
     def color(self):
@@ -134,7 +155,8 @@ class plotSett():
     @name.setter
     def name(self, n):
         self._name = n
-        self.draw()
+        self.onlyDraw()
+        #self.draw()
         self.label( n )
     
     @property
@@ -220,7 +242,7 @@ class plotSett():
         """
         @x.setter
         def x(self, value):
-            #instance._x = value
+            #instance = value
             # Define the behavior for x here
             print(f"x set to {value}")
         """
@@ -281,7 +303,7 @@ class plotSett():
 
     def draw(self):
 
-        self.lims()
+        #self.lims()
 
         self.chooseCalc()
         self.onlyDraw()
@@ -305,6 +327,7 @@ class plotSett():
 
     def lims(self):
         self._x = np.linspace(self.xMin, self.xMax, settings.steps)
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
         self.ax.set_xlim(self.xMin, self.xMax)
         self.ax.set_ylim(self.xMin, self.xMax)
         
