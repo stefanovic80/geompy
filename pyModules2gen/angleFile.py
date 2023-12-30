@@ -26,7 +26,8 @@ class angle(plotSett):
         
         #if draw == True:
         #    self.name = r"$\alpha$"
-
+    
+    #may be deprecated
     def calc(self):
         self.__del__()
 
@@ -69,6 +70,17 @@ class angle(plotSett):
         
         self.size = None
 
+
+
+    #should be removed as already inherited
+    def onlyDraw(self):
+        self.draw()
+        #self.lims()
+        #self.chooseCalc()
+        #self.onlyDraw()
+
+    
+    
     def calc2(self):
         #for line in self.line:
         #    line.chooseCalc()
