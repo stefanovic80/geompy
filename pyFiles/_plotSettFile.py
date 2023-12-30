@@ -12,6 +12,14 @@ plt.rcParams [ 'font.weight'] = 'bold'
 
 
 
+def first_non_zero_digit(num):
+    num_str = str(num)
+    for char in num_str:
+        if char != '0' and char != '.':
+            return char
+    return None  # Return None if all digits are zero
+
+
 class plotSett():
     
     fig = plt.figure()
@@ -38,8 +46,8 @@ class plotSett():
         self.xMin = settings.xmin
         self.xMax = settings.xmax
 
-        self.yMin = settings.xmin
-        self.yMax = settings.xmax
+        self.yMin = settings.ymin
+        self.yMax = settings.ymax
         #------------------------
 
         self.lims()
@@ -55,12 +63,21 @@ class plotSett():
         self._cutOff = 0
 
     @property
+    def gridReset(self):
+        self.left = -10
+        self.right = 10
+        self.majorStep = 2
+        self.minorSteps = 10
+
+
+    @property
     def left(self):
-        return settings.xmin
+        return self.xMin
 
     @left.setter
     def left(self, value):
         settings.xmin = value
+        settings.ymin = value
         self.xMin = value
         self.yMin = value
         self.majorStep = self._majorStep
@@ -69,11 +86,12 @@ class plotSett():
 
     @property
     def right(self):
-        return settings.xmax
+        return self.xMax
 
     @right.setter
     def right(self, value):
         settings.xmax = value
+        settings.ymax = value
         self.xMax = value
         self.yMax = value
         self.majorStep = self._majorStep
@@ -83,23 +101,30 @@ class plotSett():
 
     @property
     def bottom(self):
-        return settings.xmin
+        return self.yMin
 
     @bottom.setter
     def bottom(self, value):
+        settings.ymin = value
         self.yMin = value
         self.grid( bottomConcat = value, topConcat = self.yMax )
         self.ax.set_ylim( bottom = value )
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
+
+
 
     @property
     def up(self):
-        return settings.max
+        return self.yMax
 
     @up.setter
     def up(self, value):
+        settings.ymax = value
         self.yMax = value
         self.grid(topConcat = value, bottomConcat = self.yMin)
         self.ax.set_ylim( top = value )
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
+    
 
     @property
     def color(self):
@@ -134,7 +159,8 @@ class plotSett():
     @name.setter
     def name(self, n):
         self._name = n
-        self.draw()
+        self.onlyDraw()
+        #self.draw()
         self.label( n )
     
     @property
@@ -220,7 +246,7 @@ class plotSett():
         """
         @x.setter
         def x(self, value):
-            #instance._x = value
+            #instance = value
             # Define the behavior for x here
             print(f"x set to {value}")
         """
@@ -281,7 +307,7 @@ class plotSett():
 
     def draw(self):
 
-        self.lims()
+        #self.lims()
 
         self.chooseCalc()
         self.onlyDraw()
@@ -297,7 +323,7 @@ class plotSett():
     def condition_mask(self):
 
         condition_mask0 = ( self.data[0] > self.xMin) & (self.data[0] < self.xMax)
-        condition_mask1 = ( self.data[1] > self.xMin) & (self.data[1] < self.xMax)
+        condition_mask1 = ( self.data[1] > self.yMin) & (self.data[1] < self.yMax)
         condition_mask = condition_mask0 & condition_mask1
         return np.where(condition_mask)
         
@@ -305,20 +331,20 @@ class plotSett():
 
     def lims(self):
         self._x = np.linspace(self.xMin, self.xMax, settings.steps)
+        self._y = np.linspace(self.yMin, self.yMax, settings.steps)
         self.ax.set_xlim(self.xMin, self.xMax)
-        self.ax.set_ylim(self.xMin, self.xMax)
+        self.ax.set_ylim(self.yMin, self.yMax)
         
         
     def grid(self, majorStep = None, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
-        #may be deprecated
         if majorStep == None:
             majorStep = 2
         else:
             pass
-        #may be deprecated
+        
         minorStep = majorStep/minorSteps
-        #GridSteps = round(GridSteps, 1)
+        
         
         #x grid---------------------------------------
         if (self.xMin < 0) and (self.xMax > 0):
@@ -365,14 +391,14 @@ class plotSett():
 
         Ymajor_ticks = np.concatenate((bottomArrayMajor, Xmajor_ticks, topArrayMajor))
 
-        #self.ax.set_ylim(self.xmin, self.xmax)
+        
         self.ax.set_yticks(Yminor_ticks, minor=True)
         self.ax.set_yticks(Ymajor_ticks)
         
-        #self.ax.grid(which='both')
+
         self.ax.grid(which='minor', alpha=0.2)
         self.ax.grid(which='major', alpha=0.6)
-        #self.ax.grid(switch)
+        
 
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    

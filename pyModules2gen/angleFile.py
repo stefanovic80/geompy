@@ -26,7 +26,8 @@ class angle(plotSett):
         
         #if draw == True:
         #    self.name = r"$\alpha$"
-
+    
+    #may be deprecated
     def calc(self):
         self.__del__()
 
@@ -69,6 +70,8 @@ class angle(plotSett):
         
         self.size = None
 
+    
+    
     def calc2(self):
         #for line in self.line:
         #    line.chooseCalc()
@@ -117,7 +120,8 @@ class angle(plotSett):
         self.j+=1
 
 
-    def chooseCalc(self):
+    #def chooseCalc(self):
+    def draw(self):
         self.__del__()
 
         calculation_functions = [self.calc2]

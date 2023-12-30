@@ -22,8 +22,8 @@ class line(plotSett):
 
         self._color = random.choice(self.colors)
         #self.xMin and self.xMax cut off the straight line into a line
-        self.xMin = settings.xmin
-        self.xMax = settings.xmax
+        #self.xMin = settings.xmin
+        #self.xMax = settings.xmax
 
         #random points from which the straight line is identified
         
@@ -149,7 +149,7 @@ class line(plotSett):
             
             self.calc1()
         else:
-            L = len(self._x)
+            L = len(self._y)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._x ]
 
