@@ -125,7 +125,7 @@ class point(plotSett):
     #it overwrites the .draw method in _plotSett
     def draw(self):
         self.__del__()
-        self.lims()
+        #self.lims()
         if self.rotate == False:
             self.calc()
 
@@ -166,7 +166,7 @@ class point(plotSett):
         self.__del__()
           
         b = plt.ginput()
-        self.data = [ b[0][0], b[0][1] ]
+        self.data = [ np.array([ b[0][0] ] ), np.array([ b[0][1] ] ) ]
         self.draw()
         self.label(self._name)
             
