@@ -41,7 +41,7 @@ class plotSett():
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
         
-
+        #it may be better to use settings.attributes instead
         #------------------------
         self.xMin = settings.xmin
         self.xMax = settings.xmax
@@ -56,7 +56,7 @@ class plotSett():
         self._name = None
         self._points = []
 
-        self._majorStep = None
+        self._majorStep = 2#2#None
 
         #used in cutOff method
         self.j = 0
@@ -308,9 +308,7 @@ class plotSett():
 
 
     def draw(self):
-
         #self.lims()
-
         self.chooseCalc()
         self.onlyDraw()
 
@@ -338,14 +336,14 @@ class plotSett():
         self.ax.set_ylim(self.yMin, self.yMax)
         
         
-    def grid(self, majorStep = None, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
+    def grid(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
-        if majorStep == None:
-            majorStep = 2
-        else:
-            pass
+        #if majorStep == None:
+        #    majorStep = 2
+        #else:
+        #    pass
         
-        minorStep = majorStep/minorSteps
+        minorStep = majorStep / minorSteps
         
         
         #x grid---------------------------------------
@@ -405,27 +403,6 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
     
-    #may be deprecated
-    def gridOff(self):
-        plt.minorticks_off()
-        self.ax.grid(False)
-    
-        # Hide the x and y axes along with their tick values
-        self.ax.spines['bottom'].set_color('none')
-        self.ax.spines['left'].set_color('none')
-
-        # Hide the x and y tick values
-        self.ax.set_xticks([])
-        self.ax.set_yticks([])
-        
-        # Hide the x and y labels
-        self.ax.set_xlabel('')
-        self.ax.set_ylabel('')
-        
-        self.hline.set_visible(False)
-        self.vline.set_visible(False)
-        self.ax.figure.canvas.draw()
-
 
     def __del__(self):
         try:#removes all lines
@@ -434,7 +411,7 @@ class plotSett():
         except:
             pass
 
-        try:#removes all points of the geometrical locus
+        try:#removes all geometrical locus points
             for u in self.point:
                 u.remove()
         except:
@@ -444,8 +421,6 @@ class plotSett():
             self.tex.remove()
         except:
             pass
-
-        #self.lims()
         
 
     def __str__(self):
