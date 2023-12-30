@@ -77,6 +77,7 @@ class plotSett():
     @left.setter
     def left(self, value):
         settings.xmin = value
+        settings.ymin = value
         self.xMin = value
         self.yMin = value
         self.majorStep = self._majorStep
@@ -90,6 +91,7 @@ class plotSett():
     @right.setter
     def right(self, value):
         settings.xmax = value
+        settings.ymax = value
         self.xMax = value
         self.yMax = value
         self.majorStep = self._majorStep
