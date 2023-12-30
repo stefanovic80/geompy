@@ -216,6 +216,7 @@ class circumference(plotSett):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
+                    #self.lims()
                     calc_function(angle = angle)
                     break
                 except:
