@@ -10,10 +10,10 @@ class parabola(plotSett):
 
         super().__init__()
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
-        self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
+        #self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
-        self.a = None
+        self.a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self.b = None
         self.c = None
        
@@ -23,6 +23,16 @@ class parabola(plotSett):
 
         if draw == True:
             self.draw()
+
+    @property
+    def concavity(self):
+        return self.a
+
+    @concavity.setter
+    def concavity(self, value):
+        self.a = value
+        self.chooseCalc()
+        self.onlyDraw()
 
     @property
     def vertex(self):
@@ -82,14 +92,14 @@ class parabola(plotSett):
         
         #self._points = [] may have to be moved into _plotSett
         self._vertex = None
-        self.concavity = None
+        self.a = None
         self.data = [None, None]
 
 
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.concavity*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+        self.data = self.data + [self.a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
 
 
     # calculate from three points the parabola passing through (to be fixed!)
@@ -118,7 +128,7 @@ class parabola(plotSett):
 
         Delta = self.b**2 - 4*self.a*self.c
         self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a)  )
-        self.concavity = self.a
+        #self.concavity = self.a
         self.calc()
 
 
@@ -146,7 +156,7 @@ class parabola(plotSett):
             f"\nAttributes:\n"
             f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
             f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
-            f"\033[93m.concavity = \033[0m {self.concavity}\n"
+            f"\033[93m.concavity = \033[0m {self.a}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
