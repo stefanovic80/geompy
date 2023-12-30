@@ -70,15 +70,6 @@ class angle(plotSett):
         
         self.size = None
 
-
-
-    #should be removed as already inherited
-    def onlyDraw(self):
-        self.draw()
-        #self.lims()
-        #self.chooseCalc()
-        #self.onlyDraw()
-
     
     
     def calc2(self):
@@ -129,7 +120,8 @@ class angle(plotSett):
         self.j+=1
 
 
-    def chooseCalc(self):
+    #def chooseCalc(self):
+    def draw(self):
         self.__del__()
 
         calculation_functions = [self.calc2]
