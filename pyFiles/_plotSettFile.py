@@ -135,7 +135,8 @@ class plotSett():
     def color(self, c):
         if c in self.colors:
             self._color = c
-            self.draw()
+            self.onlyDraw()
+            #self.draw()
             self.label(self._name)
         elif c == "azure":
             self.color = settings.azure
@@ -170,7 +171,8 @@ class plotSett():
     @linewidth.setter
     def linewidth(self, n):
         self._linewidth = n
-        self.draw()
+        self.onlyDraw()
+        #self.draw()
 
 
     @property
