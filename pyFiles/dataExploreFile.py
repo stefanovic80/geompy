@@ -54,12 +54,15 @@ class dataExplore(plotSett):
 
     @x.setter
     def x(self, value):
-        idx = np.where( self.data[0] > value)[0][0]
-        idxs = [ v for v in range( idx - 3, idx + 3 ) ]
-        xvalues = self.data[0][idxs]
-        for u in zip(idxs, xvalues):
-            print(str(u))
+        differences = np.abs( self.data[0] - value)
+        #Find the index of the closest element
+        closest_index = np.argmin(differences)
+        #get the actual value of the clostest element
+        closest_elementx = self.data[0][closest_index]
+        closest_elementy = self.data[1][closest_index]
         
+        print(closest_index, closest_elementx, closest_elementy)
+         
 
     @property
     def y(self):
@@ -68,11 +71,17 @@ class dataExplore(plotSett):
 
     @y.setter
     def y(self, value):
-        idx = np.where( self.data[1] > value)[0][0]
-        idxs = [ v for v in range( idx - 3, idx + 3 ) ]
-        xvalues = self.data[1][idxs]
-        for u in zip(idxs, xvalues):
-            print(str(u))
+        differences = np.abs( self.data[1] - value)
+        #Find the index of the closest element
+        closest_index = np.argmin(differences)
+        #get the actual value of the clostest element
+        closest_elementx = self.data[0][closest_index]
+        closest_elementy = self.data[1][closest_index]
+
+        print(closest_index, closest_elementx, closest_elementy)
+
+
+
 
 
     @property
