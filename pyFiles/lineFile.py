@@ -7,9 +7,9 @@ from .Settings import settings
 
 from ._plotSettFile import plotSett
 from .pointFile import point
+from .dataExploreFile import dataExplore
 
-
-class line(plotSett):
+class line(dataExplore):
     def __init__(self, seed = seed, draw = True):
         
         super().__init__()#xmin, xmax, steps)

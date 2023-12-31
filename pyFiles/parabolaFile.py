@@ -3,8 +3,9 @@ from . import plt, np, random
 from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
+from .dataExploreFile import dataExplore
 
-class parabola(plotSett):
+class parabola(dataExplore):
 
     def __init__(self, draw = True):
 
