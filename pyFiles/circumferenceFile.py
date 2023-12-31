@@ -4,8 +4,9 @@ from .Settings import settings
 
 from ._plotSettFile import plotSett
 from .pointFile import point
+from .dataExploreFile import dataExplore
 
-class circumference(plotSett):
+class circumference(dataExplore):
 
     def __init__(self, draw = True):
         

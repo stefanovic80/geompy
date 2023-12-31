@@ -63,14 +63,6 @@ class plotSett():
         self._cutOff = 0
 
     @property
-    def gridReset(self):
-        self.left = -10
-        self.right = 10
-        self.majorStep = 2
-        self.minorSteps = 10
-
-
-    @property
     def left(self):
         #return self.xMin
 	    return settings.xmin
@@ -148,15 +140,6 @@ class plotSett():
             pass
 
 
-
-    @property
-    def x(self):
-        return self.data[0]
-
-    @property
-    def y(self):
-        return self.data[1]
-    
     @property
     def name(self):
         return self._name
@@ -197,96 +180,6 @@ class plotSett():
         self._minorSteps = value
         self.grid(majorStep = self._majorStep, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
-
-    @property
-    def integral(self):
-        j = 0
-        space = ' '
-        integral = 0
-        init = self.data[0][0]
-        for u, v in zip(self.data[0], self.data[1]):
-            #to be fixed!"
-            integral = integral + (u- init)*v
-            init = u
-            print(str(j) + space + str(u) + space + str(v) + ' ' + str(integral) )
-            j+=1
-
-
-
-    @property
-    def points(self):
-        j = 0
-        for u in zip(self.data[0], self.data[1]):
-            print(str(j) + ' ' + str(u))
-            j+=1
-
-    @points.setter
-    def points(self, value):
-        self.erase()
-        self._points = self._points + [ value ]
-        try:
-            self.draw()
-        except:
-            pass
-
-
-    @property
-    def cutOff(self):
-        return self._cutOff
-
-        #x-----------
-        class coordsSel():
-            @property
-            def x(self):
-                return self._cutOff
-            
-            @x.setter
-            def x(self, xvalue):
-                idx = np.where( self.data[0] > xvalue)[0][0]
-                self.cutOff = idx
-
-        obj = coordsSel()
-        #return obj.x(xvalue)
-
-
-        """
-        @x.setter
-        def x(self, value):
-            #instance = value
-            # Define the behavior for x here
-            print(f"x set to {value}")
-        """
-
-        #y-----------
-        @property
-        def y(self):
-            return "it's working"
-
-        @y.setter
-        def y(self, value):
-            #instance._x = value
-            # Define the behavior for x here
-            print(f"x set to {value}")
-
-        
-        return self._cutOff
-
-    @cutOff.setter
-    def cutOff(self, n):
-        self._cutOff = n
-        self.cut_data()
-
-
-
-    def cut_data(self):
-        if self._cutOff is not None:
-            if self.j%2 == 0:
-                self.data = [arr[self._cutOff:] for arr in self.data]
-            else:
-                self.data = [arr[:-self._cutOff] for arr in self.data]
-            self.j += 1
-            self.__del__()
-            self.onlyDraw()  
 
 
     def label(self, name):
@@ -341,11 +234,6 @@ class plotSett():
         
         
     def grid(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
-
-        #if majorStep == None:
-        #    majorStep = 2
-        #else:
-        #    pass
         
         minorStep = majorStep / minorSteps
         
