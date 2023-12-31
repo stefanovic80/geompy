@@ -151,7 +151,7 @@ class line(dataExplore):
         else:
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
-            self.data = self.data + [ self._x ]
+            self.data = self.data + [ self._y ]
 
             if self._cut == True:
                 j = 1
