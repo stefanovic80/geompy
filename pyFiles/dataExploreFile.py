@@ -8,17 +8,13 @@ from .pointFile import point
 
 
 class dataExplore(plotSett):
-    """
-    def __init__(self):
-        super.__init__()
-        self.attrib = None
-    """
+    
     @property
     def points(self):
         j = 0
         listOfPoints = []
+
         for u in zip(self.data[0], self.data[1]):
-            #print(str(j) + ' ' + str(u))
             listOfPoints = listOfPoints + [ point(u[0], u[1], draw = False) ]
             j+=1
 
@@ -43,7 +39,7 @@ class dataExplore(plotSett):
         init = self.data[0][0]
         for u, v in zip(self.data[0], self.data[1]):
             #to be fixed!"
-            integral = integral + (u- init)*v
+            integral = integral + (u - init)*v
             init = u
             print(str(j) + space + str(u) + space + str(v) + ' ' + str(integral) )
             j+=1
@@ -81,39 +77,8 @@ class dataExplore(plotSett):
         print(closest_index, closest_elementx, closest_elementy)
 
 
-
-
-
     @property
     def cutOff(self):
-        return self._cutOff
-
-        #x-----------
-        class coordsSel():
-            @property
-            def x(self):
-                return self._cutOff
-
-            @x.setter
-            def x(self, xvalue):
-                idx = np.where( self.data[0] > xvalue)[0][0]
-                self.cutOff = idx
-
-        obj = coordsSel()
-        #return obj.x(xvalue)
-
-       #y-----------
-        @property
-        def y(self):
-            return "it's working"
-
-        @y.setter
-        def y(self, value):
-            #instance._x = value
-            # Define the behavior for x here
-            print(f"x set to {value}")
-
-
         return self._cutOff
 
 
@@ -129,7 +94,9 @@ class dataExplore(plotSett):
             if self.j%2 == 0:
                 self.data = [arr[self._cutOff:] for arr in self.data]
             else:
-                self.data = [arr[:-self._cutOff] for arr in self.data]
+                end = len(self.data[1])
+                idx = end - self._cutOff
+                self.data = [arr[:-idx] for arr in self.data]
             self.j += 1
             self.__del__()
             self.onlyDraw() 
