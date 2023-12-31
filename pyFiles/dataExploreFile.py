@@ -52,9 +52,27 @@ class dataExplore(plotSett):
     def x(self):
         return self.data[0]
 
+    @x.setter
+    def x(self, value):
+        idx = np.where( self.data[0] > value)[0][0]
+        idxs = [ v for v in range( idx - 3, idx + 3 ) ]
+        xvalues = self.data[0][idxs]
+        for u in zip(idxs, xvalues):
+            print(str(u))
+        
+
     @property
     def y(self):
         return self.data[1]
+
+
+    @y.setter
+    def y(self, value):
+        idx = np.where( self.data[1] > value)[0][0]
+        idxs = [ v for v in range( idx - 3, idx + 3 ) ]
+        xvalues = self.data[1][idxs]
+        for u in zip(idxs, xvalues):
+            print(str(u))
 
 
     @property
