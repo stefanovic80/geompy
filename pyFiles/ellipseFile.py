@@ -49,13 +49,13 @@ class ellipse(dataExplore):
         #line1, = self.ax.plot(self.data[0], self.data[1], color = self.color, label = self.name, linewidth = self.linewidth)
 
 
-        self.ax.legend()
+        #self.ax.legend()
         
         self.lines = []
         self.lines.append(line1)
 
-        self.ax.set_xlim(settings.xmin, settings.xmax)
-        self.ax.set_ylim(settings.xmin, settings.xmax)
+        #self.ax.set_xlim(settings.xmin, settings.xmax)
+        #self.ax.set_ylim(settings.xmin, settings.xmax)
 
 
 

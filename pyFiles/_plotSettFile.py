@@ -131,7 +131,11 @@ class plotSett():
     def color(self, c):
         if c in self.colors:
             self._color = c
-            #self.onlyDraw()
+            """
+            for line in self.lines:
+                line.remove()
+            self.onlyDraw()
+            """
             self.draw()
             self.label(self._name)
         elif c == "azure":
@@ -147,7 +151,11 @@ class plotSett():
     @name.setter
     def name(self, n):
         self._name = n
-        #self.onlyDraw()
+        """
+        for line in self.lines:
+            line.remove()
+        self.onlyDraw()
+        """
         self.draw()
         self.label( n )
     
@@ -158,7 +166,11 @@ class plotSett():
     @linewidth.setter
     def linewidth(self, n):
         self._linewidth = n
-        #self.onlyDraw()
+        """
+        for line in self.lines:
+            line.remove()
+        self.onlyDraw()
+        """
         self.draw()
 
 

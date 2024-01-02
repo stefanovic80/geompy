@@ -128,7 +128,7 @@ class parabola(dataExplore):
     def calc1(self, name = None):
 
         Delta = self.b**2 - 4*self.a*self.c
-        self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a)  )
+        self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a),  draw = False )
         #self.concavity = self.a
         self.calc()
 
