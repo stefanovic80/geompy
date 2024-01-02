@@ -44,6 +44,23 @@ class dataExplore(plotSett):
             print(str(j) + space + str(u) + space + str(v) + ' ' + str(integral) )
             j+=1
 
+
+    #to be fixed
+    @property
+    def derivative(self):
+        j = 0
+        space = ' '
+        #derivative = 0
+        #init = self.data[0][0]
+        for u, v in zip(self.data[0][:-1], self.data[1][:-1]):
+            #to be fixed!"
+            derivative = np.diff(self.data[1])/np.diff(self.data[0])
+            init = u
+            print(str(j) + space + str(u) + space + str(v) + ' ' + str(derivative) )
+            j+=1
+
+
+
     @property
     def x(self):
         return self.data[0]
@@ -80,6 +97,7 @@ class dataExplore(plotSett):
     @property
     def cutOff(self):
         self.j = 0
+        #self.j += 1
         self.draw()
         #return self._cutOff
 
