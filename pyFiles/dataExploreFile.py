@@ -79,17 +79,16 @@ class dataExplore(plotSett):
 
     @property
     def cutOff(self):
-        return self._cutOff
+        self.j = 0
+        self.draw()
+        #return self._cutOff
 
 
     @cutOff.setter
     def cutOff(self, n):
         self._cutOff = n
-        self.cut_data()
-
-
-
-    def cut_data(self):
+        #self.cut_data()
+        #def cut_data(self):
         if self._cutOff is not None:
             if self.j%2 == 0:
                 self.data = [arr[self._cutOff:] for arr in self.data]
@@ -100,9 +99,4 @@ class dataExplore(plotSett):
             self.j += 1
             self.__del__()
             self.onlyDraw() 
-
-
-
-
-
 
