@@ -179,12 +179,12 @@ class point(plotSett):
         return distance
     """
     
-    def dist(self, arg):
+    def dist(self, arg, angle = 0):
         if isinstance(arg, point):
             distance = ( ( arg.data[0][0] - self.data[0][0])**2 + ( arg.data[1][0] - self.data[1][0] )**2 )**.5
             return distance
         elif isinstance(arg, (int, float)):
-            return point( self.data[0][0] + arg, self.data[1][0] )
+            return point( self.data[0][0] + arg*np.cos(angle), self.data[1][0] + arg*np.sin(angle) )
         else:
             pass
 
