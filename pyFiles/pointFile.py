@@ -172,7 +172,24 @@ class point(plotSett):
             
         self.lims()
     
+    """
+    @property
+    def dist(self):
+        distance = ( self.data[0][0]**2 + self.data[1][0]**2 )**.5
+        return distance
+    """
     
+    def dist(self, arg):
+        if isinstance(arg, point):
+            distance = ( ( arg.data[0][0] - self.data[0][0])**2 + ( arg.data[1][0] - self.data[1][0] )**2 )**.5
+            return distance
+        elif isinstance(arg, (int, float)):
+            return point( self.data[0][0] + arg, self.data[1][0] )
+        else:
+            pass
+
+
+
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
         a1 = (locus.data[0] - self.data[0])*np.sin(angle)

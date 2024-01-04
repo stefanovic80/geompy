@@ -50,13 +50,11 @@ class dataExplore(plotSett):
     def derivative(self):
         j = 0
         space = ' '
-        #derivative = 0
-        #init = self.data[0][0]
-        for u, v in zip(self.data[0][:-1], self.data[1][:-1]):
-            #to be fixed!"
-            derivative = np.diff(self.data[1])/np.diff(self.data[0])
+        derivative = np.diff(self.data[1])/np.diff(self.data[0])
+        for u, v, z in zip(self.data[0][:-1], self.data[1][:-1], derivative):
+            
             init = u
-            print(str(j) + space + str(u) + space + str(v) + ' ' + str(derivative) )
+            print(str(j) + space + str(u) + space + str(v) + ' ' + str(z) )
             j+=1
 
 
