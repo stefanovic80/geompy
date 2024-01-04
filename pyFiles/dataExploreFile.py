@@ -72,7 +72,7 @@ class dataExplore(plotSett):
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
         
-        print(closest_index, closest_elementx, closest_elementy)
+        print(closest_index, closest_elementx, closest_elementy )
          
 
     @property
@@ -89,7 +89,7 @@ class dataExplore(plotSett):
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
 
-        print(closest_index, closest_elementx, closest_elementy)
+        print(closest_index, closest_elementx, closest_elementy )
 
 
     @property

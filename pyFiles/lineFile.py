@@ -34,6 +34,7 @@ class line(dataExplore):
         
         #values to calculate straight line data (self.data[1])
         angle = random.uniform(0, np.pi)
+        self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.length = None
@@ -126,6 +127,7 @@ class line(dataExplore):
         self.data = [ self._x[ self.idxMin: self.idxMax] ] # a local copy of x values
 
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
+        self.angle = np.arctan(self.angCoeff)
         
         #[ [x, y] for x, y in zip(r.data[0], r.data[1])]
 
