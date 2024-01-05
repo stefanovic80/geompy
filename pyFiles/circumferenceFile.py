@@ -79,7 +79,7 @@ class circumference(dataExplore):
         dist = ( (xc - x0)**2 + (yc - y0)**2)**.5
         angle1 = np.arcsin( (yc - y0)/dist )
         angle2 = np.arcsin( R/dist)
-        if xc > x0:
+        if xc >= x0:
             m0 = np.tan( angle1 + angle2 )
             m1 = np.tan( angle1 - angle2 )
         elif xc < x0:
