@@ -12,13 +12,7 @@ plt.rcParams [ 'font.weight'] = 'bold'
 
 
 
-def first_non_zero_digit(num):
-    num_str = str(num)
-    for char in num_str:
-        if char != '0' and char != '.':
-            return char
-    return None  # Return None if all digits are zero
-
+#plt.gca().lines[-1].remove()
 
 class plotSett():
     
