@@ -79,6 +79,11 @@ class line(dataExplore):
         self.label( self._name )
 
 
+    def system(self, line):
+        x = -(self.intercept - line.intercept[0])/(self.angCoeff - line.angCoeff[0])
+        y = self.angCoeff*x + self.intercept
+        return point(x, y)
+
     @property
     def equation(self):
         #super().equation
