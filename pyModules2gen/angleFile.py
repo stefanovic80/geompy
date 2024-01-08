@@ -78,11 +78,11 @@ class angle(plotSett):
         m = [None, None]
         q = [None, None]
 
-        m[0] = self.line[0].angCoeff#[0]
-        q[0] = self.line[0].intercept#[0]
+        m[0] = self.line[0].angCoeff[0]
+        q[0] = self.line[0].intercept[0]
 
-        m[1] = self.line[1].angCoeff#[0]
-        q[1] = self.line[1].intercept#[0]
+        m[1] = self.line[1].angCoeff[0]
+        q[1] = self.line[1].intercept[0]
         
         #------------- from chatGPT
         # Get the indices that would sort 'm'
