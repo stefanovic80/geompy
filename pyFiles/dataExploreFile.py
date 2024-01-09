@@ -68,10 +68,11 @@ class dataExplore(plotSett):
         differences = np.abs( self.data[0] - value)
         #Find the index of the closest element
         closest_index = np.argmin(differences)
+        self._cutOff = closest_index
         #get the actual value of the clostest element
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
-        
+         
         print(closest_index, closest_elementx, closest_elementy )
          
 
@@ -85,10 +86,11 @@ class dataExplore(plotSett):
         differences = np.abs( self.data[1] - value)
         #Find the index of the closest element
         closest_index = np.argmin(differences)
+        self._cutOff = closest_index
         #get the actual value of the clostest element
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
-
+        
         print(closest_index, closest_elementx, closest_elementy )
 
 
@@ -96,13 +98,16 @@ class dataExplore(plotSett):
     def cutOff(self):
         self.j = 0
         #self.j += 1
+        #self.cutOff = self._cutOff
         self.draw()
         #return self._cutOff
 
 
     @cutOff.setter
     def cutOff(self, n):
-        self._cutOff = n
+        if not isinstance(n, bool):
+            self._cutOff = n
+        
         #self.cut_data()
         #def cut_data(self):
         if self._cutOff is not None:
