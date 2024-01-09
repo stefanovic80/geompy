@@ -166,6 +166,7 @@ class point(plotSett):
         self.__del__()
           
         b = plt.ginput()
+        self.coords = [ b[0][0], b[0][1] ]
         self.data = [ np.array([ b[0][0] ] ), np.array([ b[0][1] ] ) ]
         self.draw()
         self.label(self._name)
