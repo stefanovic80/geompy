@@ -96,28 +96,31 @@ class dataExplore(plotSett):
 
     @property
     def cutOff(self):
-        self.j = 0
-        #self.j += 1
-        #self.cutOff = self._cutOff
-        self.draw()
-        #return self._cutOff
-
+        self.cutOffdata()
 
     @cutOff.setter
     def cutOff(self, n):
-        if not isinstance(n, bool):
+        if n == False:
+            self.j = 0
+            self._cutOff = 0
+            #to be fixed!
+        elif not isinstance(n, bool):
             self._cutOff = n
+        else:
+            pass
         
-        #self.cut_data()
-        #def cut_data(self):
-        if self._cutOff is not None:
-            if self.j%2 == 0:
-                self.data = [arr[self._cutOff:] for arr in self.data]
-            else:
-                end = len(self.data[1])
-                idx = end - self._cutOff
-                self.data = [arr[:-idx] for arr in self.data]
-            self.j += 1
-            self.__del__()
-            self.onlyDraw() 
+        self.cutOffdata()
+
+    def cutOffdata(self):
+
+        #if self._cutOff is not None:
+        if self.j%2 == 0:
+            self.data = [arr[self._cutOff:] for arr in self.data]
+        else:
+            end = len(self.data[1])
+            idx = end - self._cutOff
+            self.data = [arr[:-idx] for arr in self.data]
+        self.j += 1
+        self.__del__()
+        self.onlyDraw() 
 
