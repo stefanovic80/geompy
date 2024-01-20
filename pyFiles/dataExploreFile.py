@@ -68,10 +68,11 @@ class dataExplore(plotSett):
         differences = np.abs( self.data[0] - value)
         #Find the index of the closest element
         closest_index = np.argmin(differences)
+        self._cutOff = closest_index
         #get the actual value of the clostest element
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
-        
+         
         print(closest_index, closest_elementx, closest_elementy )
          
 
@@ -85,34 +86,41 @@ class dataExplore(plotSett):
         differences = np.abs( self.data[1] - value)
         #Find the index of the closest element
         closest_index = np.argmin(differences)
+        self._cutOff = closest_index
         #get the actual value of the clostest element
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
-
+        
         print(closest_index, closest_elementx, closest_elementy )
 
 
     @property
     def cutOff(self):
-        self.j = 0
-        #self.j += 1
-        self.draw()
-        #return self._cutOff
-
+        self.cutOffdata()
 
     @cutOff.setter
     def cutOff(self, n):
-        self._cutOff = n
-        #self.cut_data()
-        #def cut_data(self):
-        if self._cutOff is not None:
-            if self.j%2 == 0:
-                self.data = [arr[self._cutOff:] for arr in self.data]
-            else:
-                end = len(self.data[1])
-                idx = end - self._cutOff
-                self.data = [arr[:-idx] for arr in self.data]
-            self.j += 1
-            self.__del__()
-            self.onlyDraw() 
+        if n == False:
+            self.j = 0
+            self._cutOff = 0
+            #to be fixed!
+        elif not isinstance(n, bool):
+            self._cutOff = n
+        else:
+            pass
+        
+        self.cutOffdata()
+
+    def cutOffdata(self):
+
+        #if self._cutOff is not None:
+        if self.j%2 == 0:
+            self.data = [arr[self._cutOff:] for arr in self.data]
+        else:
+            end = len(self.data[1])
+            idx = end - self._cutOff
+            self.data = [arr[:-idx] for arr in self.data]
+        self.j += 1
+        self.__del__()
+        self.onlyDraw() 
 
