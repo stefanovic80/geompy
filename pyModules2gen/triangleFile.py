@@ -9,60 +9,27 @@ from ..pyFiles.Settings import settings#xmin, xmax, linewidth, steps
 from ..pyFiles import plt, np, random
 
 class triangle(plotSett):
-    def __init__(self, seed = seed):#, xmin = xmin, xmax = xmax, steps = steps, seed = seed):
-        super().__init__()#xmin, xmax, steps)
-        self.A = point( draw = False )
-        self.B = point( draw = False )
-        self.C = point( draw = False )
-        self.AB = None
-        self.BC = None
-        self.CA = None
-        self.data = None
-        self.rotate = False
-        self._name = None
-        self._color = random.choice(self.colors)
-
-    def calc(self):
-        self.AB = line( draw = False )
-        self.BC = line( draw = False )
-        self.CA = line( draw = False )
-        self.AB.erase()
-        self.BC.erase()
-        self.CA.erase()
-        self.AB._points[0] = self.A
-        self.AB._points[1] = self.B
-        self.BC._points[0] = self.B
-        self.BC._points[1] = self.C
-        self.CA._points[0] = self.C
-        self.CA._points[1] = self.A
+    
+    def __init__(self, seed = seed):
+        self.points = [point( ), point(), point()]
+        self.lines = [line(), line(), line()]
         
-        """
-        self.A.color = self.B.color = self.C.color
-        self.AB.color = self.BC.color = self.CA.color
-        """
-        self.AB._cut = self.BC._cut = self.CA._cut = True
+        j = 0
+        for lineItem in self.lines:
+            k = (j+1)%3
+            lineItem.points = self.points[j]
+            lineItem.points = self.points[k]
+            lims = [ self.points[j].x[0], self.points[k].x[0] ]
+            lims.sort()
+            
+            lineItem.x = lims[0]
+            lineItem.cutOff
+            lineItem.x = lims[1]
+            lineItem.cutOff
+            
+            j += 1
 
-        self.AB.calc2()#two points
-        self.BC.calc2()#two points
-        self.CA.calc2()#two points
-        # Concatenate the arrays in the lists
-        self.data = [ np.concatenate( [ self.AB.data[0], self.BC.data[0], self.CA.data[0] ] ), np.concatenate( [ self.AB.data[1], self.BC.data[1], self.CA.data[1] ] ) ]
 
-        #self.data = [ np.concatenate( [ self.AB.data[0], self.BC.data[0], self.CA.data[0] ), np.concatenate( [ self.AB.data[1], self.BC.data[1], self.CA.data[1] ) ]
-
-    def draw(self, name = None):
-        self.__del__()
-        self._name = name
-        if self.rotate == False:
-            self.calc()
-
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self.color)
-
-        self.lines = []
-        self.lines.append(line)
-
-        #copied from line class, not completed
-        
     def erase(self):
         self.__del__()
 
