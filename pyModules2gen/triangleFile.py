@@ -11,7 +11,7 @@ from ..pyFiles import plt, np, random
 class triangle(plotSett):
     
     def __init__(self, seed = seed):
-        self.points = [point( ), point(), point()]
+        self.points = [point(), point(), point()]
         self.lines = [line(), line(), line()]
         
         j = 0
@@ -19,6 +19,7 @@ class triangle(plotSett):
             k = (j+1)%3
             lineItem.points = self.points[j]
             lineItem.points = self.points[k]
+
             lims = [ self.points[j].x[0], self.points[k].x[0] ]
             lims.sort()
             
@@ -28,24 +29,3 @@ class triangle(plotSett):
             lineItem.cutOff
             
             j += 1
-
-
-    def erase(self):
-        self.__del__()
-
-        #to remove text label
-        try:
-            self.pointLabel.tex.remove()
-        except:
-            pass
-
-        self.data = [None, None]
-
-        for j in range(2):
-            self._points[j].data = [None, None]
-        #for u in self._points:
-        #    u.data = [None, None]
-
-        self.angCoeff = None
-        self.intercept = None
-
