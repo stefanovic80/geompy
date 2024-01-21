@@ -130,7 +130,8 @@ class plotSett():
                 line.remove()
             self.onlyDraw()
             """
-            self.draw()
+            self.__del__()
+            self.onlyDraw()
             self.label(self._name)
         elif c == "azure":
             self.color = settings.azure
@@ -145,12 +146,8 @@ class plotSett():
     @name.setter
     def name(self, n):
         self._name = n
-        """
-        for line in self.lines:
-            line.remove()
+        self.__del__()
         self.onlyDraw()
-        """
-        self.draw()
         self.label( n )
     
     @property
