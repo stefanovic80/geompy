@@ -10,17 +10,27 @@ from ..pyFiles import plt, np, random
 
 class triangle(plotSett):
     
-    def __init__(self, seed = seed):
-        self.points = [point(), point(), point()]
-        self.lines = [line(), line(), line()]
+    def __init__(self, seed = seed, draw = True):
+
+        super().__init__()
+        s = False
+        self.vertices = [point(draw = s ), point(draw = s), point(draw = s)]
+        self.lines = [line(draw = s), line(draw = s), line(draw = s)]
         
+        self._color = random.choice(self.colors)
+
+        if draw == True:
+            self.draw()
+    def draw(self):
         j = 0
         for lineItem in self.lines:
             k = (j+1)%3
-            lineItem.points = self.points[j]
-            lineItem.points = self.points[k]
+            lineItem.points = self.vertices[j]
+            lineItem.points = self.vertices[k]
+            
+            lineItem.color = self._color
 
-            lims = [ self.points[j].x[0], self.points[k].x[0] ]
+            lims = [ self.vertices[j].x[0], self.vertices[k].x[0] ]
             lims.sort()
             
             lineItem.x = lims[0]
