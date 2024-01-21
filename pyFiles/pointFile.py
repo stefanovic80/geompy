@@ -119,13 +119,13 @@ class point(plotSett):
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
-        pass
-        #self.data = [ np.array([u]) for u in self.data  ]
+        #pass
+        self.data = [ np.array([u]) for u in self.data  ]
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
-        self.__del__()
-        #self.lims()
+        #self.__del__()
+        
         if self.rotate == False:
             self.calc()
 

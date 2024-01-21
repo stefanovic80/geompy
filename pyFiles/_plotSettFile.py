@@ -148,7 +148,7 @@ class plotSett():
         self._name = n
         self.__del__()
         self.onlyDraw()
-        self.label( n )
+        self.label(n)
     
     @property
     def linewidth(self):
