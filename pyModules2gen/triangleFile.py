@@ -18,6 +18,10 @@ class triangle(plotSett):
         self.lines = [line(draw = s), line(draw = s), line(draw = s)]
         
         self._color = random.choice(self.colors)
+        self._colorV = random.choice(self.colors)
+
+        for v in self.vertices:
+            v.color = self._colorV
 
         if draw == True:
             self.draw()
