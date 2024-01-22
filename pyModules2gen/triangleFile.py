@@ -86,8 +86,8 @@ class triangle(dataExplore):
             for l in range(2):
                 #self.data[l] = np.append(self.data[l], side.data[l])
                 self.data[l] = np.concatenate((self.vertices[j].data[l], self.data[l], side.data[l], self.vertices[k].data[l]))
-            
-            j +=1
 
-        for k in range(3):
-            self.side[k].lines[k].remove()
+            j +=1
+        
+        for j in range(3):
+            self.side[j].lines[j].remove()
