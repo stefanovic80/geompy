@@ -15,7 +15,7 @@ class triangle(plotSett):
         super().__init__()
         s = False
         self.vertices = [point(draw = s ), point(draw = s), point(draw = s)]
-        self.lines = [line(draw = s), line(draw = s), line(draw = s)]
+        self.sides = [line(draw = s), line(draw = s), line(draw = s)]
         
         self._color = random.choice(self.colors)
         self._colorV = random.choice(self.colors)
@@ -38,15 +38,30 @@ class triangle(plotSett):
                 vertice.name = label 
         else:
             sidesLabels = ['c', 'a', 'b']
-            for side, label in zip(self.lines, sidesLabels):
+            for side, label in zip(self.sides, sidesLabels):
                 side.name = label
 
         self.j+=1
 
+    def chooseCalc(self):
+        self.__del__()
+        calculation_functions = [self.calc]
 
-    def draw(self):
+        for calc_function in calculation_functions:
+            if self.rotate == False:
+                try:
+                    self.lims()
+                    calc_function()
+                    break
+                except:
+                    pass
+
+
+
+    def calc(self):
+        
         j = 0
-        for lineItem in self.lines:
+        for lineItem in self.sides:
             k = (j+1)%3
             lineItem.points = self.vertices[j]
             lineItem.points = self.vertices[k]
@@ -63,14 +78,7 @@ class triangle(plotSett):
             lineItem.x = lims[1]
             lineItem.cutOff
             
-            """
-            else:
-                lims = [ self.vertices[j].y[0], self.vertices[k].y[0] ]
-                lims.sort()
-            
-                lineItem.y = lims[0]
-                lineItem.cutOff
-                lineItem.y = lims[1]
-                lineItem.cutOff
-            """
             j += 1
+            
+            for k in range(2):
+                self.data[k] = np.append(self.data[k], lineItem.data[k])

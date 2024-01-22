@@ -148,19 +148,21 @@ class line(dataExplore):
             self.angCoeff = (y1 - y0)/(x1 - x0)
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
-            if self._cut == True:
-                j = 0
-                lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
-                lims.sort()
-                self.xMin = lims[0]
-                self.xMax = lims[1]
+            
+            #if self._cut == True:
+            j = 0
+            lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
+            lims.sort()
+            self.xMin = lims[0]
+            self.xMax = lims[1]
             
             self.calc1()
         else:
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._y ]
-
+            
+            """
             if self._cut == True:
                 j = 1
                 lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
@@ -172,6 +174,7 @@ class line(dataExplore):
 
                 self.data[0] = self.data[0][self.idxMin: self.idxMax]
                 self.data[1] = self.data[1][self.idxMin: self.idxMax]
+            """
         #self._points = []
 
 
