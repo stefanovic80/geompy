@@ -71,13 +71,14 @@ class line(dataExplore):
         except:
             pass
 
-
+    #may be deprecated
+    """
     @property
     def cut(self):
         self._cut = not self._cut
         self.draw()#cut = self._cut)
         self.label( self._name )
-
+    """
 
     def system(self, line):
         #x = -(self.intercept - line.intercept[0])/(self.angCoeff - line.angCoeff[0])
@@ -161,22 +162,6 @@ class line(dataExplore):
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._y ]
-            
-            """
-            if self._cut == True:
-                j = 1
-                lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
-                lims.sort()
-                self.xMin = lims[0]
-                self.xMax = lims[1]
-                self.idxMin = np.where( self.data[j] >= self.xMin )[0][0]
-                self.idxMax = np.where( self.data[j] >= self.xMax )[0][0]
-
-                self.data[0] = self.data[0][self.idxMin: self.idxMax]
-                self.data[1] = self.data[1][self.idxMin: self.idxMax]
-            """
-        #self._points = []
-
 
 
     def calc3(self): #calculate equation from 1 point and angCoeff

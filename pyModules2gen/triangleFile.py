@@ -62,24 +62,24 @@ class triangle(dataExplore):
     def calc(self):
         
         j = 0
-        for lineItem in self.sides:
+        for side in self.sides:
             k = (j+1)%3
-            lineItem.points = self.vertices[j]
-            lineItem.points = self.vertices[k]
+            #defines a side passing through vertices j and k
+            side.points = self.vertices[j]
+            side.points = self.vertices[k]
             
-            lineItem.color = self._color
-            
-            
-            #if lineItem.angCoeff < 1:
+            side.color = self._color
+
             lims = [ self.vertices[j].x[0], self.vertices[k].x[0] ]
             lims.sort()
-                    
-            lineItem.x = lims[0]
-            lineItem.cutOff
-            lineItem.x = lims[1]
-            lineItem.cutOff
             
-            j += 1
+            #cut Off triangle sides
+            for l in range(2):
+                side.x = lims[l]
+                side.cutOff
             
-            for k in range(2):
-                self.data[k] = np.append(self.data[k], lineItem.data[k])
+            #append each one, x and y respectively of triangle sides data
+            for l in range(2):
+                self.data[l] = np.append(self.data[l], side.data[l])
+
+            j +=1
