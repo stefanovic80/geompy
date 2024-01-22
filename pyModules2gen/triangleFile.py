@@ -62,12 +62,13 @@ class triangle(dataExplore):
     def calc(self):
         
         j = 0
+        for l in range(2):
+            self.data[l] = np.array([])
         for side in self.sides:
             k = (j+1)%3
             #defines a side passing through vertices j and k
             side.points = self.vertices[j]
             side.points = self.vertices[k]
-            
             side.color = self._color
 
             lims = [ self.vertices[j].x[0], self.vertices[k].x[0] ]
@@ -78,8 +79,10 @@ class triangle(dataExplore):
                 side.x = lims[l]
                 side.cutOff
             
+
             #append each one, x and y respectively of triangle sides data
             for l in range(2):
                 self.data[l] = np.append(self.data[l], side.data[l])
-
+            
+            #side.__del__()
             j +=1
