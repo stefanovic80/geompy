@@ -29,6 +29,7 @@ class triangle(dataExplore):
 
         if draw == True:
             self.draw()
+            self.lines[0].remove()
 
     @property
     def labels(self):
@@ -70,7 +71,7 @@ class triangle(dataExplore):
             side.points = self.vertices[j]
             side.points = self.vertices[k]
             side.color = self._color
-
+            
             lims = [ self.vertices[j].x[0], self.vertices[k].x[0] ]
             lims.sort()
             
@@ -79,10 +80,14 @@ class triangle(dataExplore):
                 side.x = lims[l]
                 side.cutOff
             
+            #side.lines[0].remove()
 
             #append each one, x and y respectively of triangle sides data
             for l in range(2):
-                self.data[l] = np.append(self.data[l], side.data[l])
+                #self.data[l] = np.append(self.data[l], side.data[l])
+                self.data[l] = np.concatenate((self.vertices[j].data[l], self.data[l], side.data[l], self.vertices[k].data[l]))
             
-            #side.__del__()
             j +=1
+
+        for k in range(3):
+            self.side[k].lines[k].remove()
