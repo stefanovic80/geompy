@@ -16,13 +16,16 @@ class triangle(dataExplore):
         super().__init__()
         s = False
         self.vertices = [point(draw = s ), point(draw = s), point(draw = s)]
-        self.sides = [line(draw = s), line(draw = s), line(draw = s)]
+        #self.sides = [line(draw = s), line(draw = s), line(draw = s)]
         
         self._color = random.choice(self.colors)
         self._colorV = random.choice(self.colors)
         
         #to set up "labels" decorated method
         self.j = 0
+
+        #to set up setter decorated labels
+        self.k = 0
 
         for v in self.vertices:
             v.color = self._colorV
@@ -55,6 +58,12 @@ class triangle(dataExplore):
                 self.vertices[l].__del__()
 
         self.j+=1
+
+    @labels.setter
+    def labels(self, label):
+        j=self.k%3
+        self.vertices[j].name = str(label)
+        self.k+=1
 
 
 
