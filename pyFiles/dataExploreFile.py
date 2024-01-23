@@ -121,6 +121,7 @@ class dataExplore(plotSett):
             idx = end - self._cutOff
             self.data = [arr[:-idx] for arr in self.data]
         self.j += 1
+
         self.__del__()
         self.onlyDraw() 
 

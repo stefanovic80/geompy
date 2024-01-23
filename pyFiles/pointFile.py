@@ -117,6 +117,21 @@ class point(plotSett):
             self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
         self.j += 1
 
+    #----------------
+    #it replaces the _plotSett decorated method where onlyDraw is present
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, n):
+        self._name = n
+        self.__del__()
+        self.draw()
+        self.label(n)
+    #-----------------
+
+
     #coords as a list of two numpy arrays of one element each
     def calc(self):
         pass
@@ -124,8 +139,8 @@ class point(plotSett):
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
-        self.__del__()
-        #self.lims()
+        #self.__del__()
+        
         if self.rotate == False:
             self.calc()
 
