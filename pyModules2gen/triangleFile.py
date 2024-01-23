@@ -34,18 +34,38 @@ class triangle(dataExplore):
     @property
     def labels(self):
         
-        if self.j%2 == 0:
+        if self.j%3==0:
             verticesLabels = ['A', 'B', 'C']
             for vertice, label in zip(self.vertices, verticesLabels):
                 vertice.name = label 
+        elif self.j%3==1:
+            self.tex = []
+            sidesLabels = ['c', 'a', 'b']
+            k = 0
+            for sidesLabel in sidesLabels:
+                l1=k%3
+                l2=(k+1)%3
+                labelx = 1.1*(self.vertices[l1].x[0] + self.vertices[l2].x[0])/2
+                labely = (self.vertices[l1].y[0] + self.vertices[l2].y[0])/2
+                self.tex = self.tex + [ self.ax.text(labelx, labely, sidesLabel, fontsize = 14, color = self._colorV, ha ="center", va="center") ]
+                k+=1
         else:
-            pass
-            #sidesLabels = ['c', 'a', 'b']
-            #for side, label in zip(self.sides, sidesLabels):
-            #    side.name = label
+            k = 0
+            for k in range(3):
+                l = k%3
+                self.vertices[l].__del__()
+
 
         self.j+=1
 
+    def __del__(self):
+        super().__del__()
+        try:
+            for tex in self.tex:
+                tex.remove()
+        except:
+            pass
+            
 
     def chooseCalc(self):
         self.__del__()
