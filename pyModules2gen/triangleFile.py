@@ -29,7 +29,7 @@ class triangle(dataExplore):
 
         if draw == True:
             self.draw()
-            self.lines[0].remove()
+            #self.lines[0].remove()
 
     @property
     def labels(self):
@@ -39,15 +39,17 @@ class triangle(dataExplore):
             for vertice, label in zip(self.vertices, verticesLabels):
                 vertice.name = label 
         else:
-            sidesLabels = ['c', 'a', 'b']
-            for side, label in zip(self.sides, sidesLabels):
-                side.name = label
+            pass
+            #sidesLabels = ['c', 'a', 'b']
+            #for side, label in zip(self.sides, sidesLabels):
+            #    side.name = label
 
         self.j+=1
 
+
     def chooseCalc(self):
         self.__del__()
-        calculation_functions = [self.calc]
+        calculation_functions = [self.calc1]
 
         for calc_function in calculation_functions:
             if self.rotate == False:
@@ -91,3 +93,10 @@ class triangle(dataExplore):
         
         for j in range(3):
             self.side[j].lines[j].remove()
+
+
+    def calc1(self):
+        for k in range(2):
+            for j in range(4):
+                l = j%3
+                self.data[k] = np.append(self.data[k], self.vertices[l].data[k])
