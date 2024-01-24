@@ -12,18 +12,13 @@ from .dataExploreFile import dataExplore
 class line(dataExplore):
     def __init__(self, seed = seed, draw = True):
         
-        super().__init__()#xmin, xmax, steps)
+        super().__init__()
         
         self.seed = seed
-
-        #.xMin and .xMax indexes to cut off the straight line into a line
-        self.idxMin = None
-        self.idxMax = None
+        #self.idxMin = None
+        #self.idxMax = None
 
         self._color = random.choice(self.colors)
-        #self.xMin and self.xMax cut off the straight line into a line
-        #self.xMin = settings.xmin
-        #self.xMax = settings.xmax
 
         #random points from which the straight line is identified
         
@@ -38,8 +33,9 @@ class line(dataExplore):
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.xmin, settings.xmax)
         self.length = None
+        #may be deprecated
         self._cut = False
-        self.j = 0
+        #self.j = 0
         
         if draw == True:
             self.draw()
@@ -71,24 +67,14 @@ class line(dataExplore):
         except:
             pass
 
-    #may be deprecated
-    """
-    @property
-    def cut(self):
-        self._cut = not self._cut
-        self.draw()#cut = self._cut)
-        self.label( self._name )
-    """
 
     def system(self, line):
-        #x = -(self.intercept - line.intercept[0])/(self.angCoeff - line.angCoeff[0])
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
         y = self.angCoeff*x + self.intercept
         return point(x, y)
 
     @property
     def equation(self):
-        #super().equation
         
         #to be (properly) inherited
         try:
@@ -125,14 +111,14 @@ class line(dataExplore):
 
 
     def calc1(self): #calculate equation from angCoeff and intercept
-        if self._cut == False:
-            self.xMin = settings.xmin
-            self.xMax = settings.xmax
+        #if self._cut == False:
+        #    self.xMin = settings.xmin
+        #    self.xMax = settings.xmax
         
-        self.idxMin = np.where( self._x >= self.xMin)[0][0]
-        self.idxMax = np.where( self._x >= self.xMax)[0][0]
-        self.data = [ self._x[ self.idxMin: self.idxMax] ] # a local copy of x values
-
+        #settings.xmin = np.where( self._x >= settings.xmin)[0][0]
+        #settings.xmax = np.where( self._x >= settings.xmax)[0][0]
+        #self.data = [ self._x[ settings.xmin: settings.xmax] ] # a local copy
+        self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         self.angle = np.arctan(self.angCoeff)
         
@@ -150,12 +136,10 @@ class line(dataExplore):
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
             
-            #if self._cut == True:
-            j = 0
             lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
             lims.sort()
-            self.xMin = lims[0]
-            self.xMax = lims[1]
+            settings.xmin = lims[0]
+            settings.xmax = lims[1]
             
             self.calc1()
         else:
@@ -196,25 +180,17 @@ class line(dataExplore):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
-                    self.lims()
+                    #self.lims()
                     calc_function()
                     break
                 except:
                     pass
-    
-    def dist(self, length = None ):#to be fixed
-        idx = round( len( self.data[0] )*length/self.length )
-
-        return [ self.data[0][idx], self.data[1][idx] ]
-
     
 
     def erase(self):
         self.__del__()
 
         self.data = [None, None]
-        #points to be removed or not to be removed. This is the problem!!!
-        #self._points = []
         self.angCoeff = None
         self.intercept = None
 
