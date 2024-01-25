@@ -27,7 +27,7 @@ class plotSett():
         self.plotSettings = None
 
         self.data = [None, None]
-        self.tex = [None, None]  # label text
+        #self.tex = [None, None]  # label text
         #density of grid
         
         self.hline = None
@@ -170,7 +170,9 @@ class plotSett():
         labely = data[1][random_index] + shift
         
         #labelx, labely may necessitte to be attributes
-        self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
+        #self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
+        text = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
+        self.lines.append(text)
 
 
 
@@ -278,10 +280,10 @@ class plotSett():
         except:
             pass
 
-        try:#removes point texts
-            self.tex.remove()
-        except:
-            pass
+        #try:#removes point texts
+        #    self.tex.remove()
+        #except:
+        #    pass
         
 
     def __str__(self):
