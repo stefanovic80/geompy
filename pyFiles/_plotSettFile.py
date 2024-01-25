@@ -43,6 +43,8 @@ class plotSett():
 
         self._majorStep = 2
         self.j = 0
+        
+        self.lines = []
 
     @property
     def left(self):
