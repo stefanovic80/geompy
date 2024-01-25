@@ -15,27 +15,19 @@ class line(dataExplore):
         super().__init__()
         
         self.seed = seed
-        #self.idxMin = None
-        #self.idxMax = None
-
         self._color = random.choice(self.colors)
 
-        #random points from which the straight line is identified
-        
-        #may have to move it into if statement
-        point0 = point(draw = False)
-        point1 = point(seed = seed + 1, draw = False)
-        
+        #random points from which the straight line is identified 
         
         #values to calculate straight line data (self.data[1])
         angle = random.uniform(0, np.pi)
         self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.xmin, settings.xmax)
-        self.length = None
+        
         #may be deprecated
-        self._cut = False
-        #self.j = 0
+        #self.length = None
+        #self._cut = False
         
         if draw == True:
             self.draw()
@@ -108,21 +100,11 @@ class line(dataExplore):
         self.j += 1
 
 
-
-
     def calc1(self): #calculate equation from angCoeff and intercept
-        #if self._cut == False:
-        #    self.xMin = settings.xmin
-        #    self.xMax = settings.xmax
-        
-        #settings.xmin = np.where( self._x >= settings.xmin)[0][0]
-        #settings.xmax = np.where( self._x >= settings.xmax)[0][0]
-        #self.data = [ self._x[ settings.xmin: settings.xmax] ] # a local copy
         self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         self.angle = np.arctan(self.angCoeff)
         
-        #[ [x, y] for x, y in zip(r.data[0], r.data[1])]
 
     def calc2(self): #calculate equation from two points
 
@@ -180,7 +162,6 @@ class line(dataExplore):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
-                    #self.lims()
                     calc_function()
                     break
                 except:
@@ -201,8 +182,8 @@ class line(dataExplore):
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
             f"\033[93mClass type = \033[0m line\n"
-            f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
-            f"\033[93m.intercept = \033[0m {self.intercept}\n"
+            f"\033[93m.m = \033[0m {self.angCoeff}\n"
+            f"\033[93m.q = \033[0m {self.intercept}\n"
             f"\033[93m.color = \033[0m {self._color}\n"
             f"\033[93m.linewdith =\033[0m {self._linewidth}\n"
         )
