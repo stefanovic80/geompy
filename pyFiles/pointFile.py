@@ -48,8 +48,7 @@ class point(plotSett):
         args_list = list(local_vars.values())
         #------------------------------------------------------------
         """
-
-        self.j = 0
+        
         self._color = random.choice(self.colors)
         self.lines = None
         self.tex = None 
@@ -135,11 +134,9 @@ class point(plotSett):
     #coords as a list of two numpy arrays of one element each
     def calc(self):
         pass
-        #self.data = [ np.array([u]) for u in self.data  ]
 
     #it overwrites the .draw method in _plotSett
     def draw(self):
-        #self.__del__()
         
         if self.rotate == False:
             self.calc()
@@ -187,13 +184,7 @@ class point(plotSett):
         self.label(self._name)
             
         self.lims()
-    
-    """
-    @property
-    def dist(self):
-        distance = ( self.data[0][0]**2 + self.data[1][0]**2 )**.5
-        return distance
-    """
+
     
     def dist(self, arg, angle = 0):
         if isinstance(arg, point):
@@ -234,10 +225,3 @@ class point(plotSett):
         )
 
         return attributes + methods + self.plotSettings
-
-    def __del__(self):
-        super().__del__()
-        try:
-            self.tex.remove()
-        except:
-            pass

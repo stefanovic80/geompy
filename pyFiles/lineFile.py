@@ -203,8 +203,6 @@ class line(dataExplore):
             f"\033[93mClass type = \033[0m line\n"
             f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
             f"\033[93m.intercept = \033[0m {self.intercept}\n"
-            f"\033[93m.xMin = \033[0m {self.xMin}\n"
-            f"\033[93m.xMax = \033[0m {self.xMax}\n"
             f"\033[93m.color = \033[0m {self._color}\n"
             f"\033[93m.linewdith =\033[0m {self._linewidth}\n"
         )
@@ -212,8 +210,6 @@ class line(dataExplore):
         methods = (
             f"\nMethods:\n"
             f"\033[93m.erase()\033\n"
-            f"\033[93m.left = \033[0m {self.xMin}\n"
-            f"\033[93m.right = \033[0m {self.xMax}\n"
         )            
         
         return attributes + methods + self.plotSettings

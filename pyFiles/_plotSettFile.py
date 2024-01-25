@@ -34,14 +34,6 @@ class plotSett():
         self.vline = None
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
-        
-        #it may be better to use settings.attributes instead
-        #------------------------
-        #self.xMin = settings.xmin
-        #self.xMax = settings.xmax
-        #self.yMin = settings.ymin
-        #self.yMax = settings.ymax
-        #------------------------
 
         self.lims()
 
@@ -60,8 +52,6 @@ class plotSett():
     def left(self, value):
         settings.xmin = value
         settings.ymin = value
-        #self.xMin = value
-        #self.yMin = value
         self.majorStep = self._majorStep
         self.lims()
 
@@ -73,11 +63,6 @@ class plotSett():
     def right(self, value):
         settings.xmax = value
         settings.ymax = value
-        #--------------------
-        #may be deprecated
-        #self.xMax = value
-        #self.yMax = value
-        #--------------------
         self.majorStep = self._majorStep
         self.lims()
 
@@ -88,7 +73,6 @@ class plotSett():
     @bottom.setter
     def bottom(self, value):
         settings.ymin = value
-        #self.yMin = value
         self.grid( bottomConcat = value, topConcat = settings.ymax )
         self.ax.set_ylim( bottom = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
@@ -102,7 +86,6 @@ class plotSett():
     @up.setter
     def up(self, value):
         settings.ymax = value
-        #self.yMax = value
         self.grid(topConcat = value, bottomConcat = settings.ymin)
         self.ax.set_ylim( top = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
