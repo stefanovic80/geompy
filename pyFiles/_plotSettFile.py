@@ -34,15 +34,6 @@ class plotSett():
         self.vline = None
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
-        
-        #it may be better to use settings.attributes instead
-        #------------------------
-        self.xMin = settings.xmin
-        self.xMax = settings.xmax
-
-        self.yMin = settings.ymin
-        self.yMax = settings.ymax
-        #------------------------
 
         self.lims()
 
@@ -50,26 +41,19 @@ class plotSett():
         self._name = None
         self._points = []
 
-        self._majorStep = 2#2#None
-
-        #used in cutOff method
+        self._majorStep = 2
         self.j = 0
-        self._cutOff = 0
 
     @property
     def left(self):
-        #return self.xMin
 	    return settings.xmin
 		
     @left.setter
     def left(self, value):
         settings.xmin = value
         settings.ymin = value
-        self.xMin = value
-        self.yMin = value
         self.majorStep = self._majorStep
         self.lims()
-        #self.draw()
 
     @property
     def right(self):
@@ -79,15 +63,8 @@ class plotSett():
     def right(self, value):
         settings.xmax = value
         settings.ymax = value
-        #--------------------
-        #may be deprecated
-        self.xMax = value
-        self.yMax = value
-        #--------------------
         self.majorStep = self._majorStep
-        #self.minorSteps = 10
         self.lims()
-        #self.draw()
 
     @property
     def bottom(self):
@@ -96,7 +73,6 @@ class plotSett():
     @bottom.setter
     def bottom(self, value):
         settings.ymin = value
-        self.yMin = value
         self.grid( bottomConcat = value, topConcat = settings.ymax )
         self.ax.set_ylim( bottom = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
@@ -110,7 +86,6 @@ class plotSett():
     @up.setter
     def up(self, value):
         settings.ymax = value
-        self.yMax = value
         self.grid(topConcat = value, bottomConcat = settings.ymin)
         self.ax.set_ylim( top = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
@@ -125,11 +100,6 @@ class plotSett():
     def color(self, c):
         if c in self.colors:
             self._color = c
-            """
-            for line in self.lines:
-                line.remove()
-            self.onlyDraw()
-            """
             self.__del__()
             self.onlyDraw()
             self.label(self._name)
@@ -157,11 +127,6 @@ class plotSett():
     @linewidth.setter
     def linewidth(self, n):
         self._linewidth = n
-        """
-        for line in self.lines:
-            line.remove()
-        self.onlyDraw()
-        """
         self.draw()
 
 
@@ -198,7 +163,6 @@ class plotSett():
         data = [self.data[0][idx], self.data[1][idx] ]
 
         random_index = np.random.randint(len(data[0]))
-        #shift = (self.xMax - self.xMin)/40
         shift = (settings.xmax - settings.xmin)/40
         labelx = data[0][random_index] + shift
         labely = data[1][random_index] + shift
