@@ -43,7 +43,7 @@ class plotSett():
 
         self._majorStep = 2
         self.j = 0
-        
+        self.k = 0        
         self.lines = []
 
     @property

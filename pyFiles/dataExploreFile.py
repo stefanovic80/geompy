@@ -83,21 +83,29 @@ class dataExplore(plotSett):
 
     @y.setter
     def y(self, value):
-        differences = np.abs( self.data[1] - value)
-        #Find the index of the closest element
-        closest_index = np.argmin(differences)
-        self._cutOff = closest_index
-        #get the actual value of the clostest element
-        closest_elementx = self.data[0][closest_index]
-        closest_elementy = self.data[1][closest_index]
-        
-        print(closest_index, closest_elementx, closest_elementy )
+        k = self.j%2
+        if k==0:
+            differences = np.abs( self.data[1] - value)
+            #Find the index of the closest element
+            closest_index = np.argmin(differences)
+            #may be deprecated
+            self._cutOff = closest_index
+            #get the actual value of the clostest element
+            closest_elementx = self.data[0][closest_index]
+            closest_elementy = self.data[1][closest_index]
+            
+            self.j+=1
+            print(closest_index, closest_elementx, closest_elementy )
+        else:
+            self.cutOffdata()
+            self.j+=1
 
-
+    #to be deprecated
     @property
     def cutOff(self):
         self.cutOffdata()
-
+    
+    #to be deprecated
     @cutOff.setter
     def cutOff(self, n):
         if n == False:
@@ -113,14 +121,13 @@ class dataExplore(plotSett):
 
     def cutOffdata(self):
 
-        #if self._cutOff is not None:
-        if self.j%2 == 0:
+        if self.k%2 == 0:
             self.data = [arr[self._cutOff:] for arr in self.data]
         else:
             end = len(self.data[1])
             idx = end - self._cutOff
             self.data = [arr[:-idx] for arr in self.data]
-        self.j += 1
+        self.k+=1
 
         self.__del__()
         self.onlyDraw() 
