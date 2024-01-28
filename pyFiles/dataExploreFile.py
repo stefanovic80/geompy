@@ -100,6 +100,16 @@ class dataExplore(plotSett):
             self.cutOffdata()
             self.j+=1
 
+    @property
+    def cut(self):
+        class c():
+            @property
+            def x(self):
+                print("it looks like working right!")
+        obj = c()
+        return obj
+
+
     #to be deprecated
     @property
     def cutOff(self):
