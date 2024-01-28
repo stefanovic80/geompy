@@ -100,14 +100,43 @@ class dataExplore(plotSett):
             self.cutOffdata()
             self.j+=1
 
+    
+
     @property
     def cut(self):
         class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+                
+            def x(self, value):
+                self.outer_instance.x = value
+                self.outer_instance.cutOffdata()
+                
+            def y(self, value):
+                self.outer_instance.y = value
+                self.outer_instance.cutOffdata()
+        
+        obj = c(outer_instance = self)
+        #obj.cut.x(5)
+        return obj
+    
+    """ 
+    @cut.setter
+    def cut(self, value):
+        class c():
+            def __init__(self):
+                self.x = value
             @property
             def x(self):
-                print("it looks like working right!")
+                print(value)
+            #@property
+            #def y(self):
+            #    print("it looks like y is working right!")
         obj = c()
+        obj.x = value
         return obj
+    
+
 
 
     #to be deprecated
@@ -128,6 +157,8 @@ class dataExplore(plotSett):
             pass
         
         self.cutOffdata()
+    """
+
 
     def cutOffdata(self):
 
