@@ -110,12 +110,12 @@ class dataExplore(plotSett):
             def x(self, value):
                 self.outer_instance.x = value
                 self.outer_instance.cutOffdata()
-                self.j+=1
+                self.outer_instance.k+=1
 
             def y(self, value):
                 self.outer_instance.y = value
                 self.outer_instance.cutOffdata()
-                self.j+=1
+                self.outer_instance.k+=1
 
         obj = c(outer_instance = self)
         #obj.cut.x(5)
@@ -130,7 +130,7 @@ class dataExplore(plotSett):
             end = len(self.data[1])
             idx = end - self._cutOff
             self.data = [arr[:-idx] for arr in self.data]
-        self.k+=1
+        #self.k+=1
 
         self.__del__()
         self.onlyDraw() 
