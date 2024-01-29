@@ -55,8 +55,8 @@ class line(dataExplore):
 
 
     def system(self, line):
-        x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
-        y = self.angCoeff*x + self.intercept
+        x = -(self.intercept[0] - line.intercept[0])/(self.angCoeff[0] - line.angCoeff[0])
+        y = self.angCoeff[0]*x + self.intercept[0]
         return point(x, y)
 
 
