@@ -211,12 +211,14 @@ class point(plotSett):
 
     def rot(self, locus = None, angle = 0):
         locus.rotate = True
-        j = 0
-        a1 = (locus.dataGroup[j] - self.data[j])*np.sin(angle)
-        data = [None, None]
-        data[0] = (locus.dataGroup[j] - self.data[j]  )*np.cos(angle) - (locus.dataGroup[j+1] - self.data[j+1]  )*np.sin(angle) + self.data[j]
+        n = int(len(locus.dataGroup)/2)
+        data = [None for _ in range(2*n)]
+        for j in range(n):
+            k = j%2
+            a1 = (locus.dataGroup[2*j] - self.data[0])*np.sin(angle)
+            data[2*j] = (locus.dataGroup[2*j] - self.data[0]  )*np.cos(angle) - (locus.dataGroup[2*j+1] - self.data[1]  )*np.sin(angle) + self.data[j]
 
-        data[j+1] = a1 + ( locus.dataGroup[j+1] - self.data[j+1])*np.cos(angle) + self.data[j+1]
+            data[2*j+1] = a1 + ( locus.dataGroup[2*j+1] - self.data[1])*np.cos(angle) + self.data[1]
         
         locus.dataGroup = data
 
