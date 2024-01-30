@@ -113,11 +113,23 @@ class line(dataExplore):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
+                    self.lims()
                     calc_function()
                     break
                 except:
                     pass
     
+    @property
+    def dataGroup(self):
+        return self.data + self.labCoords
+
+    @dataGroup.setter
+    def dataGroup(self, value):
+        self.data = value[0:2]
+        #self.labCoords = value[2:4]
+        #to be implemented!
+
+
 
     def erase(self):
         self.__del__()

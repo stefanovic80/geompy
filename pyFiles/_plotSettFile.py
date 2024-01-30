@@ -45,6 +45,8 @@ class plotSett():
         self.j = 0
         self.k = 0        
         self.lines = []
+        
+        self.labCoords = [None, None]
 
     @property
     def left(self):
@@ -166,12 +168,13 @@ class plotSett():
 
         random_index = np.random.randint(len(data[0]))
         shift = (settings.xmax - settings.xmin)/40
-        labelx = data[0][random_index] + shift
-        labely = data[1][random_index] + shift
+
+        self.labCoords[0] = data[0][random_index] + shift
+        self.labCoords[1] = data[1][random_index] + shift
         
         #labelx, labely may necessitte to be attributes
         #self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
-        text = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
+        text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
 
@@ -274,17 +277,13 @@ class plotSett():
         except:
             pass
 
+        """
         try:#removes all geometrical locus points
             for u in self.point:
                 u.remove()
         except:
-            pass
-
-        #try:#removes point texts
-        #    self.tex.remove()
-        #except:
-        #    pass
-        
+            pass 
+        """
 
     def __str__(self):
         self.plotSettings = (

@@ -199,12 +199,31 @@ class point(plotSett):
 
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
-        a1 = (locus.data[0] - self.data[0])*np.sin(angle)
-        locus.data[0] = (locus.data[0] - self.data[0]  )*np.cos(angle) - (locus.data[1] - self.data[1]  )*np.sin(angle) + self.data[0]
+        j = 0
+        a1 = (locus.data[j] - self.data[j])*np.sin(angle)
+        locus.data[j] = (locus.data[j] - self.data[j]  )*np.cos(angle) - (locus.data[j+1] - self.data[j+1]  )*np.sin(angle) + self.data[j]
 
         locus.data[1] = a1 + ( locus.data[1] - self.data[1])*np.cos(angle) + self.data[1]
         
         locus.draw()#, draw = False)
+
+
+
+    def rot(self, locus = None, angle = 0):
+        locus.rotate = True
+        j = 0
+        a1 = (locus.dataGroup[j] - self.data[j])*np.sin(angle)
+        data = [None, None]
+        data[0] = (locus.dataGroup[j] - self.data[j]  )*np.cos(angle) - (locus.dataGroup[j+1] - self.data[j+1]  )*np.sin(angle) + self.data[j]
+
+        data[j+1] = a1 + ( locus.dataGroup[j+1] - self.data[j+1])*np.cos(angle) + self.data[j+1]
+        
+        locus.dataGroup = data
+
+        locus.draw()#, draw = False)
+
+
+
     def __str__(self):
 
         super().__str__()
