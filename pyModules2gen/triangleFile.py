@@ -2,6 +2,7 @@ from ..pyFiles.lineFile import line
 from ..pyFiles.pointFile import point
 from ..pyFiles._plotSettFile import plotSett
 from ..pyFiles.dataExploreFile import dataExplore
+from ..pyFiles.circumferenceFile import circumference
 
 from ..pyFiles import seed 
 
@@ -66,7 +67,6 @@ class triangle(dataExplore):
         self.k+=1
 
 
-
     def __del__(self):
         super().__del__()
         try:
@@ -83,7 +83,7 @@ class triangle(dataExplore):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
-                    #self.lims()
+                    self.lims()
                     calc_function()
                     break
                 except:
