@@ -88,10 +88,10 @@ class circumference(dataExplore):
         l = line()
         l.points = point
         if self.k%2 == 0:
-            l.m = m0
+            l.m = m0[0]
             self.k += 1
         else:
-            l.m = m1
+            l.m = m1[0]
             self.k += 1
         return l
 

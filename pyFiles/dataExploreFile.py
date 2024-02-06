@@ -108,14 +108,23 @@ class dataExplore(plotSett):
                 self.outer_instance = outer_instance
                 self.j = 0                
             def x(self, value):
-                self.outer_instance.x = value
+                try:
+                    self.outer_instance.x = value.x
+                except:
+                    self.outer_instance.x = value
                 self.outer_instance.cutOffdata()
                 self.outer_instance.k+=1
 
             def y(self, value):
-                self.outer_instance.y = value
+                try:
+                    self.outer_instance.y = value.y
+                except:
+                    self.outer_instance.y = value
                 self.outer_instance.cutOffdata()
                 self.outer_instance.k+=1
+
+            #def point(self, value):
+            #    self.x(value = self.outer_instance.x)
 
         obj = c(outer_instance = self)
         #obj.cut.x(5)

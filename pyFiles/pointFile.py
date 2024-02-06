@@ -63,9 +63,10 @@ class point(plotSett):
     def x(self):
         return self.data[0]
 
-
+    #may be inherited
     @x.setter
     def x(self, value):
+        self.__del__()
         self.data[0] = np.array( [ value ] )
         self.coords[0] = value
         self.lims()
@@ -77,9 +78,10 @@ class point(plotSett):
     def y(self):
         return self.data[1]
 
-
+    #may be inherited
     @y.setter
     def y(self, value):
+        self.__del__()
         self.data[1] = np.array( [ value ] )
         self.coords[1] = value
         self.lims()
