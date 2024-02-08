@@ -27,12 +27,30 @@ class triangle(dataExplore):
 
         #to set up setter decorated labels
         self.k = 0
+        
+        #to set up setter decorated vertex
+        self.l = 0
 
         for v in self.vertices:
             v.color = self._colorV
 
         if draw == True:
             self.draw()
+
+    @property
+    def vertex(self):
+        pass
+
+    @vertex.setter
+    def vertex(self, point):
+        self.vertices[self.l%3] = point
+        self.l += 1
+        #self.erase() 
+        try:
+            self.draw()
+            #self.l = 0
+        except:
+            pass
 
     @property
     def labels(self):
@@ -74,8 +92,8 @@ class triangle(dataExplore):
                 tex.remove()
         except:
             pass
-            
-
+    
+    
     def chooseCalc(self):
         self.__del__()
         calculation_functions = [self.calc1]
