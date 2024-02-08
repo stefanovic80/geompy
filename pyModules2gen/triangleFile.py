@@ -52,13 +52,32 @@ class triangle(dataExplore):
         except:
             pass
 
+        #return self.vertices[self.l%3]
+
     @property
     def labels(self):
         
         if self.j%3==0:
-            verticesLabels = ['A', 'B', 'C']
+            verticesLabels = ['0', '1', '2']
             for vertice, label in zip(self.vertices, verticesLabels):
-                vertice.name = label 
+                vertice.name = label
+        elif self.j%3==1:
+            verticesLabels = ['A', 'B', 'C']
+            
+            for vertice, label in zip(self.vertices, verticesLabels):
+                vertice.name = label
+
+        else:
+            k = 0
+            for k in range(3):
+                l = k%3
+                self.vertices[l].__del__()
+
+        self.j+=1
+
+
+
+        """
         elif self.j%3==1:
             self.tex = []
             sidesLabels = ['c', 'a', 'b']
@@ -69,7 +88,8 @@ class triangle(dataExplore):
                 labelx = 1.1*(self.vertices[l1].x[0] + self.vertices[l2].x[0])/2
                 labely = (self.vertices[l1].y[0] + self.vertices[l2].y[0])/2
                 self.tex = self.tex + [ self.ax.text(labelx, labely, sidesLabel, fontsize = 14, color = self._colorV, ha ="center", va="center") ]
-                k+=1
+                 k+=1
+        
         else:
             k = 0
             for k in range(3):
@@ -77,7 +97,7 @@ class triangle(dataExplore):
                 self.vertices[l].__del__()
 
         self.j+=1
-
+        """
     @labels.setter
     def labels(self, label):
         j=self.k%3
