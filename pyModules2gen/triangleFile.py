@@ -37,10 +37,38 @@ class triangle(dataExplore):
         if draw == True:
             self.draw()
 
+    def size(self, newSize):
+        j = 0
+        size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
+        coeff = newSize/size #= self.vertices[j%3].dist(self.vertices[(j+1)%3])
+
+        for j in range(1):
+            #k = j%3
+            size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
+
+            cosine = (self.vertices[(j+1)%3].x[0] - self.vertices[j%3].x[0])/size 
+            self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*coeff*size/2
+            self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*coeff*size/2
+            
+            sine = (self.vertices[(j+1)%3].y[0] - self.vertices[j%3].y[0])/size
+            self.vertices[j%3].y = self.vertices[j%3].y[0] - sine*coeff*size/2
+            self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine*coeff*size/2
+
+
+            """
+            self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*(newSize -size)/2
+            self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*(newSize -size)/2
+            
+            self.vertices[j%3].y = self.vertices[j%3].y[0] - sine*(newSize -size)/2
+            self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine*(newSize -size)/2
+            """
+        #self.draw()
+
+
     @property
     def vertex(self):
         self.l += 1
-        u = self.vertices[self.l%3].name
+        #u = self.vertices[self.l%3].name
         self.vertices[self.l%3].name = 'm'
         
 
@@ -56,6 +84,7 @@ class triangle(dataExplore):
             pass
 
         #return self.vertices[self.l%3]
+
 
     @property
     def labels(self):
