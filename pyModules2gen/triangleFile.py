@@ -39,7 +39,10 @@ class triangle(dataExplore):
 
     @property
     def vertex(self):
-        pass
+        self.l += 1
+        u = self.vertices[self.l%3].name
+        self.vertices[self.l%3].name = 'm'
+        
 
     @vertex.setter
     def vertex(self, point):

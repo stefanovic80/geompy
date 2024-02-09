@@ -143,6 +143,10 @@ class point(plotSett):
         if self.rotate == False:
             self.calc()
 
+        self.onlyDraw()
+      
+    def onlyDraw(self):
+
         line = self.ax.scatter( self.data[0], self.data[1], color = self._color, linewidth = self._linewidth)
         self.lines = []
         self.lines.append(line)
