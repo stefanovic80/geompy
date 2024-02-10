@@ -37,40 +37,10 @@ class triangle(dataExplore):
         if draw == True:
             self.draw()
 
-    def size(self, newSize):
-        j = 0
-        size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
-        coeff = newSize/size #= self.vertices[j%3].dist(self.vertices[(j+1)%3])
-
-        for j in range(3):
-            #k = j%3
-            size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
-
-            cosine = (self.vertices[(j+1)%3].x[0] - self.vertices[j%3].x[0])/size 
-            """
-            self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*coeff*size/2
-            self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*coeff*size/2
-            
-            sine = (self.vertices[(j+1)%3].y[0] - self.vertices[j%3].y[0])/size
-            self.vertices[j%3].y = self.vertices[j%3].y[0] - sine*coeff*size/2
-            self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine*coeff*size/2
-
-
-            """
-            self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*(newSize -size)/2
-            self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*(newSize -size)/2
-       
-
-            sine = (self.vertices[(j+1)%3].y[0] - self.vertices[j%3].y[0])/size
-            self.vertices[j%3].y = self.vertices[j%3].y[0] - sine*(newSize -size)/2
-            self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine*(newSize -size)/2
-            
-        self.draw()
-
 
 
     #the one
-    def size1(self, newSize):
+    def size(self, newSize):
 
         coeff = [None, None, None]
         for j in range(3):
@@ -96,49 +66,49 @@ class triangle(dataExplore):
         
         #cosine = cosine for each side
         #sine = sine for each side
-        cosine = [None, None] 
-        sine = [None, None]
-        for j in range(2):
+        cosine = [None, None, None] 
+        sine = [None, None, None]
+        for j in range(3):
             k = j%3
             l = (j+1)%3
             cathetus0 = x[l] - x[k]
             cathetus1 = y[l] - y[k]
+
             cosine[k] = cathetus0/size
             sine[k] = cathetus1/size
-            
             tan[k] = cathetus1/cathetus0
+            
             xm[k] = (x[l] + x[k])/2
             ym[k] = (y[l] + y[k])/2
         
         #triangle centroid coordinates calculations base on a system of two different 
-        j = 0
-        xcentroid = (tan[j]*xm[j+1] - tan[j+1]*xm[j] + (ym[j+1] - ym[j])*tan[j]*tan[j+1])/(tan[j] - tan[j+1])
+        
+        #j = 0
+        xcentroid = (tan[0]*xm[1] - tan[1]*xm[0] + (ym[1] - ym[0])*tan[0]*tan[1])/(tan[0] - tan[1])
         ycentroid = -(xcentroid - xm[0])/tan[0] + ym[0]
         
-        sideCentroid_dist = [None, None]
-        for j in range(2):
-            sideCentroid_dist[j] = ( (xm[j] - xcentroid)**2 + (ym[j] - ycentroid)**2 )**.5
+        radius0 = ( ( xcentroid - x[0] )**2 + (ycentroid - y[0])**2 )**.5
         
 
         j = 0
-        self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine[j]*coeff[j]*size/2
-            
-        self.vertices[j%3].y = self.vertices[j%3].y[0] - sine[j]*coeff[j]*size/2
+        size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
+        radius1 = newSize*radius0/size
         
-
-        
-        j += 1
-
-        self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine[j]*coeff[j]*size/2
-
-        self.vertices[j%3].y = self.vertices[j%3].y[0] - sine[j]*coeff[j]*size/2
-
-
-        self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine[j]*coeff[j]*size/2
+        centroid = point(xcentroid, ycentroid, draw = False)
+        xc, yc = centroid.x[0], centroid.y[0]
+        #to be fixed
+        t = [None, None, None]
+        for j in range(3):
             
-        self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine[j]*coeff[j]*size/2
-        return point(xcentroid, ycentroid)
+            n = 0
+            if xc > x[j]:
+                n = np.pi
 
+            t[j] = np.arctan( (yc - y[j])/(xc - x[j]) ) + n
+            self.vertices[j] = centroid.dist(radius1, angle = t[j])
+        
+        self.draw()
+        
     @property
     def vertex(self):
         self.l += 1
