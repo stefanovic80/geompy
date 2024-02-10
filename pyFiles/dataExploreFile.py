@@ -83,45 +83,63 @@ class dataExplore(plotSett):
 
     @y.setter
     def y(self, value):
-        differences = np.abs( self.data[1] - value)
-        #Find the index of the closest element
-        closest_index = np.argmin(differences)
-        self._cutOff = closest_index
-        #get the actual value of the clostest element
-        closest_elementx = self.data[0][closest_index]
-        closest_elementy = self.data[1][closest_index]
-        
-        print(closest_index, closest_elementx, closest_elementy )
-
-
-    @property
-    def cutOff(self):
-        self.cutOffdata()
-
-    @cutOff.setter
-    def cutOff(self, n):
-        if n == False:
-            self.j = 0
-            self._cutOff = 0
-            #to be fixed!
-        elif not isinstance(n, bool):
-            self._cutOff = n
+        k = self.j%2
+        if k==0:
+            differences = np.abs( self.data[1] - value)
+            #Find the index of the closest element
+            closest_index = np.argmin(differences)
+            #may be deprecated
+            self._cutOff = closest_index
+            #get the actual value of the clostest element
+            closest_elementx = self.data[0][closest_index]
+            closest_elementy = self.data[1][closest_index]
+            
+            self.j+=1
+            print(closest_index, closest_elementx, closest_elementy )
         else:
-            pass
-        
-        self.cutOffdata()
+            self.cutOffdata()
+            self.j+=1
+
+    
+    @property
+    def cut(self):
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+                self.j = 0                
+            def x(self, value):
+                try:
+                    self.outer_instance.x = value.x
+                except:
+                    self.outer_instance.x = value
+                self.outer_instance.cutOffdata()
+                self.outer_instance.k+=1
+
+            def y(self, value):
+                try:
+                    self.outer_instance.y = value.y
+                except:
+                    self.outer_instance.y = value
+                self.outer_instance.cutOffdata()
+                self.outer_instance.k+=1
+
+            #def point(self, value):
+            #    self.x(value = self.outer_instance.x)
+
+        obj = c(outer_instance = self)
+        #obj.cut.x(5)
+        return obj
+    
 
     def cutOffdata(self):
 
-        #if self._cutOff is not None:
-        if self.j%2 == 0:
+        if self.k%2 == 0:
             self.data = [arr[self._cutOff:] for arr in self.data]
         else:
             end = len(self.data[1])
             idx = end - self._cutOff
             self.data = [arr[:-idx] for arr in self.data]
-        self.j += 1
+        #self.k+=1
 
         self.__del__()
         self.onlyDraw() 
-

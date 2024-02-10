@@ -15,28 +15,14 @@ class line(dataExplore):
         super().__init__()
         
         self.seed = seed
-        #self.idxMin = None
-        #self.idxMax = None
-
         self._color = random.choice(self.colors)
 
-        #random points from which the straight line is identified
-        
-        #may have to move it into if statement
-        point0 = point(draw = False)
-        point1 = point(seed = seed + 1, draw = False)
-        
-        
         #values to calculate straight line data (self.data[1])
         angle = random.uniform(0, np.pi)
         self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.xmin, settings.xmax)
-        self.length = None
-        #may be deprecated
-        self._cut = False
-        #self.j = 0
-        
+
         if draw == True:
             self.draw()
 
@@ -73,56 +59,12 @@ class line(dataExplore):
         y = self.angCoeff*x + self.intercept
         return point(x, y)
 
-    @property
-    def equation(self):
-        
-        #to be (properly) inherited
-        try:
-            self.tex.remove()
-        except:
-            pass
-
-        idx = self.condition_mask()
-        data = [self.data[0][idx], self.data[1][idx] ]
-        random_index = np.random.randint(len(data[0]))
-        shift = (settings.xmax - settings.xmin)/40
-        labelx = data[0][random_index] + shift
-        labely = data[1][random_index] + shift
-        #--------------------
-        
-        if self.intercept > 0:
-            sign = '+'
-        elif self.intercept <0:
-            sign = '-'
-        
-        q = str(round(abs( self.q), 2))
-        m = str(round(self.m, 2))
-        eq = "y = " + m + "x" + sign + q
-        try:
-            eq = self._name + ": " + eq
-        except:
-            pass
-        #labelx, labely may necessitte to be attributes
-        if self.j%2 == 0:
-            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
-        self.j += 1
-
-
-
 
     def calc1(self): #calculate equation from angCoeff and intercept
-        #if self._cut == False:
-        #    self.xMin = settings.xmin
-        #    self.xMax = settings.xmax
-        
-        #settings.xmin = np.where( self._x >= settings.xmin)[0][0]
-        #settings.xmax = np.where( self._x >= settings.xmax)[0][0]
-        #self.data = [ self._x[ settings.xmin: settings.xmax] ] # a local copy
         self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         self.angle = np.arctan(self.angCoeff)
         
-        #[ [x, y] for x, y in zip(r.data[0], r.data[1])]
 
     def calc2(self): #calculate equation from two points
 
@@ -150,25 +92,16 @@ class line(dataExplore):
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
-        
-        for j in range(2):
-            try:
-                x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
-                self.intercept = -self.angCoeff*x0 + y0
-            except:
-                pass
+        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        self.intercept = -self.angCoeff*x0 + y0
         
         self.calc1()
     
     
     def calc4(self): #calculate equation from 1 point and intercept
-
-        for j in range(2):
-            try:
-                x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
-                self.angCoeff = (y0 - self.intercept)/x0
-            except:
-                pass
+        j = 0
+        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        self.angCoeff = (y0 - self.intercept)/x0
         
         self.calc1()
     
@@ -180,12 +113,23 @@ class line(dataExplore):
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
-                    #self.lims()
+                    self.lims()
                     calc_function()
                     break
                 except:
                     pass
     
+    @property
+    def dataGroup(self):
+        return self.data + self.labCoords
+
+    @dataGroup.setter
+    def dataGroup(self, value):
+        self.data = value[0:2]
+        #self.labCoords = value[2:4]
+        #to be implemented!
+
+
 
     def erase(self):
         self.__del__()
@@ -194,6 +138,42 @@ class line(dataExplore):
         self.angCoeff = None
         self.intercept = None
 
+
+    @property
+    def equation(self):
+
+        #to be (properly) inherited
+        try:
+            self.tex.remove()
+        except:
+            pass
+
+        idx = self.condition_mask()
+        data = [self.data[0][idx], self.data[1][idx] ]
+        random_index = np.random.randint(len(data[0]))
+        shift = (settings.xmax - settings.xmin)/40
+        labelx = data[0][random_index] + shift
+        labely = data[1][random_index] + shift
+        #--------------------
+
+        if self.intercept > 0:
+            sign = '+'
+        elif self.intercept <0:
+            sign = '-'
+
+        q = str(round(abs( self.q), 2))
+        m = str(round(self.m, 2))
+        eq = "y = " + m + "x" + sign + q
+        try:
+            eq = self._name + ": " + eq
+        except:
+            pass
+        #labelx, labely may necessitte to be attributes
+        if self.j%2 == 0:
+            self.tex = self.ax.text(labelx, labely, eq, fontsize = 12, color = self._color, ha="center", va="center")
+        self.j += 1
+
+
     def __str__(self):
 
         super().__str__()
@@ -201,8 +181,8 @@ class line(dataExplore):
         attributes = (
             f"Attributes:\n"#change 93 to 91 to make it red
             f"\033[93mClass type = \033[0m line\n"
-            f"\033[93m.angCoeff = \033[0m {self.angCoeff}\n"
-            f"\033[93m.intercept = \033[0m {self.intercept}\n"
+            f"\033[93m.m = \033[0m {self.angCoeff}\n"
+            f"\033[93m.q = \033[0m {self.intercept}\n"
             f"\033[93m.color = \033[0m {self._color}\n"
             f"\033[93m.linewdith =\033[0m {self._linewidth}\n"
         )

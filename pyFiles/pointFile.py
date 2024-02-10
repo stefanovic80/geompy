@@ -63,9 +63,10 @@ class point(plotSett):
     def x(self):
         return self.data[0]
 
-
+    #may be inherited
     @x.setter
     def x(self, value):
+        self.__del__()
         self.data[0] = np.array( [ value ] )
         self.coords[0] = value
         self.lims()
@@ -77,9 +78,10 @@ class point(plotSett):
     def y(self):
         return self.data[1]
 
-
+    #may be inherited
     @y.setter
     def y(self, value):
+        self.__del__()
         self.data[1] = np.array( [ value ] )
         self.coords[1] = value
         self.lims()
@@ -141,6 +143,10 @@ class point(plotSett):
         if self.rotate == False:
             self.calc()
 
+        self.onlyDraw()
+      
+    def onlyDraw(self):
+
         line = self.ax.scatter( self.data[0], self.data[1], color = self._color, linewidth = self._linewidth)
         self.lines = []
         self.lines.append(line)
@@ -199,12 +205,33 @@ class point(plotSett):
 
     def rotation(self, locus = None, angle = 0):
         locus.rotate = True
-        a1 = (locus.data[0] - self.data[0])*np.sin(angle)
-        locus.data[0] = (locus.data[0] - self.data[0]  )*np.cos(angle) - (locus.data[1] - self.data[1]  )*np.sin(angle) + self.data[0]
+        j = 0
+        a1 = (locus.data[j] - self.data[j])*np.sin(angle)
+        locus.data[j] = (locus.data[j] - self.data[j]  )*np.cos(angle) - (locus.data[j+1] - self.data[j+1]  )*np.sin(angle) + self.data[j]
 
         locus.data[1] = a1 + ( locus.data[1] - self.data[1])*np.cos(angle) + self.data[1]
         
         locus.draw()#, draw = False)
+
+
+
+    def rot(self, locus = None, angle = 0):
+        locus.rotate = True
+        n = int(len(locus.dataGroup)/2)
+        data = [None for _ in range(2*n)]
+        for j in range(n):
+            k = j%2
+            a1 = (locus.dataGroup[2*j] - self.data[0])*np.sin(angle)
+            data[2*j] = (locus.dataGroup[2*j] - self.data[0]  )*np.cos(angle) - (locus.dataGroup[2*j+1] - self.data[1]  )*np.sin(angle) + self.data[j]
+
+            data[2*j+1] = a1 + ( locus.dataGroup[2*j+1] - self.data[1])*np.cos(angle) + self.data[1]
+        
+        locus.dataGroup = data
+
+        locus.draw()#, draw = False)
+
+
+
     def __str__(self):
 
         super().__str__()
