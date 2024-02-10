@@ -42,11 +42,12 @@ class triangle(dataExplore):
         size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
         coeff = newSize/size #= self.vertices[j%3].dist(self.vertices[(j+1)%3])
 
-        for j in range(1):
+        for j in range(3):
             #k = j%3
             size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
 
             cosine = (self.vertices[(j+1)%3].x[0] - self.vertices[j%3].x[0])/size 
+            """
             self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*coeff*size/2
             self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*coeff*size/2
             
@@ -58,12 +59,85 @@ class triangle(dataExplore):
             """
             self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine*(newSize -size)/2
             self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine*(newSize -size)/2
-            
+       
+
+            sine = (self.vertices[(j+1)%3].y[0] - self.vertices[j%3].y[0])/size
             self.vertices[j%3].y = self.vertices[j%3].y[0] - sine*(newSize -size)/2
             self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine*(newSize -size)/2
-            """
-        #self.draw()
+            
+        self.draw()
 
+
+
+    #the one
+    def size1(self, newSize):
+
+        coeff = [None, None, None]
+        for j in range(3):
+            size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
+            coeff[j] = newSize/size 
+
+        #x, y = vertices coords
+        #xm, ym = middle points for each side
+        #tan = angular coefficient of each side
+        x = [None, None, None]
+        y = [None, None, None]
+        xm = [None, None, None]
+        ym = [None, None, None]
+        tan = [None, None, None]
+        for j in range(3):
+            k = j%3
+            l = (j+1)%3
+            size = self.vertices[k].dist(self.vertices[l])
+            x[k] = self.vertices[k].x[0]
+            x[l] = self.vertices[l].x[0]
+            y[k] = self.vertices[k].y[0]
+            y[l] = self.vertices[l].y[0]
+        
+        #cosine = cosine for each side
+        #sine = sine for each side
+        cosine = [None, None] 
+        sine = [None, None]
+        for j in range(2):
+            k = j%3
+            l = (j+1)%3
+            cathetus0 = x[l] - x[k]
+            cathetus1 = y[l] - y[k]
+            cosine[k] = cathetus0/size
+            sine[k] = cathetus1/size
+            
+            tan[k] = cathetus1/cathetus0
+            xm[k] = (x[l] + x[k])/2
+            ym[k] = (y[l] + y[k])/2
+        
+        #triangle centroid coordinates calculations base on a system of two different 
+        j = 0
+        xcentroid = (tan[j]*xm[j+1] - tan[j+1]*xm[j] + (ym[j+1] - ym[j])*tan[j]*tan[j+1])/(tan[j] - tan[j+1])
+        ycentroid = -(xcentroid - xm[0])/tan[0] + ym[0]
+        
+        sideCentroid_dist = [None, None]
+        for j in range(2):
+            sideCentroid_dist[j] = ( (xm[j] - xcentroid)**2 + (ym[j] - ycentroid)**2 )**.5
+        
+
+        j = 0
+        self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine[j]*coeff[j]*size/2
+            
+        self.vertices[j%3].y = self.vertices[j%3].y[0] - sine[j]*coeff[j]*size/2
+        
+
+        
+        j += 1
+
+        self.vertices[j%3].x = self.vertices[j%3].x[0] - cosine[j]*coeff[j]*size/2
+
+        self.vertices[j%3].y = self.vertices[j%3].y[0] - sine[j]*coeff[j]*size/2
+
+
+        self.vertices[(j+1)%3].x = self.vertices[(j+1)%3].x[0] + cosine[j]*coeff[j]*size/2
+            
+        self.vertices[(j+1)%3].y = self.vertices[(j+1)%3].y[0] + sine[j]*coeff[j]*size/2
+        return point(xcentroid, ycentroid)
 
     @property
     def vertex(self):
