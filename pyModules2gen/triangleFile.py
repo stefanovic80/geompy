@@ -30,6 +30,8 @@ class triangle(dataExplore):
         
         #to set up setter decorated vertex
         self.l = 0
+        
+        self._side = 0
 
         for v in self.vertices:
             v.color = self._colorV
@@ -39,13 +41,29 @@ class triangle(dataExplore):
 
 
 
-    #the one
+    @property
+    def side(self):
+        k = self._side%3
+        l = (self._side +1)%3
+        sideSize = ( (self.vertices[k].x[0] - self.vertices[l].x[0])**2 + (self.vertices[k].y[0] - self.vertices[l].y[0])**2 )**.5
+        return self._side, sideSize
+
+
+    @side.setter
+    def side(self, value):
+        k = value%3
+        l = (value +1)%3
+        self._side = k
+        sideSize = ( (self.vertices[k].x[0] - self.vertices[l].x[0])**2 + (self.vertices[k].y[0] - self.vertices[l].y[0])**2 )**.5
+        print(str(self._side) + ' ' + str(sideSize) ) 
+        #return self._side, sideSize
+
     def size(self, newSize):
 
-        coeff = [None, None, None]
+        #coeff = [None, None, None]
         for j in range(3):
             size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
-            coeff[j] = newSize/size 
+            #coeff[j] = newSize/size 
 
         #x, y = vertices coords
         #xm, ym = middle points for each side
@@ -81,22 +99,21 @@ class triangle(dataExplore):
             xm[k] = (x[l] + x[k])/2
             ym[k] = (y[l] + y[k])/2
         
-        #triangle centroid coordinates calculations base on a system of two different 
+        #triangle centroid coordinates calculations base on a system of two different lines
         
-        #j = 0
         xcentroid = (tan[0]*xm[1] - tan[1]*xm[0] + (ym[1] - ym[0])*tan[0]*tan[1])/(tan[0] - tan[1])
         ycentroid = -(xcentroid - xm[0])/tan[0] + ym[0]
         
         radius0 = ( ( xcentroid - x[0] )**2 + (ycentroid - y[0])**2 )**.5
         
 
-        j = 0
-        size = self.vertices[j%3].dist(self.vertices[(j+1)%3])
+        m = self._side
+        size = self.vertices[m%3].dist(self.vertices[(m+1)%3])
         radius1 = newSize*radius0/size
         
         centroid = point(xcentroid, ycentroid, draw = False)
         xc, yc = centroid.x[0], centroid.y[0]
-        #to be fixed
+        
         t = [None, None, None]
         for j in range(3):
             
@@ -118,6 +135,7 @@ class triangle(dataExplore):
 
     @vertex.setter
     def vertex(self, point):
+        self.vertices[self.l%3].__del__()
         self.vertices[self.l%3] = point
         self.l += 1
         #self.erase() 
