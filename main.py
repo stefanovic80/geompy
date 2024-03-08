@@ -33,7 +33,6 @@ from numpy import pi
 from copy import copy
 
 
-
 def main():
     print("Running main.py")
 

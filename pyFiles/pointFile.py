@@ -67,8 +67,12 @@ class point(plotSett):
     @x.setter
     def x(self, value):
         self.__del__()
-        self.data[0] = np.array( [ value ] )
-        self.coords[0] = value
+        if type(value) == np.ndarray:
+            self.data[0] = value
+            self.coords[0] = value[0]
+        else:
+            self.data[0] = np.array( [ value ] )
+            self.coords[0] = value
         self.lims()
         self.draw()
         self.label(self._name)
@@ -82,8 +86,12 @@ class point(plotSett):
     @y.setter
     def y(self, value):
         self.__del__()
-        self.data[1] = np.array( [ value ] )
-        self.coords[1] = value
+        if type(value) == np.ndarray:
+            self.data[1] = value
+            self.coords[1] = value[0]
+        else:
+            self.data[1] = np.array( [ value ] )
+            self.coords[1] = value
         self.lims()
         self.draw()
         self.label(self._name)

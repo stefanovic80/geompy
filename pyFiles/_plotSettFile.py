@@ -2,7 +2,17 @@
 from . import plt, np, random
 from .Settings import settings
 
+import sys
 # to be removed in case of coding
+
+def is_interactive():
+    "check if code is working in interactive mode!"
+    return hasattr(sys, "ps1")
+
+if is_interactive():
+    pass
+    #plt.ion()
+
 plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
@@ -10,7 +20,7 @@ plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
 
-
+x = np.arange(-10, 10, 0.01)
 
 #plt.gca().lines[-1].remove()
 

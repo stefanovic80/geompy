@@ -7,6 +7,8 @@ from .pyFiles.circumferenceFile import circumference
 from .pyFiles.ellipseFile import ellipse
 from .pyFiles.lineFile import line
 from .pyFiles.parabolaFile import parabola
+from .pyFiles.functionFile import function
+from .pyFiles.functionFile import x
 
 from .pyModules2gen.triangleFile import triangle
 from .pyModules2gen.angleFile import angle
