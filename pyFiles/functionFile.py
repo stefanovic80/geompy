@@ -8,7 +8,7 @@ from .lineFile import line
 from .dataExploreFile import dataExplore
 
 #to be fixed according with real values of xlim and ylim
-x = np.arange(-10, 10, 0.01)
+x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)
 
 class function(dataExplore):
 

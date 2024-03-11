@@ -20,7 +20,7 @@ plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
 
-x = np.arange(-10, 10, 0.01)
+#x = np.arange(-10, 10, 0.01)
 
 #plt.gca().lines[-1].remove()
 
