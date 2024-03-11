@@ -25,16 +25,29 @@ class function(dataExplore):
             self.draw()
 
     @property
-    def points(self):
-        pass
+    def y(self):
+        try:
+            return self.data[1]
+        except:
+            pass
 
-    @points.setter
-    def points(self, array):
+    @y.setter
+    def y(self, array):
         self.data[0] = x
         self.data[1] = array
         self.onlyDraw()
-    
-    
+
+    @property
+    def linewidth(self):
+        return self._linewidth 
+   
+
+    @linewidth.setter
+    def linewidth(self, n):
+        self.__del__()
+        self._linewidth = n
+        self.onlyDraw()
+
     
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
@@ -54,11 +67,8 @@ class function(dataExplore):
     #to be partially inherited
     def erase(self):
         self.__del__()
-
-        #self._points = []
-        self.data = [None, None]
-        self._center.coords = [None, None]
-        self._radius = None
+        #self.data = [None, None]
+        
 
     def __str__(self):
 
