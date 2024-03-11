@@ -33,6 +33,7 @@ class function(dataExplore):
 
     @y.setter
     def y(self, array):
+        self.__del__()
         self.data[0] = x
         self.data[1] = array
         self.onlyDraw()
