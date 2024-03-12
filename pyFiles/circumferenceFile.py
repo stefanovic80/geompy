@@ -51,7 +51,7 @@ class circumference(dataExplore):
    
     @property
     def center(self):
-        return self._center#.coords
+        return self._center
 
     @center.setter
     def center(self, point):
@@ -142,14 +142,12 @@ class circumference(dataExplore):
     
     def pointsSelect(self, angle = 2*np.pi):
         
-        #for point in self._points:
         try:
             condition = self.angles < angle
             idxs = np.where(self.angles[condition])
             idxs = np.where(self.data[0][condition])
             self.data[0] = self.data[0][idxs]
             self.data[1] = self.data[1][idxs]
-            #break
         except:
             pass
 
@@ -221,8 +219,6 @@ class circumference(dataExplore):
     #to be partially inherited
     def erase(self):
         self.__del__()
-
-        #self._points = []
         self.data = [None, None]
         self._center.coords = [None, None]
         self._radius = None

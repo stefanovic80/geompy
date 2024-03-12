@@ -19,11 +19,12 @@ class function(dataExplore):
 
         self._color = random.choice(self.colors)
 
-        self.j = 0
-        self.k = 0
+        #self.j = 0
+        #self.k = 0
         if draw == True:
             self.draw()
 
+    #to be modified
     @property
     def y(self):
         try:
@@ -33,31 +34,12 @@ class function(dataExplore):
 
     @y.setter
     def y(self, array):
-        #self.__del__()
-        self.data[0] = x
+        self.data[0] = x#np.arange
         self.data[1] = array
-        #self.onlyDraw()
         self.draw()
-
-    #@property
-    #def linewidth(self):
-    #    return self._linewidth 
-   
-
-    #@linewidth.setter
-    #def linewidth(self, n):
-    #    self.__del__()
-    #    self._linewidth = n
-    #    self.onlyDraw()
-
     
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
-
-    #to be partially inherited
-    def erase(self):
-        self.__del__()
-        #self.data = [None, None]
         
 
     def __str__(self):
@@ -75,5 +57,5 @@ class function(dataExplore):
         )
         
         
-        return attributes + instances + self.plotSettings
+        return attributes +  self.plotSettings
     
