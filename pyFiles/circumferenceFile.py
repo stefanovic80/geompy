@@ -39,7 +39,10 @@ class circumference(dataExplore):
     @angle.setter
     def angle(self, angle):
         self.__del__()
-        self._angle = angle
+        if angle > 0:
+            self._angle = angle
+        elif angle < 0:
+            self._angle = 2*np.pi + angle
         self.chooseCalc( angle = self._angle )
         
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)

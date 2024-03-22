@@ -51,7 +51,9 @@ class point(plotSett):
         self._color = random.choice(self.colors)
         self.lines = None
         self.tex = None 
-        
+       
+        self._angle = []
+
         self.coords = self.data
         self.data = [ np.array([u]) for u in self.data  ]
         
@@ -146,10 +148,17 @@ class point(plotSett):
         from .circumferenceFile import circumference
         
         if isinstance(input0, point) and isinstance(input1, point):
-            c = circumference()
-            c.center = self
+            self._angle = self._angle + [ circumference() ]
+            self._angle[-1].center = self
             radius = self.dist(input0)
-            c.radius = radius
+            self._angle[-1].radius = radius
+            tan = [None, None]
+            tan[0] = (input0.y[0] - self.y[0]  )/(input0.x[0]- self.x[0])
+            tan[1] = (input1.y[0] - self.y[0])/(input1.x[0]- self.x[0])
+            tan.sort()
+            self._angle[-1].angle = np.arctan(tan[1]) - np.arctan(tan[0])
+            #to be fixed!
+            self.rotation( locus = self._angle[-1], angle = np.arctan(tan[0]) )
 
         else:
             pass
