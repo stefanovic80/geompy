@@ -59,22 +59,28 @@ class plotSett():
         self.labCoords = [None, None]
 
     @property
-    def left(self):
+    def lower(self):
+        #def left(self):
 	    return settings.xmin
 		
-    @left.setter
-    def left(self, value):
+    @lower.setter
+    def lower(self, value):
+        #def left(self, value):
         settings.xmin = value
         settings.ymin = value
         self.majorStep = self._majorStep
         self.lims()
+        #global x
+        #x = np.arange(settings.xmin, settings.xmax, 0.001)
 
     @property
-    def right(self):
+    def higher(self):
+        #def right(self):
         return settings.xmax
 
-    @right.setter
-    def right(self, value):
+    @higher.setter
+    def higher(self, value):
+        #def right(self, value):
         settings.xmax = value
         settings.ymax = value
         self.majorStep = self._majorStep
@@ -211,6 +217,8 @@ class plotSett():
 
 
     def lims(self):
+        #global x
+        #x = np.arange(settings.xmin, settings.xmax, settings.steps)
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_xlim(settings.xmin, settings.xmax)

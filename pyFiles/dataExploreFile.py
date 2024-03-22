@@ -72,10 +72,9 @@ class dataExplore(plotSett):
         #get the actual value of the clostest element
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
-         
+        
         print(closest_index, closest_elementx, closest_elementy )
-         
-
+        
     @property
     def y(self):
         return self.data[1]

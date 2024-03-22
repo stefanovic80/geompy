@@ -5,7 +5,6 @@ from ._plotSettFile import plotSett
 from . import seed
 from .Settings import settings
 
-
 class point(plotSett):
     def __init__(self, pickFrom = None, x = None, y = None, seed = seed, draw = True):
         super().__init__()
@@ -139,7 +138,21 @@ class point(plotSett):
         self.draw()
         self.label(n)
     #-----------------
+    
 
+
+    #to be implemented!
+    def angle(self, input0, input1):
+        from .circumferenceFile import circumference
+        
+        if isinstance(input0, point) and isinstance(input1, point):
+            c = circumference()
+            c.center = self
+            radius = self.dist(input0)
+            c.radius = radius
+
+        else:
+            pass
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
