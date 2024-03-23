@@ -146,22 +146,30 @@ class point(plotSett):
     #to be implemented!
     def angle(self, input0, input1):
         from .circumferenceFile import circumference
-        
-        if isinstance(input0, point) and isinstance(input1, point):
-            self._angle = self._angle + [ circumference() ]
-            self._angle[-1].center = self
-            radius = self.dist(input0)
-            self._angle[-1].radius = radius
-            tan = [None, None]
-            tan[0] = (input0.y[0] - self.y[0]  )/(input0.x[0]- self.x[0])
-            tan[1] = (input1.y[0] - self.y[0])/(input1.x[0]- self.x[0])
-            tan.sort()
-            self._angle[-1].angle = np.arctan(tan[1]) - np.arctan(tan[0])
-            #to be fixed!
-            self.rotation( locus = self._angle[-1], angle = np.arctan(tan[0]) )
+        import numbers
 
-        else:
-            pass
+        
+        self._angle = self._angle + [ circumference() ]
+        self._angle[-1].center = self
+        radius = self.dist(input0)
+        self._angle[-1].radius = radius
+        tan = [None, None]
+        j = 0
+        k = j%1
+        tan[j] = (input0.y[j] - self.y[j]  )/(input0.x[j]- self.x[j])
+
+        if isinstance(input0, point) and isinstance(input1, point):
+            tan[j+1] = (input1.y[j+1] - self.y[j+1])/(input1.x[j+1]- self.x[j+1])
+            tan.sort()
+            self._angle[-1].angle = np.arctan(tan[j+1]) - np.arctan(tan[j])
+
+        elif isinstance(input0, point) and isinstance(input1, numbers.Number):
+            self._angle[-1].angle = input1 + np.arctan(tan[j])
+    
+        #elif isinstance(input0, numbers.Number) and isinstance(input1, point):
+        #    self._angle[-1].angle = input0 + np.arctan(tan[j])
+    
+        self.rotation( locus = self._angle[-1], angle = np.arctan(tan[j]) )
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
