@@ -154,6 +154,7 @@ class point(plotSett):
         radius = self.dist(input0)
         self._angle[-1].radius = radius
         tan = [None, None]
+        l = 0
         j = 0
         k = j%1
         tan[j] = (input0.y[j] - self.y[j]  )/(input0.x[j]- self.x[j])
@@ -162,14 +163,17 @@ class point(plotSett):
             tan[j+1] = (input1.y[j+1] - self.y[j+1])/(input1.x[j+1]- self.x[j+1])
             tan.sort()
             self._angle[-1].angle = np.arctan(tan[j+1]) - np.arctan(tan[j])
-
+        
+        #it works on the first quadrant!
         elif isinstance(input0, point) and isinstance(input1, numbers.Number):
+            if input0.x[0] < self.x[0]:
+                l+=1
             self._angle[-1].angle = input1 + np.arctan(tan[j])
     
         #elif isinstance(input0, numbers.Number) and isinstance(input1, point):
         #    self._angle[-1].angle = input0 + np.arctan(tan[j])
     
-        self.rotation( locus = self._angle[-1], angle = np.arctan(tan[j]) )
+        self.rotation( locus = self._angle[-1], angle = np.arctan(tan[j]) + l*np.pi )
 
     #coords as a list of two numpy arrays of one element each
     def calc(self):
