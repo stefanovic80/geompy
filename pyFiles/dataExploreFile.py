@@ -76,20 +76,54 @@ class dataExplore(plotSett):
         print(closest_index, closest_elementx, closest_elementy )
         
 
-    """ 
-    @property
-    def y(self):
-        try:
-            return self.y1()
-        except:
-            return self.y2()
-    """
 
-    #geompy.pyFiles.dataExploreFile.dataExplore.y.<locals>.c
-    
+
+
     @property
-    def y(self):
-        return self.data[1]
+    def X(self):
+
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+
+            @property
+            def lower(self):
+                return settings.xmin
+            @lower.setter
+            def lower(self, value):
+                settings.xmin = value
+                #to be fixed
+                self.outer_instance.limsx()
+                #self.outer_instance.grid_y()
+                self.outer_instance.grid(bottomConcat = settings.xmin)
+            
+            @property
+            def higher(self):
+                return settings.xmax
+            @higher.setter
+            def higher(self, value):
+                settings.xmax = value
+                #to be fixed
+                self.outer_instance.limsx()
+                self.outer_instance.grid(topConcat = settings.xmax)
+
+            @property
+            def data(self):
+                return self.outer_instance.data[0]
+
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[0] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+        obj = c(outer_instance = self)
+
+        return obj
+
+
+
+
+
 
     @property
     def Y(self):
@@ -107,7 +141,8 @@ class dataExplore(plotSett):
                 #to be fixed
                 self.outer_instance.limsy()
                 #self.outer_instance.grid_y()
-
+                self.outer_instance.grid(bottomConcat = settings.ymin)
+                
             @property
             def higher(self):
                 return settings.ymax
@@ -130,6 +165,12 @@ class dataExplore(plotSett):
         obj = c(outer_instance = self)
         
         return obj
+
+
+    @property
+    def y(self):
+        return self.data[1]
+
 
 
     @y.setter
