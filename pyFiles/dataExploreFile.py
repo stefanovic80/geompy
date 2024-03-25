@@ -106,6 +106,7 @@ class dataExplore(plotSett):
                 settings.ymin = value
                 #to be fixed
                 self.outer_instance.limsy()
+                #self.outer_instance.grid_y()
 
             @property
             def higher(self):
