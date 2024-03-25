@@ -93,8 +93,10 @@ class dataExplore(plotSett):
             def lower(self, value):
                 settings.xmin = value
                 #to be fixed
-                self.outer_instance.limsx()
+                #self.outer_instance.limsx()
                 #self.outer_instance.grid_y()
+                
+                self.outer_instance.ax.set_xlim( bottom = value)
                 self.outer_instance.grid_x(bottomConcat = settings.xmin)
             
             @property
@@ -104,7 +106,9 @@ class dataExplore(plotSett):
             def higher(self, value):
                 settings.xmax = value
                 #to be fixed
-                self.outer_instance.limsx()
+                #self.outer_instance.limsx()
+                
+                self.outer_instance.ax.set_xlim( top = value)
                 self.outer_instance.grid_x(topConcat = settings.xmax)
 
             @property
@@ -160,7 +164,10 @@ class dataExplore(plotSett):
             def lower(self, value):
                 settings.ymin = value
                 #to be fixed
-                self.outer_instance.limsy()
+                #self.outer_instance.limsy()
+                
+                self.outer_instance.ax.set_ylim( bottom = value)
+
                 #self.outer_instance.grid_y()
                 self.outer_instance.grid_y(bottomConcat = settings.ymin)
                 
@@ -172,8 +179,9 @@ class dataExplore(plotSett):
                 settings.ymax = value
 
                 #may be removed
-                self.outer_instance.limsy()
+                #self.outer_instance.limsy()
                 
+                self.outer_instance.ax.set_ylim( top = value)
                 self.outer_instance.grid_y(topConcat = settings.ymax)
             
             @property
