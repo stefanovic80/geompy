@@ -95,7 +95,7 @@ class dataExplore(plotSett):
                 #to be fixed
                 self.outer_instance.limsx()
                 #self.outer_instance.grid_y()
-                self.outer_instance.grid(bottomConcat = settings.xmin)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin)
             
             @property
             def higher(self):
@@ -105,7 +105,7 @@ class dataExplore(plotSett):
                 settings.xmax = value
                 #to be fixed
                 self.outer_instance.limsx()
-                self.outer_instance.grid(topConcat = settings.xmax)
+                self.outer_instance.grid_x(topConcat = settings.xmax)
 
             @property
             def data(self):
@@ -116,6 +116,27 @@ class dataExplore(plotSett):
                 self.outer_instance.data[0] = value
                 self.outer_instance.__del__()
                 self.outer_instance.onlyDraw()
+        
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+            
+            @majorStep.setter
+            def majorStep(self, value):
+                #self._majorStep = value
+                self.outer_instance.grid_x(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+
+            @property
+            def minorSteps(self):
+                return self.outer_instance._minorSteps
+            
+            @minorSteps.setter
+            def minorSteps(self, value):
+                #self._minorSteps = value
+                self.outer_instance.grid_x(majorStep = self.outer_instance._majorStep, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+
         obj = c(outer_instance = self)
 
         return obj
@@ -141,7 +162,7 @@ class dataExplore(plotSett):
                 #to be fixed
                 self.outer_instance.limsy()
                 #self.outer_instance.grid_y()
-                self.outer_instance.grid(bottomConcat = settings.ymin)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin)
                 
             @property
             def higher(self):
@@ -149,9 +170,11 @@ class dataExplore(plotSett):
             @higher.setter
             def higher(self, value):
                 settings.ymax = value
-                #to be fixed
+
+                #may be removed
                 self.outer_instance.limsy()
-                self.outer_instance.grid(topConcat = settings.ymax)
+                
+                self.outer_instance.grid_y(topConcat = settings.ymax)
             
             @property
             def data(self):
@@ -162,6 +185,28 @@ class dataExplore(plotSett):
                 self.outer_instance.data[1] = value
                 self.outer_instance.__del__()
                 self.outer_instance.onlyDraw()
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+
+            @majorStep.setter
+            def majorStep(self, value):
+                #self._majorStep = value
+                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+
+            @property
+            def minorSteps(self):
+                #to be fixed
+                return self.outer_instance._minorSteps
+
+            @minorSteps.setter
+            def minorSteps(self, value):
+                #self._minorSteps = value
+                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStep, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+
+
         obj = c(outer_instance = self)
         
         return obj
@@ -192,9 +237,8 @@ class dataExplore(plotSett):
             self.cutOffdata()
             self.j+=1
 
-    #def y(self):
-    #    return self.data[1]
     
+    #should be deprecated
     @property
     def cut(self):
         class c():
