@@ -75,9 +75,57 @@ class dataExplore(plotSett):
         
         print(closest_index, closest_elementx, closest_elementy )
         
+
+    """ 
     @property
     def y(self):
-        return self.data[1]
+        try:
+            return self.y1()
+        except:
+            return self.y2()
+    """
+
+    #geompy.pyFiles.dataExploreFile.dataExplore.y.<locals>.c
+    
+    
+    @property
+    def y(self):
+        
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+                
+            @property
+            def lower(self):
+                return settings.ymin
+            @lower.setter
+            def lower(self, value):
+                settings.ymin = value
+                #to be fixed
+                self.outer_instance.limsy()
+
+            @property
+            def higher(self):
+                return settings.ymax
+            @higher.setter
+            def higher(self, value):
+                settings.ymax = value
+                #to be fixed
+                self.outer_instance.limsy()
+                self.outer_instance.grid(topConcat = settings.ymax)
+            
+            @property
+            def data(self):
+                return self.outer_instance.data[1]
+            
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[1] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+        obj = c(outer_instance = self)
+        
+        return obj
 
 
     @y.setter
@@ -99,6 +147,8 @@ class dataExplore(plotSett):
             self.cutOffdata()
             self.j+=1
 
+    #def y(self):
+    #    return self.data[1]
     
     @property
     def cut(self):

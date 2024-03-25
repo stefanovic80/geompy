@@ -219,11 +219,21 @@ class plotSett():
     def lims(self):
         #global x
         #x = np.arange(settings.xmin, settings.xmax, settings.steps)
+        self.limsx()
+        self.limsy()
+        #self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
+        #self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
+        #self.ax.set_xlim(settings.xmin, settings.xmax)
+        #self.ax.set_ylim(settings.ymin, settings.ymax)
+
+    def limsx(self):
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_xlim(settings.xmin, settings.xmax)
+
+
+    def limsy(self):
+        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_ylim(settings.ymin, settings.ymax)
-        
         
     def grid(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
         
