@@ -87,9 +87,12 @@ class dataExplore(plotSett):
 
     #geompy.pyFiles.dataExploreFile.dataExplore.y.<locals>.c
     
-    
     @property
     def y(self):
+        return self.data[1]
+
+    @property
+    def Y(self):
         
         class c():
             def __init__(self, outer_instance):
