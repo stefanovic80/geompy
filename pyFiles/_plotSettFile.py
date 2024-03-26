@@ -52,6 +52,8 @@ class plotSett():
         self._points = []
 
         self._majorStep = 2
+        self._majorStepx = 2
+        self._majorStepy = 2
         self.j = 0
         self.k = 0        
         self.lines = []
