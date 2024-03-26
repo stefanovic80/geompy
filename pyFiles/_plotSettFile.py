@@ -88,6 +88,178 @@ class plotSett():
         self.majorStep = self._majorStep
         self.lims()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @property
+    def X(self):
+
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+
+            @property
+            def lower(self):
+                return settings.xmin
+            @lower.setter
+            def lower(self, value):
+                settings.xmin = value
+                #to be fixed
+                #self.outer_instance.limsx()
+                #self.outer_instance.grid_y()
+
+                self.outer_instance.ax.set_xlim( left = value)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+            @property
+            def higher(self):
+                return settings.xmax
+            @higher.setter
+            def higher(self, value):
+                settings.xmax = value
+                #to be fixed
+                #self.outer_instance.limsx()
+
+                self.outer_instance.ax.set_xlim( right = value)
+                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin)
+
+            @property
+            def data(self):
+                return self.outer_instance.data[0]
+
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[0] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+
+            @majorStep.setter
+            def majorStep(self, value):
+                self.outer_instance._majorStepx = value
+                self.outer_instance.grid_x(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+
+            @property
+            def minorSteps(self):
+                return self.outer_instance._minorSteps
+
+            @minorSteps.setter
+            def minorSteps(self, value):
+                #self._minorSteps = value
+                self.outer_instance.grid_x(majorStep = self.outer_instance._majorStepx, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+
+        obj = c(outer_instance = self)
+
+        return obj
+
+
+
+
+
+
+
+
+    @property
+    def Y(self):
+        
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+                
+            @property
+            def lower(self):
+                return settings.ymin
+            @lower.setter
+            def lower(self, value):
+                settings.ymin = value
+                #to be fixed
+                #self.outer_instance.limsy()
+                
+                self.outer_instance.ax.set_ylim( bottom = value)
+
+                #self.outer_instance.grid_y()
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax)
+                
+            @property
+            def higher(self):
+                return settings.ymax
+            @higher.setter
+            def higher(self, value):
+                settings.ymax = value
+                #may be removed
+                #self.outer_instance.limsy()
+                
+                self.outer_instance.ax.set_ylim( top = value)
+                #to be fixed!
+                self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin)
+            
+            @property
+            def data(self):
+                return self.outer_instance.data[1]
+            
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[1] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+
+            @majorStep.setter
+            def majorStep(self, value):
+                self.outer_instance._majorStepy = value
+                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.ymin, topConcat = settings.ymax )
+
+            @property
+            def minorSteps(self):
+                #to be fixed
+                return self.outer_instance._minorSteps
+
+            @minorSteps.setter
+            def minorSteps(self, value):
+                self._minorSteps = value
+                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStepy, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
+
+
+
+        obj = c(outer_instance = self)
+        
+        return obj
+
+
+
+
+
+
+    """
     @property
     def bottom(self):
         return settings.ymin
@@ -111,7 +283,7 @@ class plotSett():
         self.grid(topConcat = value, bottomConcat = settings.ymin)
         self.ax.set_ylim( top = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
-    
+    """    
 
     @property
     def color(self):

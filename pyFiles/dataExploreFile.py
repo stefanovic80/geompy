@@ -78,7 +78,7 @@ class dataExplore(plotSett):
 
 
 
-
+    """
     @property
     def X(self):
 
@@ -144,12 +144,12 @@ class dataExplore(plotSett):
         obj = c(outer_instance = self)
 
         return obj
+        """
 
 
 
 
-
-
+    """
     @property
     def Y(self):
         
@@ -218,7 +218,7 @@ class dataExplore(plotSett):
         obj = c(outer_instance = self)
         
         return obj
-
+        """
 
     @property
     def y(self):
