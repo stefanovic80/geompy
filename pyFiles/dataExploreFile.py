@@ -97,7 +97,7 @@ class dataExplore(plotSett):
                 #self.outer_instance.grid_y()
                 
                 self.outer_instance.ax.set_xlim( bottom = value)
-                self.outer_instance.grid_x(bottomConcat = settings.xmin)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax)
             
             @property
             def higher(self):
@@ -109,7 +109,7 @@ class dataExplore(plotSett):
                 #self.outer_instance.limsx()
                 
                 self.outer_instance.ax.set_xlim( top = value)
-                self.outer_instance.grid_x(topConcat = settings.xmax)
+                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin)
 
             @property
             def data(self):
@@ -169,7 +169,7 @@ class dataExplore(plotSett):
                 self.outer_instance.ax.set_ylim( bottom = value)
 
                 #self.outer_instance.grid_y()
-                self.outer_instance.grid_y(bottomConcat = settings.ymin)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax)
                 
             @property
             def higher(self):
@@ -177,12 +177,12 @@ class dataExplore(plotSett):
             @higher.setter
             def higher(self, value):
                 settings.ymax = value
-
                 #may be removed
                 #self.outer_instance.limsy()
                 
                 self.outer_instance.ax.set_ylim( top = value)
-                self.outer_instance.grid_y(topConcat = settings.ymax)
+                #to be fixed!
+                self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin)
             
             @property
             def data(self):
@@ -201,7 +201,7 @@ class dataExplore(plotSett):
             @majorStep.setter
             def majorStep(self, value):
                 #self._majorStep = value
-                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
             @property
             def minorSteps(self):
@@ -211,7 +211,7 @@ class dataExplore(plotSett):
             @minorSteps.setter
             def minorSteps(self, value):
                 #self._minorSteps = value
-                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStep, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStep, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
 
 
