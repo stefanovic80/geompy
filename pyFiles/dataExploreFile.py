@@ -128,11 +128,7 @@ class dataExplore(plotSett):
                 self.outer_instance.cutOffdata()
                 self.outer_instance.k+=1
 
-            #def point(self, value):
-            #    self.x(value = self.outer_instance.x)
-
         obj = c(outer_instance = self)
-        #obj.cut.x(5)
         return obj
     
 

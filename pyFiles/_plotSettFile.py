@@ -37,9 +37,7 @@ class plotSett():
         self.plotSettings = None
 
         self.data = [None, None]
-        #self.tex = [None, None]  # label text
-        #density of grid
-        
+
         self.hline = None
         self.vline = None
 
@@ -58,57 +56,32 @@ class plotSett():
         self.k = 0        
         self.lines = []
         
+        #to be implemented as .X.cut doesn't work on function
+        #self._cutOff
+
         self.labCoords = [None, None]
 
     @property
     def lower(self):
-        #def left(self):
 	    return settings.xmin
 		
     @lower.setter
     def lower(self, value):
-        #def left(self, value):
         settings.xmin = value
         settings.ymin = value
         self.majorStep = self._majorStep
         self.lims()
-        #global x
-        #x = np.arange(settings.xmin, settings.xmax, 0.001)
 
     @property
     def higher(self):
-        #def right(self):
         return settings.xmax
 
     @higher.setter
     def higher(self, value):
-        #def right(self, value):
         settings.xmax = value
         settings.ymax = value
         self.majorStep = self._majorStep
         self.lims()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -125,9 +98,6 @@ class plotSett():
             @lower.setter
             def lower(self, value):
                 settings.xmin = value
-                #to be fixed
-                #self.outer_instance.limsx()
-                #self.outer_instance.grid_y()
 
                 self.outer_instance.ax.set_xlim( left = value)
                 self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax)
@@ -138,8 +108,6 @@ class plotSett():
             @higher.setter
             def higher(self, value):
                 settings.xmax = value
-                #to be fixed
-                #self.outer_instance.limsx()
 
                 self.outer_instance.ax.set_xlim( right = value)
                 self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin)
@@ -170,17 +138,24 @@ class plotSett():
 
             @minorSteps.setter
             def minorSteps(self, value):
-                #self._minorSteps = value
                 self.outer_instance.grid_x(majorStep = self.outer_instance._majorStepx, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+            
+            @property
+            def cut(self):
+                return self.outer_instance.xmin, self.outer_instance.xmax
 
+            @cut.setter
+            def cut(self, value):
+                try:
+                    self.outer_instance.x = value.x
+                except:
+                    self.outer_instance.x = value
+                self.outer_instance.cutOffdata()
+                self.outer_instance.k += 1
 
         obj = c(outer_instance = self)
 
         return obj
-
-
-
-
 
 
 
@@ -198,8 +173,6 @@ class plotSett():
             @lower.setter
             def lower(self, value):
                 settings.ymin = value
-                #to be fixed
-                #self.outer_instance.limsy()
                 
                 self.outer_instance.ax.set_ylim( bottom = value)
 
@@ -212,8 +185,6 @@ class plotSett():
             @higher.setter
             def higher(self, value):
                 settings.ymax = value
-                #may be removed
-                #self.outer_instance.limsy()
                 
                 self.outer_instance.ax.set_ylim( top = value)
                 #to be fixed!
@@ -254,36 +225,6 @@ class plotSett():
         
         return obj
 
-
-
-
-
-
-    """
-    @property
-    def bottom(self):
-        return settings.ymin
-
-    @bottom.setter
-    def bottom(self, value):
-        settings.ymin = value
-        self.grid( bottomConcat = value, topConcat = settings.ymax )
-        self.ax.set_ylim( bottom = value )
-        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
-
-
-
-    @property
-    def up(self):
-        return settings.ymax
-
-    @up.setter
-    def up(self, value):
-        settings.ymax = value
-        self.grid(topConcat = value, bottomConcat = settings.ymin)
-        self.ax.set_ylim( top = value )
-        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
-    """    
 
     @property
     def color(self):
@@ -362,8 +303,6 @@ class plotSett():
         self.labCoords[0] = data[0][random_index] + shift
         self.labCoords[1] = data[1][random_index] + shift
         
-        #labelx, labely may necessitte to be attributes
-        #self.tex = self.ax.text(labelx, labely, self._name, fontsize = 12, color = self._color, ha="center", va="center")
         text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
@@ -391,14 +330,8 @@ class plotSett():
 
 
     def lims(self):
-        #global x
-        #x = np.arange(settings.xmin, settings.xmax, settings.steps)
         self.limsx()
         self.limsy()
-        #self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        #self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
-        #self.ax.set_xlim(settings.xmin, settings.xmax)
-        #self.ax.set_ylim(settings.ymin, settings.ymax)
 
     def limsx(self):
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
@@ -519,14 +452,6 @@ class plotSett():
                 line.remove()
         except:
             pass
-
-        """
-        try:#removes all geometrical locus points
-            for u in self.point:
-                u.remove()
-        except:
-            pass 
-        """
 
     def __str__(self):
         self.plotSettings = (
