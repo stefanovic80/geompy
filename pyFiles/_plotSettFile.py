@@ -52,6 +52,8 @@ class plotSett():
         self._points = []
 
         self._majorStep = 2
+        self._majorStepx = 2
+        self._majorStepy = 2
         self.j = 0
         self.k = 0        
         self.lines = []
@@ -59,27 +61,205 @@ class plotSett():
         self.labCoords = [None, None]
 
     @property
-    def left(self):
+    def lower(self):
+        #def left(self):
 	    return settings.xmin
 		
-    @left.setter
-    def left(self, value):
+    @lower.setter
+    def lower(self, value):
+        #def left(self, value):
         settings.xmin = value
         settings.ymin = value
         self.majorStep = self._majorStep
         self.lims()
+        #global x
+        #x = np.arange(settings.xmin, settings.xmax, 0.001)
 
     @property
-    def right(self):
+    def higher(self):
+        #def right(self):
         return settings.xmax
 
-    @right.setter
-    def right(self, value):
+    @higher.setter
+    def higher(self, value):
+        #def right(self, value):
         settings.xmax = value
         settings.ymax = value
         self.majorStep = self._majorStep
         self.lims()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @property
+    def X(self):
+
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+
+            @property
+            def lower(self):
+                return settings.xmin
+            @lower.setter
+            def lower(self, value):
+                settings.xmin = value
+                #to be fixed
+                #self.outer_instance.limsx()
+                #self.outer_instance.grid_y()
+
+                self.outer_instance.ax.set_xlim( left = value)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+            @property
+            def higher(self):
+                return settings.xmax
+            @higher.setter
+            def higher(self, value):
+                settings.xmax = value
+                #to be fixed
+                #self.outer_instance.limsx()
+
+                self.outer_instance.ax.set_xlim( right = value)
+                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin)
+
+            @property
+            def data(self):
+                return self.outer_instance.data[0]
+
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[0] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+
+            @majorStep.setter
+            def majorStep(self, value):
+                self.outer_instance._majorStepx = value
+                self.outer_instance.grid_x(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+
+            @property
+            def minorSteps(self):
+                return self.outer_instance._minorSteps
+
+            @minorSteps.setter
+            def minorSteps(self, value):
+                #self._minorSteps = value
+                self.outer_instance.grid_x(majorStep = self.outer_instance._majorStepx, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+
+
+        obj = c(outer_instance = self)
+
+        return obj
+
+
+
+
+
+
+
+
+    @property
+    def Y(self):
+        
+        class c():
+            def __init__(self, outer_instance):
+                self.outer_instance = outer_instance
+                
+            @property
+            def lower(self):
+                return settings.ymin
+            @lower.setter
+            def lower(self, value):
+                settings.ymin = value
+                #to be fixed
+                #self.outer_instance.limsy()
+                
+                self.outer_instance.ax.set_ylim( bottom = value)
+
+                #self.outer_instance.grid_y()
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax)
+                
+            @property
+            def higher(self):
+                return settings.ymax
+            @higher.setter
+            def higher(self, value):
+                settings.ymax = value
+                #may be removed
+                #self.outer_instance.limsy()
+                
+                self.outer_instance.ax.set_ylim( top = value)
+                #to be fixed!
+                self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin)
+            
+            @property
+            def data(self):
+                return self.outer_instance.data[1]
+            
+            @data.setter
+            def data(self, value):
+                self.outer_instance.data[1] = value
+                self.outer_instance.__del__()
+                self.outer_instance.onlyDraw()
+
+            @property
+            def majorStep(self):
+                return self.outer_instance.majorStep
+
+            @majorStep.setter
+            def majorStep(self, value):
+                self.outer_instance._majorStepy = value
+                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.ymin, topConcat = settings.ymax )
+
+            @property
+            def minorSteps(self):
+                #to be fixed
+                return self.outer_instance._minorSteps
+
+            @minorSteps.setter
+            def minorSteps(self, value):
+                self._minorSteps = value
+                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStepy, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
+
+
+
+        obj = c(outer_instance = self)
+        
+        return obj
+
+
+
+
+
+
+    """
     @property
     def bottom(self):
         return settings.ymin
@@ -103,7 +283,7 @@ class plotSett():
         self.grid(topConcat = value, bottomConcat = settings.ymin)
         self.ax.set_ylim( top = value )
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
-    
+    """    
 
     @property
     def color(self):
@@ -211,13 +391,33 @@ class plotSett():
 
 
     def lims(self):
+        #global x
+        #x = np.arange(settings.xmin, settings.xmax, settings.steps)
+        self.limsx()
+        self.limsy()
+        #self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
+        #self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
+        #self.ax.set_xlim(settings.xmin, settings.xmax)
+        #self.ax.set_ylim(settings.ymin, settings.ymax)
+
+    def limsx(self):
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_xlim(settings.xmin, settings.xmax)
+
+
+    def limsy(self):
+        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_ylim(settings.ymin, settings.ymax)
         
-        
+
     def grid(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
+        self.grid_x(majorStep = majorStep, minorSteps = minorSteps, topConcat = topConcat, bottomConcat = bottomConcat)
+        self.grid_y(majorStep = majorStep, minorSteps = minorSteps, topConcat = topConcat, bottomConcat = bottomConcat)
+
+
+
+
+    def grid_x(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
         
         minorStep = majorStep / minorSteps
         
@@ -252,20 +452,55 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
+        self.ax.grid(which='minor', alpha=0.2)
+        self.ax.grid(which='major', alpha=0.6)
+
+
+
+    def grid_y(self, majorStep = 2, minorSteps = 10, topConcat = settings.ymax, bottomConcat = settings.ymin):
+
+        minorStep = majorStep / minorSteps
+
+
+        #x grid---------------------------------------
+        if (settings.ymin < 0) and (settings.ymax > 0):
+            #------------ minor ticks
+            Yminor_ticksPos = np.arange(0, settings.ymax, minorStep)
+            Yminor_ticksNeg = np.arange(0, settings.ymin, -minorStep)[::-1]
+
+            Yminor_ticks = np.append(Yminor_ticksNeg, Yminor_ticksPos)
+
+            #----------- major ticks
+            Ymajor_ticksPos = np.arange(0, settings.ymax, majorStep)
+
+            Ymajor_ticksNeg = np.arange(0, settings.ymin, -majorStep)[::-1]
+
+            Ymajor_ticks = np.append(Ymajor_ticksNeg, Ymajor_ticksPos)
+
+            self.ax.spines['bottom'].set_position('zero')
+            self.ax.spines['left'].set_position('zero')
+
+
+        else:
+            Yminor_ticks = np.arange(settings.ymin, settings.ymax, minorStep)
+
+            Ymajor_ticks = np.arange(settings.ymin, settings.ymax, majorStep)
+
+
         #y grid---------------------------------------
-        topArrayMinor = np.arange(settings.xmax, topConcat, minorStep)
+        topArrayMinor = np.arange(settings.ymax, topConcat, minorStep)
         
-        topArrayMajor = np.arange(settings.xmax, topConcat, majorStep)
+        topArrayMajor = np.arange(settings.ymax, topConcat, majorStep)
 
-        bottomArrayMinor = np.arange( bottomConcat, settings.xmin, minorStep)
+        bottomArrayMinor = np.arange( bottomConcat, settings.ymin, minorStep)
 
-        bottomArrayMajor = np.arange( bottomConcat, settings.xmin, majorStep)
+        bottomArrayMajor = np.arange( bottomConcat, settings.ymin, majorStep)
 
 
 
-        Yminor_ticks = np.concatenate((bottomArrayMinor, Xminor_ticks, topArrayMinor))
+        Yminor_ticks = np.concatenate((bottomArrayMinor, Yminor_ticks, topArrayMinor))
 
-        Ymajor_ticks = np.concatenate((bottomArrayMajor, Xmajor_ticks, topArrayMajor))
+        Ymajor_ticks = np.concatenate((bottomArrayMajor, Ymajor_ticks, topArrayMajor))
 
         
         self.ax.set_yticks(Yminor_ticks, minor=True)
@@ -273,9 +508,7 @@ class plotSett():
         
 
         self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.6)
-        
-
+        self.ax.grid(which='major', alpha=0.6)  
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
     
