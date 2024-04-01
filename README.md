@@ -13,7 +13,7 @@ As I personally believe that coding is a skill that can be acquired only by tack
 
 # Installation and start up
 
-Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project.
+Make sure you have matplotlib, random and numpy libraries installed on a fully working Ipython environment. Download the present project and rename it's folder with "geompy".
 
 
 Open a console, move it where the geompy folder is located, start off an ipython session and import all modules
