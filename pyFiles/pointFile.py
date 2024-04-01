@@ -197,7 +197,7 @@ class point(plotSett):
     #-----------------------------------------------
     def randomCoords(self, seed):
         self.data[0] = random.uniform(settings.xmin, settings.xmax)
-        self.data[1] = random.uniform(settings.xmin, settings.xmax)
+        self.data[1] = random.uniform(settings.ymin, settings.ymax)
         self.seed += 1
         seed = self.seed
 
