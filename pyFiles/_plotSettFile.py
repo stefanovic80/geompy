@@ -454,10 +454,21 @@ class plotSett():
             pass
 
     def __str__(self):
+
+        # Specify the maximum number of elements to display
+        max_elements = 5
+        L0 = len(self.data[0])
+        L1 = len(self.data[1])
+
+
         self.plotSettings = (
             f"\nSettings:\n"
-            f"\033[93m.xmin = \033[0m {settings.xmin}\n"
-            f"\033[93m.xmax = \033[0m {settings.xmax}\n"
+            f"\033[93mX.lower = \033[0m {settings.xmin}\n"
+            f"\033[93mX.higher = \033[0m {settings.xmax}\n"
+            f"\033[93mY.lower = \033[0m {settings.ymin}\n"
+            f"\033[93mY.higher = \033[0m {settings.ymax}\n"
             f"\033[93m.steps = \033[0m {settings.steps}\n"
             f"\033[93m._x = \033[0m {self._x[:10]}...\n"
+            f"\033[93m.x = \033[0m {self.data[0][:min(max_elements, L0)]}...\n"
+            f"\033[93m.y = \033[0m {self.data[1][:min(max_elements, L1)]}...\n"
         )
