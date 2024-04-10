@@ -71,6 +71,10 @@ class plotSett():
         settings.ymin = value
         self.majorStep = self._majorStep
         self.lims()
+        #global x
+        #x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)
+        #from .functionFile import xSet
+        
 
     @property
     def higher(self):

@@ -10,6 +10,10 @@ from .dataExploreFile import dataExplore
 #to be fixed according with real values of xlim and ylim
 x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)
 
+#def xSet(settings.xmin, ssettings.xmax, 1/settings.steps):
+#    return np.arange(settings.xmin, settings.xmax, 1/settings.steps)
+#x = xSet(settings.xmin, ssettings.xmax, 1/settings.steps)
+
 class function(dataExplore):
 
     def __init__(self, draw = False):
