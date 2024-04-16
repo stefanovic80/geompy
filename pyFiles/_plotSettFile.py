@@ -129,7 +129,7 @@ class plotSett():
 
             @property
             def majorStep(self):
-                return self.outer_instance.majorStep
+                return self.outer_instance._majorStepx
 
             @majorStep.setter
             def majorStep(self, value):
@@ -206,7 +206,7 @@ class plotSett():
 
             @property
             def majorStep(self):
-                return self.outer_instance.majorStep
+                return self.outer_instance._majorStepy
 
             @majorStep.setter
             def majorStep(self, value):
@@ -271,7 +271,7 @@ class plotSett():
 
     @property
     def majorStep(self):
-        return self.majorStep
+        return self._majorStep
 
     @majorStep.setter
     def majorStep(self, value):
