@@ -52,6 +52,11 @@ class plotSett():
         self._step = 2
         self._stepx = 2
         self._stepy = 2
+
+        self._steps = 10
+        self._stepsx = 10
+        self._stepsy = 10
+
         self.j = 0
         self.k = 0        
         self.lines = []
@@ -138,10 +143,11 @@ class plotSett():
 
             @property
             def steps(self):
-                return self.outer_instance._steps
+                return self.outer_instance._stepsx
 
             @steps.setter
             def steps(self, value):
+                self.outer_instance._stepsx = value
                 self.outer_instance.grid_x(step = self.outer_instance._stepx, steps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
             
             @property
@@ -217,11 +223,11 @@ class plotSett():
             @property
             def steps(self):
                 #to be fixed
-                return self.outer_instance._steps
+                return self.outer_instance._stepsy
 
             @steps.setter
             def steps(self, value):
-                self._steps = value
+                self.outer_instance._stepsy = value
                 self.outer_instance.grid_y(step = self.outer_instance._stepy, steps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
 
