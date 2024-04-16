@@ -276,6 +276,8 @@ class plotSett():
     @majorStep.setter
     def majorStep(self, value):
         self._majorStep = value
+        #if self._majorStep > 100:
+        #    self._majorStep = (settings.ymax - settings.ymin)/20
         self.grid(majorStep = self._majorStep, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
     @property
