@@ -3,24 +3,19 @@ from pyFiles._plotSettFile import plotSett
 
 #may be deleted
 #from geompy.pyFiles import plotSett
+
 """
-from pyFiles.pointFile import point
-from pyFiles.circumferenceFile import circumference
-from pyFiles.ellipseFile import ellipse
-from pyFiles.lineFile import line
-from pyFiles.parabolaFile import parabola
-from pyModules2gen.triangleFile import triangle
-from pyModules2gen.angleFile import angle
+#how to adjust plot size according with monitor size
+from screeninfo import get_monitors
 
+def get_monitor_size():
+    monitors = get_monitors()
+    sizes = []
+    for monitor in monitors:
+        sizes.append((monitor.width, monitor.height))
+    return sizes
 
-from geompy.pyFiles.pointFile import point
-from .pyFiles.circumferenceFile import circumference
-from .pyFiles.ellipseFile import ellipse
-from .pyFiles.lineFile import line
-from .pyFiles.parabolaFile import parabola
-
-from .pyModules2gen.triangleFile import triangle
-from .pyModules2gen.angleFile import angle
+print("Monitor sizes (width, height):", get_monitor_size())
 """
 
 
