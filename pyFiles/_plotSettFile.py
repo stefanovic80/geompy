@@ -104,7 +104,7 @@ class plotSett():
                 settings.xmin = value
 
                 self.outer_instance.ax.set_xlim( left = value)
-                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax, majorStep = self.outer_instance._majorStepx)
 
             @property
             def higher(self):
@@ -114,7 +114,7 @@ class plotSett():
                 settings.xmax = value
 
                 self.outer_instance.ax.set_xlim( right = value)
-                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin)
+                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin, majorStep = self.outer_instance._majorStepx)
 
             @property
             def data(self):
@@ -181,7 +181,7 @@ class plotSett():
                 self.outer_instance.ax.set_ylim( bottom = value)
 
                 #self.outer_instance.grid_y()
-                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax, majorStep = self.outer_instance._majorStepy)
                 
             @property
             def higher(self):
@@ -192,7 +192,8 @@ class plotSett():
                 
                 self.outer_instance.ax.set_ylim( top = value)
                 #to be fixed!
-                self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = value, majorStep = self.outer_instance._majorStepy)
+                #self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin, self.outer_instance._majorStepy)
             
             @property
             def data(self):
