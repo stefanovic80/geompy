@@ -238,19 +238,19 @@ the .click method, allows the user to manually select the point with the mouse. 
 
 Choose one of the instances you have used so far (in this example P) and change the plot size and grid as follows
 
-- `P.left = -20`
+- `P.lower = -20`
 
 set both left and bottom coordinates to -20
 
-- `P.right = 20`
+- `P.higher = 20`
 
 set both right and up coordinates to -20
 
-- `P.majorStep = 2`
+- `P.step = 2`
 
 set major grid step to 2
 
-- `P.minorSteps = 20`
+- `P.steps = 20`
 
 set the number of minor steps in between two adjacent major steps to 20
 
