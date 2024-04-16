@@ -49,9 +49,14 @@ class plotSett():
         self._name = None
         self._points = []
 
-        self._majorStep = 2
-        self._majorStepx = 2
-        self._majorStepy = 2
+        self._step = 2
+        self._stepx = 2
+        self._stepy = 2
+
+        self._steps = 10
+        self._stepsx = 10
+        self._stepsy = 10
+
         self.j = 0
         self.k = 0        
         self.lines = []
@@ -69,7 +74,7 @@ class plotSett():
     def lower(self, value):
         settings.xmin = value
         settings.ymin = value
-        self.majorStep = self._majorStep
+        self.step = self._step
         self.lims()
         #global x
         #x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)
@@ -84,7 +89,7 @@ class plotSett():
     def higher(self, value):
         settings.xmax = value
         settings.ymax = value
-        self.majorStep = self._majorStep
+        self.step = self._step
         self.lims()
 
 
@@ -104,7 +109,7 @@ class plotSett():
                 settings.xmin = value
 
                 self.outer_instance.ax.set_xlim( left = value)
-                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax, majorStep = self.outer_instance._majorStepx)
+                self.outer_instance.grid_x(bottomConcat = settings.xmin, topConcat = settings.xmax, step = self.outer_instance._stepx)
 
             @property
             def higher(self):
@@ -114,7 +119,7 @@ class plotSett():
                 settings.xmax = value
 
                 self.outer_instance.ax.set_xlim( right = value)
-                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin, majorStep = self.outer_instance._majorStepx)
+                self.outer_instance.grid_x(topConcat = settings.xmax, bottomConcat = settings.xmin, step = self.outer_instance._stepx)
 
             @property
             def data(self):
@@ -128,21 +133,22 @@ class plotSett():
 
 
             @property
-            def majorStep(self):
-                return self.outer_instance._majorStepx
+            def step(self):
+                return self.outer_instance._stepx
 
-            @majorStep.setter
-            def majorStep(self, value):
-                self.outer_instance._majorStepx = value
-                self.outer_instance.grid_x(majorStep = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
+            @step.setter
+            def step(self, value):
+                self.outer_instance._stepx = value
+                self.outer_instance.grid_x(step = value, bottomConcat = settings.xmin, topConcat = settings.xmax )
 
             @property
-            def minorSteps(self):
-                return self.outer_instance._minorSteps
+            def steps(self):
+                return self.outer_instance._stepsx
 
-            @minorSteps.setter
-            def minorSteps(self, value):
-                self.outer_instance.grid_x(majorStep = self.outer_instance._majorStepx, minorSteps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+            @steps.setter
+            def steps(self, value):
+                self.outer_instance._stepsx = value
+                self.outer_instance.grid_x(step = self.outer_instance._stepx, steps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
             
             @property
             def cut(self):
@@ -181,7 +187,7 @@ class plotSett():
                 self.outer_instance.ax.set_ylim( bottom = value)
 
                 #self.outer_instance.grid_y()
-                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax, majorStep = self.outer_instance._majorStepy)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = settings.ymax, step = self.outer_instance._stepy)
                 
             @property
             def higher(self):
@@ -192,7 +198,7 @@ class plotSett():
                 
                 self.outer_instance.ax.set_ylim( top = value)
                 #to be fixed!
-                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = value, majorStep = self.outer_instance._majorStepy)
+                self.outer_instance.grid_y(bottomConcat = settings.ymin, topConcat = value, step = self.outer_instance._stepy)
                 #self.outer_instance.grid_y(topConcat = value, bottomConcat = settings.ymin, self.outer_instance._majorStepy)
             
             @property
@@ -206,23 +212,23 @@ class plotSett():
                 self.outer_instance.onlyDraw()
 
             @property
-            def majorStep(self):
-                return self.outer_instance._majorStepy
+            def step(self):
+                return self.outer_instance._stepy
 
-            @majorStep.setter
-            def majorStep(self, value):
-                self.outer_instance._majorStepy = value
-                self.outer_instance.grid_y(majorStep = value, bottomConcat = settings.ymin, topConcat = settings.ymax )
+            @step.setter
+            def step(self, value):
+                self.outer_instance._stepy = value
+                self.outer_instance.grid_y(step = value, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
             @property
-            def minorSteps(self):
+            def steps(self):
                 #to be fixed
-                return self.outer_instance._minorSteps
+                return self.outer_instance._stepsy
 
-            @minorSteps.setter
-            def minorSteps(self, value):
-                self._minorSteps = value
-                self.outer_instance.grid_y(majorStep = self.outer_instance._majorStepy, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
+            @steps.setter
+            def steps(self, value):
+                self.outer_instance._stepsy = value
+                self.outer_instance.grid_y(step = self.outer_instance._stepy, steps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
 
 
@@ -271,24 +277,24 @@ class plotSett():
 
 
     @property
-    def majorStep(self):
-        return self._majorStep
+    def step(self):
+        return self._step
 
-    @majorStep.setter
-    def majorStep(self, value):
-        self._majorStep = value
-        #if self._majorStep > 100:
-        #    self._majorStep = (settings.ymax - settings.ymin)/20
-        self.grid(majorStep = self._majorStep, bottomConcat = settings.ymin, topConcat = settings.ymax )
+    @step.setter
+    def step(self, value):
+        self._step = value
+        #if self._step > 100:
+        #    self._step = (settings.ymax - settings.ymin)/20
+        self.grid(step = self._step, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
     @property
-    def minorSteps(self):
-            return self._minorSteps
+    def steps(self):
+            return self._steps
 
-    @minorSteps.setter
-    def minorSteps(self, value):
-        self._minorSteps = value
-        self.grid(majorStep = self._majorStep, minorSteps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
+    @steps.setter
+    def steps(self, value):
+        self._steps = value
+        self.grid(step = self._step, steps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
 
 
@@ -350,16 +356,16 @@ class plotSett():
         self.ax.set_ylim(settings.ymin, settings.ymax)
         
 
-    def grid(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
-        self.grid_x(majorStep = majorStep, minorSteps = minorSteps, topConcat = topConcat, bottomConcat = bottomConcat)
-        self.grid_y(majorStep = majorStep, minorSteps = minorSteps, topConcat = topConcat, bottomConcat = bottomConcat)
+    def grid(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
+        self.grid_x(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
+        self.grid_y(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
 
 
 
 
-    def grid_x(self, majorStep = 2, minorSteps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
+    def grid_x(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
         
-        minorStep = majorStep / minorSteps
+        minorStep = step / steps
         
         
         #x grid---------------------------------------
@@ -371,9 +377,9 @@ class plotSett():
             Xminor_ticks = np.append(Xminor_ticksNeg, Xminor_ticksPos)
             
             #----------- major ticks
-            Xmajor_ticksPos = np.arange(0, settings.xmax, majorStep)
+            Xmajor_ticksPos = np.arange(0, settings.xmax, step)
 
-            Xmajor_ticksNeg = np.arange(0, settings.xmin, -majorStep)[::-1]
+            Xmajor_ticksNeg = np.arange(0, settings.xmin, -step)[::-1]
 
             Xmajor_ticks = np.append(Xmajor_ticksNeg, Xmajor_ticksPos)
 
@@ -384,7 +390,7 @@ class plotSett():
         else:
             Xminor_ticks = np.arange(settings.xmin, settings.xmax, minorStep)
         
-            Xmajor_ticks = np.arange(settings.xmin, settings.xmax, majorStep)
+            Xmajor_ticks = np.arange(settings.xmin, settings.xmax, step)
 
         self.ax.set_xticks(Xminor_ticks, minor = True)
         self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
@@ -397,9 +403,9 @@ class plotSett():
 
 
 
-    def grid_y(self, majorStep = 2, minorSteps = 10, topConcat = settings.ymax, bottomConcat = settings.ymin):
+    def grid_y(self, step = 2, steps = 10, topConcat = settings.ymax, bottomConcat = settings.ymin):
 
-        minorStep = majorStep / minorSteps
+        minorStep = step / steps
 
 
         #x grid---------------------------------------
@@ -411,9 +417,9 @@ class plotSett():
             Yminor_ticks = np.append(Yminor_ticksNeg, Yminor_ticksPos)
 
             #----------- major ticks
-            Ymajor_ticksPos = np.arange(0, settings.ymax, majorStep)
+            Ymajor_ticksPos = np.arange(0, settings.ymax, step)
 
-            Ymajor_ticksNeg = np.arange(0, settings.ymin, -majorStep)[::-1]
+            Ymajor_ticksNeg = np.arange(0, settings.ymin, -step)[::-1]
 
             Ymajor_ticks = np.append(Ymajor_ticksNeg, Ymajor_ticksPos)
 
@@ -424,17 +430,17 @@ class plotSett():
         else:
             Yminor_ticks = np.arange(settings.ymin, settings.ymax, minorStep)
 
-            Ymajor_ticks = np.arange(settings.ymin, settings.ymax, majorStep)
+            Ymajor_ticks = np.arange(settings.ymin, settings.ymax, step)
 
 
         #y grid---------------------------------------
         topArrayMinor = np.arange(settings.ymax, topConcat, minorStep)
         
-        topArrayMajor = np.arange(settings.ymax, topConcat, majorStep)
+        topArrayMajor = np.arange(settings.ymax, topConcat, step)
 
         bottomArrayMinor = np.arange( bottomConcat, settings.ymin, minorStep)
 
-        bottomArrayMajor = np.arange( bottomConcat, settings.ymin, majorStep)
+        bottomArrayMajor = np.arange( bottomConcat, settings.ymin, step)
 
 
 
