@@ -62,7 +62,7 @@ class plotSett():
         self.lines = []
         
         #to be implemented as .X.cut doesn't work on function
-        #self._cutOff
+        self._cutOff = 0
 
         self.labCoords = [None, None]
 
@@ -152,6 +152,7 @@ class plotSett():
             
             @property
             def cut(self):
+                #Bug: self.outer_instance.xmin and .xmax don't exist anymore!
                 return self.outer_instance.xmin, self.outer_instance.xmax
 
             @cut.setter
@@ -309,7 +310,16 @@ class plotSett():
 
         idx = self.condition_mask()
         data = [self.data[0][idx], self.data[1][idx] ]
+        
+        #to be improved as y can be out of plot
+        #-------------------------------
+        #idx0 = np.where(data[0] > settings.xmin)[0][0]
+        #idx1 = np.where(data[0] < settings.xmax)[0][0]
+        #dataInPlot = data[idx0:idx1]
+        #-------------------------------
+        #to be substituded with "mask"
 
+        #random_index = np.random.randint(len(dataInPlot))
         random_index = np.random.randint(len(data[0]))
         shift = (settings.xmax - settings.xmin)/40
 

@@ -45,16 +45,16 @@ class function(dataExplore):
 
 
     #to be modified
-    @property
-    def x(self):
-        try:
-            return self.data[1]
-        except:
-            pass
+    #@property
+    #def x(self):
+    #    try:
+    #        return self.data[0]
+    #    except:
+    #        pass
 
-    @y.setter
-    def x(self, array):
-        self.data[0] = array
+    #@x.setter
+    #def x(self, array):
+    #    self.data[0] = array
         #self.data[1] = array
         #self.draw()
 
