@@ -73,7 +73,7 @@ class plotSett():
     @lower.setter
     def lower(self, value):
         settings.xmin = value
-        settings.ymin = value
+        settings.ymin = value*settings.window_height/settings.window_width
         self.step = self._step
         self.lims()
         #global x
@@ -88,7 +88,7 @@ class plotSett():
     @higher.setter
     def higher(self, value):
         settings.xmax = value
-        settings.ymax = value
+        settings.ymax = value*settings.window_height/settings.window_width
         self.step = self._step
         self.lims()
 
