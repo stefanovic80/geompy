@@ -16,7 +16,7 @@ if is_interactive():
 plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
-plt.rcParams [ 'figure.figsize' ] = ( 9 , 9)
+plt.rcParams [ 'figure.figsize' ] = ( settings.window_width , settings.window_width*settings.window_height/settings.window_width)
 plt.rcParams [ 'font.size' ] = 10
 plt.rcParams [ 'font.weight'] = 'bold'
 
