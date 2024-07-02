@@ -190,7 +190,6 @@ or
 `P.name = "P(4, 1)"`
 
 
-
 # Data visualization
 
 - A numbered list of all points coordinates calculated into c instance
@@ -205,6 +204,50 @@ or
 - A list of all y values calculated into c instance
 
 `c.y`
+
+
+#Parabola/circumference passing through three points
+
+Draw a circumference/parabola passing through three points:
+
+`A = point(4, 1)`
+
+`B = point(1, 6)`
+
+`C = point(-2, -4)`
+
+
+`c1 = circumference()`
+
+`c1.points = A`
+
+`c1.points = B`
+
+`c1.points = C`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![Alt Text](pictures/circumferenceThroughA_B_C.png)
+
+
+
+
+
+
+
+
+
 
 
 # Cut Off data
