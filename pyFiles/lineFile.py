@@ -21,7 +21,7 @@ class line(dataExplore):
         angle = random.uniform(0, np.pi)
         self.angle = angle
         self.angCoeff =  np.tan(angle)
-        self.intercept = np.random.uniform(settings.xmin, settings.xmax)
+        self.intercept = np.random.uniform(settings.ymin, settings.ymax)
 
         if draw == True:
             self.draw()

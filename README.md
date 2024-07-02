@@ -60,6 +60,7 @@ Here "c" is a python variable, specifically a "circumference" class instance. Sh
 `c.center = point(1, 2)`
 
 `c.linewidth = 1`
+`c.linewidth = 1`
 
 
 from the perspective of computational programming "circumference" is a geompy class, while "c" is an instance of circumference type. 
@@ -67,23 +68,20 @@ from the perspective of computational programming "circumference" is a geompy cl
 Other geompy classes which can be used for geometrical drawings are
 
 
-`point`
+`point()`
 
-`line`
+`line()`
 
-`parabola`
+`parabola()`
 
-`ellipse`
+`ellipse()`
 
-`hyperbole`
+`hyperbole()`
 
-`function`
+`function()`
 
-`triangle`
+`triangle()`
 
-
-
-In the previous example the "c" instance is a "circumference" type instance. 
 
 Some of these attributes are the some for all types of instance, while others are specific of that type. To view a comprehensive list of attributes that can be modified, simply type:
 

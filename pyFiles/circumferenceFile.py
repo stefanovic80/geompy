@@ -14,7 +14,7 @@ class circumference(dataExplore):
         super().__init__()
         #plotSett.__init__(self)
 
-        self._radius = random.uniform(0, (settings.xmax-settings.xmin)/2)
+        self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self._center = point(draw = False)
         
         self.angles = None
