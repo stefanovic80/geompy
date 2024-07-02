@@ -162,7 +162,7 @@ Explore the following examples:
 
 
 
-![Alt Text](pictures/printCircumference.png)
+![Alt Text](pictures/parabola_vertex00.png)
 
 
 
