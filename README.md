@@ -206,7 +206,7 @@ or
 `c.y`
 
 
-#Parabola/circumference passing through three points
+# Parabola/circumference passing through three points
 
 Draw a circumference/parabola passing through three points:
 
@@ -227,26 +227,7 @@ Draw a circumference/parabola passing through three points:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ![Alt Text](pictures/circumferenceThroughA_B_C.png)
-
-
-
-
-
-
-
-
 
 
 
