@@ -10,7 +10,7 @@ import os
 from numpy import pi#, sqrt, sin, cos, tan, arctan, 
 from copy import copy
 
-
+#this file is not working anymore as library is imported
 def main():
     print("Running main.py\n")
     
