@@ -87,7 +87,7 @@ Other geompy classes which can be used for geometrical drawings are
 
 `triangle()`
 
-
+`arc()`
 
 Hence you can generate a point or a line by typing 
 
