@@ -96,7 +96,7 @@ Hence you can generate a point or a line by typing
 
 `l = line()`
 
-Some of these attributes are the some for all types of instance (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
+Some of the attributes available are the some for all types of classes (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
 
 `print(c)`
 
@@ -114,7 +114,7 @@ Some of these attributes are the some for all types of instance (such as .color 
 
 As an example, one of the listed attributes is "color," allowing you to set the color of the circumference:
 
-`c1.color = "blue" # or simply c1.color = "b"`
+`c.color = "blue" # or simply c.color = "b"`
 
 
 the .color attribute can be choosen from the following list
