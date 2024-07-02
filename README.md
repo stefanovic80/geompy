@@ -420,9 +420,20 @@ set the number of minor steps in between two adjacent major steps to 20
 
 
 
+Let say you need to adjust limits of X only coordinate or Y only coordinate.
 
 
+`f1 = function()`
 
+`f1.y = log10(x)`
+
+`f1.X.lower = -.1`
+
+`f1.Y.lower = -2`
+
+`f1.Y.higher = 1.2`
+
+![Alt Text](pictures/log.png)
 
 
 # Draw a line
