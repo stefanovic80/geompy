@@ -289,18 +289,29 @@ Draw a circumference/parabola passing through three points:
 
 # Cut Off data
 
-Typing one time 
+Let consider a straight line with angular coefficient 0.2 and intercept 1.2: 
 
-`c.cutOff = 150`
+`l1 = line()`
 
-the first 150 points are removed. By typing it one more time
+`l1.m = .2`
 
-`c.cutOff = 100`
+`l1.q = 1.2`
 
-last 100 points are removed. In both cases points are removed both from the plot and from the instance itself.
+by typing
+
+`l1.X.cut = -4`
+
+all points with x value before -4 are removed, by typing again
+
+`l1.X.cut = 2`
+
+all poits with x values after 2 are removed
 
 
 
+
+
+![Alt Text](pictures/cutLine.png)
 
 
 
