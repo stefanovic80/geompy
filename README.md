@@ -287,32 +287,6 @@ Draw a circumference/parabola passing through three points:
 
 ![Alt Text](pictures/linesTangent.png)
 
-# Cut Off data
-
-Let consider a straight line with angular coefficient 0.2 and intercept 1.2: 
-
-`l1 = line()`
-
-`l1.m = .2`
-
-`l1.q = 1.2`
-
-by typing
-
-`l1.X.cut = -4`
-
-all points with x value before -4 are removed, by typing again
-
-`l1.X.cut = 2`
-
-all poits with x values after 2 are removed
-
-
-
-
-
-![Alt Text](pictures/cutLine.png)
-
 
 
 
@@ -359,6 +333,28 @@ or
 
 
 
+
+# Cut Off data
+
+Let consider a straight line with angular coefficient 0.2 and intercept 1.2:
+
+`l1 = line()`
+
+`l1.m = .2`
+
+`l1.q = 1.2`
+
+by typing
+
+`l1.X.cut = -4`
+
+all points with x value before -4 are removed, by typing again
+
+`l1.X.cut = 2`
+
+all poits with x values after 2 are removed
+
+![Alt Text](pictures/cutLine.png)
 
 
 
