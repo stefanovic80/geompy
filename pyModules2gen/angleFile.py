@@ -9,9 +9,9 @@ from ..pyFiles.Settings import settings
 
 from ..pyFiles import plt, np, random
 
-class angle(plotSett):
+class arc(plotSett):
     def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
-        #def __init__(self, seed = seed, draw = True):
+    #def __init__(self, seed = seed, draw = True):
 
         super().__init__()
         
@@ -26,7 +26,9 @@ class angle(plotSett):
         self.data = None
 
         self.j = 0
-    
+        
+        if draw == True:
+            self.draw()
     #may be deprecated
     def calc(self):
         self.__del__()

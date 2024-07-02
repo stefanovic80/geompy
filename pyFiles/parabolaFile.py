@@ -10,7 +10,7 @@ class parabola(dataExplore):
     def __init__(self, draw = True):
 
         super().__init__()
-        self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.xmin, settings.xmax), draw = False  )
+        self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
         #self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
