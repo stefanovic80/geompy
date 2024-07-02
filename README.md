@@ -254,6 +254,69 @@ the first 150 points are removed. By typing it one more time
 
 last 100 points are removed. In both cases points are removed both from the plot and from the instance itself.
 
+
+
+
+
+
+
+
+
+
+
+# Labeling
+
+You can choose a simple string type labeling or even a latex formula, as follows
+
+`P.name = "P"`
+
+`A.name = "A"`
+
+`B.name = "B"`
+
+`C.name = "C"`
+
+`c.name = "c"`
+
+`c1.name = "c1"`
+
+`p.name = "p"`
+
+
+or
+
+`c1.name = r"$(x -1 )^2 + (y - 2)^2 = 16$"`
+
+
+`P.name = "P(8, 2)"`
+
+
+
+
+
+
+
+![Alt Text](pictures/labeling.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Draw a point
 
 
