@@ -39,7 +39,23 @@ class triangle(dataExplore):
         if draw == True:
             self.draw()
 
+    
+    #to be properly implemented!
+    #------------------------------
+    @property
+    def ar(self):
+        pass
 
+    @ar.setter
+    def ar(self, value):
+        j = value
+        lines = [None, None]
+        for j in range(2):
+            lines[j] = line()#draw = False)
+            #lines[j+1] = line()#draw = False)
+            lines[j].points = self.vertices[0]
+            lines[j].points = self.vertices[1]
+    #------------------------------
 
     @property
     def side(self):
