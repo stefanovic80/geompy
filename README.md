@@ -123,6 +123,51 @@ the .color attribute can be choosen from the following list
 This flexibility extends to drawing and managing all other geometrical loci which are available as geompy classes and can be found from the list of ipython variables
 
 
+# Draw a point
+
+
+- Random point (no arguments passed within the parentheses)
+
+`A = point()`
+
+- A specific point, sai A(3; -9)
+
+`A = point(3, -9)`
+
+- Change coordinates to (1; 7)
+
+`A.x = 1`
+
+`A.y = 7`
+
+
+- A random point among the ones of the "c" geometrical locus
+
+`P = point(c)`
+
+
+- Choose point with mouse:
+
+the .click method, allows the user to manually select the point with the mouse. It has to be called two times:
+
+
+`P.click("P")`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Change geometrical loci parameters
 
@@ -166,28 +211,6 @@ Explore the following examples:
 
 
 
-
-
-
-
-# Labeling
-
-You can choose a simple string type labeling or even a latex formula, as follows
-
-`c1.name = "c1"`
-
-or
-
-`c1.name = r"$(x -1 )^2 + (y - 2)^2 = 16$"`
-
-
-`P = point(4, 1)`
-
-`P.name = "P"`
-
-or
-
-`P.name = "P(4, 1)"`
 
 
 # Data visualization
@@ -317,35 +340,10 @@ or
 
 
 
-# Draw a point
 
 
-- Random point (no arguments passed within the parentheses)
-
-`A = point()`
-
-- A specific point, sai A(3; -9)
-
-`A = point(3, -9)`
-
-- Change coordinates to (1; 7)
-
-`A.x = 1`
-
-`A.y = 7`
 
 
-- A random point among the ones of the "c" geometrical locus 
-
-`P = point(c)`
-
-
-- Choose point with mouse:
-
-the .click method, allows the user to manually select the point with the mouse. It has to be called two times: 
-
-
-`P.click("P")`
 
 
 # Plot settings
