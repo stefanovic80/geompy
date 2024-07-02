@@ -51,18 +51,24 @@ This will display a circumference with random center coordinates and random radi
 ![Alt Text](pictures/circumference.png)
 
 
+As an example, by typing
 
-
-Here "c" is a python variable, specifically a "circumference" class instance. Should you need your "c" circumference being with radius of 4, centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
 
 `c.radius = 4`
+
+
+the .radius attribute of the "c" instance is being modified simultaneously with the circumference plot.
+
+
+Here "c" is a python variable, specifically a "circumference" class instance. Should you need your "c" circumference centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
+
 
 `c.center = point(1, 2)`
 
 `c.linewidth = 1`
 
+ 
 
-from the perspective of computational programming "circumference" is a geompy class, while "c" is an instance of circumference type. 
 
 Other geompy classes which can be used for geometrical drawings are
 
@@ -81,17 +87,27 @@ Other geompy classes which can be used for geometrical drawings are
 
 `triangle()`
 
-For each one of these classes there are attributes which define plot specifications. As an example, by typing
 
 
-`c.radius = 4`
+Hence you can generate a point or a line by typing 
 
 
-the .radius attribute of a circumference type instance is being modified simultaneously with the circumference plot.
+`A = point(3, 4)`
 
-Some of these attributes are the some for all types of instance, while others are specific of that type. To view a comprehensive list of attributes that can be modified, simply type:
+`l = line()`
+
+Some of these attributes are the some for all types of instance (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
 
 `print(c)`
+
+
+
+
+
+
+
+
+
 
 
 ![Alt Text](pictures/circumference_02.png)
