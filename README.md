@@ -40,12 +40,12 @@ If everything works fine, than jump over next section. In case of any error mess
 # Usage
 
 
-After loading geompy into IPython, let's consider drawing a circumference. You can create an instance by typing:
+After loading geompy into IPython, let's consider drawing a circumference. You can create an instance, labeled "c", by typing:
 
 `c = circumference()`
 
 
-This will display a circumference with random center coordinates and random value for its radius in the plot window.
+This will display a circumference with random center coordinates and random radius value in the plot window.
 
 
 ![Alt Text](pictures/circumference.png)
@@ -60,7 +60,6 @@ Here "c" is a python variable, specifically a "circumference" class instance. Sh
 `c.center = point(1, 2)`
 
 `c.linewidth = 1`
-`c.linewidth = 1`
 
 
 from the perspective of computational programming "circumference" is a geompy class, while "c" is an instance of circumference type. 
@@ -74,14 +73,21 @@ Other geompy classes which can be used for geometrical drawings are
 
 `parabola()`
 
-`ellipse()`
+`ellipse()` (still to be further improved!)
 
-`hyperbole()`
+`hyperbole()` (still to be developed!)
 
 `function()`
 
 `triangle()`
 
+For each one of these classes there are attributes which define plot specifications. As an example, by typing
+
+
+`c.radius = 4`
+
+
+the .radius attribute of a circumference type instance is being modified simultaneously with the circumference plot.
 
 Some of these attributes are the some for all types of instance, while others are specific of that type. To view a comprehensive list of attributes that can be modified, simply type:
 
