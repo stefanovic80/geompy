@@ -122,13 +122,6 @@ the .color attribute can be choosen from the following list
 
 This flexibility extends to drawing and managing all other geometrical loci which are available as geompy classes and can be found from the list of ipython variables
 
-`who`
- 
-
-
-![Alt Text](pictures/who.png)
-
-
 
 
 # Change geometrical loci parameters
@@ -341,7 +334,7 @@ set the number of minor steps in between two adjacent major steps to 20
 As a further example, say you want to draw a circumference.
 Firstly define a circumference type instance which I suggest you to call 'C1' as follows
 
-`c1 = circumference()`
+`c = circumference()`
 
 
 ![Alt Text](pictures/circumferenceDrawn.png)
@@ -350,27 +343,27 @@ Firstly define a circumference type instance which I suggest you to call 'C1' as
 by typing 
 
 
-Now you want to see detalils of "C1" instance. By typing
+Now you want to see details of "c" instance. By typing
 
 
-`print(c1)`
+`print(c)`
 
-all C1 details are available
+all c details are available
 
 ![Alt Text](pictures/print_C1_screenshot.png)
 
 here how to change its attributes
 
 
-`c1.color = 'red'`
+`c.color = 'red'`
 
 or simply
 
-`c1.color = 'r'`
+`c.color = 'r'`
 
 Once the attribute is going to be changed, than use again the "draw" method
 
-`c1.name = "c1"`
+`c.name = "c1"`
 
 ![Alt Text](pictures/changeColor.png)
 
@@ -382,14 +375,14 @@ Once the attribute is going to be changed, than use again the "draw" method
 In the some way you can change the radius size or you can add a name 
 
 
-`c1.radius = 4`
+`c.radius = 4`
 
-`c1.name = "first circumference"`
+`c.name = "first circumference"`
 
 "center" is an instance of point class which is conteined into C1 instance. This means that typing
 
 
-`print(c1.center)`
+`print(c.center)`
 
 You gonna have a list of all Attributes, methods and settings related to the C1.center instance
 
@@ -400,9 +393,9 @@ You gonna have a list of all Attributes, methods and settings related to the C1.
 
 you can change the center coordinates by typing
 
-`c1.center = point(2, 5)`
+`c.center = point(2, 5)`
 
-`c1.name = "c1"`
+`c.name = "c"`
 
 
 ![Alt Text](pictures/circumferenceDraw2.png)
@@ -410,15 +403,15 @@ you can change the center coordinates by typing
 
 # Change color
 
-Say you have drawn a circumference by using a "circunference method" named "c1". To change it's color to red type this
+Say you have drawn a circumference by using a "circunference method" named "c". To change it's color to red type this
 
-`c1.color = "red"`
+`c.color = "red"`
 
 ![Alt Text](pictures/circumferenceDrawRed.png)
 
 to change to "black" type
 
-`c1.color = 'black'`
+`c.color = 'black'`
 
 
 
