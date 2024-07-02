@@ -230,6 +230,17 @@ Draw a circumference/parabola passing through three points:
 ![Alt Text](pictures/circumferenceThroughA_B_C.png)
 
 
+# Line tangent to a circumference and passing through a given point
+
+
+`P = point(8, 2)`
+
+
+`t1 = c1.tangent(P)`
+
+`t2 = c1.tangent(P)`
+
+![Alt Text](pictures/linesTangent.png)
 
 # Cut Off data
 
