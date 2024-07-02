@@ -365,15 +365,36 @@ all poits with x values after 2 are removed
 
 
 
+# Arcs drawing
+
+The arc class takes two lines as argument
 
 
 
+`l0 = line()`
+
+`l1 = line()`
+
+`l0.m = 1`
+
+`l0.m = -1.2`
+
+`l0.q = -.5`
+
+`l1.q = -2.2`
+
+`alpha = arc(l0, l1)`
+
+`alpha.size`
+
+![Alt Text](pictures/angle0.png)
+
+by typing
+
+`alpha.draw()`
 
 
-
-
-
-
+![Alt Text](pictures/angle1.png)
 
 # Plot settings
 
