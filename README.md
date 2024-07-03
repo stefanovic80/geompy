@@ -66,32 +66,12 @@ Should you need your "c" circumference centered at P(1, 2) and having a thin lin
 
 `c.linewidth = 1`
 
- 
 
-
-Other geompy classes which can be used for geometrical drawings are
-
-
-`point()`
-
-`line()`
-
-`parabola()`
-
-`ellipse()` (still to be further improved!)
-
-`hyperbole()` (still to be developed!)
-
-`function()`
-
-`triangle()`
-
-`arc()`
 
 
 # Draw a point
 
-As further examples you can generate two points and a line by typing 
+As further examples you can generate two points and a line by typing
 
 
 `A = point() #random coordinates`
@@ -127,6 +107,45 @@ the .click method, allows the user to manually select the point with the mouse. 
 `P.click("P")`
 
 
+# Geometrical loci classes and attributes managing 
+
+Here a comprensive list of all classes available in geompy
+
+
+`point()`
+
+`line()`
+
+`parabola()`
+
+`ellipse()` (still to be further improved!)
+
+`hyperbole()` (still to be developed!)
+
+`function()`
+
+`triangle()`
+
+`arc()`
+
+and here some examples about how they can be used
+
+
+`A = point(-8, 1)`
+`A.name = 'A'`
+`l = line()`
+`l.name = 'l'`
+`p = parabola()`
+`p.vertex = point(0, 1)`
+`f = function()`
+`f.y = x**3/(x+1)`
+`f.name = 'f'`
+`t = triangle()`
+
+
+
+
+![Alt Text](pictures/comprensive.png)
 
 
 
@@ -137,7 +156,6 @@ the .click method, allows the user to manually select the point with the mouse. 
 
 
 
-# Managing attributes
 
 
 
