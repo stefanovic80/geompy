@@ -316,51 +316,8 @@ This flexibility extends to drawing and managing all other geometrical loci whic
 
 
 
-# Change geometrical loci parameters
+# Data visualization 
 
-
-Explore the following examples:
-
-
-### - [point](#draw-a-point)
-
-`P = point()`
-
-`P.y = -5`
-
-### - [circumference](#draw-a-random-circumference)
-
-`c = circumference()`
-
-`c.linewidth = 1`
-
-### - [ellipse] (#draw-a-random-ellipse)
-
-`el = ellipse()`
-
-### - [line](#draw-a-random-straight-line)
-
-`l = line()`
-
-`l.m = -1.4`
-
-### - [parabola](#draw-a-random-parabola)
-
-`p = parabola()`
-
-`p.vertex = point(0, 0)`
-
-
-
-
-
-![Alt Text](pictures/parabola_vertex00.png)
-
-
-
-
-
-# Data visualization
 
 - A numbered list of all points coordinates calculated into c instance
 
@@ -374,6 +331,24 @@ Explore the following examples:
 - A list of all y values calculated into c instance
 
 `c.y`
+
+
+
+Explore the following examples:
+
+
+### - [parabola](#draw-a-random-parabola)
+
+`p = parabola()`
+
+`p.vertex = point(0, 0)`
+
+
+
+
+
+![Alt Text](pictures/parabola_vertex00.png)
+
 
 
 # Parabola/circumference passing through three points
