@@ -91,17 +91,115 @@ where "l.m" and "l.q" are the angular coefficient and the intercept respectively
 
 
 
-- A random point among the ones of the "c" geometrical locus
+- Select randomly a point among the ones of the "c" geometrical locus
 
 `P = point(c)`
 
 
-- Choose point with mouse:
+- Choose a point by mouse click:
 
 the .click method, allows the user to manually select the point with the mouse. It has to be called two times:
 
 
 `P.click("P")`
+
+
+
+
+
+
+
+
+
+
+**Draw a line from angular coefficient "m" and intercept "q"**
+
+
+`l1 = line()`
+
+`l1.m = 1`
+
+`l1.q = -2`
+
+`l1.name = "l1"`
+
+
+
+![Alt Text](pictures/lineDraw_m_q.png)
+
+**Draw a line passing through two different point: A and B respectively**
+
+
+`A = point(3, 4)`
+
+`A.name = 'A'`
+
+`B = point(-2, 1)`
+
+
+`l2 = line()`
+
+`l2.name = "l2"`
+
+
+`l2.points = A`
+
+`l2.points = B`
+
+
+`l2.name = "l2"`
+
+![Alt Text](pictures/line_through_A_B.png)
+
+**Draw a line passing through one point, say point A, and having a specific angular coefficient "m"**
+
+
+`l3 = lines()`
+
+`l3.points = A`
+
+`l3.m = -1`
+
+`l3.name = "l3"`
+
+![Alt Text](pictures/line_through_A_m.png)
+
+**Draw a line passing through one point, say point A, and having a specific y-intercept "q"**
+
+`l4 = line()`
+
+`l4.points = A`
+
+`l4.q = -1`
+
+`l4.name = "l4"`
+
+
+![Alt Text](pictures/line_through_A_q.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Geometrical loci classes and attributes managing 
@@ -482,54 +580,8 @@ Let say you need to adjust limits of X only coordinate or Y only coordinate.
 
 ![Alt Text](pictures/parabolaRotated.png)
 
-# Draw a line
-
-**Draw a line from angular coefficient and intercept**
 
 
-`l1.m = 1`
-
-`l1.q = 10`
-
-`l1.name = "l1"`
-
-
-**Draw a line passing through two different point: A and B respectively**
-
-
-`A = point(3, 6)`
-
-`B = point(-2, 1)`
-
-`l1.points = A`
-
-`l1.points = B`
-
-
-
-**Draw a line passing through one point, say point A, and having a specific angular coefficient**
-
-`A = point(3, 6)`
-
-`l1.points = A`
-
-`l1.m = -1`
-
-`l1.name = "s1"`
-
-**Draw a line passing through one point, say point A, and having a specific y-intercept**
-
-`A = point(3, 6)`
-
-`l1.points = A`
-
-`l1.q = -1`
-
-`l1.name = "s1"`
-
-
-
-![Alt Text](pictures/straightLine2.png)
 
 
 # Draw a (random) circumference
