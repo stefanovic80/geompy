@@ -463,6 +463,25 @@ Let say you need to adjust limits of X only coordinate or Y only coordinate.
 ![Alt Text](pictures/log.png)
 
 
+# Rotation
+
+
+`p = parabola()`
+
+`p.concavity = -1.2`
+
+`p.vertex = point(0, 1)`
+
+`A = point(4, 2)`
+
+`A.name = 'A'`
+
+![Alt Text](pictures/parabolaToBeRotated.png)
+
+`A.rotation(p, angle = -pi/3)`
+
+![Alt Text](pictures/parabolaRotated.png)
+
 # Draw a line
 
 **Draw a line from angular coefficient and intercept**
