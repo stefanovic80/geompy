@@ -66,7 +66,7 @@ the .radius attribute of the "c" instance is being modified. Should you need you
 
 
 
-# Draw a point
+# Draw points and lines
 
 As further examples you can generate two points and a line by typing
 
