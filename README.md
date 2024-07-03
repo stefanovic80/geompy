@@ -476,7 +476,7 @@ Let say you need to adjust limits of X only coordinate or Y only coordinate.
 
 `A.name = 'A'`
 
-![Alt Text](pictures/parabolaToBeRotated.png)
+![Alt Text](pictures/parabola_toBeRotated.png)
 
 `A.rotation(p, angle = -pi/3)`
 
