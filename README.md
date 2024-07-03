@@ -56,10 +56,7 @@ by typing
 `c.radius = 4`
 
 
-the .radius attribute of the "c" instance is being modified.
-
-
-Should you need your "c" circumference centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
+the .radius attribute of the "c" instance is being modified. Should you need your "c" circumference centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
 
 
 `c.center = point(1, 2)`
