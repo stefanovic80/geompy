@@ -44,7 +44,7 @@ After loading geompy into IPython, let's consider drawing a circumference. You c
 
 `c = circumference()`
 
-Here "c" is a python variable, simultaneously a circumference with random center coordinates and random radius value is drawn in the plot window.
+Here "c" is a python variable, simultaneously a circumference with random center coordinates and a random radius value is drawn in the plot window.
 
 
 ![Alt Text](pictures/circumference.png)
@@ -88,10 +88,15 @@ Other geompy classes which can be used for geometrical drawings are
 
 `arc()`
 
-As a further example you can generate a point or a line by typing 
+
+# Draw a point
+
+As further examples you can generate two points and a line by typing 
 
 
-`A = point(3, 4)`
+`A = point() #random coordinates`
+
+`B = point(3, 4)`
 
 `l = line()`
 
@@ -105,6 +110,38 @@ and you can modify them by typing
 `l.q = 1.2`
 
 where "l.m" and "l.q" are the angular coefficient and the intercept respectively.
+
+
+
+
+- A random point among the ones of the "c" geometrical locus
+
+`P = point(c)`
+
+
+- Choose point with mouse:
+
+the .click method, allows the user to manually select the point with the mouse. It has to be called two times:
+
+
+`P.click("P")`
+
+
+
+
+
+
+
+
+
+
+
+
+# Managing attributes
+
+
+
+
 
 
 
@@ -150,46 +187,6 @@ the .color attribute can be choosen from the following list
 
 
 This flexibility extends to drawing and managing all other geometrical loci which are available as geompy classes and can be found from the list of ipython variables
-
-
-# Draw a point
-
-
-- Random point (no arguments passed within the parentheses)
-
-`A = point()`
-
-- A specific point, sai A(3; -9)
-
-`A = point(3, -9)`
-
-- Change coordinates to (1; 7)
-
-`A.x = 1`
-
-`A.y = 7`
-
-
-- A random point among the ones of the "c" geometrical locus
-
-`P = point(c)`
-
-
-- Choose point with mouse:
-
-the .click method, allows the user to manually select the point with the mouse. It has to be called two times:
-
-
-`P.click("P")`
-
-
-
-
-
-
-
-
-
 
 
 
