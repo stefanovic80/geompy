@@ -536,6 +536,24 @@ Let say you need to adjust limits of X only coordinate or Y only coordinate.
 ![Alt Text](pictures/log.png)
 
 
+
+`f1.X.lower = -.1`
+
+`f1.Y.lower = -2`
+
+`f1.Y.higher = 1.2`
+
+`f1.Y.step = .5`
+
+`f1.Y.steps = 20`
+
+`f1.X.step = 1`
+
+`f1.X.steps = 20`
+
+
+![Alt Text](pictures/log_grid.png)
+
 # Rotation
 
 
