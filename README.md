@@ -132,14 +132,23 @@ and here some examples about how they can be used
 
 
 `A = point(-8, 1)`
+
 `A.name = 'A'`
+
 `l = line()`
+
 `l.name = 'l'`
+
 `p = parabola()`
+
 `p.vertex = point(0, 1)`
+
 `f = function()`
+
 `f.y = x**3/(x+1)`
+
 `f.name = 'f'`
+
 `t = triangle()`
 
 
@@ -162,8 +171,7 @@ and here some examples about how they can be used
 
 
 
-
-Some of the attributes available are the some for all types of classes (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
+Each geompy class has attributes which set it's geometrical specifications. Some of these attributes available are the some for all types of classes (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
 
 `print(c)`
 
