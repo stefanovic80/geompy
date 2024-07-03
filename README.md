@@ -40,27 +40,26 @@ If everything works fine, than jump over next section. In case of any error mess
 # Usage
 
 
-After loading geompy into IPython, let's consider drawing a circumference. You can create an instance, labeled "c", by typing:
+After loading geompy into IPython, let's consider drawing a circumference. You can create a "circumference" type instance, labeled "c", by typing:
 
 `c = circumference()`
 
-
-This will display a circumference with random center coordinates and random radius value in the plot window.
+Here "c" is a python variable, simultaneously a circumference with random center coordinates and random radius value is drawn in the plot window.
 
 
 ![Alt Text](pictures/circumference.png)
 
 
-As an example, by typing
+by typing
 
 
 `c.radius = 4`
 
 
-the .radius attribute of the "c" instance is being modified simultaneously with the circumference plot.
+the .radius attribute of the "c" instance is being modified.
 
 
-Here "c" is a python variable, specifically a "circumference" class instance. Should you need your "c" circumference centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
+Should you need your "c" circumference centered at P(1, 2) and having a thin line width, than you can modify its corrispective attributes accordingly:
 
 
 `c.center = point(1, 2)`
@@ -89,21 +88,29 @@ Other geompy classes which can be used for geometrical drawings are
 
 `arc()`
 
-Hence you can generate a point or a line by typing 
+As a further example you can generate a point or a line by typing 
 
 
 `A = point(3, 4)`
 
 `l = line()`
 
+and you can modify them by typing
+
+
+`A.x = -2`
+
+`l.m = -1`
+
+`l.q = 1.2`
+
+where "l.m" and "l.q" are the angular coefficient and the intercept respectively.
+
+
+
 Some of the attributes available are the some for all types of classes (such as .color or .linewidth), while others are specific of the type of geometrical locus (such as .radius and .center). To view a comprehensive list of attributes that can be modified, simply type:
 
 `print(c)`
-
-
-
-
-
 
 
 
