@@ -26,7 +26,8 @@ class circumference(dataExplore):
         self.k = 0
         if draw == True:
             self.draw()
-       
+            self._points_generator(3)
+
         self.a = None
         self.b = None
         self.c = None
@@ -160,9 +161,6 @@ class circumference(dataExplore):
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
         
-
-        #self._points[0] = random.choice(self.points)
-        #self._points[1] = random.choice(self.points)
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
         x2 = self._points[2].coords[0]

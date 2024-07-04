@@ -47,7 +47,7 @@ class plotSett():
 
         self.rotate = False
         self._name = None
-        self._points = []
+        self._points = [None, None, None]
 
         self._step = 2
         self._stepx = 2
@@ -56,7 +56,8 @@ class plotSett():
         self._steps = 10
         self._stepsx = 10
         self._stepsy = 10
-
+        
+        self.p = 0
         self.j = 0
         self.k = 0        
         self.lines = []
@@ -338,7 +339,7 @@ class plotSett():
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
-        self._points_generator()
+        #self._points_generator(3)
         #to check!
         self.lines = []
         self.lines.append(line)

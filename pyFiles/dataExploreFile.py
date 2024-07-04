@@ -24,20 +24,23 @@ class dataExplore(plotSett):
     @points.setter
     def points(self, value):
         #self.erase()
-        self._points = self._points[1:] + [ value ]
+        k = (self.p+2)%3
+        self.p += 1
+        self._points[k] =  value
+        #value.name = str(k)#to check workability
         try:
             self.draw()
         except:
             pass
 
     
-    def _points_generator(self):
+    def _points_generator(self, degreesOfFreedom):
         #self._points = [None, None, None]
-        for j in range(3):
+        for j in range(degreesOfFreedom - 1):
             random_idx = random.randint(0, len(self.data[0]) -1)
             x = self.data[0][random_idx]
             y = self.data[1][random_idx]
-            self._points = self._points + [point(x, y, draw = False)]
+            self._points[j] = point(x, y, draw = False)
 
 
     @property
