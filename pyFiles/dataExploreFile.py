@@ -24,7 +24,8 @@ class dataExplore(plotSett):
     @points.setter
     def points(self, value):
         #self.erase()
-        k = (self.p+2)%3
+        q = self.degreesOfFreedom
+        k = (self.p+q-1)%q
         self.p += 1
         self._points[k] =  value
         #value.name = str(k)#to check workability
@@ -34,9 +35,10 @@ class dataExplore(plotSett):
             pass
 
     
-    def _points_generator(self, degreesOfFreedom):
+    def _points_generator(self):
         #self._points = [None, None, None]
-        for j in range(degreesOfFreedom - 1):
+        self._points = [None for u in range(self.degreesOfFreedom)]
+        for j in range(self.degreesOfFreedom - 1):
             random_idx = random.randint(0, len(self.data[0]) -1)
             x = self.data[0][random_idx]
             y = self.data[1][random_idx]

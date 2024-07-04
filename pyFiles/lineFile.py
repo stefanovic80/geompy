@@ -22,9 +22,14 @@ class line(dataExplore):
         self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
-
+        self.degreesOfFreedom = 2
         if draw == True:
             self.draw()
+            #a = self.degreesOfFreedom
+            self._points_generator()
+
+
+    
 
 
     @property
@@ -109,6 +114,7 @@ class line(dataExplore):
     def chooseCalc(self):
         self.__del__()
         calculation_functions = [self.calc2, self.calc1, self.calc3, self.calc4]
+        #calculation_functions = [self.calc3, self.calc1, self.calc2, self.calc4]
         
         for calc_function in calculation_functions:
             if self.rotate == False:

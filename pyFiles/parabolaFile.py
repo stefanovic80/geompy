@@ -21,10 +21,11 @@ class parabola(dataExplore):
         self.j = 0
         self._color = random.choice(self.colors)
 
-
+        self.degreesOfFreedom = 3
         if draw == True:
             self.draw()
-
+            #a = self.degreesOfFreedom
+            self._points_generator()
     @property
     def concavity(self):
         return self.a
@@ -137,7 +138,7 @@ class parabola(dataExplore):
     def chooseCalc(self):
         self.__del__()
 
-        calculation_functions = [self.calc, self.calc1, self.calc2]#, self.calc3]
+        calculation_functions = [self.calc2, self.calc1, self.calc]#, self.calc3]
 
         for calc_function in calculation_functions:
             if self.rotate == False:

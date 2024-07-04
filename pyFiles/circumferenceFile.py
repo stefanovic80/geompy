@@ -24,14 +24,16 @@ class circumference(dataExplore):
         self._center._color = self._color 
         self.j = 0
         self.k = 0
+        self.degreesOfFreedom = 3
         if draw == True:
             self.draw()
-            self._points_generator(3)
+            #a = self.degreesOfFreedom
+            self._points_generator()
 
         self.a = None
         self.b = None
         self.c = None
-
+        #self.degreesOfFreedom = 3
 
     @property
     def angle(self):
@@ -60,6 +62,10 @@ class circumference(dataExplore):
     @center.setter
     def center(self, point):
         self._center = point
+
+        idx = (self.p+2)%3
+        self._points[idx] = None
+        
         self.chooseCalc()
         self.name = self._name
 
@@ -70,6 +76,9 @@ class circumference(dataExplore):
     @radius.setter
     def radius(self, r):
         self._radius = r
+
+        idx = (self.p+2)%3
+        self._points[idx] = None
         self.chooseCalc()
         self.name = self._name
 
