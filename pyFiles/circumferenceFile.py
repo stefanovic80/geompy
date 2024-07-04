@@ -160,6 +160,9 @@ class circumference(dataExplore):
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
         
+
+        #self._points[0] = random.choice(self.points)
+        #self._points[1] = random.choice(self.points)
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
         x2 = self._points[2].coords[0]
@@ -208,13 +211,14 @@ class circumference(dataExplore):
         self.__del__()
 
         self._angle = angle
-        calculation_functions = [self.calc, self.calc2, self.calc3]
+        calculation_functions = [self.calc2, self.calc, self.calc3]
 
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
                     self.lims()
                     calc_function(angle = angle)
+
                     break
                 except:
                     pass

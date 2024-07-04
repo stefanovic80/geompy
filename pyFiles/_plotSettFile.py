@@ -338,6 +338,7 @@ class plotSett():
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         
+        self._points_generator()
         #to check!
         self.lines = []
         self.lines.append(line)

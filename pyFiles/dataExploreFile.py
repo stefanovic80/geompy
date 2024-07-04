@@ -1,4 +1,4 @@
-#dataExploreFile
+#dataExplore#File
 from . import plt, np, random
 from . import seed
 from .Settings import settings
@@ -23,12 +23,21 @@ class dataExplore(plotSett):
 
     @points.setter
     def points(self, value):
-        self.erase()
-        self._points = self._points + [ value ]
+        #self.erase()
+        self._points = self._points[1:] + [ value ]
         try:
             self.draw()
         except:
             pass
+
+    
+    def _points_generator(self):
+        #self._points = [None, None, None]
+        for j in range(3):
+            random_idx = random.randint(0, len(self.data[0]) -1)
+            x = self.data[0][random_idx]
+            y = self.data[1][random_idx]
+            self._points = self._points + [point(x, y, draw = False)]
 
 
     @property
