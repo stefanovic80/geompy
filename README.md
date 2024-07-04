@@ -88,7 +88,7 @@ As further examples you can generate two points and a line by typing
 `l = line()`
 
 
-![Alt Text](pictures/pointsAndSegements.png)
+![Alt Text](pictures/pointsAndSegments.png)
 
 and you can modify them by typing
 
