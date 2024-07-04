@@ -13,11 +13,16 @@ class segment(dataExplore):
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
 
         super().__init__()
-        
+         
+        _color = random.choice(self.colors)
         if point0 is None:
             point0 = point()
+            point0.color = _color
+
         if point1 is None:
             point1 = point()
+            point1.color = _color
+
         self.seed = seed
         self._color = random.choice(self.colors)
         
