@@ -6,6 +6,7 @@ from .pyFiles.pointFile import point
 from .pyFiles.circumferenceFile import circumference
 from .pyFiles.ellipseFile import ellipse
 from .pyFiles.lineFile import line
+from .pyFiles.segmentFile import segment
 from .pyFiles.parabolaFile import parabola
 from .pyFiles.functionFile import function
 from .pyFiles.functionFile import x
