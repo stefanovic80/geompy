@@ -66,16 +66,29 @@ the .radius attribute of the "c" instance is being modified. Should you need you
 
 
 
-# Draw points and lines
+# Draw points, segments and lines
 
 As further examples you can generate two points and a line by typing
 
 
 `A = point() #random coordinates`
 
+`A.name = "A"`
+
+`s1 = segment() #random segment`
+
+`B = point(3, 4)`
+
+`B.name = "B"`
+
+`s2 = segment(A, B) #segment with A and B as endpoints`
+
 `B = point(3, 4)`
 
 `l = line()`
+
+
+![Alt Text](pictures/pointsAndSegements.png)
 
 and you can modify them by typing
 
@@ -210,6 +223,8 @@ Here a comprensive list of all classes available in geompy
 `point()`
 
 `line()`
+
+`segment()`
 
 `parabola()`
 

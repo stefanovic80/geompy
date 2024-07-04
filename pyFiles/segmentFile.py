@@ -10,10 +10,14 @@ from .pointFile import point
 from .dataExploreFile import dataExplore
 
 class segment(dataExplore):
-    def __init__(self, point0 = point(), point1 = point(), seed = seed, draw = True):
-        
+    def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
+
         super().__init__()
         
+        if point0 is None:
+            point0 = point()
+        if point1 is None:
+            point1 = point()
         self.seed = seed
         self._color = random.choice(self.colors)
         
