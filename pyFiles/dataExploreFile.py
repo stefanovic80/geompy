@@ -23,12 +23,10 @@ class dataExplore(plotSett):
 
     @points.setter
     def points(self, value):
-        #self.erase()
-        q = self.degreesOfFreedom
-        k = (self.p+q-1)%q
+        dof = self.degreesOfFreedom
+        k = (self.p+dof-1)%dof
         self.p += 1
         self._params[k] =  value
-        #value.name = str(k)#to check workability
         try:
             self.draw()
         except:
