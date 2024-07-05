@@ -130,8 +130,21 @@ class line(dataExplore):
         self.__del__()
         #calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
         #self.point_m()
+
+
+        if 'm' in self._params.keys() and 'q' in self._params.keys():
+            self.m_q()
+        elif 'm' in self._params.keys() and 'point' in self._params.keys():
+            self.point_m()
+        elif 'q' in self._params.keys() and 'point' in self._params.keys():
+            self.point_q()
+        elif 'point' in self._params.keys():
+            self.point_point()
+        else:
+            print("Nessuna condizione soddisfatta.")
         
-        if ('m' or 'q') in self._params.keys():
+        """ 
+        if ('m' or 'q')  in self._params.keys()):
             self.m_q()
         elif ('m' or 'point') in self._params.keys():
             self.point_m()
@@ -139,18 +152,6 @@ class line(dataExplore):
             self.point_q()
         elif ('point' or 'point') in self._params.keys():
             self.point_point()
-        else:
-            print("that's not working!")   
-
-        """
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
         """
     @property
     def dataGroup(self):
