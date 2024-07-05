@@ -88,8 +88,8 @@ class line(dataExplore):
 
     def point_point(self): #calculate equation from two points
 
-        x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
-        x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
+        x0, y0 = self._params[0].coords[0], self._params[0].coords[1]
+        x1, y1 = self._params[1].coords[0], self._params[1].coords[1]
         
         self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
 
@@ -98,7 +98,7 @@ class line(dataExplore):
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
             
-            lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
+            lims = [ self._params[0].coords[j], self._params[1].coords[j] ]
             lims.sort()
             settings.xmin = lims[0]
             settings.xmax = lims[1]
@@ -112,7 +112,7 @@ class line(dataExplore):
 
     def point_m(self): #calculate equation from 1 point and angCoeff
         j = 0
-        x0, y0 = self._params['point'].coords[0], self._params['point'].coords[1]
+        x0, y0 = self._params[self.pp].coords[0], self._params[self.pp].coords[1]
         self.intercept = -self.angCoeff*x0 + y0
         
         self.m_q()
@@ -120,7 +120,7 @@ class line(dataExplore):
     
     def point_q(self): #calculate equation from 1 point and intercept
         j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        x0, y0 = self._params[self.pp].coords[0], self._params[self.pp].coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
         
         self.m_q()
@@ -134,25 +134,15 @@ class line(dataExplore):
 
         if 'm' in self._params.keys() and 'q' in self._params.keys():
             self.m_q()
-        elif 'm' in self._params.keys() and 'point' in self._params.keys():
+            #elif 'm' in self._params.keys() and 'point' in self._params.keys():
+        elif 'm' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):# in self._params.keys():
             self.point_m()
-        elif 'q' in self._params.keys() and 'point' in self._params.keys():
+        elif 'q' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):#'point' in self._params.keys():
             self.point_q()
-        elif 'point' in self._params.keys():
+        else:# 'point' in sel._params.keys() and 'm' not in self._params.keys() and 'q' not in self._params.keys():
             self.point_point()
-        else:
-            print("Nessuna condizione soddisfatta.")
         
-        """ 
-        if ('m' or 'q')  in self._params.keys()):
-            self.m_q()
-        elif ('m' or 'point') in self._params.keys():
-            self.point_m()
-        elif ('q' or 'point') in self._params.keys():
-            self.point_q()
-        elif ('point' or 'point') in self._params.keys():
-            self.point_point()
-        """
+        
     @property
     def dataGroup(self):
         return self.data + self.labCoords
