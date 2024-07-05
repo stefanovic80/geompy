@@ -26,7 +26,8 @@ class dataExplore(plotSett):
         dof = self.degreesOfFreedom
         k = (self.p+dof-1)%dof
         self.p += 1
-        del self._params[k]
+        keys = list( self._params.keys())
+        del self._params[keys[-1]]
         self._params['point'] = value
         try:
             self.draw()

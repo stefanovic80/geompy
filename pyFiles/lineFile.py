@@ -20,11 +20,17 @@ class line(dataExplore):
         #values to calculate straight line data (self.data[1])
         angle = random.uniform(0, np.pi)
         self.angle = angle
+    
+        
         self.angCoeff =  np.tan(angle)
+        self._params['m'] = np.tan(angle)
+        
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
+        self._params['q'] = self.intercept
+
         self.degreesOfFreedom = 2
-        #if draw == True:
-            #self.draw()
+        if draw == True:
+            self.draw()
             #self._params_generator()
 
 
@@ -74,13 +80,13 @@ class line(dataExplore):
         return point(x, y)
 
 
-    def calc1(self): #calculate equation from angCoeff and intercept
+    def m_q(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         self.angle = np.arctan(self.angCoeff)
         
 
-    def calc2(self): #calculate equation from two points
+    def point_point(self): #calculate equation from two points
 
         x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
         x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
@@ -97,27 +103,27 @@ class line(dataExplore):
             settings.xmin = lims[0]
             settings.xmax = lims[1]
             
-            self.calc1()
+            self.m_q()
         else:
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._y ]
 
 
-    def calc3(self): #calculate equation from 1 point and angCoeff
+    def point_m(self): #calculate equation from 1 point and angCoeff
         j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        x0, y0 = self._params['point'].coords[0], self._params['point'].coords[1]
         self.intercept = -self.angCoeff*x0 + y0
         
-        self.calc1()
+        self.m_q()
     
     
-    def calc4(self): #calculate equation from 1 point and intercept
+    def point_q(self): #calculate equation from 1 point and intercept
         j = 0
         x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
         
-        self.calc1()
+        self.m_q()
     
 
     def chooseCalc(self):
@@ -125,13 +131,13 @@ class line(dataExplore):
         #calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
         
         if ('m' or 'q') in self._params.keys():
-            self.calc1()
+            self.m_q()
         elif ('m' or 'point') in self._params.keys():
-            self.calc3()
+            self.point_m()
         elif ('q' or 'point') in self._params.keys():
-            self.calc4()
+            self.point_q()
         elif ('point' or 'point') in self._params.keys():
-            self.calc2()
+            self.point_point()
             
         """
         for calc_function in calculation_functions:
