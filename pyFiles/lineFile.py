@@ -39,6 +39,10 @@ class line(dataExplore):
 
     @m.setter
     def m(self, value):
+        
+        idx = (self.p+1)%2
+        self._points[idx] = None
+
         self.angCoeff = value
         try:
             self.draw()
@@ -113,7 +117,7 @@ class line(dataExplore):
 
     def chooseCalc(self):
         self.__del__()
-        calculation_functions = [self.calc2, self.calc1, self.calc3, self.calc4]
+        calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
         #calculation_functions = [self.calc3, self.calc1, self.calc2, self.calc4]
         
         for calc_function in calculation_functions:
