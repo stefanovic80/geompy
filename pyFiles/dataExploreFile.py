@@ -34,7 +34,6 @@ class dataExplore(plotSett):
 
     
     def _params_generator(self):
-        #self._points = [None, None, None]
         self._params = [None for u in range(self.degreesOfFreedom)]
         for j in range(self.degreesOfFreedom - 1):
             random_idx = random.randint(0, len(self.data[0]) -1)
