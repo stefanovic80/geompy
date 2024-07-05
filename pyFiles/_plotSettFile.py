@@ -47,7 +47,9 @@ class plotSett():
 
         self.rotate = False
         self._name = None
+        #may be deprecated
         self._points = None#[None, None, None]
+        self._params = None
 
         self._step = 2
         self._stepx = 2

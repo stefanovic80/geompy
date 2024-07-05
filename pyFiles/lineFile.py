@@ -26,7 +26,7 @@ class line(dataExplore):
         if draw == True:
             self.draw()
             #a = self.degreesOfFreedom
-            self._points_generator()
+            self._params_generator()
 
 
     

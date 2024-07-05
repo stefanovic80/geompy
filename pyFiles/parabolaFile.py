@@ -24,8 +24,7 @@ class parabola(dataExplore):
         self.degreesOfFreedom = 3
         if draw == True:
             self.draw()
-            #a = self.degreesOfFreedom
-            self._points_generator()
+            self._params_generator()
     @property
     def concavity(self):
         return self.a
