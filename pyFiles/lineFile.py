@@ -23,10 +23,9 @@ class line(dataExplore):
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
         self.degreesOfFreedom = 2
-        if draw == True:
-            self.draw()
-            #a = self.degreesOfFreedom
-            self._params_generator()
+        #if draw == True:
+            #self.draw()
+            #self._params_generator()
 
 
     
@@ -41,7 +40,8 @@ class line(dataExplore):
     def m(self, value):
         
         idx = (self.p+1)%2
-        self._points[idx] = None
+        del self._params[idx]
+        self._params['m'] = value
 
         self.angCoeff = value
         try:
@@ -56,6 +56,11 @@ class line(dataExplore):
 
     @q.setter
     def q(self, value):
+
+        idx = (self.p+1)%2
+        del self._params[idx]
+        self._params['q'] = value
+
         self.intercept = value
         try:
             self.draw()
@@ -117,9 +122,18 @@ class line(dataExplore):
 
     def chooseCalc(self):
         self.__del__()
-        calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
-        #calculation_functions = [self.calc3, self.calc1, self.calc2, self.calc4]
+        #calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
         
+        if ('m' or 'q') in self._params.keys():
+            self.calc1()
+        elif ('m' or 'point') in self._params.keys():
+            self.calc3()
+        elif ('q' or 'point') in self._params.keys():
+            self.calc4()
+        elif ('point' or 'point') in self._params.keys():
+            self.calc2()
+            
+        """
         for calc_function in calculation_functions:
             if self.rotate == False:
                 try:
@@ -128,7 +142,7 @@ class line(dataExplore):
                     break
                 except:
                     pass
-    
+        """
     @property
     def dataGroup(self):
         return self.data + self.labCoords

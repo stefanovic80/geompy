@@ -26,7 +26,8 @@ class dataExplore(plotSett):
         dof = self.degreesOfFreedom
         k = (self.p+dof-1)%dof
         self.p += 1
-        self._params[k] =  value
+        del self._params[k]
+        self._params['point'] = value
         try:
             self.draw()
         except:
@@ -34,7 +35,9 @@ class dataExplore(plotSett):
 
     
     def _params_generator(self):
-        self._params = [None for u in range(self.degreesOfFreedom)]
+        #self._params = [None for u in range(self.degreesOfFreedom)]
+        for k in range(self.degreesOfFreedom):
+            self._params[k] = None
         for j in range(self.degreesOfFreedom - 1):
             random_idx = random.randint(0, len(self.data[0]) -1)
             x = self.data[0][random_idx]
