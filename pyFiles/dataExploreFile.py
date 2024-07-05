@@ -29,10 +29,10 @@ class dataExplore(plotSett):
         keys = list( self._params.keys())
         del self._params[keys[-1]]
         self._params['point'] = value
-        try:
-            self.draw()
-        except:
-            pass
+        #try:
+        #    self.draw()
+        #except:
+        #    pass
 
     
     def _params_generator(self):

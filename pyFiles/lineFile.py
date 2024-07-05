@@ -50,10 +50,10 @@ class line(dataExplore):
         self._params['m'] = value
 
         self.angCoeff = value
-        try:
-            self.draw()
-        except:
-            pass
+        #try:
+        #    self.draw()
+        #except:
+        #    pass
 
 
     @property
@@ -129,6 +129,7 @@ class line(dataExplore):
     def chooseCalc(self):
         self.__del__()
         #calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
+        #self.point_m()
         
         if ('m' or 'q') in self._params.keys():
             self.m_q()
@@ -138,7 +139,9 @@ class line(dataExplore):
             self.point_q()
         elif ('point' or 'point') in self._params.keys():
             self.point_point()
-            
+        else:
+            print("that's not working!")   
+
         """
         for calc_function in calculation_functions:
             if self.rotate == False:
