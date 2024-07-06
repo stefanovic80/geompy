@@ -44,16 +44,12 @@ class line(dataExplore):
 
     @m.setter
     def m(self, value):
-        
-        idx = (self.p+1)%2
+        idx = list(self._params.keys())[0]
         del self._params[idx]
+        
         self._params['m'] = value
-
         self.angCoeff = value
-        #try:
         self.draw()
-        #except:
-        #    pass
 
 
     @property
@@ -63,15 +59,12 @@ class line(dataExplore):
     @q.setter
     def q(self, value):
 
-        idx = (self.p+1)%2
+        idx = list(self._params.keys())[0]
         del self._params[idx]
         self._params['q'] = value
 
         self.intercept = value
-        #try:
         self.draw()
-        #except:
-        #    pass
 
 
     def system(self, line):

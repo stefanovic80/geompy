@@ -32,10 +32,8 @@ class dataExplore(plotSett):
         self.pp = self.nop%self.degreesOfFreedom
         self.nop += 1
         self._params[self.pp] = value
-        #try:
+        
         self.draw()
-        #except:
-        #    pass
 
     
     def _params_generator(self):
