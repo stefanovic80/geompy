@@ -33,7 +33,7 @@ class dataExplore(plotSett):
         self.nop += 1
         self._params[self.pp] = value
         #try:
-        #    self.draw()
+        self.draw()
         #except:
         #    pass
 

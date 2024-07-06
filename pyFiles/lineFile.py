@@ -51,7 +51,7 @@ class line(dataExplore):
 
         self.angCoeff = value
         #try:
-        #    self.draw()
+        self.draw()
         #except:
         #    pass
 
@@ -68,10 +68,10 @@ class line(dataExplore):
         self._params['q'] = value
 
         self.intercept = value
-        try:
-            self.draw()
-        except:
-            pass
+        #try:
+        self.draw()
+        #except:
+        #    pass
 
 
     def system(self, line):
