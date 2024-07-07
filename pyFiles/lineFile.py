@@ -44,8 +44,14 @@ class line(dataExplore):
 
     @m.setter
     def m(self, value):
-        idx = list(self._params.keys())[0]
-        del self._params[idx]
+
+        idx = list(self._params.keys())
+        if idx[0] == 'm':
+            j = 0
+        else:
+            j = 1
+        
+        del self._params[idx[j]]
         
         self._params['m'] = value
         self.angCoeff = value
@@ -61,9 +67,11 @@ class line(dataExplore):
 
         idx = list(self._params.keys())
         if idx[0] == 'q':
-            del self._params[idx[0]]
+            j = 0
         else:
-            del self._params[idx[1]]
+            j = 1
+
+        del self._params[idx[j]]
 
         self._params['q'] = value
         self.intercept = value
