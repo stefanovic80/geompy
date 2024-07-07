@@ -27,9 +27,13 @@ class dataExplore(plotSett):
         #k = (self.p+dof-1)%dof
         self.p += 1
         keys = list( self._params.keys())
-        del self._params[keys[0]]
-        
         self.pp = self.nop%self.degreesOfFreedom
+        
+        if self.pp in keys:
+            del self._params[self.pp]
+        else:
+            del self._params[keys[0]]
+        
         self.nop += 1
         self._params[self.pp] = value
         
