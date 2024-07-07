@@ -17,6 +17,10 @@ class circumference(dataExplore):
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self._center = point(draw = False)
         
+        self._params[str(0) + 'v'] = None
+        self._params['center'] = self._center
+        self._params['radius'] = self._radius
+
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
@@ -27,7 +31,7 @@ class circumference(dataExplore):
         self.degreesOfFreedom = 3
         if draw == True:
             self.draw()
-            self._params_generator()
+            #self._params_generator()
 
         self.a = None
         self.b = None
@@ -195,17 +199,30 @@ class circumference(dataExplore):
         self._center = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
         
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
-        self.calc()
+        self.center_radius()
 
     # calculate from center coordinates and a point passing through
     def center_point(self, name = None, angle = 2*np.pi):
         
-        self._points = self._params
-        for param in self._params:
+        idxs = list(self._params.keys())[1:]
+        center_idx = idxs.index('center') + 1
+        center_idx = idxs[center_idx]
+        point_idx = idxs.index(isinstance(k, int) for k in idxs)[0]
+        x1 = self._params[center_idx].coords[0]
+        y1 = self._params[center_idx].coords[1]
+
+        x0 = self._params[point_idx].coords[0]
+        y0 = self._params[point_idx].coords[1]
+        """
+        for idx in idxs:
             try:
                 #to be fixed as point can be 0, 1 or 2
-                x0 = param[0].coords[0]
-                y0 = param[0].coords[1]
+                #x0 = param[0].coords[0]
+                #y0 = param[0].coords[1]
+                
+                x1 = self._params[idx].coords[0]
+                y1 = self._params[idx].coords[1]
+
                 x1 = param['center'].coords[0]
                 y1 = param['center'].coords[1]
                 self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
@@ -217,21 +234,22 @@ class circumference(dataExplore):
                 break
             except:
                 pass
-
-        self.calc()
+        """
+        self.center_radius()
 
 
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
-
-        if 'radius' and 'center':
+        
+        params = list(self._params.keys())
+        if 'center' in params[1:] and 'radius' in params[1:]:
             self.center_radius()
-        elif 'center' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):
+        elif 'center' in params and any(isinstance(k, int) for k in params[1:] ):
             self.center_point()
-        elif all(isinstance(item, int) for item in list( self._params.keys())):# in self._params.keys():
+        elif all(isinstance(item, point) for item in list( self._params.items())):# in self._params.keys():
             self.point_point_point()
-
-
+        else:
+            print("no paramters to work with!")
 
 
 
