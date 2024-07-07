@@ -61,9 +61,13 @@ class circumference(dataExplore):
     @center.setter
     def center(self, point):
         self._center = point
+        
+        idx = list(self._params.keys())[0]
+        del self._params[idx]
 
-        idx = (self.p+2)%3
-        self._points[idx] = None
+        self._params['center'] = point
+        #idx = (self.p+2)%3
+        #self._points[idx] = None
         
         self.chooseCalc()
         self.name = self._name
@@ -76,8 +80,10 @@ class circumference(dataExplore):
     def radius(self, r):
         self._radius = r
 
-        idx = (self.p+2)%3
-        self._points[idx] = None
+        idx = list(self._params.keys())[0]
+        del self._params[idx]
+
+        self._params['radius'] = r
         self.chooseCalc()
         self.name = self._name
 
@@ -108,7 +114,7 @@ class circumference(dataExplore):
         return l
 
     #circumference equation calculation from center coordinates and radius
-    def calc(self, name = None, angle = 2*np.pi):
+    def center_radius(self, name = None, angle = 2*np.pi):
          
         data = [None, None]
 
@@ -167,16 +173,16 @@ class circumference(dataExplore):
 
         
     # calculate from three points the circumference passing through (to be fixed!)
-    def calc2(self, name = None, angle = 2*np.pi):
+    def point_point_point(self, name = None, angle = 2*np.pi):
         
-        self._points = self._params
-        x0 = self._points[0].coords[0]
-        x1 = self._points[1].coords[0]
-        x2 = self._points[2].coords[0]
+        #self._points = self._params
+        x0 = self._params[0].coords[0]
+        x1 = self._params[1].coords[0]
+        x2 = self._params[2].coords[0]
         
-        y0 = self._points[0].coords[1]
-        y1 = self._points[1].coords[1]
-        y2 = self._points[2].coords[1]
+        y0 = self._params[0].coords[1]
+        y1 = self._params[1].coords[1]
+        y2 = self._params[2].coords[1]
         
         A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ]) 
         Ainv = np.linalg.inv(A)
@@ -192,16 +198,16 @@ class circumference(dataExplore):
         self.calc()
 
     # calculate from center coordinates and a point passing through
-    def calc3(self, name = None, angle = 2*np.pi):
+    def center_point(self, name = None, angle = 2*np.pi):
         
         self._points = self._params
-        for point in self._points:
+        for param in self._params:
             try:
-                        
-                x0 = point.coords[0]
-                y0 = point.coords[1]
-                x1 = self._center.coords[0]
-                y1 = self._center.coords[1]
+                #to be fixed as point can be 0, 1 or 2
+                x0 = param[0].coords[0]
+                y0 = param[0].coords[1]
+                x1 = param['center'].coords[0]
+                y1 = param['center'].coords[1]
                 self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
                 
                 self.a = -2*x1
@@ -218,18 +224,16 @@ class circumference(dataExplore):
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
 
-        self._angle = angle
-        calculation_functions = [self.calc2, self.calc, self.calc3]
+        if 'radius' and 'center':
+            self.center_radius()
+        elif 'center' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):
+            self.center_point()
+        elif all(isinstance(item, int) for item in list( self._params.keys())):# in self._params.keys():
+            self.point_point_point()
 
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function(angle = angle)
 
-                    break
-                except:
-                    pass
+
+
 
     #to be partially inherited
     def erase(self):

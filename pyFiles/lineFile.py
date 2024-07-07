@@ -59,10 +59,13 @@ class line(dataExplore):
     @q.setter
     def q(self, value):
 
-        idx = list(self._params.keys())[0]
-        del self._params[idx]
-        self._params['q'] = value
+        idx = list(self._params.keys())
+        if idx[0] == 'q':
+            del self._params[idx[0]]
+        else:
+            del self._params[idx[1]]
 
+        self._params['q'] = value
         self.intercept = value
         self.draw()
 
@@ -121,13 +124,9 @@ class line(dataExplore):
 
     def chooseCalc(self):
         self.__del__()
-        #calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
-        #self.point_m()
-
 
         if 'm' in self._params.keys() and 'q' in self._params.keys():
             self.m_q()
-            #elif 'm' in self._params.keys() and 'point' in self._params.keys():
         elif 'm' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):# in self._params.keys():
             self.point_m()
         elif 'q' in self._params.keys() and any(isinstance(k, int) for k in self._params.keys()):#'point' in self._params.keys():
