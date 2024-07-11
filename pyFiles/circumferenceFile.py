@@ -240,11 +240,15 @@ class circumference(dataExplore):
 
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
-        
+        #point is labeled with integers
         params = list(self._params.keys())
         if 'center' in params[1:] and 'radius' in params[1:]:
             self.center_radius()
         elif 'center' in params and any(isinstance(k, int) for k in params[1:] ):
+            self.center_point()
+        elif 'radius' in params[-1:] and 'center' in params[0]:
+            self.center_radius()
+        elif isinstance(params[-1], int) and params[0] is 'center':
             self.center_point()
         elif all(isinstance(item, point) for item in list( self._params.items())):# in self._params.keys():
             self.point_point_point()
