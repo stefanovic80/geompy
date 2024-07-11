@@ -25,20 +25,25 @@ class dataExplore(plotSett):
     def points(self, value):
         dof = self.degreesOfFreedom
         self.p += 1
-        keys = list( self._params.keys())
         self.pp = self.nop%self.degreesOfFreedom
+        keys = list( self._params.keys())
         
+        
+        """
         if self.pp in keys:
             del self._params[self.pp]
         else:
             del self._params[keys[0]]
         
         self.nop += 1
-        self._params[self.pp] = value
+        """
+
+        del self._params[keys[0]]
+        self._params['point'+ str(self.pp)] = value
         
         self.draw()
 
-    
+    """
     def _params_generator(self):
         #self._params = [None for u in range(self.degreesOfFreedom)]
         for k in range(self.degreesOfFreedom):
@@ -48,7 +53,7 @@ class dataExplore(plotSett):
             x = self.data[0][random_idx]
             y = self.data[1][random_idx]
             self._params[j] = point(x, y, draw = False)
-
+    """
 
     @property
     def integral(self):

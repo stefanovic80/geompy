@@ -17,7 +17,7 @@ class circumference(dataExplore):
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self._center = point(draw = False)
         
-        self._params[str(0) + 'v'] = None
+        #self._params[str(0) + 'v'] = None
         self._params['center'] = self._center
         self._params['radius'] = self._radius
 
@@ -28,7 +28,7 @@ class circumference(dataExplore):
         self._center._color = self._color 
         self.j = 0
         self.k = 0
-        self.degreesOfFreedom = 3
+        self.degreesOfFreedom = 2
         if draw == True:
             self.draw()
             #self._params_generator()
@@ -66,8 +66,8 @@ class circumference(dataExplore):
     def center(self, point):
         self._center = point
         
-        idx = list(self._params.keys())[0]
-        del self._params[idx]
+        #idx = list(self._params.keys())[0]
+        #del self._params[idx]
 
         self._params['center'] = point
         #idx = (self.p+2)%3
@@ -84,8 +84,8 @@ class circumference(dataExplore):
     def radius(self, r):
         self._radius = r
 
-        idx = list(self._params.keys())[0]
-        del self._params[idx]
+        #idx = list(self._params.keys())[0]
+        #del self._params[idx]
 
         self._params['radius'] = r
         self.chooseCalc()
@@ -213,28 +213,7 @@ class circumference(dataExplore):
 
         x0 = self._params[point_idx].coords[0]
         y0 = self._params[point_idx].coords[1]
-        """
-        for idx in idxs:
-            try:
-                #to be fixed as point can be 0, 1 or 2
-                #x0 = param[0].coords[0]
-                #y0 = param[0].coords[1]
-                
-                x1 = self._params[idx].coords[0]
-                y1 = self._params[idx].coords[1]
-
-                x1 = param['center'].coords[0]
-                y1 = param['center'].coords[1]
-                self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
-                
-                self.a = -2*x1
-                self.b = -2*y1
-                self.c = x1**2 + y1**2 - x0**2 - y0**2
-
-                break
-            except:
-                pass
-        """
+        
         self.center_radius()
 
 
@@ -242,16 +221,12 @@ class circumference(dataExplore):
         self.__del__()
         #point is labeled with integers
         params = list(self._params.keys())
-        if 'center' in params[1:] and 'radius' in params[1:]:
+        if 'center' in params and 'radius' in params:
             self.center_radius()
-        elif 'center' in params and any(isinstance(k, int) for k in params[1:] ):
+        elif 'center' in params and 'point' in params:
             self.center_point()
-        elif 'radius' in params[-1:] and 'center' in params[0]:
-            self.center_radius()
-        elif isinstance(params[-1], int) and params[0] is 'center':
-            self.center_point()
-        elif all(isinstance(item, point) for item in list( self._params.items())):# in self._params.keys():
-            self.point_point_point()
+        #elif all(isinstance(item, point) for item in list( self._params.items())):# in self._params.keys():
+        #    self.point_point_point()
         else:
             print("no paramters to work with!")
 
