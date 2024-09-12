@@ -17,7 +17,6 @@ class circumference(dataExplore):
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self._center = point(draw = False)
         
-        #self._params[str(0) + 'v'] = None
         self._params['center'] = self._center
         self._params['radius'] = self._radius
 
@@ -31,12 +30,11 @@ class circumference(dataExplore):
         self.degreesOfFreedom = 2
         if draw == True:
             self.draw()
-            #self._params_generator()
+            self._params_generator()
 
         self.a = None
         self.b = None
         self.c = None
-        #self.degreesOfFreedom = 3
 
     @property
     def angle(self):
@@ -223,10 +221,10 @@ class circumference(dataExplore):
         params = list(self._params.keys())
         if 'center' in params and 'radius' in params:
             self.center_radius()
-        elif 'center' in params and 'point' in params:
-            self.center_point()
-        #elif all(isinstance(item, point) for item in list( self._params.items())):# in self._params.keys():
-        #    self.point_point_point()
+        #elif 'center' in params and 'point' in params:
+        #    self.center_point()
+        elif all(isinstance(item, int) for item in params):# in self._params.keys():
+            self.point_point_point()
         else:
             print("no paramters to work with!")
 

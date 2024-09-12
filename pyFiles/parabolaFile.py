@@ -14,9 +14,9 @@ class parabola(dataExplore):
         #self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
         
-        self.a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
-        self.b = None
-        self.c = None
+        self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
+        self._b = None
+        self._c = None
        
         self.j = 0
         self._color = random.choice(self.colors)
@@ -25,13 +25,41 @@ class parabola(dataExplore):
         if draw == True:
             self.draw()
             self._params_generator()
+    
+    @property
+    def a(self):
+    	return self._a
+    
+    @a.setter
+    def a(self, _a):
+    	self._a = _a
+    	self.draw()
+    
+    @property
+    def b(self):
+    	return self._b
+    
+    @b.setter
+    def b(self, _b):
+    	self._b = _b
+    	self.draw()
+    	
+    @property
+    def c(self):
+    	return self._c
+    
+    @c.setter
+    def c(self, _c):
+    	self._c = _c
+    	self.draw()
+    
     @property
     def concavity(self):
-        return self.a
+        return self._a
 
     @concavity.setter
     def concavity(self, value):
-        self.a = value
+        self._a = value
         self.chooseCalc()
         self.onlyDraw()
 
@@ -61,21 +89,21 @@ class parabola(dataExplore):
         labely = data[1][random_index] + shift
         #--------------------
 
-        if self.b > 0:
+        if self._b > 0:
             signb = '+'
-        elif self.b <0:
+        elif self._b <0:
             signb = '-'
 
-        if self.c > 0:
+        if self._c > 0:
             signc = '+'
-        elif self.c <0:
+        elif self._c <0:
             signc = '-'
 
 
 
-        a = str(round(self.a, 2))
-        b = str(abs(round(self.b, 2)))
-        c = str(abs(round(self.c, 2)))
+        a = str(round(self._a, 2))
+        b = str(abs(round(self._b, 2)))
+        c = str(abs(round(self._c, 2)))
         eq = "y = " + a + r"$x^2$" + signb + b + "x" + signc + c
         try:
             eq = self._name + ": " + eq
@@ -93,14 +121,14 @@ class parabola(dataExplore):
         
         #self._points = [] may have to be moved into _plotSett
         self._vertex = None
-        self.a = None
+        self._a = None
         self.data = [None, None]
 
 
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+        self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
 
 
     # calculate from three points the parabola passing through (to be fixed!)
@@ -118,18 +146,18 @@ class parabola(dataExplore):
         y = np.array( [ y0  , y1  , y2 ] )#.reshape(-1, 1)
         parabParams = np.dot(Ainv, y)
         
-        self.a = parabParams[0, 0]
-        self.b = parabParams[0, 1]
-        self.c = parabParams[0, 2]
+        self._a = parabParams[0, 0]
+        self._b = parabParams[0, 1]
+        self._c = parabParams[0, 2]
         
         self.calc1() 
     
     #what is this?
     def calc1(self, name = None):
 
-        Delta = self.b**2 - 4*self.a*self.c
-        self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a),  draw = False )
-        #self.concavity = self.a
+        Delta = self._b**2 - 4*self._a*self._c
+        self._vertex = point( -self._b/(2*self._a)  , -Delta/(4*self._a),  draw = False )
+        #self.concavity = self._a
         self.calc()
 
 
@@ -158,7 +186,7 @@ class parabola(dataExplore):
             f"\nAttributes:\n"
             f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
             f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
-            f"\033[93m.concavity = \033[0m {self.a}\n"
+            f"\033[93m.concavity = \033[0m {self._a}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
             #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
