@@ -40,12 +40,15 @@ class line(dataExplore):
     @m.setter
     def m(self, value):
         
-        idx = (self.p+1)%2
-        self._points[idx] = None
-
+        #idx = (self.p+1)%2
+        #self._points[idx] = None
+        #self.angCoeff = value
         self.angCoeff = value
         try:
-            self.draw()
+            self.__del__()
+            self.calc1()
+            self.onlyDraw()
+            #self.draw()
         except:
             pass
 
@@ -58,6 +61,8 @@ class line(dataExplore):
     def q(self, value):
         self.intercept = value
         try:
+            #self.calc3()
+            #self.onlyDraw()
             self.draw()
         except:
             pass
