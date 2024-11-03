@@ -124,22 +124,30 @@ class line(dataExplore):
 
     def draw(self):
         self.__del__()
+
+        prefix = 'point'
+
+        result = next(( (k, v) for k, v in self.params.items() if k.startswith(prefix)), None)
+        
+        if result is not None:
+            key, point = result
+
+
         if  "m" in self.params.keys():
                 self.angCoeff = self.params["m"]
                 if "q" in self.params.keys():
                     self.intercept = self.params["q"]
                     self.calc1()
                     self.onlyDraw()
-                else:
-                    prefix = 'point'
-                    value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
-                    self.points[0] = value#self.params["point0"]
+                elif key.startswith("point"):
+                    #prefix = 'point'
+                    #value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
+                    self._points[0] = point#self.params["point0"]
                     self.calc3()
                     self.onlyDraw()
         elif "q" in self.params.keys():
-            prefix = 'point'
-            value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
-            self.points[0] = value#self.params["point0"]
+            #value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
+            self._points[0] = point#self.params["point0"]
             self.calc4()
             self.onlyDraw()
         else:
