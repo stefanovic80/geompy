@@ -127,27 +127,30 @@ class line(dataExplore):
 
         prefix = 'point'
 
-        result = next(( (k, v) for k, v in self.params.items() if k.startswith(prefix)), None)
-        
-        if result is not None:
-            key, point = result
-
-
         if  "m" in self.params.keys():
                 self.angCoeff = self.params["m"]
                 if "q" in self.params.keys():
                     self.intercept = self.params["q"]
                     self.calc1()
                     self.onlyDraw()
-                elif key.startswith("point"):
-                    #prefix = 'point'
-                    #value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
-                    self._points[0] = point#self.params["point0"]
+                elif any(prefix in key for key in self.params.keys() ):
+
+                    try:
+                        point = self.params['point0']
+                    except:
+                        point = self.params['point1']
+
+                    self._points[0] = point
                     self.calc3()
                     self.onlyDraw()
-        elif "q" in self.params.keys():
-            #value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
-            self._points[0] = point#self.params["point0"]
+        elif "q" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
+            
+            try:
+                point = self.params['point0']
+            except:
+                point = self.params['point1']
+            
+            self._points[0] = point
             self.calc4()
             self.onlyDraw()
         else:
