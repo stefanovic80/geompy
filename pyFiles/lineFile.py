@@ -10,7 +10,7 @@ from .pointFile import point
 from .dataExploreFile import dataExplore
 
 class line(dataExplore):
-    def __init__(self, seed = seed, draw = True):
+    def __init__(self, seed = seed, draw = False):
         
         super().__init__()
         
@@ -39,18 +39,8 @@ class line(dataExplore):
 
     @m.setter
     def m(self, value):
-        
-        #idx = (self.p+1)%2
-        #self._points[idx] = None
-        #self.angCoeff = value
-        self.angCoeff = value
-        try:
-            self.__del__()
-            self.calc1()
-            self.onlyDraw()
-            #self.draw()
-        except:
-            pass
+        self.addParams("m", value)
+        self.draw()
 
 
     @property
@@ -59,14 +49,8 @@ class line(dataExplore):
 
     @q.setter
     def q(self, value):
-        self.intercept = value
-        try:
-            #self.calc3()
-            #self.onlyDraw()
-            self.draw()
-        except:
-            pass
-
+        self.addParams("q", value)
+        self.draw()
 
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
@@ -119,7 +103,7 @@ class line(dataExplore):
         
         self.calc1()
     
-
+    """
     def chooseCalc(self):
         self.__del__()
         calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
@@ -133,7 +117,33 @@ class line(dataExplore):
                     break
                 except:
                     pass
-    
+    """
+
+    def draw(self):
+        self.__del__()
+        if  "m" in self.params.keys():
+                self.angCoeff = self.params["m"]
+                if "q" in self.params.keys():
+                    self.intercept = self.params["q"]
+                    self.calc1()
+                    self.onlyDraw()
+                elif "point" in self.params.keys():
+                    self.points[0] = self.params["point"]
+                    self.calc3()
+                    self.onlyDraw()
+        elif "point" in self.params.keys():
+                self.points[0] = self.params["point"]
+                if "q" in self.params.keys():
+                    self.intercept = self.params["q"]
+                    self.calc4()
+                    self.onlyDraw()
+                #bug
+                elif "point" in self.params.keys():
+                    self._points[0] = self.params["point"]
+                    self._points[1] = self.params["point0"]
+                    self.calc2()
+                    self.onlyDraw()
+
     @property
     def dataGroup(self):
         return self.data + self.labCoords

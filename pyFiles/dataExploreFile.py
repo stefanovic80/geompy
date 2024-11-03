@@ -23,17 +23,20 @@ class dataExplore(plotSett):
 
     @points.setter
     def points(self, value):
-        #self.erase()
+        """
         q = self.degreesOfFreedom
         k = (self.p+q-1)%q
         self.p += 1
         self._points[k] =  value
-        #value.name = str(k)#to check workability
+        """
+        self.points[0] = value
+        self.params["point"] = value
+        """
         try:
             self.draw()
         except:
             pass
-
+        """
     
     def _points_generator(self):
         #self._points = [None, None, None]

@@ -38,6 +38,8 @@ class plotSett():
 
         self.data = [None, None]
 
+        self.params = {}
+
         self.hline = None
         self.vline = None
 
@@ -332,9 +334,15 @@ class plotSett():
 
 
 
-    def draw(self):
-        self.chooseCalc()
-        self.onlyDraw()
+    #def draw(self):
+    #    self.chooseCalc()
+    #    self.onlyDraw()
+
+    def addParams(self, key, param):
+        if len(self.params.keys()) > 2:
+            k = self.params.keys()[0]
+            self.params.pop(k, None)
+        self.params[key] = param
 
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
