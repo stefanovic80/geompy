@@ -49,7 +49,7 @@ class plotSett():
 
         self.rotate = False
         self._name = None
-        self._points = None#[None, None, None]
+        self._points = []#None#[None, None, None]
 
         self._step = 2
         self._stepx = 2

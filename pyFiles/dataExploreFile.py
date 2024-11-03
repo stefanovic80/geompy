@@ -23,14 +23,14 @@ class dataExplore(plotSett):
 
     @points.setter
     def points(self, value):
-        """
+        
         q = self.degreesOfFreedom
         k = (self.p+q-1)%q
         self.p += 1
-        self._points[k] =  value
-        """
-        self.points[0] = value
-        self.params["point"] = value
+        self._points = self._points + [ value ]
+        
+        
+        self.params["point" + str(self.p)] = value
         """
         try:
             self.draw()
