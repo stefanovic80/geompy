@@ -40,7 +40,10 @@ class line(dataExplore):
     @m.setter
     def m(self, value):
         self.addParams("m", value)
-        self.draw()
+        try:
+            self.draw()
+        except:
+            pass
 
 
     @property
@@ -127,22 +130,21 @@ class line(dataExplore):
                     self.intercept = self.params["q"]
                     self.calc1()
                     self.onlyDraw()
-                elif "point" in self.params.keys():
-                    self.points[0] = self.params["point"]
+                else:
+                    prefix = 'point'
+                    value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
+                    self.points[0] = value#self.params["point0"]
                     self.calc3()
                     self.onlyDraw()
-        elif "point" in self.params.keys():
-                self.points[0] = self.params["point"]
-                if "q" in self.params.keys():
-                    self.intercept = self.params["q"]
-                    self.calc4()
-                    self.onlyDraw()
-                #bug
-                elif "point" in self.params.keys():
-                    self._points[0] = self.params["point"]
-                    self._points[1] = self.params["point0"]
-                    self.calc2()
-                    self.onlyDraw()
+        elif "q" in self.params.keys():
+            prefix = 'point'
+            value = next((v for k, v in self.params.items() if k.startswith(prefix)), None)
+            self.points[0] = value#self.params["point0"]
+            self.calc4()
+            self.onlyDraw()
+        else:
+            self.calc2()
+            self.onlyDraw()
 
     @property
     def dataGroup(self):

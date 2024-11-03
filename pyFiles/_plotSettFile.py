@@ -339,9 +339,9 @@ class plotSett():
     #    self.onlyDraw()
 
     def addParams(self, key, param):
-        if len(self.params.keys()) > 2:
-            k = self.params.keys()[0]
-            self.params.pop(k, None)
+        listOfKeys = list( self.params.keys() )
+        if len(listOfKeys) > 1:
+            self.params.pop(listOfKeys[0], None)
         self.params[key] = param
 
     def onlyDraw(self):

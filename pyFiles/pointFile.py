@@ -271,11 +271,13 @@ class point(plotSett):
         locus.dataGroup = data
 
         locus.draw()#, draw = False)
-
+    
+    """
     def __repr__(self):
         #pass
         #bug to fix
         return self._name + ' = ( ' + str(self.x[0]) + ', ' + str(self.y[0]) + ')'
+    """
 
     def __str__(self):
 
