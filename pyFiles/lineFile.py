@@ -10,7 +10,7 @@ from .pointFile import point
 from .dataExploreFile import dataExplore
 
 class line(dataExplore):
-    def __init__(self, seed = seed, draw = False):
+    def __init__(self, seed = seed, draw = True):
         
         super().__init__()
         
@@ -24,9 +24,9 @@ class line(dataExplore):
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
         self.degreesOfFreedom = 2
         if draw == True:
+            self.params = {'m': self.angCoeff, 'q': self.intercept}
             self.draw()
-            #a = self.degreesOfFreedom
-            self._points_generator()
+            #self._points_generator()
 
 
     
