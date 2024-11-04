@@ -170,7 +170,7 @@ class line(dataExplore):
         elif "m" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
             point = next((val for key, val in self.params.items() if key.startswith(prefix)))
 
-            self._points[0] = point
+            #self._points[0] = point
             self.angCoeff = self.params["m"]
             self.calc3()
             self.onlyDraw()
@@ -179,7 +179,7 @@ class line(dataExplore):
             point = next((val for key, val in self.params.items() if key.startswith(prefix)))
             
             self.intercept = self.params["q"]
-            self._points[0] = point
+            #self._points[0] = point
             self.calc4()
             self.onlyDraw()
         else:
