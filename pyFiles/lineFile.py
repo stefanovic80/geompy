@@ -40,11 +40,7 @@ class line(dataExplore):
     @m.setter
     def m(self, value):
         self.addParams("m", value)
-        try:
-            self.draw()
-        except:
-            pass
-
+        self.draw()
 
     @property
     def q(self):
@@ -53,10 +49,7 @@ class line(dataExplore):
     @q.setter
     def q(self, value):
         self.addParams("q", value)
-        try:
-            self.draw()
-        except:
-            pass
+        self.draw()
     
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
