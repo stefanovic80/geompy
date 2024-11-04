@@ -60,6 +60,10 @@ class line(dataExplore):
         y = self.angCoeff*x + self.intercept
         return point(x, y)
 
+    def getPoint(self):
+        prefix = 'point'
+        pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix) )
+        yield pointsTuple
 
     def calc1(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
@@ -69,8 +73,14 @@ class line(dataExplore):
 
     def calc2(self): #calculate equation from two points
 
-        x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
-        x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
+        prefix = 'point'
+        pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix))
+        point = next(pointsTuple)
+        x0, y0 = point.coords[0], point.coords[1]
+        point = next(pointsTuple)
+        x1, y1 = point.coords[0], point.coords[1]
+        #x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
+        #x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
         
         self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
 
@@ -103,7 +113,6 @@ class line(dataExplore):
         j = 0
         x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
-        
         self.calc1()
     
     """
@@ -144,13 +153,13 @@ class line(dataExplore):
             point = next((val for key, val in self.params.items() if key.startswith(prefix)))
             
             self.angCoeff = self.params["q"]
-            self._points[0] = point
+            #self._points[0] = point
             self.calc4()
             self.onlyDraw()
         else:
 
-            self._points[0] = self.params['point0']
-            self._points[1] = self.params['point1']
+            #self._points[0] = self.params['point0']
+            #self._points[1] = self.params['point1']
             self.calc2()
             self.onlyDraw()
 
