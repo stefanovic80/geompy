@@ -338,11 +338,13 @@ class plotSett():
     #    self.chooseCalc()
     #    self.onlyDraw()
 
-    def addParams(self, key, param):
+    def addParams(self, key, param, dof = 2):#dof = Degree Of Freedom
         listOfKeys = list( self.params.keys() )
-        if len(listOfKeys) > 1:
-            self.params.pop(listOfKeys[0], None)
         self.params[key] = param
+        if len(listOfKeys) > dof - 1:
+            self.params.pop(listOfKeys[0], None)
+        #self.params[key] = param
+        print(self.params)
 
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)

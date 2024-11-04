@@ -57,7 +57,7 @@ class line(dataExplore):
             self.draw()
         except:
             pass
-    """
+    
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
         y = self.angCoeff*x + self.intercept
@@ -69,7 +69,7 @@ class line(dataExplore):
         for key, val in self.params.items():
             if key.startswith(prefix):
                 yield val
-
+    """
 
     def getPoint(self):
         prefix = 'point'
