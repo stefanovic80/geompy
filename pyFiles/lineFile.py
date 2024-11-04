@@ -69,12 +69,21 @@ class line(dataExplore):
         for key, val in self.params.items():
             if key.startswith(prefix):
                 yield val
-    """
+    
 
     def getPoint(self):
         prefix = 'point'
         pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix) )
         yield pointsTuple
+    """
+
+    def getPoint(self):
+        prefix = 'point'
+        for key, val in self.params.items():
+            if key.startswith(prefix):
+                yield val#ontsTuple
+            else:
+                pass
 
     def calc1(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
@@ -84,12 +93,13 @@ class line(dataExplore):
 
     def calc2(self): #calculate equation from two points
 
-        prefix = 'point'
-        pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix))
-        point = next(pointsTuple)
-        x0, y0 = point.coords[0], point.coords[1]
-        point = next(pointsTuple)
-        x1, y1 = point.coords[0], point.coords[1]
+        #prefix = 'point'
+        #pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix))
+        u = self.getPoint()
+        point0 = next( u )
+        x0, y0 = point0.coords[0], point0.coords[1] #point.coords[0], point.coords[1]
+        point1 = next( u )
+        x1, y1 = point1.coords[0], point1.coords[1] #point.coords[0], point.coords[1]
         #x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
         #x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
         
@@ -100,7 +110,8 @@ class line(dataExplore):
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
             
-            lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
+            #lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
+            lims = [ point0.coords[j], point1.coords[j] ]
             lims.sort()
             settings.xmin = lims[0]
             settings.xmax = lims[1]
@@ -114,7 +125,9 @@ class line(dataExplore):
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        #x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        point = next(self.getPoint() )
+        x0, y0 = point.coords[0], point.coords[1]
         self.intercept = -self.angCoeff*x0 + y0
         
         self.calc1()
@@ -122,7 +135,9 @@ class line(dataExplore):
     
     def calc4(self): #calculate equation from 1 point and intercept
         j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        #x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
+        point = next(self.getPoint() ) 
+        x0, y0 = point.coords[0], point.coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
         self.calc1()
     
