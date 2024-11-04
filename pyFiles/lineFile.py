@@ -53,12 +53,23 @@ class line(dataExplore):
     @q.setter
     def q(self, value):
         self.addParams("q", value)
-        self.draw()
-
+        try:
+            self.draw()
+        except:
+            pass
+    """
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
         y = self.angCoeff*x + self.intercept
         return point(x, y)
+    """
+    def getPoint(self):
+        prefix = 'point'
+        # Trova tutti i valori in params con chiave che inizia con "point" e restituiscili uno per uno
+        for key, val in self.params.items():
+            if key.startswith(prefix):
+                yield val
+
 
     def getPoint(self):
         prefix = 'point'
@@ -152,8 +163,8 @@ class line(dataExplore):
             
             point = next((val for key, val in self.params.items() if key.startswith(prefix)))
             
-            self.angCoeff = self.params["q"]
-            #self._points[0] = point
+            self.intercept = self.params["q"]
+            self._points[0] = point
             self.calc4()
             self.onlyDraw()
         else:
