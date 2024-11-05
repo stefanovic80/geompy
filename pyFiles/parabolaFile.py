@@ -23,8 +23,11 @@ class parabola(dataExplore):
 
         self.degreesOfFreedom = 3
         if draw == True:
-            self.draw()
-            self._points_generator()
+            self.params['vertex'] = self._vertex
+            self.params['a'] = self.a
+            self.calc()
+            self.onlyDraw()
+            #self._points_generator()
 
     @property
     def concavity(self):
@@ -33,8 +36,9 @@ class parabola(dataExplore):
     @concavity.setter
     def concavity(self, value):
         self.a = value
-        self.chooseCalc()
-        self.onlyDraw()
+        self.params['a'] = value
+        #self.chooseCalc()
+        #self.onlyDraw()
 
     @property
     def vertex(self):
@@ -43,8 +47,9 @@ class parabola(dataExplore):
     @vertex.setter
     def vertex(self, point):
         self._vertex = point
-        self.chooseCalc()
-        self.name = self._name
+        self.params['vertex'] = point
+        #self.chooseCalc()
+        #self.name = self._name
 
     @property
     def equation(self):
@@ -101,7 +106,7 @@ class parabola(dataExplore):
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+        self.data = self.data + [self.params['a']*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
 
 
     # calculate from three points the parabola passing through (to be fixed!)
@@ -133,7 +138,6 @@ class parabola(dataExplore):
         #self.concavity = self.a
         self.calc()
 
-
     """
     def chooseCalc(self):
         self.__del__()
@@ -151,9 +155,12 @@ class parabola(dataExplore):
     """
 
     def draw(self):
-        self.__del___()
+        self.__del__()
         prefix = 'point'
         
+        if 'a' in self.params.keys() and 'vertex' in self.params.keys():
+            self.calc()
+            self.onlyDraw()
         print("to be implemented!")
 
     def __str__(self):
