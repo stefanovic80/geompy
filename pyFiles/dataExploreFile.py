@@ -26,7 +26,7 @@ class dataExplore(plotSett):
         
         #q = self.degreesOfFreedom
         #k = (self.p+q-1)%q
-        k = self.p%2
+        k = self.p%self.dof
         #self._points = self._points + [ value ]
         
         
