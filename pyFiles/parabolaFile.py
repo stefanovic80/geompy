@@ -35,8 +35,7 @@ class parabola(dataExplore):
 
     @concavity.setter
     def concavity(self, value):
-        self.a = value
-        self.params['a'] = value
+        self.params['a'] = self.a = value
         #self.chooseCalc()
         #self.onlyDraw()
 
@@ -46,8 +45,7 @@ class parabola(dataExplore):
 
     @vertex.setter
     def vertex(self, point):
-        self._vertex = point
-        self.params['vertex'] = point
+        self.params['vertex'] = self._vertex = point
         #self.chooseCalc()
         #self.name = self._name
 
@@ -111,14 +109,23 @@ class parabola(dataExplore):
 
     # calculate from three points the parabola passing through (to be fixed!)
     def calc2(self, name = None):
+
+        u = self.getPoint(dof = 3)
+        point0 = next(u)
+        point1 = next(u)
+        point2 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
+        x2, y2 = point2.coords[0], point2.coords[1]
+        
+        """
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
         x2 = self._points[2].coords[0]
-
         y0 = self._points[0].coords[1]
         y1 = self._points[1].coords[1]
         y2 = self._points[2].coords[1]
-
+        """
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
         y = np.array( [ y0  , y1  , y2 ] )#.reshape(-1, 1)
@@ -161,6 +168,11 @@ class parabola(dataExplore):
         if 'a' in self.params.keys() and 'vertex' in self.params.keys():
             self.calc()
             self.onlyDraw()
+        elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
+            self.calc2()
+            self.onlyDraw()
+        else:
+            pass
         print("to be implemented!")
 
     def __str__(self):
