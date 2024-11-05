@@ -24,8 +24,8 @@ class parabola(dataExplore):
         self.degreesOfFreedom = 3
         if draw == True:
             self.draw()
-            #a = self.degreesOfFreedom
             self._points_generator()
+
     @property
     def concavity(self):
         return self.a
@@ -134,7 +134,7 @@ class parabola(dataExplore):
         self.calc()
 
 
-
+    """
     def chooseCalc(self):
         self.__del__()
 
@@ -148,7 +148,13 @@ class parabola(dataExplore):
                     break
                 except:
                     pass
+    """
 
+    def draw(self):
+        self.__del___()
+        prefix = 'point'
+        
+        print("to be implemented!")
 
     def __str__(self):
 

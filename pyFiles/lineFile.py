@@ -55,28 +55,6 @@ class line(dataExplore):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
         y = self.angCoeff*x + self.intercept
         return point(x, y)
-    """
-    def getPoint(self):
-        prefix = 'point'
-        # Trova tutti i valori in params con chiave che inizia con "point" e restituiscili uno per uno
-        for key, val in self.params.items():
-            if key.startswith(prefix):
-                yield val
-    
-
-    def getPoint(self):
-        prefix = 'point'
-        pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix) )
-        yield pointsTuple
-    """
-
-    def getPoint(self):
-        prefix = 'point'
-        for key, val in self.params.items():
-            if key.startswith(prefix):
-                yield val#ontsTuple
-            else:
-                pass
 
     def calc1(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
@@ -85,16 +63,12 @@ class line(dataExplore):
         
 
     def calc2(self): #calculate equation from two points
-
-        #prefix = 'point'
-        #pointsTuple = (val for key, val in self.params.items() if key.startswith(prefix))
+        
         u = self.getPoint()
         point0 = next( u )
-        x0, y0 = point0.coords[0], point0.coords[1] #point.coords[0], point.coords[1]
+        x0, y0 = point0.coords[0], point0.coords[1]
         point1 = next( u )
-        x1, y1 = point1.coords[0], point1.coords[1] #point.coords[0], point.coords[1]
-        #x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
-        #x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
         
         self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
 
@@ -103,7 +77,6 @@ class line(dataExplore):
             self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
             j = 0 
             
-            #lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
             lims = [ point0.coords[j], point1.coords[j] ]
             lims.sort()
             settings.xmin = lims[0]
@@ -118,7 +91,6 @@ class line(dataExplore):
 
     def calc3(self): #calculate equation from 1 point and angCoeff
         j = 0
-        #x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]
         self.intercept = -self.angCoeff*x0 + y0
@@ -128,31 +100,14 @@ class line(dataExplore):
     
     def calc4(self): #calculate equation from 1 point and intercept
         j = 0
-        #x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
         point = next(self.getPoint() ) 
         x0, y0 = point.coords[0], point.coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
         self.calc1()
     
-    """
-    def chooseCalc(self):
-        self.__del__()
-        calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
-        #calculation_functions = [self.calc3, self.calc1, self.calc2, self.calc4]
-        
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
-    """
 
     def draw(self):
         self.__del__()
-
         prefix = 'point'
 
         if  "m" in self.params.keys() and "q" in self.params.keys():
@@ -172,13 +127,9 @@ class line(dataExplore):
             point = next((val for key, val in self.params.items() if key.startswith(prefix)))
             
             self.intercept = self.params["q"]
-            #self._points[0] = point
             self.calc4()
             self.onlyDraw()
         else:
-
-            #self._points[0] = self.params['point0']
-            #self._points[1] = self.params['point1']
             self.calc2()
             self.onlyDraw()
 
@@ -189,10 +140,6 @@ class line(dataExplore):
     @dataGroup.setter
     def dataGroup(self, value):
         self.data = value[0:2]
-        #self.labCoords = value[2:4]
-        #to be implemented!
-
-
 
     def erase(self):
         self.__del__()

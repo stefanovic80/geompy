@@ -8,7 +8,7 @@ from .pointFile import point
 
 
 class dataExplore(plotSett):
-    
+ 
     @property
     def points(self):
         j = 0
@@ -49,6 +49,15 @@ class dataExplore(plotSett):
             x = self.data[0][random_idx]
             y = self.data[1][random_idx]
             self._points[j] = point(x, y, draw = False)
+
+    def getPoint(self):
+        prefix = 'point'
+        for key, val in self.params.items():
+            if key.startswith(prefix):
+                yield val#ontsTuple
+            else:
+                pass
+
 
 
     @property
