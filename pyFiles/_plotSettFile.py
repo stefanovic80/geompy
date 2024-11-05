@@ -333,10 +333,10 @@ class plotSett():
         self.lines.append(text)
 
 
-    def addParams(self, key, param, dof = 2):#dof = Degree Of Freedom
+    def addParams(self, key, param):#dof = Degree Of Freedom
         self.params[key] = param
         listOfKeys = list( self.params.keys() )
-        if len(listOfKeys) > dof:# - 1:
+        if len(listOfKeys) > self.dof:# - 1:
             self.params.pop(listOfKeys[0], None)
         print(self.params)
 

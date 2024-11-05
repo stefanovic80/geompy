@@ -22,6 +22,7 @@ class parabola(dataExplore):
         self._color = random.choice(self.colors)
 
         self.degreesOfFreedom = 3
+        self.dof = 3
         if draw == True:
             self.params['vertex'] = self._vertex
             self.params['a'] = self.a
@@ -104,13 +105,13 @@ class parabola(dataExplore):
 
     def calc(self, name = None):
         self.data = [ self._x ]
-        self.data = self.data + [self.params['a']*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
+        self.data = self.data + [self.a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
 
 
     # calculate from three points the parabola passing through (to be fixed!)
     def calc2(self, name = None):
 
-        u = self.getPoint(dof = 3)
+        u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
         point2 = next(u)

@@ -22,6 +22,9 @@ class line(dataExplore):
         self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
+        
+        self.dof = 2 #degrees of freedom
+
         self.degreesOfFreedom = 2
         if draw == True:
             self.params = {'m': self.angCoeff, 'q': self.intercept}
