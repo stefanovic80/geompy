@@ -138,14 +138,14 @@ class parabola(dataExplore):
         x0, y0 = point0.coords[0], point0.coords[1]
         xv, yv = self._vertex.coords[0], self._vertex.coords[1]
 
-        A = np.matrix([ [ -2*xv**2, 2  ], [ x0*(x0 - 2*xv), 1]  ])
+        A = np.matrix([ [ -xv**2, 1  ], [ x0*(x0 - 2*xv), 1]  ])
         Ainv = np.linalg.inv(A)
         y = np.array( [ yv, y0 ])
         parabParams = np.dot(Ainv, y)
 
         self.a = parabParams[0, 0]
         self.c = parabParams[0, 1]
-        self.b = -2*a*xv
+        self.b = -2*self.a*xv
 
         self.calc1()
 
@@ -188,11 +188,9 @@ class parabola(dataExplore):
             self.onlyDraw()
         
         #3) vertex and one point
-        elif 'vertex' in self.params.keys() and any(isistance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
+        elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
             self.calc4()
             self.onlyDraw()
-            
-            print("to be implemented!")
 
     def __str__(self):
 
