@@ -36,6 +36,7 @@ class parabola(dataExplore):
 
     @concavity.setter
     def concavity(self, value):
+        self.addParams('a', value) 
         self.params['a'] = self._a = value
         #self.chooseCalc()
         #self.onlyDraw()
@@ -46,7 +47,8 @@ class parabola(dataExplore):
 
     @a.setter
     def a(self, value):
-        self._a = self.params['a'] = value
+        self.addParams('a', value)
+        self._a = value
         try:
             self.draw()
         except:
@@ -59,7 +61,8 @@ class parabola(dataExplore):
 
     @a.setter
     def b(self, value):
-        self._b = self.params['b'] = value
+        self.addParams('b', value)
+        self._b = value
         try:
             self.draw()
         except:
@@ -73,7 +76,8 @@ class parabola(dataExplore):
 
     @a.setter
     def c(self, value):
-        self._c = self.params['c'] = value
+        self.addParams('c', value)
+        self._c = value
         try:
             self.draw()
         except:
@@ -88,7 +92,8 @@ class parabola(dataExplore):
 
     @vertex.setter
     def vertex(self, point):
-        self.params['vertex'] = self._vertex = point
+        self.addParams('vertex', point)
+        self._vertex = point
         #self.chooseCalc()
         #self.name = self._name
 
