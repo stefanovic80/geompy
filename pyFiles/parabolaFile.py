@@ -155,8 +155,19 @@ class parabola(dataExplore):
 
 
     def calc(self, name = None):
+        #self.dof = 2
         self.data = [ self._x ]
         self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+
+
+    #a, b and c (to be modified!)
+    def calc1(self, name = None):
+
+        Delta = self._b**2 - 4*self._a*self._c
+        self._vertex = point( -self._b/(2*self._a)  , -Delta/(4*self._a),  draw = False )
+        #self.concavity = self._a
+        self.calc()
+
 
 
     # calculate from three points the parabola passing through (to be fixed!)
@@ -181,9 +192,9 @@ class parabola(dataExplore):
         
         self.calc1() 
     
-    #one point and vertex. To be debugged!
+    #one point and vertex
     def calc4(self, name = None):
-
+        #self.dof = 2
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
@@ -200,13 +211,24 @@ class parabola(dataExplore):
 
         self.calc1()
 
-    #what is this?
-    def calc1(self, name = None):
+    #point0, point1 and c (self._c)
+    def calc5(self, name = None):
+        u = self.getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
 
-        Delta = self._b**2 - 4*self._a*self._c
-        self._vertex = point( -self._b/(2*self._a)  , -Delta/(4*self._a),  draw = False )
-        #self.concavity = self._a
-        self.calc()
+        A = np.matrix( [ [ x0**2, x0 ], [ x1**2, x1  ] ] )
+        Ainv = np.linalg.inv(A)
+        y = np.array( [y0 - self._c, y1 - self._c ] )
+        parabParams = np.dot(Ainv, y)
+
+        self._a = parabParams[0, 0]
+        self._b = parabParams[0, 1]
+
+        self.calc1()
+
 
     """
     def chooseCalc(self):
@@ -246,6 +268,13 @@ class parabola(dataExplore):
         elif 'a' in self.params.keys() and 'b' in self.params.keys() and 'c' in self.params.keys():
             self.calc1()
             self.onlyDraw()
+        
+        #5) c (self._c), point0, point1
+        #elif 'c' in self.params.keys() and any(isinstance(key, str) and sum(1 for key in self.params.keys() if key.startswith("point")) == 2:
+        elif 'c' in self.params.keys() and ( sum(1 for key in self.params.keys() if isinstance(key, str) and key.startswith("point")) == 2):
+            self.calc5()
+            self.onlyDraw()
+        
         else:
             pass
 
