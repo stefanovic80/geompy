@@ -119,14 +119,6 @@ class parabola(dataExplore):
         x1, y1 = point1.coords[0], point1.coords[1]
         x2, y2 = point2.coords[0], point2.coords[1]
         
-        """
-        x0 = self._points[0].coords[0]
-        x1 = self._points[1].coords[0]
-        x2 = self._points[2].coords[0]
-        y0 = self._points[0].coords[1]
-        y1 = self._points[1].coords[1]
-        y2 = self._points[2].coords[1]
-        """
         A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
         Ainv = np.linalg.inv(A)
         y = np.array( [ y0  , y1  , y2 ] )#.reshape(-1, 1)
@@ -138,6 +130,25 @@ class parabola(dataExplore):
         
         self.calc1() 
     
+    #one point and vertex. To be debugged!
+    def calc4(self, name = None):
+
+        u = self.getPoint()
+        point0 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        xv, yv = self._vertex.coords[0], self._vertex.coords[1]
+
+        A = np.matrix([ [ -2*xv**2, 2  ], [ x0*(x0 - 2*xv), 1]  ])
+        Ainv = np.linalg.inv(A)
+        y = np.array( [ yv, y0 ])
+        parabParams = np.dot(Ainv, y)
+
+        self.a = parabParams[0, 0]
+        self.c = parabParams[0, 1]
+        self.b = -2*a*xv
+
+        self.calc1()
+
     #what is this?
     def calc1(self, name = None):
 
@@ -166,15 +177,22 @@ class parabola(dataExplore):
         self.__del__()
         prefix = 'point'
         
+        #1) concavity and vertex
         if 'a' in self.params.keys() and 'vertex' in self.params.keys():
             self.calc()
             self.onlyDraw()
+        
+        #2) all points
         elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
             self.calc2()
             self.onlyDraw()
-        else:
-            pass
-        print("to be implemented!")
+        
+        #3) vertex and one point
+        elif 'vertex' in self.params.keys() and any(isistance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
+            self.calc4()
+            self.onlyDraw()
+            
+            print("to be implemented!")
 
     def __str__(self):
 
