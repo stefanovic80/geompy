@@ -165,14 +165,17 @@ class parabola(dataExplore):
 
         self.data = [ self._x ]
         self.data = self.data + [self._a*self._x**2 + self._b*self._x + self._c ]
+        
+        #------------ vertex coords
+        xv = -self._b/(2*self._a)
+        yv = (- self._b**2 + 4*self._a*self._c)/(4*self._a)
 
-
-        """
-        Delta = self._b**2 - 4*self._a*self._c
-        self._vertex = point( -self._b/(2*self._a)  , -Delta/(4*self._a),  draw = False )
-        #self.concavity = self._a
-        self.calc()
-        """
+        self._vertex.coords[0] = xv
+        self._vertex.coords[1] = yv 
+        
+        self._vertex.data[0] = np.array([xv])
+        self._vertex.data[1] = np.array([yv])
+        #------------ vertex coords
 
 
     # calculate from three points the parabola passing through (to be fixed!)
