@@ -24,6 +24,7 @@ class parabola(dataExplore):
         self.degreesOfFreedom = 3
         self.dof = 3
         if draw == True:
+            #self.params['None'] = None
             self.params['vertex'] = self._vertex
             self.params['a'] = self._a
             self.calc()
@@ -94,6 +95,10 @@ class parabola(dataExplore):
     def vertex(self, point):
         self.addParams('vertex', point)
         self._vertex = point
+        try:
+            self.draw()
+        except:
+            pass
         #self.chooseCalc()
         #self.name = self._name
 
@@ -365,6 +370,9 @@ class parabola(dataExplore):
         
         #1) concavity and vertex
         if 'a' in self.params.keys() and 'vertex' in self.params.keys():
+            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
+            #del self.params[u]
+
             self.calc()
             self.onlyDraw()
         

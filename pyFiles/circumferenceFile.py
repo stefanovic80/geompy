@@ -25,7 +25,12 @@ class circumference(dataExplore):
         self.j = 0
         self.k = 0
         self.degreesOfFreedom = 3
+        
+        self.dof = 3
+
         if draw == True:
+            self.addParams('radius', self._radius)
+            self.addParams('center', self._center)
             self.draw()
             #a = self.degreesOfFreedom
             self._points_generator()
@@ -62,12 +67,16 @@ class circumference(dataExplore):
     @center.setter
     def center(self, point):
         self._center = point
-
-        idx = (self.p+2)%3
-        self._points[idx] = None
+        self.addParams('center', point)
+        try:
+            self.draw()
+        except:
+            pass
+        #idx = (self.p+2)%3
+        #self._points[idx] = None
         
-        self.chooseCalc()
-        self.name = self._name
+        #self.chooseCalc()
+        #self.name = self._name
 
     @property
     def radius(self):
@@ -77,11 +86,16 @@ class circumference(dataExplore):
     def radius(self, r):
         self._radius = r
 
-        idx = (self.p+2)%3
-        self._points[idx] = None
-        self.chooseCalc()
-        self.name = self._name
-
+        #idx = (self.p+2)%3
+        #self._points[idx] = None
+        #self.chooseCalc()
+        #self.name = self._name
+        
+        self.addParams('radius', r)
+        try:
+            self.draw()
+        except:
+            pass
 
     def tangent(self, point):
         xc = self.center.data[0]
@@ -170,6 +184,7 @@ class circumference(dataExplore):
     # calculate from three points the circumference passing through (to be fixed!)
     def calc2(self, name = None, angle = 2*np.pi):
         
+        """
         x0 = self._points[0].coords[0]
         x1 = self._points[1].coords[0]
         x2 = self._points[2].coords[0]
@@ -177,7 +192,16 @@ class circumference(dataExplore):
         y0 = self._points[0].coords[1]
         y1 = self._points[1].coords[1]
         y2 = self._points[2].coords[1]
+        """
         
+        u = self.getPoint()
+        point0 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        point1 = next(u)
+        x1, y1 = point1.coords[0], point1.coords[1]
+        point2 = next(u)
+        x2, y2 = point2.coords[0], point2.coords[1]
+
         A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ]) 
         Ainv = np.linalg.inv(A)
         squares = np.array( [ -x0**2 - y0**2  , -x1**2 - y1**2  , -x2**2 - y2**2 ] )
@@ -214,6 +238,36 @@ class circumference(dataExplore):
         self.calc()
 
 
+    def draw(self):
+        self.__del__()
+        prefix = 'point'
+
+        #1) center and radius
+        if 'center' in self.params.keys() and 'radius' in self.params.keys():
+            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
+            #del self.params[u]
+
+            self.calc()
+            self.onlyDraw()
+
+
+        #2) center, 1 point
+        elif 'center' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
+            self.calc3()
+            self.onlyDraw()
+
+
+        #3) all points
+        elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
+            self.calc2()
+            self.onlyDraw()
+        else:
+            pass
+
+
+
+
+    """
     def chooseCalc(self, angle = 2*np.pi):
         self.__del__()
 
@@ -229,6 +283,7 @@ class circumference(dataExplore):
                     break
                 except:
                     pass
+    """
 
     #to be partially inherited
     def erase(self):
