@@ -253,7 +253,8 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.data[1])*np.cos(angle) + self.data[1]
         
-        locus.draw()#, draw = False)
+        locus.__del__()
+        locus.onlyDraw()#, draw = False)
 
 
 
