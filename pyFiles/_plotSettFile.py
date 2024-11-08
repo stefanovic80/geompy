@@ -277,7 +277,8 @@ class plotSett():
     @linewidth.setter
     def linewidth(self, n):
         self._linewidth = n
-        self.draw()
+        self.__del__()
+        self.onlyDraw()
 
 
     @property
