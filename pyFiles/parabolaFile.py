@@ -158,7 +158,7 @@ class parabola(dataExplore):
         self.data = [None, None]
 
 
-
+    #vertx, concavity a (self._a)
     def calc(self, name = None):
         #self.dof = 2
         self.data = [ self._x ]
@@ -183,7 +183,7 @@ class parabola(dataExplore):
         #------------ vertex coords
 
 
-    # calculate from three points the parabola passing through (to be fixed!)
+    # calculate from three points passing through (to be fixed!)
     def calc2(self, name = None):
 
         u = self.getPoint()
@@ -347,23 +347,6 @@ class parabola(dataExplore):
         self.calc1()
 
 
-
-    """
-    def chooseCalc(self):
-        self.__del__()
-
-        calculation_functions = [self.calc2, self.calc1, self.calc]#, self.calc3]
-
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
-    """
-
     def draw(self):
         self.__del__()
         prefix = 'point'
@@ -375,16 +358,32 @@ class parabola(dataExplore):
 
             self.calc()
             self.onlyDraw()
-        
+
+        #3) vertex and one point
+        elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
+            self.calc4()
+            self.onlyDraw()
+
+        #11) vertex, b (self._b)
+        elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
+            self.calc11()
+            self.onlyDraw()
+
+        #12) vertex, c (self._c)
+        elif 'vertex' in self.params.keys() and 'c' in self.params.keys():
+            self.calc12()
+            self.onlyDraw()
+
+        #13) vertex, a (self._a)
+        elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
+            self.calc13()
+            self.onlyDraw()
+
         #2) all points
         elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
             self.calc2()
             self.onlyDraw()
         
-        #3) vertex and one point
-        elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
-            self.calc4()
-            self.onlyDraw()
         #4) a, b and c
         elif 'a' in self.params.keys() and 'b' in self.params.keys() and 'c' in self.params.keys():
             self.calc1()
@@ -420,23 +419,6 @@ class parabola(dataExplore):
             self.calc10()
             self.onlyDraw()
 
-        #11) vertex, b (self._b)
-        elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
-            self.calc11()
-            self.onlyDraw()
-
-        #12) vertex, c (self._c)
-        elif 'vertex' in self.params.keys() and 'c' in self.params.keys():
-            self.calc12()
-            self.onlyDraw()
-
-        #13) vertex, a (self._a)
-        elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
-            self.calc13()
-            self.onlyDraw()
-
-
-
         else:
             pass
 
@@ -448,6 +430,9 @@ class parabola(dataExplore):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
+            f"\033[93m.a = \033[0m {self._a}\n"
+            f"\033[93m.b = \033[0m {self._b}\n"
+            f"\033[93m.c = \033[0m {self._c}\n"
             f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
             f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
             f"\033[93m.concavity = \033[0m {self._a}\n"
