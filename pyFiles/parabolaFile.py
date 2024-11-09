@@ -39,8 +39,6 @@ class parabola(dataExplore):
     def concavity(self, value):
         self.addParams('a', value) 
         self.params['a'] = self._a = value
-        #self.chooseCalc()
-        #self.onlyDraw()
     
     @property
     def a(self):
@@ -99,7 +97,6 @@ class parabola(dataExplore):
             self.draw()
         except:
             pass
-        #self.chooseCalc()
         #self.name = self._name
 
 
