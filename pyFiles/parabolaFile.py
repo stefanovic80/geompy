@@ -24,7 +24,7 @@ class parabola(dataExplore):
         self.degreesOfFreedom = 3
         self.dof = 3
         if draw == True:
-            #self.params['None'] = None
+            self.params['None'] = None
             self.params['vertex'] = self._vertex
             self.params['a'] = self._a
             self.calc()
@@ -343,7 +343,44 @@ class parabola(dataExplore):
 
         self.calc1()
 
+    """
+    def draw(self):
+        self.__del__()
+        prefix = 'point'
+        params = {k: self.params[k] for k in list(self.params)[1:3]}
 
+        #1) concavity and vertex
+        if 'a' in params.keys() and 'vertex' in params.keys():
+            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
+            #del self.params[u]
+
+            self.calc()
+            self.onlyDraw()
+
+        #3) vertex and one point
+        elif 'vertex' in params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in params.keys() ):
+            self.calc4()
+            self.onlyDraw()
+
+        #11) vertex, b (self._b)
+        elif 'vertex' in params.keys() and 'b' in params.keys():
+            self.calc11()
+            self.onlyDraw()
+
+        #12) vertex, c (self._c)
+        elif 'vertex' in params.keys() and 'c' in params.keys():
+            self.calc12()
+            self.onlyDraw()
+
+        #13) vertex, a (self._a)
+        elif 'vertex' in params.keys() and 'a' in params.keys():
+            self.calc13()
+            self.onlyDraw()
+    """
+
+
+
+    
     def draw(self):
         self.__del__()
         prefix = 'point'
@@ -418,7 +455,7 @@ class parabola(dataExplore):
 
         else:
             pass
-
+    
 
     def __str__(self):
 

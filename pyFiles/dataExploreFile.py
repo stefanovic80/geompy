@@ -40,6 +40,7 @@ class dataExplore(plotSett):
             pass
         """
     
+    #to be deprecated
     def _points_generator(self):
         #self._points = [None, None, None]
         self._points = [None for u in range(self.degreesOfFreedom)]
