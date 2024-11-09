@@ -385,31 +385,45 @@ class parabola(dataExplore):
         self.__del__()
         prefix = 'point'
         
+        keys = list(self.params.keys())[1:]
+
         #1) concavity and vertex
-        if 'a' in self.params.keys() and 'vertex' in self.params.keys():
+        if 'a' in keys and 'vertex' in keys:
             #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
             #del self.params[u]
+            
+            
+            otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
+            self.params[None] = self.params.pop(otherKey)
+            self.params[None] = None
+            
 
             self.calc()
             self.onlyDraw()
 
+
+
         #3) vertex and one point
         elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
+            
             self.calc4()
             self.onlyDraw()
 
         #11) vertex, b (self._b)
         elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
+            
             self.calc11()
             self.onlyDraw()
 
         #12) vertex, c (self._c)
         elif 'vertex' in self.params.keys() and 'c' in self.params.keys():
+            
             self.calc12()
             self.onlyDraw()
 
         #13) vertex, a (self._a)
         elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
+            
             self.calc13()
             self.onlyDraw()
 
