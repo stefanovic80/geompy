@@ -332,7 +332,7 @@ class parabola(dataExplore):
 
         self.calc1()
 
-
+    """
     #vertex, a (self._a)
     def calc13(self, name = None):
 
@@ -342,6 +342,9 @@ class parabola(dataExplore):
         self._c = yv + self._b**2/(4*self._a)
 
         self.calc1()
+    """
+
+
 
     """
     def draw(self):
@@ -389,15 +392,10 @@ class parabola(dataExplore):
 
         #1) concavity and vertex
         if 'a' in keys and 'vertex' in keys:
-            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
-            #del self.params[u]
-            
-            
             otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
             self.params[None] = self.params.pop(otherKey)
             self.params[None] = None
             
-
             self.calc()
             self.onlyDraw()
 
@@ -412,20 +410,32 @@ class parabola(dataExplore):
         #11) vertex, b (self._b)
         elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
             
+            otherKey = next((k for k in self.params if k not in {"vertex", "b"}), None)
+            self.params[None] = self.params.pop(otherKey)
+            self.params[None] = None
+
+
             self.calc11()
             self.onlyDraw()
 
         #12) vertex, c (self._c)
         elif 'vertex' in self.params.keys() and 'c' in self.params.keys():
-            
+
+            otherKey = next((k for k in self.params if k not in {"vertex", "c"}), None)
+            self.params[None] = self.params.pop(otherKey)
+            self.params[None] = None
+
+
             self.calc12()
             self.onlyDraw()
 
-        #13) vertex, a (self._a)
-        elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
-            
-            self.calc13()
-            self.onlyDraw()
+            """
+            #13) vertex, a (self._a)
+            elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
+                
+                self.calc13()
+                self.onlyDraw()
+            """
 
         #2) all points
         elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
