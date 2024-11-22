@@ -17,7 +17,7 @@ plt.ion()
 
 plt.rcParams [ 'axes.labelsize' ] = 18
 plt.rcParams [ 'figure.figsize' ] = ( settings.window_width , settings.window_width*settings.window_height/settings.window_width)
-plt.rcParams [ 'font.size' ] = 10
+plt.rcParams [ 'font.size' ] = 20
 plt.rcParams [ 'font.weight'] = 'bold'
 
 #x = np.arange(-10, 10, 0.01)
@@ -415,8 +415,8 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
-        self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.6)
+        self.ax.grid(which='minor', alpha=0.2, linewidth = 2.0)
+        self.ax.grid(which='major', alpha=0.6, linewidth = 3.0)
 
 
 
@@ -470,8 +470,8 @@ class plotSett():
         self.ax.set_yticks(Ymajor_ticks)
         
 
-        self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.6)  
+        self.ax.grid(which='minor', alpha=0.2, linewidth = 2.0)
+        self.ax.grid(which='major', alpha=0.6, linewidth = 3.0)  
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
     
