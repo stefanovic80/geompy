@@ -59,7 +59,7 @@ class parabola(dataExplore, parabolaCalc):
     def b(self):
         return self._b
 
-    @a.setter
+    @b.setter
     def b(self, value):
         self.addParams('b', value)
         self._b = value
@@ -74,7 +74,7 @@ class parabola(dataExplore, parabolaCalc):
     def c(self):
         return self._c
 
-    @a.setter
+    @c.setter
     def c(self, value):
         self.addParams('c', value)
         self._c = value
@@ -82,8 +82,6 @@ class parabola(dataExplore, parabolaCalc):
             self.draw()
         except:
             pass
-
-
 
 
     @property

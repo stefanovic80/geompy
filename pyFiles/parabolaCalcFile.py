@@ -1,9 +1,12 @@
+from . import plt, np, random
+
 class parabolaCalc():
-    #vertx, concavity a (self._a)
+    #vertex, concavity a (self._a)
     def calc(self, name = None):
         #self.dof = 2
         self.data = [ self._x ]
-        self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+        #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
+        self.data = self.data + [self._a*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
 
 
     #a, b and c (to be modified!)
