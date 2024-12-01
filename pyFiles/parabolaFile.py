@@ -258,7 +258,7 @@ class parabola(dataExplore, parabolaCalc):
             self.calc1()
             self.onlyDraw()
 
-
+        print(self.params)
 
     def draw_b(self):
         self.__del__()
@@ -273,6 +273,7 @@ class parabola(dataExplore, parabolaCalc):
             self.calc1()
             self.onlyDraw()
 
+        print(self.params)
 
 
     def draw_c(self):
@@ -288,9 +289,10 @@ class parabola(dataExplore, parabolaCalc):
             self.calc1()
             self.onlyDraw()
 
+        print(self.params)
     
     def draw_vertex(self):
-        pass
+        print(self.params)
 
 
     def __str__(self):

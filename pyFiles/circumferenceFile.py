@@ -32,13 +32,11 @@ class circumference(dataExplore):
             self.addParams('radius', self._radius)
             self.addParams('center', self._center)
             self.draw()
-            #a = self.degreesOfFreedom
             self._points_generator()
 
         self.a = None
         self.b = None
         self.c = None
-        #self.degreesOfFreedom = 3
 
     @property
     def angle(self):

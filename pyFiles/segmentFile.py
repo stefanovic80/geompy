@@ -30,11 +30,15 @@ class segment(dataExplore):
         self.endpoint = [point0, point1]
         
         if draw == True:
-            self.draw()
+            self.addParams('point0', self.endpoint[0])
+            self.addParams('point1', self.endpoint[1])
+            self.calc()
+            self.onlyDraw()
     def calc(self):
         self.data[0] = np.array([self.endpoint[0].x[0], self.endpoint[1].x[0] ])
         self.data[1] = np.array([self.endpoint[0].y[0], self.endpoint[1].y[0] ])
 
+    #to be deprecated
     def chooseCalc(self):
         self.__del__()
         calculation_functions = [self.calc]

@@ -37,7 +37,8 @@ class triangle(dataExplore):
             v.color = self._colorV
 
         if draw == True:
-            self.draw()
+            self.calc1()
+            self.onlyDraw()
 
     
     #to be properly implemented!

@@ -356,8 +356,7 @@ class plotSett():
         
         elements = list( self.keys )
         if any(key in element for element in elements): 
-            #to be fixed as it's not working with point
-            try:
+            try: #it pops all keys except point
                 self.params.pop(key)
             except:
                 pass
@@ -368,7 +367,6 @@ class plotSett():
             self.values.append(param)
             self.params = dict(zip(self.keys, self.values))
             
-        print(self.params)
     
 
     def onlyDraw(self):
