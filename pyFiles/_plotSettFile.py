@@ -1,6 +1,7 @@
 # _plotSett.py
 from . import plt, np, random
 from .Settings import settings
+from collections import deque
 
 import sys
 # to be removed in case of coding
@@ -37,8 +38,12 @@ class plotSett():
         self.plotSettings = None
 
         self.data = [None, None]
-
+        
+        
         self.params = {}
+        self.dof = 3
+        self.keys = deque(maxlen = self.dof)
+        self.values = deque(maxlen = self.dof)
 
         self.hline = None
         self.vline = None
@@ -337,12 +342,29 @@ class plotSett():
 
 
     def addParams(self, key, param):#dof = Degree Of Freedom
-        
+        pass
+        """
         listOfKeys = list( self.params.keys() )
         if len(listOfKeys) > self.dof - 1:
             self.params.pop(listOfKeys[0], None)
         self.params[key] = param
         print(self.params)
+        """
+    
+    
+    def addParams(self, key, param):
+        
+        elements = list(self.keys )
+        if any(key not in element for element in elements):
+            print("check: if statement is working")
+            self.keys.append(key)
+            self.values.append(param)
+            self.params = dict(zip(self.keys, self.values))
+        else:
+            #idx = self.keys.index(key)
+            self.params[key] = param
+        print(self.params)
+    
 
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)

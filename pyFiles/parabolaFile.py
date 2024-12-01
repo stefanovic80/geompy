@@ -25,9 +25,15 @@ class parabola(dataExplore, parabolaCalc):
         self.degreesOfFreedom = 3
         self.dof = 3
         if draw == True:
-            self.params['None'] = None
+            """
+            self.params[None] = None
             self.params['vertex'] = self._vertex
             self.params['a'] = self._a
+            """
+            self.params[None] = None
+            self.addParams('vertex', self._vertex)
+            self.addParams('a', self._a)
+
             self.calc()
             self.onlyDraw()
             #self._points_generator()
