@@ -30,7 +30,7 @@ class parabola(dataExplore, parabolaCalc):
             self.params['vertex'] = self._vertex
             self.params['a'] = self._a
             """
-            self.params[None] = None
+            self.addParams('None', None)
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
 

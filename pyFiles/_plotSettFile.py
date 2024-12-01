@@ -354,15 +354,15 @@ class plotSett():
     
     def addParams(self, key, param):
         
-        elements = list(self.keys )
-        if any(key not in element for element in elements):
-            print("check: if statement is working")
+        elements = list( self.keys )
+        if any(key in element for element in elements): 
+            self.params[key] = param
+            #idx = self.keys.index(key)
+        else:
             self.keys.append(key)
             self.values.append(param)
             self.params = dict(zip(self.keys, self.values))
-        else:
-            #idx = self.keys.index(key)
-            self.params[key] = param
+            
         print(self.params)
     
 
