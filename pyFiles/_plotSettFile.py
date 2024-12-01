@@ -356,6 +356,11 @@ class plotSett():
         
         elements = list( self.keys )
         if any(key in element for element in elements): 
+            #to be fixed as it's not working with point
+            try:
+                self.params.pop(key)
+            except:
+                pass
             self.params[key] = param
             #idx = self.keys.index(key)
         else:

@@ -25,11 +25,6 @@ class parabola(dataExplore, parabolaCalc):
         self.degreesOfFreedom = 3
         self.dof = 3
         if draw == True:
-            """
-            self.params[None] = None
-            self.params['vertex'] = self._vertex
-            self.params['a'] = self._a
-            """
             self.addParams('None', None)
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
@@ -55,10 +50,7 @@ class parabola(dataExplore, parabolaCalc):
     def a(self, value):
         self.addParams('a', value)
         self._a = value
-        #try:
-        self.draw()
-        #except:
-        #    pass
+        self.draw_a()
 
 
     @property
@@ -69,12 +61,7 @@ class parabola(dataExplore, parabolaCalc):
     def b(self, value):
         self.addParams('b', value)
         self._b = value
-        try:
-            self.draw()
-        except:
-            pass
-
-
+        self.draw_b()
 
     @property
     def c(self):
@@ -84,10 +71,7 @@ class parabola(dataExplore, parabolaCalc):
     def c(self, value):
         self.addParams('c', value)
         self._c = value
-        try:
-            self.draw()
-        except:
-            pass
+        self.draw_c()
 
 
     @property
@@ -98,10 +82,7 @@ class parabola(dataExplore, parabolaCalc):
     def vertex(self, point):
         self.addParams('vertex', point)
         self._vertex = point
-        try:
-            self.draw()
-        except:
-            pass
+        self.draw_vertex()
         #self.name = self._name
 
 
@@ -262,49 +243,55 @@ class parabola(dataExplore, parabolaCalc):
         """
         pass
 
-    def draw(self):
+    def draw_a(self):
         self.__del__()
 
         listOfKeys = list( self.params.keys() )
         lpk0, lpk1, lpk2  = listOfKeys[-1], listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
         
-
-        if 'point' in lpk0:
-            pass
-
-        #if concavity 'a' as last inserted parameter
-        elif lpk0 == 'a':
             
-            if 'vertex' == lpk1:
-                #otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
-                #self.params[None] = self.params.pop(otherKey)
-                #self.params[None] = None
-                
-                #self.params[lpk2] = None
+        if 'vertex' == lpk1:
 
-                self.calc()
-                self.onlyDraw()
-            elif 'b' == lpk1:
-                if 'c' == lpk2:
-                    self.calc1()
-                    self.onlyDraw()
-            elif 'c' == lpk1:
-                pass
+            self.calc()
+            self.onlyDraw()
+        elif 'b' in listOfKeys and 'c' in listOfKeys:
+            self.calc1()
+            self.onlyDraw()
 
 
 
-        #if 'b' as last inserted parameter
-        elif lpk0 == 'b':
+    def draw_b(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+
+
+        if 'vertex' == lpk1:
             pass
-        
-        #if 'c' as last inserted parameter
-        elif lpk0 == 'c':
-            pass
+        elif 'a' in listOfKeys and 'c' in listOfKeys:
+            self.calc1()
+            self.onlyDraw()
 
 
-        #if 'vertex' as last inserted parameter
-        elif lpk0 == 'vertex':
+
+    def draw_c(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+
+
+        if 'vertex' == lpk1:
             pass
+        elif 'a' in listOfKeys and 'b' in listOfKeys:
+            self.calc1()
+            self.onlyDraw()
+
+    
+    def draw_vertex(self):
+        pass
+
 
     def __str__(self):
 
