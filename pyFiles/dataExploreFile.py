@@ -29,12 +29,6 @@ class dataExplore(plotSett):
         self.addParams( "point" + str(k), value )
         self.draw()
         self.p += 1
-        """
-        try:
-            self.draw()
-        except:
-            pass
-        """
     
     #to be deprecated
     def _points_generator(self):
