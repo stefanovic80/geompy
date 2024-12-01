@@ -49,10 +49,10 @@ class parabola(dataExplore, parabolaCalc):
     def a(self, value):
         self.addParams('a', value)
         self._a = value
-        try:
-            self.draw()
-        except:
-            pass
+        #try:
+        self.draw()
+        #except:
+        #    pass
 
 
     @property
@@ -156,63 +156,20 @@ class parabola(dataExplore, parabolaCalc):
 
 
 
-    """
-    #vertex, a (self._a)
-    def calc13(self, name = None):
 
-        xv, yv = self.vertex.coords[0], self.vertex.coords[1]
-
-        self._b = -2*self._a*xv
-        self._c = yv + self._b**2/(4*self._a)
-
-        self.calc1()
-    """
-
-
-
-    """
-    def draw(self):
-        self.__del__()
-        prefix = 'point'
-        params = {k: self.params[k] for k in list(self.params)[1:3]}
-
-        #1) concavity and vertex
-        if 'a' in params.keys() and 'vertex' in params.keys():
-            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
-            #del self.params[u]
-
-            self.calc()
-            self.onlyDraw()
-
-        #3) vertex and one point
-        elif 'vertex' in params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in params.keys() ):
-            self.calc4()
-            self.onlyDraw()
-
-        #11) vertex, b (self._b)
-        elif 'vertex' in params.keys() and 'b' in params.keys():
-            self.calc11()
-            self.onlyDraw()
-
-        #12) vertex, c (self._c)
-        elif 'vertex' in params.keys() and 'c' in params.keys():
-            self.calc12()
-            self.onlyDraw()
-
-        #13) vertex, a (self._a)
-        elif 'vertex' in params.keys() and 'a' in params.keys():
-            self.calc13()
-            self.onlyDraw()
-    """
 
 
 
     
     def draw(self):
+        """ 
         self.__del__()
         prefix = 'point'
         
-        keys = list(self.params.keys())[1:]
+        #to be fixed
+        j = 0
+        
+        keys = list(self.params.keys())[j:]
 
         #1) concavity and vertex
         if 'a' in keys and 'vertex' in keys:
@@ -222,7 +179,7 @@ class parabola(dataExplore, parabolaCalc):
             
             self.calc()
             self.onlyDraw()
-
+        #done
 
 
         #3) vertex and one point
@@ -253,14 +210,7 @@ class parabola(dataExplore, parabolaCalc):
             self.calc12()
             self.onlyDraw()
 
-            """
-            #13) vertex, a (self._a)
-            elif 'vertex' in self.params.keys() and 'a' in self.params.keys():
-                
-                self.calc13()
-                self.onlyDraw()
-            """
-
+            
         #2) all points
         elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
             self.calc2()
@@ -303,7 +253,52 @@ class parabola(dataExplore, parabolaCalc):
 
         else:
             pass
-    
+        """
+        pass
+
+    def draw(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk0, lpk1, lpk2  = listOfKeys[-1], listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        
+
+        if 'point' in lpk0:
+            pass
+
+        #if concavity 'a' as last inserted parameter
+        elif lpk0 == 'a':
+            
+            if 'vertex' == lpk1:
+                #otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
+                #self.params[None] = self.params.pop(otherKey)
+                #self.params[None] = None
+                
+                #self.params[lpk2] = None
+
+                self.calc()
+                self.onlyDraw()
+            elif 'b' == lpk1:
+                if 'c' == lpk2:
+                    self.calc1()
+                    self.onlyDraw()
+            elif 'c' == lpk1:
+                pass
+
+
+
+        #if 'b' as last inserted parameter
+        elif lpk0 == 'b':
+            pass
+        
+        #if 'c' as last inserted parameter
+        elif lpk0 == 'c':
+            pass
+
+
+        #if 'vertex' as last inserted parameter
+        elif lpk0 == 'vertex':
+            pass
 
     def __str__(self):
 

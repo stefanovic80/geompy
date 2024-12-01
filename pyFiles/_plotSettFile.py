@@ -337,9 +337,9 @@ class plotSett():
 
 
     def addParams(self, key, param):#dof = Degree Of Freedom
-        #self.params[key] = param
+        
         listOfKeys = list( self.params.keys() )
-        if len(listOfKeys) > self.dof - 1:# - 1:
+        if len(listOfKeys) > self.dof - 1:
             self.params.pop(listOfKeys[0], None)
         self.params[key] = param
         print(self.params)
