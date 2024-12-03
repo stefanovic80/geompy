@@ -255,6 +255,9 @@ class parabola(dataExplore, parabolaCalc):
         elif 'point' in lpk1 and 'point' in lpk2:
             self.calc6()
             self.onlyDraw()
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc9()
+            self.onlyDraw()
 
 
         print(self.params)
@@ -274,6 +277,10 @@ class parabola(dataExplore, parabolaCalc):
             self.calc1()
             self.onlyDraw()
 
+        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc10()
+            self.onlyDraw()
+
         print(self.params)
 
 
@@ -284,11 +291,20 @@ class parabola(dataExplore, parabolaCalc):
         lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
 
         if 'vertex' == lpk1:
-            pass
+            self.calc12()
+            self.onlyDraw()
+
         elif 'a' in listOfKeys and 'b' in listOfKeys:
             self.calc1()
             self.onlyDraw()
 
+        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc10()
+            self.onlyDraw()
+
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc9()
+            self.onlyDraw()
         print(self.params)
     
     def draw_vertex(self):
@@ -306,6 +322,9 @@ class parabola(dataExplore, parabolaCalc):
         elif 'b' in lpk1:
             self.calc11()
             self.onlyDraw()
+        elif 'c' in lpk1:
+            self.calc12()
+            self.onlyDraw()
 
     def draw(self):
         self.__del__()
@@ -316,6 +335,30 @@ class parabola(dataExplore, parabolaCalc):
         
         if 'point' in lpk1 and 'point' in lpk2:
             self.calc2()
+            self.onlyDraw()
+        elif 'b' in listOfKeys and 'c' in listOfKeys:
+            self.calc10()
+            sefl.onlyDraw()
+
+        elif 'a' in listOfKeys and 'c' in listOfKeys:
+            self.calc9()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and 'b' in listOfKeys:
+            self.calc8()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc6()
+            self.onlyDraw()
+
+
+        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc7()
+            self.onlyDraw()
+
+        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc5()
             self.onlyDraw()
 
     def __str__(self):
