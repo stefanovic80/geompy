@@ -12,8 +12,6 @@ class parabola(dataExplore, parabolaCalc):
 
         super().__init__()
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
-        #self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
-        
         
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self._b = None
@@ -25,7 +23,6 @@ class parabola(dataExplore, parabolaCalc):
         self.degreesOfFreedom = 3
         self.dof = 3
         if draw == True:
-            self.addParams('None', None)
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
 
@@ -84,9 +81,6 @@ class parabola(dataExplore, parabolaCalc):
         self._vertex = point
         self.draw_vertex()
         #self.name = self._name
-
-
-
 
 
     @property
@@ -157,7 +151,8 @@ class parabola(dataExplore, parabolaCalc):
         j = 0
         
         keys = list(self.params.keys())[j:]
-
+        
+        #done
         #1) concavity and vertex
         if 'a' in keys and 'vertex' in keys:
             otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
@@ -166,15 +161,15 @@ class parabola(dataExplore, parabolaCalc):
             
             self.calc()
             self.onlyDraw()
+        
         #done
-
-
         #3) vertex and one point
         elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
             
             self.calc4()
             self.onlyDraw()
 
+        #done
         #11) vertex, b (self._b)
         elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
             
@@ -257,6 +252,10 @@ class parabola(dataExplore, parabolaCalc):
         elif 'b' in listOfKeys and 'c' in listOfKeys:
             self.calc1()
             self.onlyDraw()
+        elif 'point' in lpk1 and 'point' in lpk2:
+            self.calc6()
+            self.onlyDraw()
+
 
         print(self.params)
 
@@ -268,7 +267,9 @@ class parabola(dataExplore, parabolaCalc):
 
 
         if 'vertex' == lpk1:
-            pass
+            self.calc11()
+            self.onlyDraw()
+
         elif 'a' in listOfKeys and 'c' in listOfKeys:
             self.calc1()
             self.onlyDraw()
@@ -282,7 +283,6 @@ class parabola(dataExplore, parabolaCalc):
         listOfKeys = list( self.params.keys() )
         lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
 
-
         if 'vertex' == lpk1:
             pass
         elif 'a' in listOfKeys and 'b' in listOfKeys:
@@ -292,8 +292,31 @@ class parabola(dataExplore, parabolaCalc):
         print(self.params)
     
     def draw_vertex(self):
-        print(self.params)
+        self.__del__()
 
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        
+        if lpk1 == 'a':
+            self.calc()
+            self.onlyDraw()
+        elif 'point' in lpk1:
+            self.calc4()
+            self.onlyDraw()
+        elif 'b' in lpk1:
+            self.calc11()
+            self.onlyDraw()
+
+    def draw(self):
+        self.__del__()
+
+        
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        
+        if 'point' in lpk1 and 'point' in lpk2:
+            self.calc2()
+            self.onlyDraw()
 
     def __str__(self):
 
