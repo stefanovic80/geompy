@@ -242,8 +242,11 @@ class parabola(dataExplore, parabolaCalc):
         self.__del__()
 
         listOfKeys = list( self.params.keys() )
-        lpk0, lpk1, lpk2  = listOfKeys[-1], listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
-        
+        lpk0, lpk1 = listOfKeys[-1], listOfKeys[-2] #Last Parameter Key, meddle one, first one
+        try:
+            lpk2 = listOfKeys[-3]
+        except:
+            pass
             
         if 'vertex' == lpk1:
 
