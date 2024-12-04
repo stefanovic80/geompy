@@ -340,17 +340,6 @@ class plotSett():
         text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
-
-    def addParams(self, key, param):#dof = Degree Of Freedom
-        pass
-        """
-        listOfKeys = list( self.params.keys() )
-        if len(listOfKeys) > self.dof - 1:
-            self.params.pop(listOfKeys[0], None)
-        self.params[key] = param
-        print(self.params)
-        """
-    
     
     def addParams(self, key, param):
         
