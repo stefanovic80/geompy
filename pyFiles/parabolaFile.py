@@ -28,20 +28,23 @@ class parabola(dataExplore, parabolaCalc):
 
             self.calc()
             self.onlyDraw()
-            #self._points_generator()
+
 
     @property
     def concavity(self):
         return self._a
 
+
     @concavity.setter
     def concavity(self, value):
         self.addParams('a', value) 
         self.params['a'] = self._a = value
-    
+
+
     @property
     def a(self):
         return self._a
+
 
     @a.setter
     def a(self, value):
@@ -54,15 +57,18 @@ class parabola(dataExplore, parabolaCalc):
     def b(self):
         return self._b
 
+
     @b.setter
     def b(self, value):
         self.addParams('b', value)
         self._b = value
         self.draw_b()
 
+
     @property
     def c(self):
         return self._c
+
 
     @c.setter
     def c(self, value):
@@ -74,6 +80,7 @@ class parabola(dataExplore, parabolaCalc):
     @property
     def vertex(self):
         return self._vertex
+
 
     @vertex.setter
     def vertex(self, point):
@@ -110,7 +117,6 @@ class parabola(dataExplore, parabolaCalc):
             signc = '-'
 
 
-
         a = str(round(self._a, 2))
         b = str(abs(round(self._b, 2)))
         c = str(abs(round(self._c, 2)))
@@ -129,114 +135,10 @@ class parabola(dataExplore, parabolaCalc):
     def erase(self):
         self.__del__()
         
-        #self._points = [] may have to be moved into _plotSett
         self._vertex = None
         self._a = None
         self.data = [None, None]
 
-
-
-
-
-
-
-
-    
-    def draw(self):
-        """ 
-        self.__del__()
-        prefix = 'point'
-        
-        #to be fixed
-        j = 0
-        
-        keys = list(self.params.keys())[j:]
-        
-        #done
-        #1) concavity and vertex
-        if 'a' in keys and 'vertex' in keys:
-            otherKey = next((k for k in self.params if k not in {"vertex", "a"}), None)
-            self.params[None] = self.params.pop(otherKey)
-            self.params[None] = None
-            
-            self.calc()
-            self.onlyDraw()
-        
-        #done
-        #3) vertex and one point
-        elif 'vertex' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
-            
-            self.calc4()
-            self.onlyDraw()
-
-        #done
-        #11) vertex, b (self._b)
-        elif 'vertex' in self.params.keys() and 'b' in self.params.keys():
-            
-            otherKey = next((k for k in self.params if k not in {"vertex", "b"}), None)
-            self.params[None] = self.params.pop(otherKey)
-            self.params[None] = None
-
-
-            self.calc11()
-            self.onlyDraw()
-
-        #12) vertex, c (self._c)
-        elif 'vertex' in self.params.keys() and 'c' in self.params.keys():
-
-            otherKey = next((k for k in self.params if k not in {"vertex", "c"}), None)
-            self.params[None] = self.params.pop(otherKey)
-            self.params[None] = None
-
-
-            self.calc12()
-            self.onlyDraw()
-
-            
-        #2) all points
-        elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc2()
-            self.onlyDraw()
-        
-        #4) a, b and c
-        elif 'a' in self.params.keys() and 'b' in self.params.keys() and 'c' in self.params.keys():
-            self.calc1()
-            self.onlyDraw()
-        
-        #5) c (self._c), point0, point1
-        elif 'c' in self.params.keys() and ( sum(1 for key in self.params.keys() if isinstance(key, str) and key.startswith("point")) == 2):
-            self.calc5()
-            self.onlyDraw()
-        
-        #6) a (self._a), point0, point1
-        elif 'a' in self.params.keys() and ( sum(1 for key in self.params.keys() if isinstance(key, str) and key.startswith("point")) == 2):
-            self.calc6()
-            self.onlyDraw()
-
-        #7) b (self._b), point0, point1
-        elif 'b' in self.params.keys() and ( sum(1 for key in self.params.keys() if isinstance(key, str) and key.startswith("point")) == 2):
-            self.calc7()
-            self.onlyDraw()
-
-        #8) a (self._a), b (self._b), point0
-        elif 'a' in self.params.keys() and 'b' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ): 
-            self.calc8()
-            self.onlyDraw()
-
-        #9) a (self._a), c (self._c), point0
-        elif 'a' in self.params.keys() and 'c' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
-            self.calc9()
-            self.onlyDraw()
-
-        #10) b (self._b), c (self._c), point0
-        elif 'b' in self.params.keys() and 'c' in self.params.keys() and any(isinstance(key, str) and key.startswith(prefix) for key in self.params.keys() ):
-            self.calc10()
-            self.onlyDraw()
-
-        else:
-            pass
-        """
-        pass
 
     def draw_a(self):
         self.__del__()
@@ -264,6 +166,7 @@ class parabola(dataExplore, parabolaCalc):
 
 
         print(self.params)
+
 
     def draw_b(self):
         self.__del__()
@@ -309,7 +212,8 @@ class parabola(dataExplore, parabolaCalc):
             self.calc9()
             self.onlyDraw()
         print(self.params)
-    
+
+
     def draw_vertex(self):
         self.__del__()
 
@@ -329,9 +233,9 @@ class parabola(dataExplore, parabolaCalc):
             self.calc12()
             self.onlyDraw()
 
+
     def draw(self):
         self.__del__()
-
         
         listOfKeys = list( self.params.keys() )
         lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
@@ -355,7 +259,6 @@ class parabola(dataExplore, parabolaCalc):
             self.calc6()
             self.onlyDraw()
 
-
         elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
             self.calc7()
             self.onlyDraw()
@@ -363,6 +266,7 @@ class parabola(dataExplore, parabolaCalc):
         elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
             self.calc5()
             self.onlyDraw()
+
 
     def __str__(self):
 
@@ -376,11 +280,8 @@ class parabola(dataExplore, parabolaCalc):
             f"\033[93m.c = \033[0m {self._c}\n"
             f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
             f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
-            f"\033[93m.concavity = \033[0m {self._a}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
-            #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
-            #f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
             f"\033[93m.name:\033[0m {self._name}\n"
             f"\033[93m.color:\033[0m {self.color}\n"
         )
