@@ -218,7 +218,7 @@ class parabola(dataExplore, parabolaCalc):
         self.__del__()
 
         listOfKeys = list( self.params.keys() )
-        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        lpk1 = listOfKeys[-2] #Last Parameter Key, meddle one, first one
         
         if lpk1 == 'a':
             self.calc()
