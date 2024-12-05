@@ -170,6 +170,10 @@ class parabola(dataExplore, parabolaCalc):
             self.calc_a_b_v()
             self.onlyDraw()
 
+        elif vertex in listOfKeys[:-1] and any('point' in key for key in listOfKeys[:-1])
+            self.calc_a_p_v()
+            self.onlyDraw()
+
         print(self.params)
 
 
