@@ -2,7 +2,7 @@ from . import plt, np, random
 
 class parabolaCalc():
     #vertex, concavity a (self._a)
-    def calc(self, name = None):
+    def calc_a_v(self, name = None):
         #self.dof = 2
         self.data = [ self._x ]
         #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
@@ -10,7 +10,7 @@ class parabolaCalc():
 
 
     #a, b and c (to be modified!)
-    def calc1(self, name = None):
+    def calc_a_b_c(self, name = None):
 
         self.data = [ self._x ]
         self.data = self.data + [self._a*self._x**2 + self._b*self._x + self._c ]
@@ -28,7 +28,7 @@ class parabolaCalc():
 
 
     # calculate from three points passing through (to be fixed!)
-    def calc2(self, name = None):
+    def calc_p_p_p(self, name = None):
 
         u = self.getPoint()
         point0 = next(u)
@@ -47,10 +47,10 @@ class parabolaCalc():
         self._b = parabParams[0, 1]
         self._c = parabParams[0, 2]
         
-        self.calc1() 
+        self.calc_a_b_c() 
     
     #one point and vertex
-    def calc4(self, name = None):
+    def calc_p_v(self, name = None):
         #self.dof = 2
         u = self.getPoint()
         point0 = next(u)
@@ -66,10 +66,10 @@ class parabolaCalc():
         self._c = parabParams[0, 1]
         self._b = -2*self._a*xv
 
-        self.calc1()
+        self.calc_a_b_c()
 
     #point0, point1 and c (self._c)
-    def calc5(self, name = None):
+    def calc_c_p_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -84,13 +84,13 @@ class parabolaCalc():
         self._a = parabParams[0, 0]
         self._b = parabParams[0, 1]
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
 
 
     #point0, point1 and a (self._a)
-    def calc6(self, name = None):
+    def calc_a_p_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -105,12 +105,12 @@ class parabolaCalc():
         self._b = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
 
     #point0, point1 and b (self._b)
-    def calc7(self, name = None):
+    def calc_b_p_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -125,56 +125,56 @@ class parabolaCalc():
         self._a = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
     #point0, a (self._a) and b (self._b)
-    def calc8(self, name = None):
+    def calc_a_b_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._c = y0 - self._a*x0**2 - self._b*x0
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
     #point0, a (self._a) and c (self._c)
-    def calc9(self, name = None):
+    def calc_a_c_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._b = (y0 - self._a*x0**2 - self._c)/x0
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
     #point0, b (self._b) and c (self._c)
-    def calc10(self, name = None):
+    def calc_b_c_p(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._a = (y0 - self._b*x0 - self._c)/x0**2
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
     #vertex, b (self._b)
-    def calc11(self, name = None):
+    def calc_b_v(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
         self._a = - self._b/(2*self._a)
         self._c = yv + self._b**2/(4*self._a)
 
-        self.calc1()
+        self.calc_a_b_c()
 
 
     #vertex, c (self._c)
-    def calc12(self, name = None):
+    def calc_c_v(self, name = None):
 
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
         self._a = (self._c - yv)/xv
         self._b = -2*xv*(self._c - yv)
 
-        self.calc1()
+        self.calc_a_b_c()

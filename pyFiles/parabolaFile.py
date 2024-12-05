@@ -26,7 +26,7 @@ class parabola(dataExplore, parabolaCalc):
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
 
-            self.calc()
+            self.calc_a_v()
             self.onlyDraw()
 
 
@@ -151,19 +151,20 @@ class parabola(dataExplore, parabolaCalc):
             pass
             
         if 'vertex' == lpk1:
-
-            self.calc()
+            self.calc_a_v()
             self.onlyDraw()
+
         elif 'b' in listOfKeys and 'c' in listOfKeys:
-            self.calc1()
-            self.onlyDraw()
-        elif 'point' in lpk1 and 'point' in lpk2:
-            self.calc6()
-            self.onlyDraw()
-        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
-            self.calc9()
+            self.calc_a_b_c()
             self.onlyDraw()
 
+        elif 'point' in lpk1 and 'point' in lpk2:
+            self.calc_a_p_p()
+            self.onlyDraw()
+
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc_a_c_p()
+            self.onlyDraw()
 
         print(self.params)
 
@@ -176,15 +177,19 @@ class parabola(dataExplore, parabolaCalc):
 
 
         if 'vertex' == lpk1:
-            self.calc11()
+            self.calc_b_v()
             self.onlyDraw()
 
         elif 'a' in listOfKeys and 'c' in listOfKeys:
-            self.calc1()
+            self.calc_a_b_c()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys):
+            self.calc_a_b_p()
             self.onlyDraw()
 
         elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys ):
-            self.calc10()
+            self.calc_b_c_p()
             self.onlyDraw()
 
         print(self.params)
@@ -197,19 +202,23 @@ class parabola(dataExplore, parabolaCalc):
         lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
 
         if 'vertex' == lpk1:
-            self.calc12()
+            self.calc_c_v()
             self.onlyDraw()
 
         elif 'a' in listOfKeys and 'b' in listOfKeys:
-            self.calc1()
+            self.calc_a_b_c()
             self.onlyDraw()
 
         elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys ):
-            self.calc10()
+            self.calc_b_c_p()
             self.onlyDraw()
 
-        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
-            self.calc9()
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc_a_c_p()
+            self.onlyDraw()
+        
+        elif 'point' in listOfKeys[-2] and 'point' in listOfKeys[-3]:
+            self.calc_c_p_p()
             self.onlyDraw()
         print(self.params)
 
@@ -221,16 +230,16 @@ class parabola(dataExplore, parabolaCalc):
         lpk1 = listOfKeys[-2] #Last Parameter Key, meddle one, first one
         
         if lpk1 == 'a':
-            self.calc()
+            self.calc_a_v()
             self.onlyDraw()
         elif 'point' in lpk1:
-            self.calc4()
+            self.calc_p_v()
             self.onlyDraw()
         elif 'b' in lpk1:
-            self.calc11()
+            self.calc_b_v()
             self.onlyDraw()
         elif 'c' in lpk1:
-            self.calc12()
+            self.calc_c_v()
             self.onlyDraw()
 
 
@@ -241,30 +250,30 @@ class parabola(dataExplore, parabolaCalc):
         lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
         
         if 'point' in lpk1 and 'point' in lpk2:
-            self.calc2()
+            self.calc_p_p_p()
             self.onlyDraw()
         elif 'b' in listOfKeys and 'c' in listOfKeys:
-            self.calc10()
-            sefl.onlyDraw()
+            self.calc_b_c_p()
+            self.onlyDraw()
 
         elif 'a' in listOfKeys and 'c' in listOfKeys:
-            self.calc9()
+            self.calc_a_c_p()
             self.onlyDraw()
 
         elif 'a' in listOfKeys and 'b' in listOfKeys:
-            self.calc8()
+            self.calc_a_b_p()
             self.onlyDraw()
 
         elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc6()
+            self.calc_a_p_p()
             self.onlyDraw()
 
         elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc7()
+            self.calc_b_p_p()
             self.onlyDraw()
 
         elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc5()
+            self.calc_c_p_p()
             self.onlyDraw()
 
 
