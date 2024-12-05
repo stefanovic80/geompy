@@ -48,7 +48,7 @@ class parabolaCalc():
     #point0, a (self._a) and c (self._c)
     def calc_a_c_v(self, name = None):
         self.params['b'] = self.params.pop('vertex')
-        self.params['b'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
+        self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
         self.calc_a_b_c()
 
     #point0, point1 and a (self._a)

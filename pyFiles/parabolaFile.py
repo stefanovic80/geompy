@@ -149,13 +149,18 @@ class parabola(dataExplore, parabolaCalc):
             lpk2 = listOfKeys[-3]
         except:
             pass
-            
-        if 'vertex' == lpk1:
-            self.calc_a_v()
+        
+        if 'b' in listOfKeys and 'c' in listOfKeys:
+            self.calc_a_b_c()
             self.onlyDraw()
 
-        elif 'b' in listOfKeys and 'c' in listOfKeys:
-            self.calc_a_b_c()
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc_a_c_p()
+            self.onlyDraw()
+
+
+        elif 'vertex' == lpk1:
+            self.calc_a_v()
             self.onlyDraw()
 
         elif 'point' in lpk1 and 'point' in lpk2:
@@ -170,7 +175,7 @@ class parabola(dataExplore, parabolaCalc):
             self.calc_a_b_v()
             self.onlyDraw()
 
-        elif vertex in listOfKeys[:-1] and any('point' in key for key in listOfKeys[:-1])
+        elif vertex in listOfKeys[:-1] and any('point' in key for key in listOfKeys[:-1]):
             self.calc_a_p_v()
             self.onlyDraw()
 
@@ -232,6 +237,11 @@ class parabola(dataExplore, parabolaCalc):
         elif 'point' in listOfKeys[-2] and 'point' in listOfKeys[-3]:
             self.calc_c_p_p()
             self.onlyDraw()
+
+        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
+            self.calc_a_c_v()
+            self.onlyDraw()
+
         print(self.params)
 
 
