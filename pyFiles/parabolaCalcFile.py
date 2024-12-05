@@ -1,4 +1,5 @@
 from . import plt, np, random
+from .Settings import settings
 
 class parabolaCalc():
     #vertex, concavity a (self._a)
@@ -177,4 +178,9 @@ class parabolaCalc():
         self._a = (self._c - yv)/xv
         self._b = -2*xv*(self._c - yv)
 
+        self.calc_a_b_c()
+
+    def calc_a_b_v(self, Name = None):
+        self.params['c'] = self.params['vertex']
+        self.params['c'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
         self.calc_a_b_c()

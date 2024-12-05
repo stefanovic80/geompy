@@ -165,6 +165,10 @@ class parabola(dataExplore, parabolaCalc):
         elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
             self.calc_a_c_p()
             self.onlyDraw()
+        
+        elif 'b' in listOfKeys[:-1] and 'v' in listOfKeys[:-1]:
+            self.calc_a_b_v()
+            self.onlyDraw()
 
         print(self.params)
 
@@ -190,6 +194,10 @@ class parabola(dataExplore, parabolaCalc):
 
         elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys ):
             self.calc_b_c_p()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
+            self.calc_a_b_v()
             self.onlyDraw()
 
         print(self.params)
@@ -232,16 +240,22 @@ class parabola(dataExplore, parabolaCalc):
         if lpk1 == 'a':
             self.calc_a_v()
             self.onlyDraw()
+        
         elif 'point' in lpk1:
             self.calc_p_v()
             self.onlyDraw()
+        
         elif 'b' in lpk1:
             self.calc_b_v()
             self.onlyDraw()
+        
         elif 'c' in lpk1:
             self.calc_c_v()
             self.onlyDraw()
 
+        elif 'a' in listOfKeys[:-1] and 'b' in listOfKeys[:-1]:
+            self.calc_a_b_v()
+            self.onlyDraw()
 
     def draw(self):
         self.__del__()
