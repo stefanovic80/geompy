@@ -8,7 +8,7 @@ from .pointFile import point
 
 
 class dataExplore(plotSett):
-    
+ 
     @property
     def points(self):
         j = 0
@@ -23,18 +23,14 @@ class dataExplore(plotSett):
 
     @points.setter
     def points(self, value):
-        #self.erase()
-        q = self.degreesOfFreedom
-        k = (self.p+q-1)%q
+        
+        k = self.p%self.dof
+        
+        self.addParams( "point" + str(k), value )
+        self.draw()
         self.p += 1
-        self._points[k] =  value
-        #value.name = str(k)#to check workability
-        try:
-            self.draw()
-        except:
-            pass
-
     
+    #to be deprecated
     def _points_generator(self):
         #self._points = [None, None, None]
         self._points = [None for u in range(self.degreesOfFreedom)]
@@ -43,6 +39,15 @@ class dataExplore(plotSett):
             x = self.data[0][random_idx]
             y = self.data[1][random_idx]
             self._points[j] = point(x, y, draw = False)
+
+    def getPoint(self):
+        prefix = 'point'
+        for key, val in self.params.items():
+            if key.startswith(prefix):
+                yield val#ontsTuple
+            else:
+                pass
+
 
 
     @property

@@ -1,6 +1,7 @@
 # _plotSett.py
 from . import plt, np, random
 from .Settings import settings
+from collections import deque
 
 import sys
 # to be removed in case of coding
@@ -15,9 +16,9 @@ if is_interactive():
 
 plt.ion()
 
-plt.rcParams [ 'axes.labelsize' ] = 18
+plt.rcParams [ 'axes.labelsize' ] = 12
 plt.rcParams [ 'figure.figsize' ] = ( settings.window_width , settings.window_width*settings.window_height/settings.window_width)
-plt.rcParams [ 'font.size' ] = 10
+plt.rcParams [ 'font.size' ] = 12
 plt.rcParams [ 'font.weight'] = 'bold'
 
 #x = np.arange(-10, 10, 0.01)
@@ -37,6 +38,12 @@ class plotSett():
         self.plotSettings = None
 
         self.data = [None, None]
+        
+        
+        self.params = {}
+        self.dof = 3
+        self.keys = deque(maxlen = self.dof)
+        self.values = deque(maxlen = self.dof)
 
         self.hline = None
         self.vline = None
@@ -47,7 +54,9 @@ class plotSett():
 
         self.rotate = False
         self._name = None
-        self._points = None#[None, None, None]
+
+        #to be deprecated
+        self._points = []#None#[None, None, None]
 
         self._step = 2
         self._stepx = 2
@@ -275,7 +284,8 @@ class plotSett():
     @linewidth.setter
     def linewidth(self, n):
         self._linewidth = n
-        self.draw()
+        self.__del__()
+        self.onlyDraw()
 
 
     @property
@@ -330,17 +340,26 @@ class plotSett():
         text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
-
-
-    def draw(self):
-        self.chooseCalc()
-        self.onlyDraw()
+    
+    def addParams(self, key, param):
+        
+        elements = list( self.keys )
+        if any(key in element for element in elements): 
+            try: #it pops all keys except point
+                self.params.pop(key)
+            except:
+                pass
+            self.params[key] = param
+            #idx = self.keys.index(key)
+        else:
+            self.keys.append(key)
+            self.values.append(param)
+            self.params = dict(zip(self.keys, self.values))
+            
+    
 
     def onlyDraw(self):
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
-        
-        #self._points_generator(3)
-        #to check!
         self.lines = []
         self.lines.append(line)
 
@@ -410,8 +429,8 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
-        self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.6)
+        self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
+        self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)
 
 
 
@@ -465,8 +484,8 @@ class plotSett():
         self.ax.set_yticks(Ymajor_ticks)
         
 
-        self.ax.grid(which='minor', alpha=0.2)
-        self.ax.grid(which='major', alpha=0.6)  
+        self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
+        self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)  
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
     

@@ -3,13 +3,13 @@ from . import plt, np, random
 from . import seed
 from .Settings import settings
 
-#plt.ion()
-
+from .lineCalcFile import lineCalc
 from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
+from collections import deque
 
-class line(dataExplore):
+class line(dataExplore, lineCalc):
     def __init__(self, seed = seed, draw = True):
         
         super().__init__()
@@ -22,11 +22,20 @@ class line(dataExplore):
         self.angle = angle
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
+        
+        self.dof = 2 #degrees of freedom
+        self.keys = deque(maxlen = self.dof)
+        self.values = deque(maxlen = self.dof)
+
+        #to be deprecated
         self.degreesOfFreedom = 2
+
         if draw == True:
+            self.addParams('m', self.angCoeff)
+            self.addParams('q', self.intercept)
+            #self.params = {'m': self.angCoeff, 'q': self.intercept}
             self.draw()
-            #a = self.degreesOfFreedom
-            self._points_generator()
+            #self._points_generator()
 
 
     
@@ -39,19 +48,8 @@ class line(dataExplore):
 
     @m.setter
     def m(self, value):
-        
-        #idx = (self.p+1)%2
-        #self._points[idx] = None
-        #self.angCoeff = value
-        self.angCoeff = value
-        try:
-            self.__del__()
-            self.calc1()
-            self.onlyDraw()
-            #self.draw()
-        except:
-            pass
-
+        self.addParams("m", value)
+        self.draw()
 
     @property
     def q(self):
@@ -59,81 +57,42 @@ class line(dataExplore):
 
     @q.setter
     def q(self, value):
-        self.intercept = value
-        try:
-            #self.calc3()
-            #self.onlyDraw()
-            self.draw()
-        except:
-            pass
-
-
+        self.addParams("q", value)
+        self.draw()
+    
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
         y = self.angCoeff*x + self.intercept
         return point(x, y)
 
 
-    def calc1(self): #calculate equation from angCoeff and intercept
-        self.data = [self._x]
-        self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
-        self.angle = np.arctan(self.angCoeff)
-        
-
-    def calc2(self): #calculate equation from two points
-
-        x0, y0 = self._points[0].coords[0], self._points[0].coords[1]
-        x1, y1 = self._points[1].coords[0], self._points[1].coords[1]
-        
-        self.length = ( ( x0 - x1  )**2 + ( y0 -y1  )**2  )**.5
-
-        if x1 != x0:
-            self.angCoeff = (y1 - y0)/(x1 - x0)
-            self.intercept = y0 - (y1 - y0)*x0/(x1 - x0)
-            j = 0 
-            
-            lims = [ self._points[0].coords[j], self._points[1].coords[j] ]
-            lims.sort()
-            settings.xmin = lims[0]
-            settings.xmax = lims[1]
-            
-            self.calc1()
-        else:
-            L = len(self._y)
-            self.data = [np.zeros(L) + x1]
-            self.data = self.data + [ self._y ]
-
-
-    def calc3(self): #calculate equation from 1 point and angCoeff
-        j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
-        self.intercept = -self.angCoeff*x0 + y0
-        
-        self.calc1()
-    
-    
-    def calc4(self): #calculate equation from 1 point and intercept
-        j = 0
-        x0, y0 = self._points[j].coords[0], self._points[j].coords[1]
-        self.angCoeff = (y0 - self.intercept)/x0
-        
-        self.calc1()
-    
-
-    def chooseCalc(self):
+    def draw(self):
         self.__del__()
-        calculation_functions = [self.calc2, self.calc4, self.calc3, self.calc1]
-        #calculation_functions = [self.calc3, self.calc1, self.calc2, self.calc4]
-        
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
-    
+        prefix = 'point'
+
+        if  "m" in self.params.keys() and "q" in self.params.keys():
+            self.angCoeff = self.params["m"]
+            self.intercept = self.params["q"]
+            self.calc1()
+            self.onlyDraw()
+        elif "m" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
+            point = next((val for key, val in self.params.items() if key.startswith(prefix)))
+
+            #self._points[0] = point
+            self.angCoeff = self.params["m"]
+            self.calc3()
+            self.onlyDraw()
+        elif "q" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
+            
+            point = next((val for key, val in self.params.items() if key.startswith(prefix)))
+            
+            self.intercept = self.params["q"]
+            self.calc4()
+            self.onlyDraw()
+        else:
+            self.calc2()
+            self.onlyDraw()
+
     @property
     def dataGroup(self):
         return self.data + self.labCoords
@@ -141,10 +100,6 @@ class line(dataExplore):
     @dataGroup.setter
     def dataGroup(self, value):
         self.data = value[0:2]
-        #self.labCoords = value[2:4]
-        #to be implemented!
-
-
 
     def erase(self):
         self.__del__()

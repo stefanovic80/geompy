@@ -253,7 +253,8 @@ class point(plotSett):
 
         locus.data[1] = a1 + ( locus.data[1] - self.data[1])*np.cos(angle) + self.data[1]
         
-        locus.draw()#, draw = False)
+        locus.__del__()
+        locus.onlyDraw()#, draw = False)
 
 
 
@@ -271,8 +272,13 @@ class point(plotSett):
         locus.dataGroup = data
 
         locus.draw()#, draw = False)
-
-
+    
+    """
+    def __repr__(self):
+        #pass
+        #bug to fix
+        return self._name + ' = ( ' + str(self.x[0]) + ', ' + str(self.y[0]) + ')'
+    """
 
     def __str__(self):
 

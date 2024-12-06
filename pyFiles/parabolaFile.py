@@ -4,47 +4,91 @@ from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
+from .parabolaCalcFile import parabolaCalc
 
-class parabola(dataExplore):
+class parabola(dataExplore, parabolaCalc):
 
     def __init__(self, draw = True):
 
         super().__init__()
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
-        #self.concavity = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         
-        
-        self.a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
-        self.b = None
-        self.c = None
+        self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
+        self._b = None
+        self._c = None
        
         self.j = 0
         self._color = random.choice(self.colors)
 
         self.degreesOfFreedom = 3
+        self.dof = 3
         if draw == True:
-            self.draw()
-            #a = self.degreesOfFreedom
-            self._points_generator()
+            self.addParams('vertex', self._vertex)
+            self.addParams('a', self._a)
+
+            self.calc_a_v()
+            self.onlyDraw()
+
+
     @property
     def concavity(self):
-        return self.a
+        return self._a
+
 
     @concavity.setter
     def concavity(self, value):
-        self.a = value
-        self.chooseCalc()
-        self.onlyDraw()
+        self.addParams('a', value) 
+        self.params['a'] = self._a = value
+
+
+    @property
+    def a(self):
+        return self._a
+
+
+    @a.setter
+    def a(self, value):
+        self.addParams('a', value)
+        self._a = value
+        self.draw_a()
+
+
+    @property
+    def b(self):
+        return self._b
+
+
+    @b.setter
+    def b(self, value):
+        self.addParams('b', value)
+        self._b = value
+        self.draw_b()
+
+
+    @property
+    def c(self):
+        return self._c
+
+
+    @c.setter
+    def c(self, value):
+        self.addParams('c', value)
+        self._c = value
+        self.draw_c()
+
 
     @property
     def vertex(self):
         return self._vertex
 
+
     @vertex.setter
     def vertex(self, point):
+        self.addParams('vertex', point)
         self._vertex = point
-        self.chooseCalc()
-        self.name = self._name
+        self.draw_vertex()
+        #self.name = self._name
+
 
     @property
     def equation(self):
@@ -62,21 +106,20 @@ class parabola(dataExplore):
         labely = data[1][random_index] + shift
         #--------------------
 
-        if self.b > 0:
+        if self._b > 0:
             signb = '+'
-        elif self.b <0:
+        elif self._b <0:
             signb = '-'
 
-        if self.c > 0:
+        if self._c > 0:
             signc = '+'
-        elif self.c <0:
+        elif self._c <0:
             signc = '-'
 
 
-
-        a = str(round(self.a, 2))
-        b = str(abs(round(self.b, 2)))
-        c = str(abs(round(self.c, 2)))
+        a = str(round(self._a, 2))
+        b = str(abs(round(self._b, 2)))
+        c = str(abs(round(self._c, 2)))
         eq = "y = " + a + r"$x^2$" + signb + b + "x" + signc + c
         try:
             eq = self._name + ": " + eq
@@ -92,62 +135,198 @@ class parabola(dataExplore):
     def erase(self):
         self.__del__()
         
-        #self._points = [] may have to be moved into _plotSett
         self._vertex = None
-        self.a = None
+        self._a = None
         self.data = [None, None]
 
 
-
-    def calc(self, name = None):
-        self.data = [ self._x ]
-        self.data = self.data + [self.a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
-
-
-    # calculate from three points the parabola passing through (to be fixed!)
-    def calc2(self, name = None):
-        x0 = self._points[0].coords[0]
-        x1 = self._points[1].coords[0]
-        x2 = self._points[2].coords[0]
-
-        y0 = self._points[0].coords[1]
-        y1 = self._points[1].coords[1]
-        y2 = self._points[2].coords[1]
-
-        A = np.matrix([ [ x0**2, x0, 1  ], [ x1**2, x1, 1  ], [ x2**2, x2, 1  ] ])
-        Ainv = np.linalg.inv(A)
-        y = np.array( [ y0  , y1  , y2 ] )#.reshape(-1, 1)
-        parabParams = np.dot(Ainv, y)
-        
-        self.a = parabParams[0, 0]
-        self.b = parabParams[0, 1]
-        self.c = parabParams[0, 2]
-        
-        self.calc1() 
-    
-    #what is this?
-    def calc1(self, name = None):
-
-        Delta = self.b**2 - 4*self.a*self.c
-        self._vertex = point( -self.b/(2*self.a)  , -Delta/(4*self.a),  draw = False )
-        #self.concavity = self.a
-        self.calc()
-
-
-
-    def chooseCalc(self):
+    def draw_a(self):
         self.__del__()
 
-        calculation_functions = [self.calc2, self.calc1, self.calc]#, self.calc3]
+        listOfKeys = list( self.params.keys() )
+        lpk0, lpk1 = listOfKeys[-1], listOfKeys[-2] #Last Parameter Key, meddle one, first one
+        try:
+            lpk2 = listOfKeys[-3]
+        except:
+            pass
+        
+        #a_b_c
+        if 'b' in listOfKeys and 'c' in listOfKeys:
+            self.calc_a_b_c()
+            self.onlyDraw()
+        
+        #a_c_p
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc_a_c_p()
+            self.onlyDraw()
 
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
+        #a_v
+        elif 'vertex' == lpk1:
+            self.calc_a_v()
+            self.onlyDraw()
+        
+        #a_p_p
+        elif 'point' in lpk1 and 'point' in lpk2:
+            self.calc_a_p_p()
+            self.onlyDraw()
+
+        #a_c_p
+        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
+            self.calc_a_c_p()
+            self.onlyDraw()
+        
+        #a_b_v
+        elif 'b' in listOfKeys[:-1] and 'v' in listOfKeys[:-1]:
+            self.calc_a_b_v()
+            self.onlyDraw()
+
+        #a_p_v
+        elif vertex in listOfKeys[:-1] and any('point' in key for key in listOfKeys[:-1]):
+            self.calc_a_p_v()
+            self.onlyDraw()
+
+        print(self.params)
+
+
+    def draw_b(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+
+        #b_v
+        if 'vertex' == lpk1:
+            self.calc_b_v()
+            self.onlyDraw()
+        
+        #a_b_c
+        elif 'a' in listOfKeys and 'c' in listOfKeys:
+            self.calc_a_b_c()
+            self.onlyDraw()
+        
+        #a_b_p
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys):
+            self.calc_a_b_p()
+            self.onlyDraw()
+        
+        #a_c_p
+        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc_b_c_p()
+            self.onlyDraw()
+        
+        #a_b_v
+        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
+            self.calc_a_b_v()
+            self.onlyDraw()
+        
+        print(self.params)
+
+
+    def draw_c(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        
+        #c_v
+        if 'vertex' == lpk1:
+            self.calc_c_v()
+            self.onlyDraw()
+        
+        #a_b_c
+        elif 'a' in listOfKeys and 'b' in listOfKeys:
+            self.calc_a_b_c()
+            self.onlyDraw()
+        
+        #a_b_p
+        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc_b_c_p()
+            self.onlyDraw()
+        
+        #a_c_p
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys ):
+            self.calc_a_c_p()
+            self.onlyDraw()
+        
+        #c_p_p
+        elif 'point' in listOfKeys[-2] and 'point' in listOfKeys[-3]:
+            self.calc_c_p_p()
+            self.onlyDraw()
+        
+        #a_c_v
+        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
+            self.calc_a_c_v()
+            self.onlyDraw()
+        
+        print(self.params)
+
+
+    def draw_vertex(self):
+        self.__del__()
+
+        listOfKeys = list( self.params.keys() )
+        lpk1 = listOfKeys[-2] #Last Parameter Key, meddle one, first one
+        
+        #a_v
+        if lpk1 == 'a':
+            self.calc_a_v()
+            self.onlyDraw()
+        
+        #p_v
+        elif 'point' in lpk1:
+            self.calc_p_v()
+            self.onlyDraw()
+        
+        #b_p_v
+        elif 'b' in lpk1 and 'vertex' in listOfKeys[:-1]:
+            self.calc_b_v()
+            self.onlyDraw()
+        
+        #c_v
+        elif 'c' in lpk1:
+            self.calc_c_v()
+            self.onlyDraw()
+
+        #a_b_v
+        elif 'a' in listOfKeys[:-1] and 'b' in listOfKeys[:-1]:
+            self.calc_a_b_v()
+            self.onlyDraw()
+
+    def draw(self):
+        self.__del__()
+        
+        listOfKeys = list( self.params.keys() )
+        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
+        
+        if 'point' in lpk1 and 'point' in lpk2:
+            self.calc_p_p_p()
+            self.onlyDraw()
+        elif 'b' in listOfKeys and 'c' in listOfKeys:
+            self.calc_b_c_p()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and 'c' in listOfKeys:
+            self.calc_a_c_p()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and 'b' in listOfKeys:
+            self.calc_a_b_p()
+            self.onlyDraw()
+
+        elif 'a' in listOfKeys and 'vertex' in listOfKeys:
+            self.calc_a_p_v()
+
+        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc_a_p_p()
+            self.onlyDraw()
+
+        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc_b_p_p()
+            self.onlyDraw()
+
+        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
+            self.calc_c_p_p()
+            self.onlyDraw()
 
 
     def __str__(self):
@@ -157,13 +336,13 @@ class parabola(dataExplore):
         attributes = (
             f"\033[93mClass type:\033[0m parabola\n"
             f"\nAttributes:\n"
+            f"\033[93m.a = \033[0m {self._a}\n"
+            f"\033[93m.b = \033[0m {self._b}\n"
+            f"\033[93m.c = \033[0m {self._c}\n"
             f"\033[93m.vertex.x = \033[0m {self._vertex.data[0]}\n"
             f"\033[93m.vertex.y = \033[0m {self._vertex.data[1]}\n"
-            f"\033[93m.concavity = \033[0m {self.a}\n"
             f"\033[93m.data[0] = \033[0m {self.data[0][:10]}...\n"
             f"\033[93m.data[1] = \033[0m {self.data[1][:10]}...\n"
-            #f"\033[93m.data[0] =\033[0m {self.data[0]}\n"
-            #f"\033[93m.data[1] =\033[0m {self.data[1]}\n"
             f"\033[93m.name:\033[0m {self._name}\n"
             f"\033[93m.color:\033[0m {self.color}\n"
         )
