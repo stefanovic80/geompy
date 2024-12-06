@@ -71,7 +71,7 @@ class parabolaCalc():
 
     def calc_a_p_v(self, name = None):
         self.params['b'] = self.params.pop('vertex')
-        self.params['b'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
+        self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
         self.calc_a_b_p()
 
 
