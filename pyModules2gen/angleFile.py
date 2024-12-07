@@ -2,7 +2,6 @@ from ..pyFiles.lineFile import line
 from ..pyFiles.pointFile import point
 from ..pyFiles._plotSettFile import plotSett
 from ..pyFiles.circumferenceFile import circumference
-
 from ..pyFiles import seed
 from ..pyFiles.Settings import settings
 from ..pyFiles import plt, np, random
@@ -13,8 +12,6 @@ class arc(plotSett):
 
         super().__init__()
         
-        #line0 = line()
-        #line1 = line()
         self.line = [line0, line1]
         self.arc = circumference(draw = False)
         
