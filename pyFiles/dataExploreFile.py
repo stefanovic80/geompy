@@ -29,16 +29,6 @@ class dataExplore(plotSett):
         self.addParams( "point" + str(k), value )
         self.draw()
         self.p += 1
-    
-    #to be deprecated
-    def _points_generator(self):
-        #self._points = [None, None, None]
-        self._points = [None for u in range(self.degreesOfFreedom)]
-        for j in range(self.degreesOfFreedom - 1):
-            random_idx = random.randint(0, len(self.data[0]) -1)
-            x = self.data[0][random_idx]
-            y = self.data[1][random_idx]
-            self._points[j] = point(x, y, draw = False)
 
     def getPoint(self):
         prefix = 'point'

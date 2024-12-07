@@ -28,18 +28,12 @@ class line(dataExplore, lineCalc):
         self.values = deque(maxlen = self.dof)
 
         #to be deprecated
-        self.degreesOfFreedom = 2
+        #self.degreesOfFreedom = 2
 
         if draw == True:
             self.addParams('m', self.angCoeff)
             self.addParams('q', self.intercept)
-            #self.params = {'m': self.angCoeff, 'q': self.intercept}
             self.draw()
-            #self._points_generator()
-
-
-    
-
 
     @property
     def m(self):

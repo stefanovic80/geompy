@@ -87,7 +87,6 @@ class parabola(dataExplore, parabolaCalc):
         self.addParams('vertex', point)
         self._vertex = point
         self.draw_vertex()
-        #self.name = self._name
 
 
     @property

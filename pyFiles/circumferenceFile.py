@@ -33,7 +33,7 @@ class circumference(dataExplore, circumferenceCalc):
             self.addParams('radius', self._radius)
             self.addParams('center', self._center)
             self.draw()
-            self._points_generator()
+            #self._points_generator()
 
         self.a = None
         self.b = None
