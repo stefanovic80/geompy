@@ -315,6 +315,7 @@ class parabola(dataExplore, parabolaCalc):
 
         elif 'a' in listOfKeys and 'vertex' in listOfKeys:
             self.calc_a_p_v()
+            self.onlyDraw()
 
         elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
             self.calc_a_p_p()
