@@ -4,14 +4,12 @@ from ..pyFiles._plotSettFile import plotSett
 from ..pyFiles.circumferenceFile import circumference
 
 from ..pyFiles import seed
-
 from ..pyFiles.Settings import settings
-
 from ..pyFiles import plt, np, random
+
 
 class arc(plotSett):
     def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
-    #def __init__(self, seed = seed, draw = True):
 
         super().__init__()
         
@@ -37,7 +35,6 @@ class arc(plotSett):
         m = [None, None]
         q = [None, None]
         
-        #for line in self.line:
         self.line[0]._color = self._color
         self.line[0].calc2()
         
@@ -75,8 +72,6 @@ class arc(plotSett):
     
     
     def calc2(self):
-        #for line in self.line:
-        #    line.chooseCalc()
         m = [None, None]
         q = [None, None]
 
@@ -109,9 +104,6 @@ class arc(plotSett):
         self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.arc.calc(angle = self.size)
         #to be modified!
-
-        
-        #self.arc._center.rotation( locus = self.arc, angle = (self.j%2)*np.arctan( m[1] ) + ((self.j+1)%2)*np.arctan( m[0])  )# + np.arctan( m[0] )  )
         
         formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
         self.arc._center.rotation( locus = self.arc, angle = formula)
@@ -137,23 +129,6 @@ class arc(plotSett):
                 except:
                     pass
 
-
-    """
-    def draw(self, name = None):
-        #self.__del__()
-        self._name = name
-        #if self.rotate == False:
-        #    self.calc()
-
-        self.chooseCalc()
-
-        line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
-        
-
-        self.lines = []
-        self.lines.append(line)
-    """
-        
     def erase(self):
         self.__del__()
 
@@ -165,5 +140,3 @@ class arc(plotSett):
 
         self.data = [None, None]
         self.line = [None, None]
-        #self.arc.erase()
-        #self.center = None
