@@ -40,7 +40,7 @@ class function(dataExplore):
     def y(self, array):
         self.data[0] = x#np.arange
         self.data[1] = array
-        self.draw()
+        self.onlyDraw()
     
 
 
