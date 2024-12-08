@@ -84,14 +84,10 @@ class dataExplore(plotSett):
         
         print(closest_index, closest_elementx, closest_elementy )
         
-
-
-
     
     @property
     def y(self):
         return self.data[1]
-
 
 
     @y.setter

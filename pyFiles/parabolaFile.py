@@ -19,8 +19,10 @@ class parabola(dataExplore, parabolaCalc):
        
         self.j = 0
         self._color = random.choice(self.colors)
-
+        
+        #to be deprecated
         self.degreesOfFreedom = 3
+        
         self.dof = 3
         if draw == True:
             self.addParams('vertex', self._vertex)

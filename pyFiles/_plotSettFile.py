@@ -86,9 +86,6 @@ class plotSett():
         settings.ymin = value*settings.window_height/settings.window_width
         self.step = self._step
         self.lims()
-        #global x
-        #x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)
-        #from .functionFile import xSet
         
 
     @property
@@ -101,7 +98,6 @@ class plotSett():
         settings.ymax = value*settings.window_height/settings.window_width
         self.step = self._step
         self.lims()
-
 
 
     @property
@@ -344,7 +340,8 @@ class plotSett():
     def addParams(self, key, param):
         
         elements = list( self.keys )
-        if any(key in element for element in elements): 
+        #if any(key in element for element in elements):
+        if any(element.startswith(key) for element in elements): 
             try: #it pops all keys except point
                 self.params.pop(key)
             except:

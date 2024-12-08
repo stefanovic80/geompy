@@ -1,7 +1,7 @@
 from . import plt, np, random
 
 class circumferenceCalc():
-    #circumference equation calculation from center coordinates and radius
+    #circumference equation calculation from centre coordinates and radius
     def calc_C_r(self, name = None, angle = 2*np.pi):
 
         data = [None, None]
@@ -37,13 +37,13 @@ class circumferenceCalc():
 
         self.angles = np.array(angles)
 
-        self.data = [np.array(data[0]) + self._center.coords[0], np.array(data[1]) + self._center.coords[1] ]
+        self.data = [np.array(data[0]) + self._centre.coords[0], np.array(data[1]) + self._centre.coords[1] ]
 
         self.pointsSelect(angle = angle)
 
-        self._a = -2*self._center.coords[0]
-        self._b = -2*self._center.coords[1]
-        self._c = self._center.coords[0]**2 + self._center.coords[1]**2 - self._radius**2
+        self._a = -2*self._centre.coords[0]
+        self._b = -2*self._centre.coords[1]
+        self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -64,14 +64,14 @@ class circumferenceCalc():
 
         self._a, self._b, self._c = circParams[0, 0], circParams[0, 1], circParams[0, 2]
 
-        self._center = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
+        self._centre = point(-circParams[0, 0]/2, -circParams[0, 1]/2, draw = False)
 
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc_C_r()
 
 
 
-    # calculate from center coordinates and a point passing through
+    # calculate from centre coordinates and a point passing through
     def calc_C_p(self, name = None, angle = 2*np.pi):
 
         for point in self._points:
@@ -79,8 +79,8 @@ class circumferenceCalc():
 
                 x0 = point.coords[0]
                 y0 = point.coords[1]
-                x1 = self._center.coords[0]
-                y1 = self._center.coords[1]
+                x1 = self._centre.coords[0]
+                y1 = self._centre.coords[1]
                 self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
 
                 self._a = -2*x1
@@ -94,7 +94,7 @@ class circumferenceCalc():
         self.calc_C_r()
     
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
-        self._center.coords[0], self._center._coords[1] = -self._a/2, -self._b/2
-        self._radius = np.sqrt( self._center.coords[0]**2 + self._center.coords[1]**2 - self._c  )
+        self._centre.coords[0], self._centre._coords[1] = -self._a/2, -self._b/2
+        self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
         self.calc_C_r()
 

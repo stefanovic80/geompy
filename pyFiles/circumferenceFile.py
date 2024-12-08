@@ -16,27 +16,30 @@ class circumference(dataExplore, circumferenceCalc):
         #plotSett.__init__(self)
 
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
-        self._center = point(draw = False)
+        self._centre = point(draw = False)
         
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
 
-        self._center._color = self._color 
+        self._centre._color = self._color 
         self.j = 0
         self.k = 0
+        
+        #to be deprecated
         self.degreesOfFreedom = 3
         
         self.dof = 3
 
-        if draw == True:
-            self.addParams('radius', self._radius)
-            self.addParams('center', self._center)
-            self.draw_C()
-
         self._a = None
         self._b = None
         self._c = None
+
+        if draw == True:
+            self.addParams('radius', self._radius)
+            self.addParams('Centre', self._centre)
+            self.draw_C()
+
 
     @property
     def angle(self):
@@ -59,13 +62,13 @@ class circumference(dataExplore, circumferenceCalc):
 
    
     @property
-    def center(self):
-        return self._center
+    def centre(self):
+        return self._centre
 
-    @center.setter
-    def center(self, point):
-        self._center = point
-        self.addParams('center', point)
+    @centre.setter
+    def centre(self, point):
+        self.addParams('Centre', point)
+        self._centre = point
         try:
             self.draw_C()
         except:
@@ -77,9 +80,8 @@ class circumference(dataExplore, circumferenceCalc):
 
     @radius.setter
     def radius(self, r):
-        self._radius = r
         self.addParams('radius', r)
-
+        self._radius = r
         self.draw_r()
 
     @property
@@ -88,8 +90,8 @@ class circumference(dataExplore, circumferenceCalc):
 
     @a.setter
     def a(self, value):
-        self._a = value
         self.addParams('a', value)
+        self._a = value
         try:
             self.draw_a()
         except:
@@ -101,8 +103,8 @@ class circumference(dataExplore, circumferenceCalc):
 
     @b.setter
     def b(self, value):
-        self._b = value
         self.addParams('b', value)
+        self._b = value
         try:
             self.draw_b()
         except:
@@ -115,8 +117,8 @@ class circumference(dataExplore, circumferenceCalc):
 
     @a.setter
     def c(self, value):
-        self._c = value
         self.addParams('c', value)
+        self._c = value
         try:
             self.draw_c()
         except:
@@ -124,8 +126,8 @@ class circumference(dataExplore, circumferenceCalc):
 
 
     def tangent(self, point):
-        xc = self.center.data[0]
-        yc = self.center.data[1]
+        xc = self._centre.data[0]
+        yc = self._centre.data[1]
         x0 = point.data[0]
         y0 = point.data[1]
         R = self.radius
@@ -174,7 +176,7 @@ class circumference(dataExplore, circumferenceCalc):
     def draw_r(self):
         self.__del__()
 
-        if 'center' in self.params.keys():
+        if 'Centre' in self.params.keys():
             self.calc_C_r()
             self.onlyDraw()
         elif any('point' in key for key in lok):
@@ -185,13 +187,13 @@ class circumference(dataExplore, circumferenceCalc):
         self.__del__()
         prefix = 'point'
 
-        #1) center and radius
-        if 'center' in self.params.keys() and 'radius' in self.params.keys():
+        #1) centre and radius
+        if 'Centre' in self.params.keys() and 'radius' in self.params.keys():
             self.calc_C_r()
             self.onlyDraw()
 
-        #2) center, 1 point
-        elif 'center' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
+        #2) centre, 1 point
+        elif 'Centre' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
             self.calc_c_p()
             self.onlyDraw()
 
@@ -229,7 +231,7 @@ class circumference(dataExplore, circumferenceCalc):
     def erase(self):
         self.__del__()
         self.data = [None, None]
-        self._center.coords = [None, None]
+        self._centre.coords = [None, None]
         self._radius = None
 
     def __str__(self):
@@ -249,7 +251,7 @@ class circumference(dataExplore, circumferenceCalc):
         
         instances = (
             f"\nInstances:\n"
-            f"\033[93m.center\033[0m\n"
+            f"\033[93m.centre\033[0m\n"
         )
         
         return attributes + instances + self.plotSettings
