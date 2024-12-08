@@ -87,28 +87,13 @@ class circumferenceCalc():
         self._b = -2*y1
         self._c = x1**2 + y1**2 - x0**2 - y0**2
         
-        self.calc_a_b_c()
-
-        """
-        for point in self._points:
-            try:
-
-                x0 = point.coords[0]
-                y0 = point.coords[1]
-                x1 = self._centre.coords[0]
-                y1 = self._centre.coords[1]
-                self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
-
-                self._a = -2*x1
-                self._b = -2*y1
-                self._c = x1**2 + y1**2 - x0**2 - y0**2
-
-                break
-            except:
-                pass
-        """
+        #self.calc_a_b_c()
         self.calc_C_r()
     
+    def calc_C_p_r(self):
+        self.calc_C_p()
+        #r to be removed
+
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
         self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
