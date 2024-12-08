@@ -22,8 +22,40 @@ class parabola(dataExplore, parabolaCalc):
         
         #to be deprecated
         self.degreesOfFreedom = 3
-        
         self.dof = 3
+        
+        self.draws = {
+                'a':{
+                    ('b', 'c'): self.calc_a_b_c,
+                    ('c', 'point'): self.calc_a_c_p,
+                    ('vertex',): self.calc_a_v,
+                    ('b', 'vertex'): self.calc_b_v,
+                    ('point', 'vertex'): self.calc_p_v,
+                },
+                'b':{
+                    ('a', 'c'): self.calc_a_b_c,
+                    ('a', 'point'): self.calc_a_b_p,
+                    ('c', 'point'): self.calc_b_c_p,
+                    ('a', 'vertex'): self.calc_a_b_v,
+                    ('vertex',): self.calc_b_v,
+                },
+                'c':{
+                    ('a', 'b'): self.calc_a_b_c,
+                    ('b', 'point'): self.calc_b_c_v,
+                    ('a', 'point'): self.calc_a_c_p,
+                    ('a', 'vertex'): self.calc_a_c_v,
+                    ('vertex',): self.calc_c_v,
+                },
+                'vertex':{
+                    ('a',): self.calc_a_v,
+                    ('point',): self.calc_p_v,
+                    ('c',): self.calc_c_v,
+                    ('a', 'b'): self.calc_a_b_v,
+                }
+            }
+
+
+
         if draw == True:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
@@ -140,6 +172,49 @@ class parabola(dataExplore, parabolaCalc):
         self._a = None
         self.data = [None, None]
 
+    """
+    def draws(self, param_type):
+        draw_actions = {
+            'a':{
+                ('b', 'c'): self.calc
+                ('c', 'point'): self.calc
+                ('vertex',: self.calc
+                ('b', 'vertex'): self.calc
+                ('point', 'vertex'): self.calc
+            }, 
+            'b':{
+                ('a', 'c'): self.calc
+                ('a', 'point'): self.calc
+                ('c', 'point'): self.calc
+                ('a', 'vertex'): self.calc
+                ('vertex',): self.calc
+            },
+            'c':{
+                ('a', 'b'): self.calc
+                ('b', 'point'): self.calc
+                ('a', 'point'): self.calc
+                ('a', 'vertex'): self.calc
+                ('vertex',: self.calc
+            },
+            'vertex':{
+                ('a',): self.calc
+                ('point',): self.calc
+                ('c',): self.calc
+                ('a', 'b'): self.calc
+            }
+        }
+
+        listOfKeys = list(self.params.keys())
+        recent_keys = tuple(k for k in listOfKeys[-3:])
+
+        actions = draw_actions.get(param_type, {})
+
+        for key_comb, method in actions.items():
+            if all(k in listOfKeys for k in key_combo):
+                method()
+                self.onlyDraw()
+                break
+    """    
 
     def draw_a(self):
         self.__del__()

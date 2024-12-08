@@ -193,3 +193,6 @@ class parabolaCalc():
         self._b = -2*self._a*xv
 
         self.calc_a_b_c()
+
+    def calc_b_c_v():
+        pass
