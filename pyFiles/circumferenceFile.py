@@ -32,7 +32,7 @@ class circumference(dataExplore, circumferenceCalc):
         if draw == True:
             self.addParams('radius', self._radius)
             self.addParams('center', self._center)
-            self.draw()
+            self.draw_c()
             #self._points_generator()
 
         self.a = None
@@ -68,15 +68,10 @@ class circumference(dataExplore, circumferenceCalc):
         self._center = point
         self.addParams('center', point)
         try:
-            self.draw()
+            self.draw_c()
         except:
             pass
-        #idx = (self.p+2)%3
-        #self._points[idx] = None
         
-        #self.chooseCalc()
-        #self.name = self._name
-
     @property
     def radius(self):
         return self._radius
@@ -84,15 +79,9 @@ class circumference(dataExplore, circumferenceCalc):
     @radius.setter
     def radius(self, r):
         self._radius = r
-
-        #idx = (self.p+2)%3
-        #self._points[idx] = None
-        #self.chooseCalc()
-        #self.name = self._name
-        
         self.addParams('radius', r)
         try:
-            self.draw()
+            self.draw_r()
         except:
             pass
 
@@ -133,8 +122,26 @@ class circumference(dataExplore, circumferenceCalc):
         except:
             pass
 
+    def draw_c(self):
+        self.__del__()
+        
+        lok = list( self.params.keys()) #List Of Keys
+        if 'radius' in self.params.keys():
+            self.calc_c_r()
+            self.onlyDraw()
+        elif any( 'point' in key for key in lok):
+            self.calc_c_p()
 
 
+    def draw_r(self):
+        self.__del__()
+
+        if 'center' in self.params.keys():
+            self.calc_c_r()
+            onlyDraw()
+        elif any('point' in key for key in lok):
+            self.calc_c_p()
+            self.onlyDraw()
         
     def draw(self):
         self.__del__()
@@ -142,22 +149,17 @@ class circumference(dataExplore, circumferenceCalc):
 
         #1) center and radius
         if 'center' in self.params.keys() and 'radius' in self.params.keys():
-            #u = [k for k in self.params if k not in ["a", "vertex"]][0]  # otteniamo la chiave come stringa
-            #del self.params[u]
-
-            self.calc()
+            self.calc_c_r()
             self.onlyDraw()
-
 
         #2) center, 1 point
         elif 'center' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc3()
+            self.calc_c_p()
             self.onlyDraw()
-
 
         #3) all points
         elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc2()
+            self.calc_p_p_p()
             self.onlyDraw()
         else:
             pass

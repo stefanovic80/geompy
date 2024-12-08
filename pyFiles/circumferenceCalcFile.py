@@ -2,7 +2,7 @@ from . import plt, np, random
 
 class circumferenceCalc():
     #circumference equation calculation from center coordinates and radius
-    def calc(self, name = None, angle = 2*np.pi):
+    def calc_c_r(self, name = None, angle = 2*np.pi):
 
         data = [None, None]
 
@@ -47,7 +47,7 @@ class circumferenceCalc():
 
 
     # calculate from three points the circumference passing through (to be fixed!)
-    def calc2(self, name = None, angle = 2*np.pi):
+    def calc2_p_p_p(self, name = None, angle = 2*np.pi):
 
         """
         x0 = self._points[0].coords[0]
@@ -83,7 +83,7 @@ class circumferenceCalc():
 
 
     # calculate from center coordinates and a point passing through
-    def calc3(self, name = None, angle = 2*np.pi):
+    def calc_c_p(self, name = None, angle = 2*np.pi):
 
         for point in self._points:
             try:
