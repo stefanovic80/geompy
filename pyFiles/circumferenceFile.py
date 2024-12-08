@@ -82,6 +82,47 @@ class circumference(dataExplore, circumferenceCalc):
 
         self.draw_r()
 
+    @property
+    def a(self):
+        return self._a
+
+    @a.setter
+    def a(self, value):
+        self._a = value
+        self.addParams('a', value)
+        try:
+            self.draw_a()
+        except:
+            pass
+
+    @property
+    def b(self):
+        return self._b
+
+    @b.setter
+    def b(self, value):
+        self._b = value
+        self.addParams('b', value)
+        try:
+            self.draw_b()
+        except:
+            pass
+
+
+    @property
+    def c(self):
+        return self._c
+
+    @a.setter
+    def c(self, value):
+        self._c = value
+        self.addParams('c', value)
+        try:
+            self.draw_c()
+        except:
+            pass
+
+
     def tangent(self, point):
         xc = self.center.data[0]
         yc = self.center.data[1]
@@ -162,13 +203,27 @@ class circumference(dataExplore, circumferenceCalc):
             pass
     
     def draw_a(self):
-        pass
+        self.__del__()
+        lok = list( self.params.keys() )
+        if 'b' in lok and 'c' in lok:
+            self.dra_a_b_c()
+            self.onlyDraw()
     
     def draw_b(self):
-        pass
+        self.__del__()
+        lok = list( self.params.keys() )
+        if 'a' in lok and 'c' in lok:
+            self.dra_a_b_c()
+            self.onlyDraw()
+
 
     def draw_c(self):
-        pass
+        self.__del__()
+        lok = list( self.params.keys() )
+        if 'a' in lok and 'b' in lok:
+            self.dra_a_b_c()
+            self.onlyDraw()
+
 
     #to be partially inherited
     def erase(self):

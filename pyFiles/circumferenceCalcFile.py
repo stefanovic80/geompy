@@ -92,4 +92,9 @@ class circumferenceCalc():
                 pass
 
         self.calc_C_r()
+    
+    def calc_a_b_c(self, name = None, angle = 2*np.pi):
+        self._center.coords[0], self._center._coords[1] = -self._a/2, -self._b/2
+        self._radius = np.sqrt( self._center.coords[0]**2 + self._center.coords[1]**2 - self._c  )
+        self.calc_C_r()
 
