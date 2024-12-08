@@ -32,12 +32,11 @@ class circumference(dataExplore, circumferenceCalc):
         if draw == True:
             self.addParams('radius', self._radius)
             self.addParams('center', self._center)
-            self.draw_c()
-            #self._points_generator()
+            self.draw_C()
 
-        self.a = None
-        self.b = None
-        self.c = None
+        self._a = None
+        self._b = None
+        self._c = None
 
     @property
     def angle(self):
@@ -68,7 +67,7 @@ class circumference(dataExplore, circumferenceCalc):
         self._center = point
         self.addParams('center', point)
         try:
-            self.draw_c()
+            self.draw_C()
         except:
             pass
         
@@ -80,10 +79,8 @@ class circumference(dataExplore, circumferenceCalc):
     def radius(self, r):
         self._radius = r
         self.addParams('radius', r)
-        try:
-            self.draw_r()
-        except:
-            pass
+
+        self.draw_r()
 
     def tangent(self, point):
         xc = self.center.data[0]
@@ -122,25 +119,25 @@ class circumference(dataExplore, circumferenceCalc):
         except:
             pass
 
-    def draw_c(self):
+    def draw_C(self):
         self.__del__()
         
         lok = list( self.params.keys()) #List Of Keys
         if 'radius' in self.params.keys():
-            self.calc_c_r()
+            self.calc_C_r()
             self.onlyDraw()
         elif any( 'point' in key for key in lok):
-            self.calc_c_p()
+            self.calc_C_p()
 
 
     def draw_r(self):
         self.__del__()
 
         if 'center' in self.params.keys():
-            self.calc_c_r()
-            onlyDraw()
+            self.calc_C_r()
+            self.onlyDraw()
         elif any('point' in key for key in lok):
-            self.calc_c_p()
+            self.calc_C_p()
             self.onlyDraw()
         
     def draw(self):
@@ -149,7 +146,7 @@ class circumference(dataExplore, circumferenceCalc):
 
         #1) center and radius
         if 'center' in self.params.keys() and 'radius' in self.params.keys():
-            self.calc_c_r()
+            self.calc_C_r()
             self.onlyDraw()
 
         #2) center, 1 point
@@ -163,7 +160,15 @@ class circumference(dataExplore, circumferenceCalc):
             self.onlyDraw()
         else:
             pass
+    
+    def draw_a(self):
+        pass
+    
+    def draw_b(self):
+        pass
 
+    def draw_c(self):
+        pass
 
     #to be partially inherited
     def erase(self):
