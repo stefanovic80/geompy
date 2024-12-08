@@ -130,7 +130,7 @@ class circumference(dataExplore, circumferenceCalc):
     def c(self):
         return self._c
 
-    @a.setter
+    @c.setter
     def c(self, value):
         self.addParams('c', value)
         self._c = value
@@ -209,7 +209,7 @@ class circumference(dataExplore, circumferenceCalc):
 
         #2) centre, 1 point
         elif 'Centre' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc_c_p()
+            self.calc_C_p()
             self.onlyDraw()
 
         #3) all points
@@ -223,14 +223,14 @@ class circumference(dataExplore, circumferenceCalc):
         self.__del__()
         lok = list( self.params.keys() )
         if 'b' in lok and 'c' in lok:
-            self.dra_a_b_c()
+            self.calc_a_b_c()
             self.onlyDraw()
     
     def draw_b(self):
         self.__del__()
         lok = list( self.params.keys() )
         if 'a' in lok and 'c' in lok:
-            self.dra_a_b_c()
+            self.calc_a_b_c()
             self.onlyDraw()
 
 
@@ -238,7 +238,7 @@ class circumference(dataExplore, circumferenceCalc):
         self.__del__()
         lok = list( self.params.keys() )
         if 'a' in lok and 'b' in lok:
-            self.dra_a_b_c()
+            self.calc_a_b_c()
             self.onlyDraw()
 
 
