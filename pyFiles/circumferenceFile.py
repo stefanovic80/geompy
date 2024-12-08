@@ -73,7 +73,22 @@ class circumference(dataExplore, circumferenceCalc):
             self.draw_C()
         except:
             pass
-        
+       
+
+    @property
+    def center(self):
+        return self._centre
+
+    @centre.setter
+    def center(self, point):
+        self.addParams('Centre', point)
+        self._centre = point
+        try:
+            self.draw_C()
+        except:
+            pass
+
+
     @property
     def radius(self):
         return self._radius
