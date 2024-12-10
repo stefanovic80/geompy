@@ -24,6 +24,12 @@ class parabola(dataExplore, parabolaCalc):
         self.degreesOfFreedom = 3
         
         self.dof = 3
+        
+        self.draws = {
+                ('a', 'b', 'c'): self.calc_a_b_c,
+                ('a', 'v'): self.calc_a_v
+                }
+
         if draw == True:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
