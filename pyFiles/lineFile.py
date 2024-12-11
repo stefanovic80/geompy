@@ -27,13 +27,38 @@ class line(dataExplore, lineCalc):
         self.keys = deque(maxlen = self.dof)
         self.values = deque(maxlen = self.dof)
 
-        #to be deprecated
-        #self.degreesOfFreedom = 2
+
+        self.draws = {
+                ('m', 'q'): self.calc_m_q,
+                ('m', 'p'): self.calc_m_p,
+                ('q', 'p'): self.calc_q_p,
+                ('p', 'p'): self.calc_p_p
+                }
+ 
 
         if draw == True:
             self.addParams('m', self.angCoeff)
             self.addParams('q', self.intercept)
-            self.draw()
+            self.drawSetts()
+    
+    #To be fixed!
+    def addParams(self, key, param):
+
+        elements = list( self.keys )
+        #if any(key in element for element in elements):
+        if any(element.startswith(key) for element in elements):
+            try: #it pops all keys except point
+                self.params.pop(key)
+            except:
+                pass
+            self.params[key] = param
+            #idx = self.keys.index(key)
+        else:
+            self.keys.append(key)
+            self.values.append(param)
+            self.params = dict(zip(self.keys, self.values))
+            self.sflk.append(key[0])
+
 
     @property
     def m(self):
@@ -43,7 +68,8 @@ class line(dataExplore, lineCalc):
     @m.setter
     def m(self, value):
         self.addParams("m", value)
-        self.draw()
+        self.angCoeff = value
+        self.drawSetts()
 
     @property
     def q(self):
@@ -52,7 +78,8 @@ class line(dataExplore, lineCalc):
     @q.setter
     def q(self, value):
         self.addParams("q", value)
-        self.draw()
+        self.intercept = value
+        self.drawSetts()
     
     def system(self, line):
         x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)

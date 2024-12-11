@@ -2,13 +2,13 @@ from . import plt, np, random
 from .Settings import settings
 
 class lineCalc():
-    def calc1(self): #calculate equation from angCoeff and intercept
+    def calc_m_q(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
         self.angle = np.arctan(self.angCoeff)
 
 
-    def calc2(self): #calculate equation from two points
+    def calc_p_p(self): #calculate equation from two points
 
         u = self.getPoint()
         point0 = next( u )
@@ -35,7 +35,7 @@ class lineCalc():
             self.data = self.data + [ self._y ]
 
 
-    def calc3(self): #calculate equation from 1 point and angCoeff
+    def calc_m_p(self): #calculate equation from 1 point and angCoeff
         j = 0
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]
@@ -44,7 +44,7 @@ class lineCalc():
         self.calc1()
 
 
-    def calc4(self): #calculate equation from 1 point and intercept
+    def calc_q_p(self): #calculate equation from 1 point and intercept
         j = 0
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]

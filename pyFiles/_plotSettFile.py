@@ -333,10 +333,6 @@ class plotSett():
     def addParams(self, key, param):
         
         elements = list( self.keys )
-        
-        #self.sflk = self.sflk + [ key[0] ] #Sorted First Letter Key
-        #self.sflk = sorted(self.sflk)
-        
         #if any(key in element for element in elements):
         if any(element.startswith(key) for element in elements): 
             try: #it pops all keys except point
