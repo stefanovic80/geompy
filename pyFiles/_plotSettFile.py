@@ -70,7 +70,9 @@ class plotSett():
         self.j = 0
         self.k = 0        
         self.lines = []
-        
+
+        self.sflk = deque(maxlen = self.dof) #Sorted First Letter Key
+	        
         #to be implemented as .X.cut doesn't work on function
         self._cutOff = 0
 
@@ -318,15 +320,6 @@ class plotSett():
         idx = self.condition_mask()
         data = [self.data[0][idx], self.data[1][idx] ]
         
-        #to be improved as y can be out of plot
-        #-------------------------------
-        #idx0 = np.where(data[0] > settings.xmin)[0][0]
-        #idx1 = np.where(data[0] < settings.xmax)[0][0]
-        #dataInPlot = data[idx0:idx1]
-        #-------------------------------
-        #to be substituded with "mask"
-
-        #random_index = np.random.randint(len(dataInPlot))
         random_index = np.random.randint(len(data[0]))
         shift = (settings.xmax - settings.xmin)/40
 
@@ -340,6 +333,10 @@ class plotSett():
     def addParams(self, key, param):
         
         elements = list( self.keys )
+        
+        #self.sflk = self.sflk + [ key[0] ] #Sorted First Letter Key
+        #self.sflk = sorted(self.sflk)
+        
         #if any(key in element for element in elements):
         if any(element.startswith(key) for element in elements): 
             try: #it pops all keys except point
@@ -352,6 +349,7 @@ class plotSett():
             self.keys.append(key)
             self.values.append(param)
             self.params = dict(zip(self.keys, self.values))
+            self.sflk.append(key[0])
             
     
 

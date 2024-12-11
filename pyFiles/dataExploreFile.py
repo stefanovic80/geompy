@@ -8,7 +8,15 @@ from .pointFile import point
 
 
 class dataExplore(plotSett):
- 
+
+    def drawSetts(self):
+        self.__del__()
+        key = sorted(list(self.sflk))
+        key = tuple(key) #hashable
+        self.draws[key]()
+        self.onlyDraw()
+
+
     @property
     def points(self):
         j = 0
@@ -27,7 +35,7 @@ class dataExplore(plotSett):
         k = self.p%self.dof
         
         self.addParams( "point" + str(k), value )
-        self.draw()
+        self.drawSetts()
         self.p += 1
 
     def getPoint(self):

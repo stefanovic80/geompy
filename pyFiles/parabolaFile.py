@@ -20,23 +20,31 @@ class parabola(dataExplore, parabolaCalc):
         self.j = 0
         self._color = random.choice(self.colors)
         
-        #to be deprecated
-        self.degreesOfFreedom = 3
-        
         self.dof = 3
         
         self.draws = {
                 ('a', 'b', 'c'): self.calc_a_b_c,
-                ('a', 'v'): self.calc_a_v
+                ('a', 'b', 'p'): self.calc_a_b_p,
+                ('a', 'b', 'v'): self.calc_a_b_v,
+                ('a', 'c', 'p'): self.calc_a_c_p,
+                ('a', 'c', 'v'): self.calc_a_c_v,
+                ('a', 'p', 'p'): self.calc_a_p_p,
+                ('a', 'p', 'v'): self.calc_a_p_v,
+                ('a', 'v'): self.calc_a_v,
+                ('b', 'c', 'p'): self.calc_b_c_p,
+                ('b', 'c', 'v'): print("b_c_v still not implemented!"),#self.calc_b_c_v,
+                ('b', 'p', 'p'): self.calc_b_p_p,
+                ('b', 'v'): self.calc_b_v,
+                ('c', 'p', 'p'): self.calc_c_p_p,
+                ('c', 'v'): self.calc_c_v,
+                ('p', 'p', 'p'): self.calc_p_p_p,
+                ('p', 'v'): self.calc_p_v,
                 }
 
         if draw == True:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
-
-            self.calc_a_v()
-            self.onlyDraw()
-
+            self.drawSetts()
 
     @property
     def concavity(self):
@@ -47,7 +55,7 @@ class parabola(dataExplore, parabolaCalc):
     def concavity(self, value):
         self.addParams('a', value) 
         self.params['a'] = self._a = value
-
+        self.drawSetts()
 
     @property
     def a(self):
@@ -58,7 +66,7 @@ class parabola(dataExplore, parabolaCalc):
     def a(self, value):
         self.addParams('a', value)
         self._a = value
-        self.draw_a()
+        self.drawSetts()
 
 
     @property
@@ -70,7 +78,7 @@ class parabola(dataExplore, parabolaCalc):
     def b(self, value):
         self.addParams('b', value)
         self._b = value
-        self.draw_b()
+        self.drawSetts()
 
 
     @property
@@ -82,7 +90,7 @@ class parabola(dataExplore, parabolaCalc):
     def c(self, value):
         self.addParams('c', value)
         self._c = value
-        self.draw_c()
+        self.drawSetts()
 
 
     @property
@@ -94,7 +102,7 @@ class parabola(dataExplore, parabolaCalc):
     def vertex(self, point):
         self.addParams('vertex', point)
         self._vertex = point
-        self.draw_vertex()
+        self.drawSetts()
 
 
     @property
@@ -145,196 +153,6 @@ class parabola(dataExplore, parabolaCalc):
         self._vertex = None
         self._a = None
         self.data = [None, None]
-
-
-    def draw_a(self):
-        self.__del__()
-
-        listOfKeys = list( self.params.keys() )
-        lpk0, lpk1 = listOfKeys[-1], listOfKeys[-2] #Last Parameter Key, meddle one, first one
-        try:
-            lpk2 = listOfKeys[-3]
-        except:
-            pass
-        
-        #a_b_c
-        if 'b' in listOfKeys and 'c' in listOfKeys:
-            self.calc_a_b_c()
-            self.onlyDraw()
-        
-        #a_c_p
-        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
-            self.calc_a_c_p()
-            self.onlyDraw()
-
-        #a_v
-        elif 'vertex' == lpk1:
-            self.calc_a_v()
-            self.onlyDraw()
-        
-        #a_p_p
-        elif 'point' in lpk1 and 'point' in lpk2:
-            self.calc_a_p_p()
-            self.onlyDraw()
-
-        #a_c_p
-        elif 'c' in listOfKeys and any('point' in key for key in listOfKeys):
-            self.calc_a_c_p()
-            self.onlyDraw()
-        
-        #a_b_v
-        elif 'b' in listOfKeys[:-1] and 'v' in listOfKeys[:-1]:
-            self.calc_a_b_v()
-            self.onlyDraw()
-
-        #a_p_v
-        elif vertex in listOfKeys[:-1] and any('point' in key for key in listOfKeys[:-1]):
-            self.calc_a_p_v()
-            self.onlyDraw()
-
-        print(self.params)
-
-
-    def draw_b(self):
-        self.__del__()
-
-        listOfKeys = list( self.params.keys() )
-        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
-
-        #b_v
-        if 'vertex' == lpk1:
-            self.calc_b_v()
-            self.onlyDraw()
-        
-        #a_b_c
-        elif 'a' in listOfKeys and 'c' in listOfKeys:
-            self.calc_a_b_c()
-            self.onlyDraw()
-        
-        #a_b_p
-        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys):
-            self.calc_a_b_p()
-            self.onlyDraw()
-        
-        #a_c_p
-        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys ):
-            self.calc_b_c_p()
-            self.onlyDraw()
-        
-        #a_b_v
-        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
-            self.calc_a_b_v()
-            self.onlyDraw()
-        
-        print(self.params)
-
-
-    def draw_c(self):
-        self.__del__()
-
-        listOfKeys = list( self.params.keys() )
-        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
-        
-        #c_v
-        if 'vertex' == lpk1:
-            self.calc_c_v()
-            self.onlyDraw()
-        
-        #a_b_c
-        elif 'a' in listOfKeys and 'b' in listOfKeys:
-            self.calc_a_b_c()
-            self.onlyDraw()
-        
-        #a_b_p
-        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys ):
-            self.calc_b_c_p()
-            self.onlyDraw()
-        
-        #a_c_p
-        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys ):
-            self.calc_a_c_p()
-            self.onlyDraw()
-        
-        #c_p_p
-        elif 'point' in listOfKeys[-2] and 'point' in listOfKeys[-3]:
-            self.calc_c_p_p()
-            self.onlyDraw()
-        
-        #a_c_v
-        elif 'a' in listOfKeys[:-1] and 'vertex' in listOfKeys[:-1]:
-            self.calc_a_c_v()
-            self.onlyDraw()
-        
-        print(self.params)
-
-
-    def draw_vertex(self):
-        self.__del__()
-
-        listOfKeys = list( self.params.keys() )
-        lpk1 = listOfKeys[-2] #Last Parameter Key, meddle one, first one
-        
-        #a_v
-        if lpk1 == 'a':
-            self.calc_a_v()
-            self.onlyDraw()
-        
-        #p_v
-        elif 'point' in lpk1:
-            self.calc_p_v()
-            self.onlyDraw()
-        
-        #b_p_v
-        elif 'b' in lpk1 and 'vertex' in listOfKeys[:-1]:
-            self.calc_b_v()
-            self.onlyDraw()
-        
-        #c_v
-        elif 'c' in lpk1:
-            self.calc_c_v()
-            self.onlyDraw()
-
-        #a_b_v
-        elif 'a' in listOfKeys[:-1] and 'b' in listOfKeys[:-1]:
-            self.calc_a_b_v()
-            self.onlyDraw()
-
-    def draw(self):
-        self.__del__()
-        
-        listOfKeys = list( self.params.keys() )
-        lpk1, lpk2  = listOfKeys[-2], listOfKeys[-3] #Last Parameter Key, meddle one, first one
-        
-        if 'point' in lpk1 and 'point' in lpk2:
-            self.calc_p_p_p()
-            self.onlyDraw()
-        elif 'b' in listOfKeys and 'c' in listOfKeys:
-            self.calc_b_c_p()
-            self.onlyDraw()
-
-        elif 'a' in listOfKeys and 'c' in listOfKeys:
-            self.calc_a_c_p()
-            self.onlyDraw()
-
-        elif 'a' in listOfKeys and 'b' in listOfKeys:
-            self.calc_a_b_p()
-            self.onlyDraw()
-
-        elif 'a' in listOfKeys and 'vertex' in listOfKeys:
-            self.calc_a_p_v()
-            self.onlyDraw()
-
-        elif 'a' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc_a_p_p()
-            self.onlyDraw()
-
-        elif 'b' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc_b_p_p()
-            self.onlyDraw()
-
-        elif 'c' in listOfKeys and any( 'point' in key for key in listOfKeys[:-1] ):
-            self.calc_c_p_p()
-            self.onlyDraw()
 
 
     def __str__(self):
