@@ -7,8 +7,10 @@ from .dataExploreFile import dataExplore
 from .parabolaCalcFile import parabolaCalc
 
 class parabola(dataExplore, parabolaCalc):
+    
+    dof = 3
 
-    def __init__(self, draw = True):
+    def __init__(self, draw = True, dof = dof):
 
         super().__init__()
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
@@ -32,7 +34,7 @@ class parabola(dataExplore, parabolaCalc):
                 ('a', 'p', 'v'): self.calc_a_p_v,
                 ('a', 'v'): self.calc_a_v,
                 ('b', 'c', 'p'): self.calc_b_c_p,
-                ('b', 'c', 'v'): print("b_c_v still not implemented!"),#self.calc_b_c_v,
+                ('b', 'c', 'v'): self.calc_b_c_v,
                 ('b', 'p', 'p'): self.calc_b_p_p,
                 ('b', 'v'): self.calc_b_v,
                 ('c', 'p', 'p'): self.calc_c_p_p,

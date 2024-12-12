@@ -31,7 +31,9 @@ class plotSett():
     ax = fig.add_subplot(111)
     plt.tight_layout()
     
-    def __init__(self):
+    dof = 3
+
+    def __init__(self, dof = dof):
 
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
@@ -40,9 +42,9 @@ class plotSett():
         self.data = [None, None] 
         
         self.params = {}
-        self.dof = 3
-        self.keys = deque(maxlen = self.dof)
-        self.values = deque(maxlen = self.dof)
+        #self.dof = 3
+        self.keys = deque(maxlen = dof)
+        self.values = deque(maxlen = dof)
 
         self.hline = None
         self.vline = None

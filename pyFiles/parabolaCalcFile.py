@@ -92,6 +92,9 @@ class parabolaCalc():
 
         self.calc_a_b_c()                
 
+    def calc_b_c_v(self, name = None):
+        self.calc_b_v
+        #to be better implemented
 
     #point0, point1 and b (self._b)
     def calc_b_p_p(self, name = None):

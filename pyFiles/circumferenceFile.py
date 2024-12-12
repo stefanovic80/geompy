@@ -9,6 +9,8 @@ from .dataExploreFile import dataExplore
 from .circumferenceCalcFile import circumferenceCalc
 
 class circumference(dataExplore, circumferenceCalc):
+    
+    dof = 3
 
     def __init__(self, draw = True):
         

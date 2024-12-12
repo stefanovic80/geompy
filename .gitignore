@@ -12,6 +12,10 @@ pyfile/*.swp
 
 .ipynb_checkpoints
 
+pyFiles/.lineCalcFile.py.swo
+pyFiles/.lineCalcFile.py.swp
+
+
 pyFiles/.__init__.py.swp
 
 pyFiles/.pointFile.py.swp

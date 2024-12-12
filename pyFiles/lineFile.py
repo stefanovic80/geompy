@@ -10,7 +10,10 @@ from .dataExploreFile import dataExplore
 from collections import deque
 
 class line(dataExplore, lineCalc):
-    def __init__(self, seed = seed, draw = True):
+    
+    dof = 2
+
+    def __init__(self, seed = seed, draw = True, dof = dof):
         
         super().__init__()
         
@@ -31,7 +34,7 @@ class line(dataExplore, lineCalc):
         self.draws = {
                 ('m', 'p'): self.calc_m_p,
                 ('m', 'q'): self.calc_m_q,
-                ('q', 'p'): self.calc_q_p,
+                ('p', 'q'): self.calc_p_q,
                 ('p', 'p'): self.calc_p_p
                 }
  

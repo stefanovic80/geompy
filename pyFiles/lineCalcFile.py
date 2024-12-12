@@ -29,7 +29,7 @@ class lineCalc():
             settings.xmin = lims[0]
             settings.xmax = lims[1]
 
-            self.calc1()
+            self.calc_m_q()
         else:
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
@@ -53,7 +53,7 @@ class lineCalc():
         self.calc_m_q()
 
 
-    def calc_q_p(self): #calculate equation from 1 point and intercept
+    def calc_p_q(self): #calculate equation from 1 point and intercept
         j = 0
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]
