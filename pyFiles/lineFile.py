@@ -29,8 +29,8 @@ class line(dataExplore, lineCalc):
 
 
         self.draws = {
-                ('m', 'q'): self.calc_m_q,
                 ('m', 'p'): self.calc_m_p,
+                ('m', 'q'): self.calc_m_q,
                 ('q', 'p'): self.calc_q_p,
                 ('p', 'p'): self.calc_p_p
                 }
@@ -41,25 +41,7 @@ class line(dataExplore, lineCalc):
             self.addParams('q', self.intercept)
             self.drawSetts()
     
-    #To be fixed!
-    def addParams(self, key, param):
-
-        elements = list( self.keys )
-        #if any(key in element for element in elements):
-        if any(element.startswith(key) for element in elements):
-            try: #it pops all keys except point
-                self.params.pop(key)
-            except:
-                pass
-            self.params[key] = param
-            #idx = self.keys.index(key)
-        else:
-            self.keys.append(key)
-            self.values.append(param)
-            self.params = dict(zip(self.keys, self.values))
-            self.sflk.append(key[0])
-
-
+    
     @property
     def m(self):
         return self.angCoeff
