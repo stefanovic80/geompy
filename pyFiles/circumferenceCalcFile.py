@@ -2,6 +2,44 @@ from . import plt, np, random
 from .pointFile import point
 
 class circumferenceCalc():
+    def calc_a_b_c(self, name = None, angle = 2*np.pi):
+        self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
+        self.calc_C_r()
+
+    def calc_a_b_C(self, name = None, angle = 2*np.pi):
+        pass
+
+
+    def calc_a_b_p(self, name = None, angle = 2*np.pi):
+        pass
+
+    def calc_a_b_r(self, name = None, angle = 2*np.pi):
+        pass
+
+
+    def calc_b_c_C(self, name = None, angle = 2*np.pi):
+        pass
+
+    def calc_b_c_p(self, name = None, angle = 2*np.pi):
+        pass
+    def calc_b_c_r(self, name = None, angle = 2*np.pi):
+        pass
+
+    def calc_c_C(self, name = None, angle = 2*np.pi):
+        pass
+
+    def calc_c_p(self, name = None, angle = 2*np.pi):
+        pass
+    def calc_a_p_p(self, name = None, angle = 2*np.pi):
+        pass
+    def calc_b_p_p(self, name = None, angle = 2*np.pi):
+        pass
+    def calc_c_p_p(self, name = None, angle = 2*np.pi):
+        pass
+
+
+
     #circumference equation calculation from centre coordinates and radius
     def calc_C_r(self, name = None, angle = 2*np.pi):
 
@@ -93,9 +131,4 @@ class circumferenceCalc():
     def calc_C_p_r(self):
         self.calc_C_p()
         #r to be removed
-
-    def calc_a_b_c(self, name = None, angle = 2*np.pi):
-        self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
-        self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
-        self.calc_C_r()
 

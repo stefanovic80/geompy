@@ -42,7 +42,6 @@ class plotSett():
         self.data = [None, None] 
         
         self.params = {}
-        #self.dof = 3
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)
 

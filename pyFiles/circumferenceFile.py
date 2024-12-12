@@ -28,9 +28,28 @@ class circumference(dataExplore, circumferenceCalc):
         self.j = 0
         self.k = 0
         
-        #to be deprecated
-        self.degreesOfFreedom = 3
-        
+
+        self.draws = {
+                ('a', 'b', 'c'): self.calc_a_b_c,
+                ('a', 'b', 'C'): self.calc_a_b_C,
+                ('a', 'b', 'p'): self.calc_a_b_p,
+                ('a', 'b', 'r'): self.calc_a_b_r,
+
+                ('b', 'c', 'C'): self.calc_b_c_C,
+                ('b', 'c', 'p'): self.calc_b_c_p,
+                ('b', 'c', 'r'): self.calc_b_c_r,
+
+                ('c', 'C'): self.calc_c_C,
+                ('c', 'p'): self.calc_c_p,
+                
+                ('p', 'p', 'p'): self.calc_p_p_p,
+                ('a', 'p', 'p'): self.calc_a_p_p,
+                ('b', 'p', 'p'): self.calc_b_p_p,
+                ('c', 'p', 'p'): self.calc_c_p_p,
+                }
+
+
+
         self.dof = 3
 
         self._a = None

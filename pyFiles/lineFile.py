@@ -26,7 +26,6 @@ class line(dataExplore, lineCalc):
         self.angCoeff =  np.tan(angle)
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
         
-        self.dof = 2 #degrees of freedom
         self.keys = deque(maxlen = self.dof)
         self.values = deque(maxlen = self.dof)
 
