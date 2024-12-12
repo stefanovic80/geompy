@@ -37,8 +37,7 @@ class plotSett():
         self._linewidth = settings.linewidth
         self.plotSettings = None
 
-        self.data = [None, None]
-        
+        self.data = [None, None] 
         
         self.params = {}
         self.dof = 3
@@ -51,12 +50,9 @@ class plotSett():
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
 
         self.lims()
-
-        self.rotate = False
+        #self.rotate = False
+        
         self._name = None
-
-        #to be deprecated
-        self._points = []#None#[None, None, None]
 
         self._step = 2
         self._stepx = 2
@@ -66,6 +62,7 @@ class plotSett():
         self._stepsx = 10
         self._stepsy = 10
         
+        #to be removed
         self.p = 0
         self.j = 0
         self.k = 0        

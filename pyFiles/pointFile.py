@@ -170,9 +170,6 @@ class point(plotSett):
                 l+=1
             self._angle[-1].angle = input1 + np.arctan(tan[j])
     
-        #elif isinstance(input0, numbers.Number) and isinstance(input1, point):
-        #    self._angle[-1].angle = input0 + np.arctan(tan[j])
-    
         self.rotation( locus = self._angle[-1], angle = np.arctan(tan[j]) + l*np.pi )
 
     #coords as a list of two numpy arrays of one element each
@@ -180,11 +177,9 @@ class point(plotSett):
         pass
 
     #it overwrites the .draw method in _plotSett
-    def draw(self):
-        
-        if self.rotate == False:
-            self.calc()
-
+    def draw(self): 
+        #if self.rotate == False:
+        self.calc()
         self.onlyDraw()
       
     def onlyDraw(self):
@@ -272,13 +267,6 @@ class point(plotSett):
         locus.dataGroup = data
 
         locus.draw()#, draw = False)
-    
-    """
-    def __repr__(self):
-        #pass
-        #bug to fix
-        return self._name + ' = ( ' + str(self.x[0]) + ', ' + str(self.y[0]) + ')'
-    """
 
     def __str__(self):
 
