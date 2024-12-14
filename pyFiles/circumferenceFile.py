@@ -31,16 +31,17 @@ class circumference(dataExplore, circumferenceCalc):
 
         self.draws = {
                 ('a', 'b', 'c'): self.calc_a_b_c,
-                ('a', 'b', 'C'): self.calc_a_b_C,
+                ('C', 'a', 'b'): self.calc_a_b_C,
                 ('a', 'b', 'p'): self.calc_a_b_p,
                 ('a', 'b', 'r'): self.calc_a_b_r,
-
-                ('b', 'c', 'C'): self.calc_b_c_C,
+                ('a', 'c', 'r'): self.calc_a_c_r,
+                ('C', 'b', 'c'): self.calc_b_c_C,
                 ('b', 'c', 'p'): self.calc_b_c_p,
                 ('b', 'c', 'r'): self.calc_b_c_r,
 
-                ('c', 'C'): self.calc_c_C,
+                ('C', 'c'): self.calc_c_C,
                 ('c', 'p'): self.calc_c_p,
+                ('C', 'r'): self.calc_C_r,
                 
                 ('p', 'p', 'p'): self.calc_p_p_p,
                 ('a', 'p', 'p'): self.calc_a_p_p,
@@ -90,10 +91,7 @@ class circumference(dataExplore, circumferenceCalc):
     def centre(self, point):
         self.addParams('Centre', point)
         self._centre = point
-        try:
-            self.draw_C()
-        except:
-            pass
+        self.drawSetts()
        
 
     @property
@@ -104,11 +102,7 @@ class circumference(dataExplore, circumferenceCalc):
     def center(self, point):
         self.addParams('Centre', point)
         self._centre = point
-        try:
-            self.draw_C()
-        except:
-            pass
-
+        self.drawSetts()
 
     @property
     def radius(self):
@@ -118,7 +112,7 @@ class circumference(dataExplore, circumferenceCalc):
     def radius(self, r):
         self.addParams('radius', r)
         self._radius = r
-        self.draw_r()
+        self.drawSetts()
 
     @property
     def a(self):
@@ -128,10 +122,7 @@ class circumference(dataExplore, circumferenceCalc):
     def a(self, value):
         self.addParams('a', value)
         self._a = value
-        try:
-            self.draw_a()
-        except:
-            pass
+        self.drawSetts()
 
     @property
     def b(self):
@@ -141,10 +132,7 @@ class circumference(dataExplore, circumferenceCalc):
     def b(self, value):
         self.addParams('b', value)
         self._b = value
-        try:
-            self.draw_b()
-        except:
-            pass
+        self.drawSetts()
 
 
     @property
@@ -155,10 +143,7 @@ class circumference(dataExplore, circumferenceCalc):
     def c(self, value):
         self.addParams('c', value)
         self._c = value
-        try:
-            self.draw_c()
-        except:
-            pass
+        self.drawSetts()
 
 
     def tangent(self, point):

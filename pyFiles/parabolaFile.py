@@ -22,6 +22,7 @@ class parabola(dataExplore, parabolaCalc):
         self.j = 0
         self._color = random.choice(self.colors)
         
+        #'a'.isupper()
         self.draws = {
                 ('a', 'b', 'c'): self.calc_a_b_c,
                 ('a', 'b', 'p'): self.calc_a_b_p,
