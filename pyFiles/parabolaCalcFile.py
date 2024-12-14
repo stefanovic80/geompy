@@ -30,13 +30,13 @@ class parabolaCalc():
         x0, y0 = point0.coords[0], point0.coords[1]
         self._c = y0 - self._a*x0**2 - self._b*x0
 
-        self.calc_a_b_c()
+        self.calc00()
 
     #abv
     def calc02(self, Name = None):
         self.params['c'] = self.params.pop('vertex')
         self.params['c'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
-        self.calc_a_b_c()
+        self.calc00()
 
 
     #acp
@@ -46,13 +46,13 @@ class parabolaCalc():
         x0, y0 = point0.coords[0], point0.coords[1]
         self._b = (y0 - self._a*x0**2 - self._c)/x0
 
-        self.calc_a_b_c()
+        self.calc00()
         
     #acv, point0, a (self._a) and c (self._c)
     def calc04(self, name = None):
         self.params['b'] = self.params.pop('vertex')
         self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
-        self.calc_a_b_c()
+        self.calc00()
 
     #app, point0, point1 and a (self._a)
     def calc05(self, name = None):
@@ -70,13 +70,13 @@ class parabolaCalc():
         self._b = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc_a_b_c()
+        self.calc00()
 
     #apv
     def calc06(self, name = None):
         self.params['b'] = self.params.pop('vertex')
         self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
-        self.calc_a_b_p()
+        self.calc01()
 
 
     #av, vertex, concavity a (self._a)
@@ -94,11 +94,11 @@ class parabolaCalc():
         x0, y0 = point0.coords[0], point0.coords[1]
         self._a = (y0 - self._b*x0 - self._c)/x0**2
 
-        self.calc_a_b_c()                
+        self.calc00()                
 
     #bcv
     def calc09(self, name = None):
-        self.calc_b_v
+        self.calc11()
         #to be better implemented
 
     #bpp, point0, point1 and b (self._b)
@@ -117,7 +117,7 @@ class parabolaCalc():
         self._a = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc_a_b_c()
+        self.calc00()
 
     #bv, vertex, b (self._b)
     def calc11(self, name = None):
@@ -127,7 +127,7 @@ class parabolaCalc():
         self._a = - self._b/(2*self._a)
         self._c = yv + self._b**2/(4*self._a)
 
-        self.calc_a_b_c()
+        self.calc00()
 
     #C----------------------------------------------------------------
     #cpp, point0, point1 and c (self._c)
@@ -146,7 +146,7 @@ class parabolaCalc():
         self._a = parabParams[0, 0]
         self._b = parabParams[0, 1]
 
-        self.calc_a_b_c()
+        self.calc00()
 
 
 
@@ -157,7 +157,7 @@ class parabolaCalc():
         self._a = (self._c - yv)/xv
         self._b = -2*xv*(self._c - yv)
 
-        self.calc_a_b_c()
+        self.calc00()
         
                 
     #P----------------------------------------------------------------
@@ -181,7 +181,7 @@ class parabolaCalc():
         self._b = parabParams[0, 1]
         self._c = parabParams[0, 2]
         
-        self.calc_a_b_c() 
+        self.calc00() 
     
     #one point and vertex
     #pv
@@ -201,4 +201,4 @@ class parabolaCalc():
         self._c = parabParams[0, 1]
         self._b = -2*self._a*xv
 
-        self.calc_a_b_c()
+        self.calc00()

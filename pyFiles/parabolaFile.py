@@ -22,9 +22,10 @@ class parabola(dataExplore, parabolaCalc):
         self.j = 0
         self._color = random.choice(self.colors)
         
-        self.methods = [calc00, calc01, calc02, calc03, calc04, calc05, calc06, calc07,\
-            calc08, calc09, calc10, calc11, calc12, calc13, calc14, calc15]
-
+        # Metodo per calcolare i valori di a, b e c, se necessario
+        self.methods = [self.calc00, self.calc01, self.calc02, self.calc03, self.calc04,\
+                        self.calc05, self.calc06, self.calc07, self.calc08, self.calc09,\
+                        self.calc10, self.calc11, self.calc12, self.calc13, self.calc14, self.calc15]
 
         #'a'.isupper()
         self.draws = {
