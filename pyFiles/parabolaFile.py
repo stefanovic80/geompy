@@ -22,24 +22,28 @@ class parabola(dataExplore, parabolaCalc):
         self.j = 0
         self._color = random.choice(self.colors)
         
+        self.methods = [calc00, calc01, calc02, calc03, calc04, calc05, calc06, calc07,\
+            calc08, calc09, calc10, calc11, calc12, calc13, calc14, calc15]
+
+
         #'a'.isupper()
         self.draws = {
-                ('a', 'b', 'c'): self.calc_a_b_c,
-                ('a', 'b', 'p'): self.calc_a_b_p,
-                ('a', 'b', 'v'): self.calc_a_b_v,
-                ('a', 'c', 'p'): self.calc_a_c_p,
-                ('a', 'c', 'v'): self.calc_a_c_v,
-                ('a', 'p', 'p'): self.calc_a_p_p,
-                ('a', 'p', 'v'): self.calc_a_p_v,
-                ('a', 'v'): self.calc_a_v,
-                ('b', 'c', 'p'): self.calc_b_c_p,
-                ('b', 'c', 'v'): self.calc_b_c_v,
-                ('b', 'p', 'p'): self.calc_b_p_p,
-                ('b', 'v'): self.calc_b_v,
-                ('c', 'p', 'p'): self.calc_c_p_p,
-                ('c', 'v'): self.calc_c_v,
-                ('p', 'p', 'p'): self.calc_p_p_p,
-                ('p', 'v'): self.calc_p_v,
+                ('a', 'b', 'c'): self.methods[0],
+                ('a', 'b', 'p'): self.methods[1],
+                ('a', 'b', 'v'): self.methods[2],
+                ('a', 'c', 'p'): self.methods[3],
+                ('a', 'c', 'v'): self.methods[4],
+                ('a', 'p', 'p'): self.methods[5],
+                ('a', 'p', 'v'): self.methods[6],
+                ('a', 'v'): self.methods[7],
+                ('b', 'c', 'p'): self.methods[8],
+                ('b', 'c', 'v'): self.methods[9],
+                ('b', 'p', 'p'): self.methods[10],
+                ('b', 'v'): self.methods[11],
+                ('c', 'p', 'p'): self.methods[12],
+                ('c', 'v'): self.methods[13],
+                ('p', 'p', 'p'): self.methods[14],
+                ('p', 'v'): self.methods[15],
                 }
 
         if draw == True:
