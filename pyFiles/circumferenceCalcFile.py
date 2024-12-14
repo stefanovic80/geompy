@@ -7,7 +7,7 @@ class circumferenceCalc():
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
         self.calc_C_r()
 
-    def calc_a_b_C(self, name = None, angle = 2*np.pi):
+    def calc_C_a_b(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
         self._radius = (x0**2 +y0**2 - self_c)**.5
@@ -31,7 +31,7 @@ class circumferenceCalc():
         self._radius = ( x0**2 + y0**2 - self._c)**.5
         self.calc_C_r()
 
-    def calc_b_c_C(self, name = None, angle = 2*np.pi):
+    def calc_C_b_c(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._a = -2*x0 
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
@@ -49,7 +49,7 @@ class circumferenceCalc():
         self._a = -2*x0
         self.calc_C_r()
 
-    def calc_c_C(self, name = None, angle = 2*np.pi):
+    def calc_C_c(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._a, self._b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c )**.5
@@ -61,39 +61,6 @@ class circumferenceCalc():
         a, b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c)**.5
         self.calc_C_r()
-
-    def calc_a_p_p(self, name = None, angle = 2*np.pi):
-        point1 = self.getPoint()
-        point2 = self.getPoint()
-        x1, y1 = point0.coords[0], point0.coords[1]
-        x2, y2 = point1.coords[0], point1.coords[1]
-        self._b = ( ( x2**2 - x1**2  ) - self._a*( x2 - x1  )  )/( y2 - y1  )
-        self._c = -(x1**2 + y1**2 + self._a*x1 + self._b*y1 )
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
-        self._radius = ( x**2 + y**2 - self._c )**.5
-        self.calc_C_r()
-
-    def calc_b_p_p(self, name = None, angle = 2*np.pi):
-        point1 = getPoint()
-        point2 = getPoint()
-        x1, y1 = point1.coords[0], point1.coords[1]
-        x2, y2 = point2.coords[0], point2.coords[1]
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = ( y2 - y1 )*(x2 + x1)/(2*self._b), (x2 - x1)*(y2 + y1 )/(2*self._b)
-        self._a = -2*x0
-        self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
-        self._radius = ( (x1 - x0)**2 + (y1 - y0))**.5
-        self.calc_C_c()
-
-    def calc_c_p_p(self, name = None, angle = 2*np.pi):
-        point1 = getPoint()
-        point2 = getPoint()
-        x1, y1 = point1.coords[0], point1.coords[1]
-        x2, y2 = point2.coords[0], point2.coords[1]
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = (y2- y1)*(x1+x2)/(2*(x2 - x1)), (x2-x1)*(y1+y2)/(2*(y2 - y1))
-        self._a, self._b = -2*x0, -2*y0
-        self._c = -(x0**2 + y**2) - self._a*x0 - self._b*x0
-        self._radius = ( x0**2 + y0**2 - self._c)**.5
-        self.calc_C_c()
 
     #circumference equation calculation from centre coordinates and radius
     def calc_C_r(self, name = None, angle = 2*np.pi):
@@ -163,6 +130,39 @@ class circumferenceCalc():
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc_C_r()
 
+
+    def calc_a_p_p(self, name = None, angle = 2*np.pi):
+        point1 = self.getPoint()
+        point2 = self.getPoint()
+        x1, y1 = point0.coords[0], point0.coords[1]
+        x2, y2 = point1.coords[0], point1.coords[1]
+        self._b = ( ( x2**2 - x1**2  ) - self._a*( x2 - x1  )  )/( y2 - y1  )
+        self._c = -(x1**2 + y1**2 + self._a*x1 + self._b*y1 )
+        x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        self._radius = ( x**2 + y**2 - self._c )**.5
+        self.calc_C_r()
+
+    def calc_b_p_p(self, name = None, angle = 2*np.pi):
+        point1 = getPoint()
+        point2 = getPoint()
+        x1, y1 = point1.coords[0], point1.coords[1]
+        x2, y2 = point2.coords[0], point2.coords[1]
+        x0, y0 = self._centre.coords[0], self._centre.coords[1] = ( y2 - y1 )*(x2 + x1)/(2*self._b), (x2 - x1)*(y2 + y1 )/(2*self._b)
+        self._a = -2*x0
+        self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
+        self._radius = ( (x1 - x0)**2 + (y1 - y0))**.5
+        self.calc_C_c()
+
+    def calc_c_p_p(self, name = None, angle = 2*np.pi):
+        point1 = getPoint()
+        point2 = getPoint()
+        x1, y1 = point1.coords[0], point1.coords[1]
+        x2, y2 = point2.coords[0], point2.coords[1]
+        x0, y0 = self._centre.coords[0], self._centre.coords[1] = (y2- y1)*(x1+x2)/(2*(x2 - x1)), (x2-x1)*(y1+y2)/(2*(y2 - y1))
+        self._a, self._b = -2*x0, -2*y0
+        self._c = -(x0**2 + y**2) - self._a*x0 - self._b*x0
+        self._radius = ( x0**2 + y0**2 - self._c)**.5
+        self.calc_C_c()
 
 
     # calculate from centre coordinates and a point passing through
