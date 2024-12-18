@@ -21,7 +21,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
         
         #TO BE FIXED!
-        #from .keys import parabola_listOfKeys
+        from .keys import parabola_listOfKeys
         
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self._b = None
@@ -29,9 +29,12 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
        
         self.j = 0
         self._color = random.choice(self.colors)
-        
-        #self.draws = parabola_listOfKeys
-        
+       
+        """#TO BE DEBUGGED!!
+        from .keys.parabola_listOfKeys import labels
+        self.draws = labels
+
+        """
         #'a'.isupper()
         self.draws = {
                 ('a', 'b', 'c'): self.calc00,
@@ -55,6 +58,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
         if draw == True:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
+            #self.addParams('b', self._b)
             self.drawSetts()
 
     @property
