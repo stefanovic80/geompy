@@ -6,8 +6,8 @@ from .pointFile import point
 from .dataExploreFile import dataExplore
 from .parabolaCalcFile import parabolaCalc
 
-from itertools import combinations
-import os
+#from itertools import combinations
+#import os
 
 class parabola(dataExplore, parabolaCalc):
     
@@ -17,24 +17,6 @@ class parabola(dataExplore, parabolaCalc):
 
         
         super().__init__()
-        
-        
-
-        #parameters
-        params = ['a', 'b', 'c', 'p', 'p', 'p', 'c']
-        
-        #List of Keys
-        lok = set( list(combinations(params, 3)) )
-        output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
-        filePath = os.path.join(output_dir, "parabola_listOfKeys.py")
-
-        #os.makedirs(output_dir, exist_ok = True)
-        with open(filePath, "w") as file:
-            file.write("keys = [\n")
-            for combo in lok:
-                # Convertire ogni tupla in una stringa e scriverla nel file
-                file.write(f"    {combo} , \n")
-            file.write(" ]")
 
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
         

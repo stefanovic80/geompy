@@ -18,10 +18,84 @@ import matplotlib.pyplot as plt
 from numpy import *
 #import numpy as np
 import random
+
 import os
+from itertools import combinations
 
 _set = start()
 _set.grid()
+
+
+
+
+
+
+
+
+loci = {\
+        'line': ['m', 'p', 'p', 'q'],\
+        'parabola': ['a', 'b', 'c', 'p', 'p', 'p', 'c'],\
+        'circumference':['a', 'b', 'c', 'd']\
+        }
+
+
+for name, param in loci.items():
+    #List of Keys
+    lok = set( list(combinations(param, 3)) )
+    output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
+    filePath = os.path.join(output_dir, name + "_listOfKeys.py")
+    
+    if not os.path.exists(filePath):
+        #os.makedirs(output_dir, exist_ok = True)
+        with open(filePath, "w") as file:
+            file.write("keys = [\\\n")
+            for combo in lok:
+                # Convertire ogni tupla in una stringa e scriverla nel file
+                file.write(f"    {combo} ,\\\n")
+            file.write(" ]")
+
+
+
+"""
+#Line
+#parameters
+name = "line"
+params = ['m', 'p', 'p', 'q']
+#List of Keys
+lok = set( list(combinations(params, 3)) )
+output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
+filePath = os.path.join(output_dir, name + "_listOfKeys.py")
+
+if not os.path.exists(filePath):
+    #os.makedirs(output_dir, exist_ok = True)
+    with open(filePath, "w") as file:
+        file.write("keys = [\\\n")
+        for combo in lok:
+            # Convertire ogni tupla in una stringa e scriverla nel file
+            file.write(f"    {combo} ,\\\n")
+        file.write(" ]")
+
+
+
+
+#Parabola
+#parameters
+params = ['a', 'b', 'c', 'p', 'p', 'p', 'c']
+#List of Keys
+lok = set( list(combinations(params, 3)) )
+output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
+filePath = os.path.join(output_dir, "parabola_listOfKeys.py")
+
+if not os.path.exists(filePath):
+    #os.makedirs(output_dir, exist_ok = True)
+    with open(filePath, "w") as file:
+        file.write("keys = [\\\n")
+        for combo in lok:
+            # Convertire ogni tupla in una stringa e scriverla nel file
+            file.write(f"    {combo} ,\\\n")
+        file.write(" ]")
+
+"""
 
 print(__name__) # __name__ = "geompy"
 
