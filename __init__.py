@@ -47,14 +47,19 @@ for name, param in loci.items():
     
     if not os.path.exists(filePath):
         #os.makedirs(output_dir, exist_ok = True)
+        number = 0
         with open(filePath, "w") as file:
-            file.write("keys = [\\\n")
+            file.write("keys = {\\\n")
             for combo in lok:
                 # Convertire ogni tupla in una stringa e scriverla nel file
-                file.write(f"    {combo} ,\\\n")
-            file.write(" ]")
+                file.write(f"    {combo}: self.calc" + f"{number:02}" + " ,\\\n")
+                number += 1
+            file.write("}")
 
 
+
+#for i in range(100):  # Ciclo da 0 a 99
+#    print(f"{i:02}")
 
 """
 #Line

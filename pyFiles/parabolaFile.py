@@ -5,11 +5,11 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
 from .parabolaCalcFile import parabolaCalc
+#from .keys import parabola_listOfKeys
 
-#from itertools import combinations
-#import os
 
-class parabola(dataExplore, parabolaCalc):
+
+class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
     
     dof = 3
 
@@ -20,13 +20,18 @@ class parabola(dataExplore, parabolaCalc):
 
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
         
+        #TO BE FIXED!
+        #from .keys import parabola_listOfKeys
+        
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self._b = None
         self._c = None
        
         self.j = 0
         self._color = random.choice(self.colors)
-
+        
+        #self.draws = parabola_listOfKeys
+        
         #'a'.isupper()
         self.draws = {
                 ('a', 'b', 'c'): self.calc00,
@@ -46,7 +51,7 @@ class parabola(dataExplore, parabolaCalc):
                 ('p', 'p', 'p'): self.calc14,
                 ('p', 'v'): self.calc15,
                 }
-
+        
         if draw == True:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)

@@ -12,6 +12,10 @@ pyfile/*.swp
 
 .ipynb_checkpoints
 
+pyFiles/keys/circumference_listOfKeys.py
+pyFiles/keys/line_listOfKeys.py
+pyFiles/keys/parabola_listOfKeys.py
+
 pyFiles/.lineCalcFile.py.swo
 pyFiles/.lineCalcFile.py.swp
 
