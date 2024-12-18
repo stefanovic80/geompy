@@ -5,12 +5,26 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
 from .parabolaCalcFile import parabolaCalc
+from itertools import combinations
+
 
 class parabola(dataExplore, parabolaCalc):
     
     dof = 3
 
     def __init__(self, draw = True, dof = dof):
+
+        #parameters
+        params = ['a', 'b', 'c', 'p', 'p', 'p', 'c']
+        
+        #List of Keys
+        lok = set( list(combinations(params, 3)) )
+
+
+        with open("listOfKeys.py", "w") as file:
+            for combo in lok:
+                # Convertire ogni tupla in una stringa e scriverla nel file
+                file.write(f"{combo}\n")
 
         super().__init__()
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
@@ -21,30 +35,25 @@ class parabola(dataExplore, parabolaCalc):
        
         self.j = 0
         self._color = random.choice(self.colors)
-        
-        # Metodo per calcolare i valori di a, b e c, se necessario
-        self.methods = [self.calc00, self.calc01, self.calc02, self.calc03, self.calc04,\
-                        self.calc05, self.calc06, self.calc07, self.calc08, self.calc09,\
-                        self.calc10, self.calc11, self.calc12, self.calc13, self.calc14, self.calc15]
 
         #'a'.isupper()
         self.draws = {
-                ('a', 'b', 'c'): self.methods[0],
-                ('a', 'b', 'p'): self.methods[1],
-                ('a', 'b', 'v'): self.methods[2],
-                ('a', 'c', 'p'): self.methods[3],
-                ('a', 'c', 'v'): self.methods[4],
-                ('a', 'p', 'p'): self.methods[5],
-                ('a', 'p', 'v'): self.methods[6],
-                ('a', 'v'): self.methods[7],
-                ('b', 'c', 'p'): self.methods[8],
-                ('b', 'c', 'v'): self.methods[9],
-                ('b', 'p', 'p'): self.methods[10],
-                ('b', 'v'): self.methods[11],
-                ('c', 'p', 'p'): self.methods[12],
-                ('c', 'v'): self.methods[13],
-                ('p', 'p', 'p'): self.methods[14],
-                ('p', 'v'): self.methods[15],
+                ('a', 'b', 'c'): self.calc00,
+                ('a', 'b', 'p'): self.calc01,
+                ('a', 'b', 'v'): self.calc02,
+                ('a', 'c', 'p'): self.calc03,
+                ('a', 'c', 'v'): self.calc04,
+                ('a', 'p', 'p'): self.calc05,
+                ('a', 'p', 'v'): self.calc06,
+                ('a', 'v'): self.calc07,
+                ('b', 'c', 'p'): self.calc08,
+                ('b', 'c', 'v'): self.calc09,
+                ('b', 'p', 'p'): self.calc10,
+                ('b', 'v'): self.calc11,
+                ('c', 'p', 'p'): self.calc12,
+                ('c', 'v'): self.calc13,
+                ('p', 'p', 'p'): self.calc14,
+                ('p', 'v'): self.calc15,
                 }
 
         if draw == True:

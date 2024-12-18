@@ -1,11 +1,9 @@
 from . import plt, np, random
 from .Settings import settings
+from itertools import combinations
 
-class parabolaCalc():
-    #def __init__(): 
-    #    self.methods = [calc00, calc01, calc02, calc03, calc04, calc05, calc06, calc07,\
-    #        calc08, calc09, calc10, calc11, calc12, calc13, calc14, calc15]
-    #A----------------------------------------------------------------
+class parabolaCalc(): 
+    #A-----------------------------------------
     #a, b and c (to be modified!)
     def calc00(self, name = None):
 
