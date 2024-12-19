@@ -13,7 +13,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
     
     dof = 3
 
-    def __init__(self, draw = False, dof = dof):
+    def __init__(self, draw = True, dof = dof):
 
         
         super().__init__()
@@ -24,7 +24,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
         from .keys import parabola_listOfKeys
         
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
-        self._b = None
+        self._b = random.uniform(settings.xmin, settings.xmax)#None
         self._c = None
        
         self.j = 0
@@ -59,7 +59,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
         if draw:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
-            #self.addParams('b', self._b)
+            self.addParams('b', self._b)
             self.drawSetts()
 
     @property

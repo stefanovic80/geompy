@@ -39,8 +39,9 @@ class plotSett():
         self._linewidth = settings.linewidth
         self.plotSettings = None
 
-        self.data = [None, None] 
-        
+        #self.data = [None, None] 
+        self.data = [[], []]
+
         self.params = {}
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)

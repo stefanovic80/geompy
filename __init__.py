@@ -53,6 +53,7 @@ for name, param in loci.items():
             file.write("def noMethod():\n    print('Method still not implemented')\n")
             file.write("    data = [ [], [] ]\n\n")
             file.write("labels = {\\\n")
+            lok = sorted(lok)
             for combo in lok:
                 # Convertire ogni tupla in una stringa e scriverla nel file
                 file.write(f"    {combo}: noMethod , \\\n")#self.calc" + f"{number:02}" + " ,\\\n")
