@@ -1,9 +1,12 @@
-def noMethod():
-    print('Method still not implemented')
-    data = [ [], [] ]
+from .pyFiles.parabolaCalcFile import parabolaCalc
 
-labels = {\
-    ('m', 'p', 'p'): noMethod , \
-    ('m', 'p', 'q'): noMethod , \
-    ('p', 'p', 'q'): noMethod , \
-}
+class method(parabolaCalc):
+    def __init__(self):
+        self.labels = {
+            ('m', 'p', 'p'): self.noMethod,
+            ('m', 'p', 'q'): self.noMethod,
+            ('p', 'p', 'q'): self.noMethod
+        }
+
+    def noMethod(self):
+         print('Method still not implemented!')

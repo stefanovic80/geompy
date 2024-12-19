@@ -40,25 +40,34 @@ loci = {\
         }
 
 
+
+
+
+
+string = "from .pyFiles.parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCalc):\n    def __init__(self):\n        self.labels = {"
+
 for name, param in loci.items():
-    #List of Keys
-    lok = set( list(combinations(param, 3)) )
+    # List of Keys
+    lok = set(list(combinations(param, 3)))
     output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
     filePath = os.path.join(output_dir, name + "_listOfKeys.py")
-    
+
     if not os.path.exists(filePath):
-        #os.makedirs(output_dir, exist_ok = True)
         number = 0
         with open(filePath, "w") as file:
-            file.write("def noMethod():\n    print('Method still not implemented')\n")
-            file.write("    data = [ [], [] ]\n\n")
-            file.write("labels = {\\\n")
+            file.write(string)
             lok = sorted(lok)
-            for combo in lok:
-                # Convertire ogni tupla in una stringa e scriverla nel file
-                file.write(f"    {combo}: noMethod , \\\n")#self.calc" + f"{number:02}" + " ,\\\n")
-                number += 1
-            file.write("}")
+            for i, combo in enumerate(lok):
+                # Scrivere la combinazione nel file, ma evitare la virgola finale
+                file.write(f"\n            {combo}: self.noMethod")
+                if i < len(lok) - 1:  # Aggiungi la virgola solo se non è l'ultimo elemento
+                    file.write(",")
+            file.write("\n        }\n\n")  # Chiudere il dizionario alla fine
+            file.write("    def noMethod(self):\n         print('Method still not implemented!')\n")
+
+
+
+
 
 
 

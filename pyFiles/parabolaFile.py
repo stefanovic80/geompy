@@ -4,12 +4,12 @@ from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
-from .parabolaCalcFile import parabolaCalc
-#from .keys import parabola_listOfKeys
+#from .parabolaCalcFile import parabolaCalc
+from .keys.parabola_listOfKeys import method#parabola_listOfKeys
 
 
 
-class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
+class parabola(dataExplore, method):#, parabola_listOfKeys):
     
     dof = 3
 
