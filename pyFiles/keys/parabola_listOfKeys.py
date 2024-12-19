@@ -1,17 +1,21 @@
+def noMethod():
+    print('Method still not implemented')
+    data = [ [], [] ]
+
 labels = {\
-    ('b', 'p', 'v'): None, \
-    ('a', 'b', 'c'): None, \
-    ('b', 'p', 'p'): None, \
-    ('p', 'p', 'p'): None, \
-    ('a', 'c', 'v'): None, \
-    ('a', 'c', 'p'): None, \
-    ('p', 'p', 'v'): None, \
-    ('a', 'b', 'v'): None, \
-    ('a', 'b', 'p'): None, \
-    ('a', 'p', 'p'): None, \
-    ('a', 'p', 'v'): None, \
-    ('c', 'p', 'p'): None, \
-    ('c', 'p', 'v'): None, \
-    ('b', 'c', 'v'): None, \
-    ('b', 'c', 'p'): None, \
+    ('b', 'c', 'v'): noMethod , \
+    ('c', 'p', 'v'): noMethod , \
+    ('a', 'c', 'v'): noMethod , \
+    ('a', 'b', 'c'): noMethod , \
+    ('p', 'p', 'v'): noMethod , \
+    ('b', 'p', 'v'): noMethod , \
+    ('a', 'p', 'v'): noMethod , \
+    ('p', 'p', 'p'): noMethod , \
+    ('b', 'p', 'p'): noMethod , \
+    ('a', 'p', 'p'): noMethod , \
+    ('a', 'b', 'p'): noMethod , \
+    ('b', 'c', 'p'): noMethod , \
+    ('c', 'p', 'p'): noMethod , \
+    ('a', 'c', 'p'): noMethod , \
+    ('a', 'b', 'v'): noMethod , \
 }

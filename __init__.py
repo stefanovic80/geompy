@@ -27,15 +27,16 @@ _set.grid()
 
 
 
-
-
+#line: m = angular coefficient, p and p = point, q = intercept
+#parabola: a, b and c parabola coefficients, p, p, and p = points, v = vertex
+#circumference: a, b and c circumference coefficients, d = centre, r = radius
 
 
 
 loci = {\
         'line': ['m', 'p', 'p', 'q'],\
         'parabola': ['a', 'b', 'c', 'p', 'p', 'p', 'v'],\
-        'circumference':['a', 'b', 'c', 'd']\
+        'circumference':['a', 'b', 'c', 'd', 'r']\
         }
 
 
@@ -49,10 +50,12 @@ for name, param in loci.items():
         #os.makedirs(output_dir, exist_ok = True)
         number = 0
         with open(filePath, "w") as file:
+            file.write("def noMethod():\n    print('Method still not implemented')\n")
+            file.write("    data = [ [], [] ]\n\n")
             file.write("labels = {\\\n")
             for combo in lok:
                 # Convertire ogni tupla in una stringa e scriverla nel file
-                file.write(f"    {combo}: None, \\\n")#self.calc" + f"{number:02}" + " ,\\\n")
+                file.write(f"    {combo}: noMethod , \\\n")#self.calc" + f"{number:02}" + " ,\\\n")
                 number += 1
             file.write("}")
 

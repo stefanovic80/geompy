@@ -13,7 +13,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
     
     dof = 3
 
-    def __init__(self, draw = True, dof = dof):
+    def __init__(self, draw = False, dof = dof):
 
         
         super().__init__()
@@ -30,7 +30,7 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
         self.j = 0
         self._color = random.choice(self.colors)
        
-        """#TO BE DEBUGGED!!
+        ##TO BE DEBUGGED!!
         from .keys.parabola_listOfKeys import labels
         self.draws = labels
 
@@ -54,8 +54,9 @@ class parabola(dataExplore, parabolaCalc):#, parabola_listOfKeys):
                 ('p', 'p', 'p'): self.calc14,
                 ('p', 'v'): self.calc15,
                 }
-        
-        if draw == True:
+        """
+
+        if draw:
             self.addParams('vertex', self._vertex)
             self.addParams('a', self._a)
             #self.addParams('b', self._b)

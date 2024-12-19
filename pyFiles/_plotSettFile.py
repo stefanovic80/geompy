@@ -76,6 +76,10 @@ class plotSett():
 
         self.labCoords = [None, None]
 
+    def missingMethod():
+        print("method still not implemented")
+
+
     @property
     def lower(self):
 	    return settings.xmin
