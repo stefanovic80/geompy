@@ -1,18 +1,19 @@
-from .pyFiles.parabolaCalcFile import parabolaCalc
+from ..parabolaCalcFile import parabolaCalc
 
 class method(parabolaCalc):
     def __init__(self):
-        self.labels = {
-            ('a', 'b', 'c'): self.noMethod,
-            ('a', 'b', 'p'): self.noMethod,
-            ('a', 'b', 'v'): self.noMethod,
-            ('a', 'c', 'p'): self.noMethod,
-            ('a', 'c', 'v'): self.noMethod,
-            ('a', 'p', 'p'): self.noMethod,
-            ('a', 'p', 'v'): self.noMethod,
-            ('b', 'c', 'p'): self.noMethod,
-            ('b', 'c', 'v'): self.noMethod,
-            ('b', 'p', 'p'): self.noMethod,
+        super().__init__()
+        self.draws = {
+            ('a', 'b', 'c'): self.calc00,
+            ('a', 'b', 'p'): self.calc01,
+            ('a', 'b', 'v'): self.calc02,
+            ('a', 'c', 'p'): self.calc03,
+            ('a', 'c', 'v'): self.calc04,
+            ('a', 'p', 'p'): self.calc05,
+            ('a', 'p', 'v'): self.calc06,
+            ('b', 'c', 'p'): self.calc08,
+            ('b', 'c', 'v'): self.calc09,
+            ('b', 'p', 'p'): self.calc10,
             ('b', 'p', 'v'): self.noMethod,
             ('c', 'p', 'p'): self.noMethod,
             ('c', 'p', 'v'): self.noMethod,

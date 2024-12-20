@@ -1,4 +1,4 @@
-from .pyFiles.parabolaCalcFile import parabolaCalc
+from ..parabolaCalcFile import parabolaCalc
 
 class method(parabolaCalc):
     def __init__(self):

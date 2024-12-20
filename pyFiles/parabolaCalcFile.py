@@ -1,8 +1,33 @@
 from . import plt, np, random
 from .Settings import settings
-from itertools import combinations
+from ._plotSettFile import plotSett
+from .pointFile import point
 
-class parabolaCalc(): 
+from itertools import combinations
+from .dataExploreFile import dataExplore
+
+
+class parabolaCalc(dataExplore):
+    def __init__(self):
+        super().__init__()
+
+        self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
+
+        #TO BE FIXED!
+        from .keys import parabola_listOfKeys
+
+        self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
+        self.addParams('a', self._a)
+        self._b = random.uniform(settings.xmin, settings.xmax)#None 
+        self.addParams('b', self._b)
+        self._c = random.uniform(settings.xmin, settings.xmax)#None
+        self.addParams('c', self._c)
+
+        self.j = 0
+        self._color = random.choice(self.colors)
+
+
+
     #A-----------------------------------------
     #a, b and c (to be modified!)
     def calc00(self, name = None):

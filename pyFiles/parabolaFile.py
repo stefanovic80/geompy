@@ -3,61 +3,24 @@ from . import plt, np, random
 from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
-from .dataExploreFile import dataExplore
-#from .parabolaCalcFile import parabolaCalc
-#from .keys.parabola_listOfKeys import method#parabola_listOfKeys
+#from .dataExploreFile import dataExplore
 
-class parabola(dataExplore):#, method):#, parabola_listOfKeys):
+from .keys.parabola_listOfKeys import method
+
+#class parabola(dataExplore, method):
+class parabola(method):
     
     dof = 3
 
-    def __init__(self, draw = False, dof = dof):
-
-        
+    def __init__(self, draw = True, dof = dof):
         super().__init__()
 
-        self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
-        
-        #TO BE FIXED!
-        from .keys import parabola_listOfKeys
-        
-        self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
-        self._b = random.uniform(settings.xmin, settings.xmax)#None
-        self._c = None
-       
-        self.j = 0
-        self._color = random.choice(self.colors)
-       
-        ##TO BE DEBUGGED!!
-        from .keys.parabola_listOfKeys import method
-        self.drawss = method
-
-        """
-        #'a'.isupper()
-        self.draws = {
-                ('a', 'b', 'c'): self.calc00,
-                ('a', 'b', 'p'): self.calc01,
-                ('a', 'b', 'v'): self.calc02,
-                ('a', 'c', 'p'): self.calc03,
-                ('a', 'c', 'v'): self.calc04,
-                ('a', 'p', 'p'): self.calc05,
-                ('a', 'p', 'v'): self.calc06,
-                ('a', 'v'): self.calc07,
-                ('b', 'c', 'p'): self.calc08,
-                ('b', 'c', 'v'): self.calc09,
-                ('b', 'p', 'p'): self.calc10,
-                ('b', 'v'): self.calc11,
-                ('c', 'p', 'p'): self.calc12,
-                ('c', 'v'): self.calc13,
-                ('p', 'p', 'p'): self.calc14,
-                ('p', 'v'): self.calc15,
-                }
-        """
+        #self.draws = method().labels
 
         if draw:
-            self.addParams('vertex', self._vertex)
-            self.addParams('a', self._a)
-            self.addParams('b', self._b)
+            #self.addParams('vertex', self._vertex)
+            #self.addParams('a', self._a)
+            #self.addParams('b', self._b)
             self.drawSetts()
 
     @property
