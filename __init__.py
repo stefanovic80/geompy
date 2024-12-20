@@ -44,7 +44,7 @@ loci = {\
 
 
 
-string = "from .pyFiles.parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCalc):\n    def __init__(self):\n        self.labels = {"
+string = "from ..parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCalc):\n    def __init__(self):\n        self.labels = {"
 
 for name, param in loci.items():
     # List of Keys

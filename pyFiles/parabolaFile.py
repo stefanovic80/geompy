@@ -5,15 +5,13 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
 #from .parabolaCalcFile import parabolaCalc
-from .keys.parabola_listOfKeys import method#parabola_listOfKeys
+#from .keys.parabola_listOfKeys import method#parabola_listOfKeys
 
-
-
-class parabola(dataExplore, method):#, parabola_listOfKeys):
+class parabola(dataExplore):#, method):#, parabola_listOfKeys):
     
     dof = 3
 
-    def __init__(self, draw = True, dof = dof):
+    def __init__(self, draw = False, dof = dof):
 
         
         super().__init__()
@@ -31,8 +29,8 @@ class parabola(dataExplore, method):#, parabola_listOfKeys):
         self._color = random.choice(self.colors)
        
         ##TO BE DEBUGGED!!
-        from .keys.parabola_listOfKeys import labels
-        self.draws = labels
+        from .keys.parabola_listOfKeys import method
+        self.drawss = method
 
         """
         #'a'.isupper()
