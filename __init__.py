@@ -2,35 +2,19 @@
 
 # Import functions and classes from your package
 from .pyFiles._plotSettFile import plotSett as start
-from .pyFiles.pointFile import point
-from .pyFiles.circumferenceFile import circumference
-from .pyFiles.ellipseFile import ellipse
-from .pyFiles.lineFile import line
-from .pyFiles.segmentFile import segment
-from .pyFiles.parabolaFile import parabola
-from .pyFiles.functionFile import function
-from .pyFiles.functionFile import x
-
-from .pyModules2gen.triangleFile import triangle
-from .pyModules2gen.angleFile import arc
 
 import matplotlib.pyplot as plt
 from numpy import *
-#import numpy as np
 import random
 
-import os
-from itertools import combinations
 
-_set = start()
-_set.grid()
-
-
-
+#----------------------------------------------------------------------------------------------------------
 #line: m = angular coefficient, p and p = point, q = intercept
 #parabola: a, b and c parabola coefficients, p, p, and p = points, v = vertex
 #circumference: a, b and c circumference coefficients, d = centre, r = radius
 
+import os
+from itertools import combinations
 
 
 loci = {\
@@ -38,10 +22,6 @@ loci = {\
         'parabola': ['a', 'b', 'c', 'p', 'p', 'p', 'v'],\
         'circumference':['a', 'b', 'c', 'd', 'r']\
         }
-
-
-
-
 
 
 string = "from ..parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCalc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
@@ -63,9 +43,31 @@ for name, param in loci.items():
                 if i < len(lok) - 1:  # Aggiungi la virgola solo se non è l'ultimo elemento
                     file.write(",")
             file.write("\n        }\n\n")  # Chiudere il dizionario alla fine
-            file.write("    def noMethod(self):\n         print('Method still not implemented!')\n")
+            file.write("    def noMethod(self):\n         print('This method has not been implemented yet!')\n")
+#----------------------------------------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+from .pyFiles.pointFile import point
+from .pyFiles.circumferenceFile import circumference
+from .pyFiles.ellipseFile import ellipse
+from .pyFiles.lineFile import line
+from .pyFiles.segmentFile import segment
+from .pyFiles.parabolaFile import parabola
+from .pyFiles.functionFile import function
+from .pyFiles.functionFile import x
+
+from .pyModules2gen.triangleFile import triangle
+from .pyModules2gen.angleFile import arc
+_set = start()
+_set.grid()
 
 
 

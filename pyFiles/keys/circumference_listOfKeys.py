@@ -2,7 +2,8 @@ from ..parabolaCalcFile import parabolaCalc
 
 class method(parabolaCalc):
     def __init__(self):
-        self.labels = {
+        super().__init__()
+        self.draws = {
             ('a', 'b', 'c'): self.noMethod,
             ('a', 'b', 'd'): self.noMethod,
             ('a', 'b', 'r'): self.noMethod,
@@ -16,4 +17,4 @@ class method(parabolaCalc):
         }
 
     def noMethod(self):
-         print('Method still not implemented!')
+         print('This method has not been implemented yet!')

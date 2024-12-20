@@ -15,12 +15,7 @@ class parabola(method):
     def __init__(self, draw = True, dof = dof):
         super().__init__()
 
-        #self.draws = method().labels
-
         if draw:
-            #self.addParams('vertex', self._vertex)
-            #self.addParams('a', self._a)
-            #self.addParams('b', self._b)
             self.drawSetts()
 
     @property

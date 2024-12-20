@@ -22,4 +22,4 @@ class method(parabolaCalc):
         }
 
     def noMethod(self):
-         print('Method still not implemented!')
+         print('This method has not been implemented yet!')
