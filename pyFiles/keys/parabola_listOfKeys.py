@@ -15,9 +15,9 @@ class method(parabolaCalc):
             ('b', 'c', 'v'): self.calc09,
             ('b', 'p', 'p'): self.calc10,
             ('b', 'p', 'v'): self.noMethod,
-            ('c', 'p', 'p'): self.noMethod,
+            ('c', 'p', 'p'): self.calc12,
             ('c', 'p', 'v'): self.noMethod,
-            ('p', 'p', 'p'): self.noMethod,
+            ('p', 'p', 'p'): self.calc14,
             ('p', 'p', 'v'): self.noMethod
         }
 
