@@ -19,42 +19,18 @@ from .pointFile import point
 from .dataExploreFile import dataExplore
 from collections import deque
 """
-from .keys.parabola_listOfKeys import method
+from .keys.line_listOfKeys import method
 
 
 class line(method):
         
     dof = 2
 
-    def __init__(self, seed = seed, draw = False, dof = dof):
+    def __init__(self, seed = seed, draw = True, dof = dof):
         
         super().__init__()
-        """ 
-        self.seed = seed
-        self._color = random.choice(self.colors)
 
-        #values to calculate straight line data (self.data[1])
-        angle = random.uniform(0, np.pi)
-        self.angle = angle
-        self.angCoeff =  np.tan(angle)
-        self.intercept = np.random.uniform(settings.ymin, settings.ymax)
-        
-        self.keys = deque(maxlen = self.dof)
-        self.values = deque(maxlen = self.dof)
-
-
-        self.draws = {
-                ('m', 'p'): self.calc_m_p,
-                ('m', 'q'): self.calc_m_q,
-                ('p', 'q'): self.calc_p_q,
-                ('p', 'p'): self.calc_p_p
-                }
-        """
-
-        if draw:
-            #self.addParams('m', self.angCoeff)
-            #self.addParams('q', self.intercept)
-            self.drawSetts()
+        if draw: self.drawSetts()
     
     
     @property

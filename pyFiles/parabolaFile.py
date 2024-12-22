@@ -15,8 +15,7 @@ class parabola(method):
     def __init__(self, draw = True, dof = dof):
         super().__init__()
 
-        if draw:
-            self.drawSetts()
+        if draw: self.drawSetts()
 
     @property
     def concavity(self):
