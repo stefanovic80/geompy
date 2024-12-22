@@ -29,8 +29,7 @@ class method(circumferenceCalc):
             ('ce', 'po', 'po'): self.calc_ce_po_po,
             ('ce', 'po', 'ra'): self.calc_ce_po_ra,
             ('po', 'po', 'po'): self.calc_po_po_po,
-            ('po', 'po', 'ra'): self.calc_po_po_ra
-        }
+            ('po', 'po', 'ra'): self.calc_po_po_ra        }
 
     def noMethod(self):
          print('This method has not been implemented yet!')

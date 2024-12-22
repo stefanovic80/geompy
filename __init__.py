@@ -25,7 +25,7 @@ loci = {\
     
 
 for name, param in loci.items():
-    string = "from .." + name + "CalcFile import " + name  + "." +  name + "Calc\n\nclass method(" + name\
+    string = "from .." + name + "." + name +  "CalcFile import "  +  name + "Calc\n\nclass method(" + name\
             +  "Calc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
     # List of Keys
     dos = param[1]
