@@ -22,11 +22,11 @@ loci = {\
         'parabola': (['a', 'b', 'c', 'p', 'p', 'p', 'v'], 3),\
         'circumference':(['a', 'b', 'c', 'd', 'r'], 3)\
         }
-
-
-string = "from ..parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCalc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
+    
 
 for name, param in loci.items():
+    string = "from .." + name + "CalcFile import " + name  + "Calc\n\nclass method(" + name\
+            +  "Calc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
     # List of Keys
     dos = param[1]
     lok = set(list(combinations(param[0], dos)))

@@ -1,6 +1,6 @@
-from ..parabolaCalcFile import parabolaCalc
+from ..circumferenceCalcFile import circumferenceCalc
 
-class method(parabolaCalc):
+class method(circumferenceCalc):
     def __init__(self):
         super().__init__()
         self.draws = {
