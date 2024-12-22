@@ -14,7 +14,7 @@ class circumference(method):
     
     dof = 3
 
-    def __init__(self, draw = True):
+    def __init__(self, draw = False):
         
         super().__init__()
         #plotSett.__init__(self)
