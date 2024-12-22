@@ -20,7 +20,7 @@ from itertools import combinations
 loci = {\
         'line': (['m', 'po', 'po', 'q'], 2),\
         'parabola': (['a', 'b', 'c', 'po', 'po', 'po', 'v'], 3),\
-        'circumference':(['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'r'], 3)\
+        'circumference':(['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'ra'], 3)\
         }
     
 
