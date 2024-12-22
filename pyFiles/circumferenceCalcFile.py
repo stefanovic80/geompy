@@ -1,7 +1,39 @@
 from . import plt, np, random
 from .pointFile import point
 
-class circumferenceCalc():
+from .Settings import settings
+from ._plotSettFile import plotSett
+from .dataExploreFile import dataExplore
+
+
+
+class circumferenceCalc(dataExplore):
+    def __init__(self):
+        super().__init__()
+
+        self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
+        self.addParams('radius', self._radius)
+        self._centre = point(draw = False)
+        self.addParams('Centre', self._centre)
+
+        self.angles = None
+        self._angle = 2*np.pi
+        self._color = random.choice(self.colors)
+
+        self._centre._color = self._color
+        self.j = 0
+        self.k = 0
+
+        self.dof = 3
+
+        self._a = None
+        self._b = None
+        self._c = None
+        
+        self.calc_a_b_c(self, name = None, angle = 2*np.pi)
+        if draw: self.drawSetts()
+
+
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
         self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )

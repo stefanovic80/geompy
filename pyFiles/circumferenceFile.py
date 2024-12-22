@@ -6,9 +6,11 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 from .lineFile import line
 from .dataExploreFile import dataExplore
-from .circumferenceCalcFile import circumferenceCalc
 
-class circumference(dataExplore, circumferenceCalc):
+from .keys.parabola_listOfKeys import method
+
+
+class circumference(method):
     
     dof = 3
 
@@ -28,7 +30,7 @@ class circumference(dataExplore, circumferenceCalc):
         self.j = 0
         self.k = 0
         
-
+        """
         self.draws = {
                 ('a', 'b', 'c'): self.calc_a_b_c,
                 ('C', 'a', 'b'): self.calc_C_a_b,
@@ -50,19 +52,7 @@ class circumference(dataExplore, circumferenceCalc):
                 ('C', 'p'): self.calc_C_p,
                 ('C', 'p', 'r'): self.calc_C_p_r
                 }
-
-
-
-        self.dof = 3
-
-        self._a = None
-        self._b = None
-        self._c = None
-
-        if draw == True:
-            self.addParams('radius', self._radius)
-            self.addParams('Centre', self._centre)
-            self.draw_C()
+        """
 
 
     @property
