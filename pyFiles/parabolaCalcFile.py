@@ -2,9 +2,10 @@ from . import plt, np, random
 from .Settings import settings
 from ._plotSettFile import plotSett
 from .pointFile import point
-
-from itertools import combinations
 from .dataExploreFile import dataExplore
+
+# to be removed
+from itertools import combinations
 
 
 class parabolaCalc(dataExplore):

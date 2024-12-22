@@ -16,11 +16,11 @@ import random
 import os
 from itertools import combinations
 
-
+#[params], Degree of Freedom (2 or 3)
 loci = {\
-        'line': ['m', 'p', 'p', 'q'],\
-        'parabola': ['a', 'b', 'c', 'p', 'p', 'p', 'v'],\
-        'circumference':['a', 'b', 'c', 'd', 'r']\
+        'line': (['m', 'p', 'p', 'q'], 2),\
+        'parabola': (['a', 'b', 'c', 'p', 'p', 'p', 'v'], 3),\
+        'circumference':(['a', 'b', 'c', 'd', 'r'], 3)\
         }
 
 
@@ -28,7 +28,8 @@ string = "from ..parabolaCalcFile import parabolaCalc\n\nclass method(parabolaCa
 
 for name, param in loci.items():
     # List of Keys
-    lok = set(list(combinations(param, 3)))
+    dos = param[1]
+    lok = set(list(combinations(param[0], dos)))
     output_dir = os.path.join(os.path.expanduser("~"), os.getcwd(), "geompy", "pyFiles", "keys")
     filePath = os.path.join(output_dir, name + "_listOfKeys.py")
 

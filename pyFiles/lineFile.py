@@ -1,5 +1,15 @@
 # lineFile.py
 from . import plt, np, random
+from .Settings import settings
+from ._plotSettFile import plotSett
+from .pointFile import point
+#from .dataExploreFile import dataExplore
+
+from . import seed
+
+
+"""
+from . import plt, np, random
 from . import seed
 from .Settings import settings
 
@@ -8,15 +18,18 @@ from ._plotSettFile import plotSett
 from .pointFile import point
 from .dataExploreFile import dataExplore
 from collections import deque
+"""
+from .keys.parabola_listOfKeys import method
 
-class line(dataExplore, lineCalc):
-    
+
+class line(method):
+        
     dof = 2
 
-    def __init__(self, seed = seed, draw = True, dof = dof):
+    def __init__(self, seed = seed, draw = False, dof = dof):
         
         super().__init__()
-        
+        """ 
         self.seed = seed
         self._color = random.choice(self.colors)
 
@@ -36,11 +49,11 @@ class line(dataExplore, lineCalc):
                 ('p', 'q'): self.calc_p_q,
                 ('p', 'p'): self.calc_p_p
                 }
- 
+        """
 
-        if draw == True:
-            self.addParams('m', self.angCoeff)
-            self.addParams('q', self.intercept)
+        if draw:
+            #self.addParams('m', self.angCoeff)
+            #self.addParams('q', self.intercept)
             self.drawSetts()
     
     

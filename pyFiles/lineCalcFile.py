@@ -1,8 +1,32 @@
 from . import plt, np, random
 from .Settings import settings
+from ._plotSettFile import plotSett
+from .pointFile import point
+from .dataExploreFile import dataExplore
 
-class lineCalc():
 
+
+class lineCalc(dataExplore):
+    def __init__(self):
+        super().__init()
+
+        self.seed = seed
+        self._color = random.choice(self.colors)
+
+        #values to calculate straight line data (self.data[1])
+        angle = random.uniform(0, np.pi)
+        self.angle = angle
+        self.angCoeff =  np.tan(angle)
+        self.addParams('m', self.angCoeff)
+
+        self.intercept = np.random.uniform(settings.ymin, settings.ymax)
+        self.addParams('q', self.intercept)
+        #to be removed
+        self.keys = deque(maxlen = self.dof)
+        self.values = deque(maxlen = self.dof)
+
+
+        
     def calc_m_q(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
         self.data = self.data + [ self.angCoeff*self.data[0] + self.intercept ]
