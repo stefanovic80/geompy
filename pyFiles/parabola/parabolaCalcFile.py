@@ -1,12 +1,12 @@
-from . import plt, np, random
-from .Settings import settings
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .dataExploreFile import dataExplore
+from .. import plt, np, random
+from ..Settings import settings
+from .._plotSettFile import plotSett
+from ..pointFile import point
+from ..dataExploreFile import dataExplore
 
 # to be removed
 from itertools import combinations
-from .keys import parabola_listOfKeys
+from ..keys import parabola_listOfKeys
 
 class parabolaCalc(dataExplore):
     def __init__(self):

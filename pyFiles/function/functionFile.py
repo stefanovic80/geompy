@@ -1,11 +1,11 @@
 # function.py
-from . import plt, np, random
-from .Settings import settings
+from .. import plt, np, random
+from ..Settings import settings
 
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .lineFile import line
-from .dataExploreFile import dataExplore
+from .._plotSettFile import plotSett
+from ..pointFile import point
+from ..line.lineFile import line
+from ..dataExploreFile import dataExplore
 
 #to be fixed according with real values of xlim and ylim
 x = np.arange(settings.xmin, settings.xmax, 1/settings.steps)

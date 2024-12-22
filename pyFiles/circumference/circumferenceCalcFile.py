@@ -1,9 +1,9 @@
-from . import plt, np, random
-from .pointFile import point
+from .. import plt, np, random
+from ..pointFile import point
 
-from .Settings import settings
-from ._plotSettFile import plotSett
-from .dataExploreFile import dataExplore
+from ..Settings import settings
+from .._plotSettFile import plotSett
+from ..dataExploreFile import dataExplore
 
 
 

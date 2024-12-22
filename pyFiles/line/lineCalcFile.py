@@ -1,11 +1,11 @@
-from . import plt, np, random
-from .Settings import settings
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .dataExploreFile import dataExplore
+from .. import plt, np, random
+from ..Settings import settings
+from .._plotSettFile import plotSett
+from ..pointFile import point
+from ..dataExploreFile import dataExplore
 
 #to be checked out
-from . import seed
+from .. import seed
 from collections import deque
 
 class lineCalc(dataExplore):

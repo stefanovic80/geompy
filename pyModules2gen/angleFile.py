@@ -1,7 +1,7 @@
-from ..pyFiles.lineFile import line
+from ..pyFiles.line.lineFile import line
 from ..pyFiles.pointFile import point
 from ..pyFiles._plotSettFile import plotSett
-from ..pyFiles.circumferenceFile import circumference
+from ..pyFiles.circumference.circumferenceFile import circumference
 from ..pyFiles import seed
 from ..pyFiles.Settings import settings
 from ..pyFiles import plt, np, random

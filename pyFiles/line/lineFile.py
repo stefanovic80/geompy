@@ -1,14 +1,13 @@
 # lineFile.py
-from . import plt, np, random
-from .Settings import settings
-from ._plotSettFile import plotSett
-from .pointFile import point
-#from .dataExploreFile import dataExplore
+from .. import plt, np, random
+from ..Settings import settings
+from .._plotSettFile import plotSett
+from ..pointFile import point
 
-from . import seed
+from .. import seed
 
 
-from .keys.line_listOfKeys import method
+from ..keys.line_listOfKeys import method
 
 
 class line(method):

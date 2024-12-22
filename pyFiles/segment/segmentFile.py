@@ -1,13 +1,13 @@
 # lineFile.py
-from . import plt, np, random
-from . import seed
-from .Settings import settings
+from .. import plt, np, random
+from .. import seed
+from ..Settings import settings
 
 #plt.ion()
 
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .dataExploreFile import dataExplore
+from .._plotSettFile import plotSett
+from ..pointFile import point
+from ..dataExploreFile import dataExplore
 
 class segment(dataExplore):
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):

@@ -1,8 +1,8 @@
-from ..pyFiles.lineFile import line
+from ..pyFiles.line.lineFile import line
 from ..pyFiles.pointFile import point
 from ..pyFiles._plotSettFile import plotSett
 from ..pyFiles.dataExploreFile import dataExplore
-from ..pyFiles.circumferenceFile import circumference
+from ..pyFiles.circumference.circumferenceFile import circumference
 
 from ..pyFiles import seed 
 

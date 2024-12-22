@@ -1,4 +1,4 @@
-from ..circumferenceCalcFile import circumferenceCalc
+from ..circumference.circumferenceCalcFile import circumferenceCalc
 
 class method(circumferenceCalc):
     def __init__(self):

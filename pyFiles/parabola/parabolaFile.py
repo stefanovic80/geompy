@@ -1,13 +1,11 @@
 # parabolaFile.py
-from . import plt, np, random
-from .Settings import settings
-from ._plotSettFile import plotSett
-from .pointFile import point
-#from .dataExploreFile import dataExplore
+from .. import plt, np, random
+from ..Settings import settings
+from .._plotSettFile import plotSett
+from ..pointFile import point
 
-from .keys.parabola_listOfKeys import method
+from ..keys.parabola_listOfKeys import method
 
-#class parabola(dataExplore, method):
 class parabola(method):
     
     dof = 3

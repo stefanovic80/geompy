@@ -25,7 +25,7 @@ loci = {\
     
 
 for name, param in loci.items():
-    string = "from .." + name + "CalcFile import " + name  + "Calc\n\nclass method(" + name\
+    string = "from .." + name + "CalcFile import " + name  + "." +  name + "Calc\n\nclass method(" + name\
             +  "Calc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
     # List of Keys
     dos = param[1]
@@ -57,13 +57,13 @@ for name, param in loci.items():
 
 
 from .pyFiles.pointFile import point
-from .pyFiles.circumferenceFile import circumference
+from .pyFiles.circumference.circumferenceFile import circumference
 from .pyFiles.ellipseFile import ellipse
-from .pyFiles.lineFile import line
-from .pyFiles.segmentFile import segment
-from .pyFiles.parabolaFile import parabola
-from .pyFiles.functionFile import function
-from .pyFiles.functionFile import x
+from .pyFiles.line.lineFile import line
+from .pyFiles.segment.segmentFile import segment
+from .pyFiles.parabola.parabolaFile import parabola
+from .pyFiles.function.functionFile import function
+from .pyFiles.function.functionFile import x
 
 from .pyModules2gen.triangleFile import triangle
 from .pyModules2gen.angleFile import arc

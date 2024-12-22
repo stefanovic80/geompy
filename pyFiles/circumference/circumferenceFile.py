@@ -1,13 +1,13 @@
 # circumference.py
-from . import plt, np, random
-from .Settings import settings
+from .. import plt, np, random
+from ..Settings import settings
 
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .lineFile import line
-from .dataExploreFile import dataExplore
+from .._plotSettFile import plotSett
+from ..pointFile import point
+from ..line.lineFile import line
+from ..dataExploreFile import dataExplore
 
-from .keys.parabola_listOfKeys import method
+from ..keys.parabola_listOfKeys import method
 
 
 class circumference(method):

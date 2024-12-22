@@ -1,4 +1,4 @@
-from ..lineCalcFile import lineCalc
+from ..line.lineCalcFile import lineCalc
 
 class method(lineCalc):
     def __init__(self):
