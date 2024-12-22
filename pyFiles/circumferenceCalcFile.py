@@ -39,63 +39,63 @@ class circumferenceCalc(dataExplore):
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
         self.calc_C_r()
 
-    def calc_C_a_b(self, name = None, angle = 2*np.pi):
+    def calc_a_b_ce(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
         self._radius = (x0**2 +y0**2 - self_c)**.5
         self.calc_C_r()
 
-    def calc_a_b_p(self, name = None, angle = 2*np.pi):
+    def calc_a_b_po(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         point = getPoint()
         self._radius = ( ( x0 - x1 )**2 + ( y0 - y1 )**2 )**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
     def calc_a_b_r(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
         self._radius = ( ( self._a**2 + self._b**2)/4 - self._c )**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
     def calc_a_c_r(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._b = -2*y0
         self._radius = ( x0**2 + y0**2 - self._c)**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
-    def calc_C_b_c(self, name = None, angle = 2*np.pi):
+    def calc_b_c_ce(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._a = -2*x0 
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
         self._r = ( x0**2 + y0**2 - self._c )**.5
-        self._calci_C_r()
+        self._calci_ce_r()
 
-    def calc_b_c_p(self, name = None, angle = 2*np.pi):
+    def calc_b_c_po(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._a = -2*x0
         self._radius = ( ( x0 - x1 )**2 + ( y0 - y1 )**2 )**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
     def calc_b_c_r(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = ( self._radius**2 - self._b**2/4 - self._c )**.5, -self._b/2
         self._a = -2*x0
         self.calc_C_r()
 
-    def calc_C_c(self, name = None, angle = 2*np.pi):
+    def calc_c_ce(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._a, self._b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c )**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
-    def calc_c_p(self, name = None, angle = 2*np.pi):
+    def calc_c_po(self, name = None, angle = 2*np.pi):
         point = getPoint()
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = point.coords[0], point.coords[1]
         a, b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c)**.5
-        self.calc_C_r()
+        self.calc_ce_r()
 
     #circumference equation calculation from centre coordinates and radius
-    def calc_C_r(self, name = None, angle = 2*np.pi):
+    def calc_ce_r(self, name = None, angle = 2*np.pi):
 
         data = [None, None]
 
@@ -140,7 +140,7 @@ class circumferenceCalc(dataExplore):
 
 
     # calculate from three points the circumference passing through (to be fixed!)
-    def calc_p_p_p(self, name = None, angle = 2*np.pi):
+    def calc_po_po_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
@@ -163,7 +163,7 @@ class circumferenceCalc(dataExplore):
         self.calc_C_r()
 
 
-    def calc_a_p_p(self, name = None, angle = 2*np.pi):
+    def calc_a_po_po(self, name = None, angle = 2*np.pi):
         point1 = self.getPoint()
         point2 = self.getPoint()
         x1, y1 = point0.coords[0], point0.coords[1]
@@ -174,7 +174,7 @@ class circumferenceCalc(dataExplore):
         self._radius = ( x**2 + y**2 - self._c )**.5
         self.calc_C_r()
 
-    def calc_b_p_p(self, name = None, angle = 2*np.pi):
+    def calc_b_po_po(self, name = None, angle = 2*np.pi):
         point1 = getPoint()
         point2 = getPoint()
         x1, y1 = point1.coords[0], point1.coords[1]
@@ -185,7 +185,7 @@ class circumferenceCalc(dataExplore):
         self._radius = ( (x1 - x0)**2 + (y1 - y0))**.5
         self.calc_C_c()
 
-    def calc_c_p_p(self, name = None, angle = 2*np.pi):
+    def calc_c_po_po(self, name = None, angle = 2*np.pi):
         point1 = getPoint()
         point2 = getPoint()
         x1, y1 = point1.coords[0], point1.coords[1]
@@ -198,7 +198,7 @@ class circumferenceCalc(dataExplore):
 
 
     # calculate from centre coordinates and a point passing through
-    def calc_C_p(self, name = None, angle = 2*np.pi):
+    def calc_ce_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
         point0 = next(self.getPoint())
         point1 = next(self.getPoint())
@@ -213,9 +213,9 @@ class circumferenceCalc(dataExplore):
         self._c = x1**2 + y1**2 - x0**2 - y0**2
         
         #self.calc_a_b_c()
-        self.calc_C_r()
+        self.calc_ce_r()
     
-    def calc_C_p_r(self):
-        self.calc_C_p()
+    def calc_ce_p_r(self):
+        self.calc_ce_p()
         #r to be removed
 

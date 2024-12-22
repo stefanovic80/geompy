@@ -20,7 +20,9 @@ class circumference(method):
         #plotSett.__init__(self)
 
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
+        self.addParams('radius', self._radius)
         self._centre = point(draw = False)
+        self.addParams('centre', self._centre)
         
         self.angles = None
         self._angle = 2*np.pi
@@ -30,30 +32,7 @@ class circumference(method):
         self.j = 0
         self.k = 0
         
-        """
-        self.draws = {
-                ('a', 'b', 'c'): self.calc_a_b_c,
-                ('C', 'a', 'b'): self.calc_C_a_b,
-                ('a', 'b', 'p'): self.calc_a_b_p,
-                ('a', 'b', 'r'): self.calc_a_b_r,
-                ('a', 'c', 'r'): self.calc_a_c_r,
-                ('C', 'b', 'c'): self.calc_C_b_c,
-                ('b', 'c', 'p'): self.calc_b_c_p,
-                ('b', 'c', 'r'): self.calc_b_c_r,
-
-                ('C', 'c'): self.calc_C_c,
-                ('c', 'p'): self.calc_c_p,
-                ('C', 'r'): self.calc_C_r,
-                
-                ('p', 'p', 'p'): self.calc_p_p_p,
-                ('a', 'p', 'p'): self.calc_a_p_p,
-                ('b', 'p', 'p'): self.calc_b_p_p,
-                ('c', 'p', 'p'): self.calc_c_p_p,
-                ('C', 'p'): self.calc_C_p,
-                ('C', 'p', 'r'): self.calc_C_p_r
-                }
-        """
-
+        if draw: self.drawSetts()
 
     @property
     def angle(self):
@@ -81,7 +60,7 @@ class circumference(method):
 
     @centre.setter
     def centre(self, point):
-        self.addParams('Centre', point)
+        self.addParams('centre', point)
         self._centre = point
         self.drawSetts()
        
@@ -92,7 +71,7 @@ class circumference(method):
 
     @centre.setter
     def center(self, point):
-        self.addParams('Centre', point)
+        self.addParams('centre', point)
         self._centre = point
         self.drawSetts()
 

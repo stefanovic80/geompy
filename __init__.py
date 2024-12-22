@@ -18,9 +18,9 @@ from itertools import combinations
 
 #[params], Degree of Freedom (2 or 3)
 loci = {\
-        'line': (['m', 'p', 'p', 'q'], 2),\
-        'parabola': (['a', 'b', 'c', 'p', 'p', 'p', 'v'], 3),\
-        'circumference':(['a', 'b', 'c', 'd', 'r'], 3)\
+        'line': (['m', 'po', 'po', 'q'], 2),\
+        'parabola': (['a', 'b', 'c', 'po', 'po', 'po', 'v'], 3),\
+        'circumference':(['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'r'], 3)\
         }
     
 

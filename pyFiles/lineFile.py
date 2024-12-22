@@ -8,17 +8,6 @@ from .pointFile import point
 from . import seed
 
 
-"""
-from . import plt, np, random
-from . import seed
-from .Settings import settings
-
-from .lineCalcFile import lineCalc
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .dataExploreFile import dataExplore
-from collections import deque
-"""
 from .keys.line_listOfKeys import method
 
 
