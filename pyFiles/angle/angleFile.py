@@ -1,10 +1,10 @@
-from ..pyFiles.line.lineFile import line
-from ..pyFiles.pointFile import point
-from ..pyFiles._plotSettFile import plotSett
-from ..pyFiles.circumference.circumferenceFile import circumference
-from ..pyFiles import seed
-from ..pyFiles.Settings import settings
-from ..pyFiles import plt, np, random
+from ..line.lineFile import line
+from ..pointFile import point
+from .._plotSettFile import plotSett
+from ..circumference.circumferenceFile import circumference
+from .. import seed
+from ..Settings import settings
+from .. import plt, np, random
 
 
 class arc(plotSett):

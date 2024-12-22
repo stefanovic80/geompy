@@ -1,14 +1,14 @@
-from ..pyFiles.line.lineFile import line
-from ..pyFiles.pointFile import point
-from ..pyFiles._plotSettFile import plotSett
-from ..pyFiles.dataExploreFile import dataExplore
-from ..pyFiles.circumference.circumferenceFile import circumference
+from ..line.lineFile import line
+from ..pointFile import point
+from .._plotSettFile import plotSett
+from ..dataExploreFile import dataExplore
+from ..circumference.circumferenceFile import circumference
 
-from ..pyFiles import seed 
+from .. import seed 
 
-from ..pyFiles.Settings import settings
+from ..Settings import settings
 
-from ..pyFiles import plt, np, random
+from .. import plt, np, random
 
 class triangle(dataExplore):
     

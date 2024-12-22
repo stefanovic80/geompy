@@ -65,8 +65,8 @@ from .pyFiles.parabola.parabolaFile import parabola
 from .pyFiles.function.functionFile import function
 from .pyFiles.function.functionFile import x
 
-from .pyModules2gen.triangleFile import triangle
-from .pyModules2gen.angleFile import arc
+from .pyFiles.triangle.triangleFile import triangle
+from .pyFiles.angle.angleFile import arc
 _set = start()
 _set.grid()
 
