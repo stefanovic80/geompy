@@ -4,10 +4,10 @@ class method(lineCalc):
     def __init__(self):
         super().__init__()
         self.draws = {
-            ('m', 'po'): self.calc_m_p,
+            ('m', 'po'): self.calc_m_po,
             ('m', 'q'): self.calc_m_q,
-            ('po', 'po'): self.calc_p_p,
-            ('po', 'q'): self.calc_p_q
+            ('po', 'po'): self.calc_po_po,
+            ('po', 'q'): self.calc_po_q
         }
 
     def noMethod(self):

@@ -35,7 +35,7 @@ class lineCalc(dataExplore):
         self.angle = np.arctan(self.angCoeff)
 
 
-    def calc_p_p(self): #calculate equation from two points
+    def calc_po_po(self): #calculate equation from two points
 
         u = self.getPoint()
         point0 = next( u )
@@ -61,7 +61,7 @@ class lineCalc(dataExplore):
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._y ]
 
-    def calc_m_p(self): #calculate equation from 1 point and angCoeff
+    def calc_m_po(self): #calculate equation from 1 point and angCoeff
         j = 0
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]
@@ -70,16 +70,7 @@ class lineCalc(dataExplore):
         self.calc_m_q()
 
 
-    def calc_m_p(self): #calculate equation from 1 point and angCoeff
-        j = 0
-        point = next(self.getPoint() )
-        x0, y0 = point.coords[0], point.coords[1]
-        self.intercept = -self.angCoeff*x0 + y0
-
-        self.calc_m_q()
-
-
-    def calc_p_q(self): #calculate equation from 1 point and intercept
+    def calc_po_q(self): #calculate equation from 1 point and intercept
         j = 0
         point = next(self.getPoint() )
         x0, y0 = point.coords[0], point.coords[1]
