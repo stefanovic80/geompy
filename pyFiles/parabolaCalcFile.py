@@ -6,7 +6,7 @@ from .dataExploreFile import dataExplore
 
 # to be removed
 from itertools import combinations
-
+from .keys import parabola_listOfKeys
 
 class parabolaCalc(dataExplore):
     def __init__(self):
@@ -15,7 +15,7 @@ class parabolaCalc(dataExplore):
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
 
         #TO BE FIXED!
-        from .keys import parabola_listOfKeys
+        #from .keys import parabola_listOfKeys
 
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self.addParams('a', self._a)
