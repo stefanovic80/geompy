@@ -342,8 +342,8 @@ class plotSett():
     	    #self.values[idx] = param
     	    del self.keys[idx]
     	    del self.values[idx]
-    	    self.keys.append[key]
-    	    self.values.append[param]
+    	    self.keys.append(key)
+    	    self.values.append(param)
 
     	self.params = dict(zip(self.keys, self.values))
     	self.sflk.append(key[:2])    	    
