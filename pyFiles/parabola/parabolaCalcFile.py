@@ -58,8 +58,10 @@ class parabolaCalc(dataExplore):
 
     #abv
     def calc02(self, Name = None):
-        self.params['c'] = self.params.pop('vertex')
-        self.params['c'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
+        #self.params['c'] = self.params.pop('vertex')
+        #self.params['c'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
+        self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+        #self.params['c'] = self._c
         self.calc00()
 
 

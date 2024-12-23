@@ -17,6 +17,10 @@ class dataExplore(plotSett):
         self.draws[key]()
         self.onlyDraw()
 
+        params = iter( self.params.items() )
+        for element in self.params.items():
+            print( next(params) )
+
 
     @property
     def points(self):
