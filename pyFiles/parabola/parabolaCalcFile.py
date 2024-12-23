@@ -368,6 +368,20 @@ class parabolaCalc(dataExplore):
         if firstKey == 'po':
             self.calc_po_ve()
         #popo
-        elif firstKey == 've':
-            pass
+        elif firstKey == 've': 
+            self._c = np.random.uniform(settings.ymin, settings.ymax)
+            point0 = getPoint()
+            point1 = getPoint()
+            
+            x0, y0 = point0.coords[0], point0.coords[1]
+            x1, y1 = point1.coords[0], point1.coords[1]
+            
+            A = np.matrix([ [ x1**2, x1  ], [ x0**2, x0]  ])
+            Ainv = np.linalg.inv(A)
+            y = np.array( [ y1 - self._c, y0 - self._c ])
+            parabParams = np.dot(Ainv, y)
+
+            self._a = parabParams[0, 0]
+            self._b = parabParams[0, 1]
+            self.calc00()
 
