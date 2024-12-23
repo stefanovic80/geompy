@@ -11,6 +11,11 @@ from collections import deque
 class lineCalc(dataExplore):
     def __init__(self):
         super().__init__()
+        
+        dof = 2
+        self.keys = deque(maxlen = dof)
+        #self.sflk = deque(maxlen = dof)
+        self.values = deque(maxlen = dof)
 
         self.seed = seed
         self._color = random.choice(self.colors)
@@ -23,10 +28,6 @@ class lineCalc(dataExplore):
 
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
         self.addParams('q', self.intercept)
-        #to be removed
-        self.keys = deque(maxlen = self.dof)
-        self.values = deque(maxlen = self.dof)
-
 
         
     def calc_m_q(self): #calculate equation from angCoeff and intercept

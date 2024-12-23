@@ -51,8 +51,8 @@ class plotSett():
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
 
+        #to be deprecated
         self.lims()
-        #self.rotate = False
         
         self._name = None
 
@@ -70,11 +70,12 @@ class plotSett():
         self.k = 0        
         self.lines = []
 
-        self.sflk = deque(maxlen = self.dof) #Sorted First Letter Key
+        self.sflk = None#deque(maxlen = self.dof) #Sorted First Letter Key
 	        
         #to be implemented as .X.cut doesn't work on function
         self._cutOff = 0
 
+	#to be deprecated
         self.labCoords = [None, None]
 
     def missingMethod():
@@ -333,39 +334,20 @@ class plotSett():
         self.lines.append(text)
 
     def addParams(self, key, param):
-    	if key not in self.keys:
-    	    self.keys.append(key)
-    	    self.values.append(param)
-
-    	else:
-    	    idx = self.keys.index(key)
-    	    #self.values[idx] = param
-    	    del self.keys[idx]
-    	    del self.values[idx]
-    	    self.keys.append(key)
-    	    self.values.append(param)
-
-    	self.params = dict(zip(self.keys, self.values))
-    	self.sflk.append(key[:2])    	    
-    
-    """	
-    def addParams(self, key, param):
-        
-        elements = list( self.keys )
-        #if any(key in element for element in elements):
-        if any(element.startswith(key) for element in elements): 
-            try: #it pops all keys except point
-                self.params.pop(key)
-            except:
-                pass
-            self.params[key] = param
-            #idx = self.keys.index(key)
-        else:
+        if key not in self.keys:
             self.keys.append(key)
             self.values.append(param)
-            self.params = dict(zip(self.keys, self.values))
-            self.sflk.append(key[:2])
-    """        
+
+        elif key in self.keys:
+            idx = self.keys.index(key)
+            del self.keys[idx]
+            del self.values[idx]
+
+            self.keys.append(key)
+            self.values.append(param)
+
+        self.params = dict(zip(self.keys, self.values))
+        self.sflk = tuple(k[:2] for k in self.params.keys())       
     
 
     def onlyDraw(self):

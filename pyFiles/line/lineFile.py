@@ -5,8 +5,6 @@ from .._plotSettFile import plotSett
 from ..pointFile import point
 
 from .. import seed
-
-
 from ..keys.line_listOfKeys import method
 
 
