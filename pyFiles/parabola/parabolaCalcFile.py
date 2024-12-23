@@ -14,9 +14,6 @@ class parabolaCalc(dataExplore):
 
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
 
-        #TO BE FIXED!
-        #from .keys import parabola_listOfKeys
-
         self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
         self.addParams('a', self._a)
         self._b = random.uniform(settings.xmin, settings.xmax)#None 
@@ -290,9 +287,8 @@ class parabolaCalc(dataExplore):
         self.calc00() 
     
     #one point and vertex
-    #pve
-    def calc15(self, name = None):
-        #self.dof = 2
+    #pove
+    def calc_po_ve(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
@@ -308,3 +304,70 @@ class parabolaCalc(dataExplore):
         self._b = -2*self._a*xv
 
         self.calc00()
+
+        if len( self.params ) > 2:
+            self.keys.popleft()
+            del self.params[firstKey]
+
+
+    #bpove
+    def calc16(self, name = None):
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        #pove
+        if firstKey == 'b':
+            self.calc_po_ve()
+
+        #bve
+        elif firstKey == 'po':
+            self._a = -self._b/(2*self._vertex.coords[0])
+            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        #bpo
+        else:
+            self._c = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('c', self._c)
+            self._a = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('a', self._a)
+            self.calc00()
+
+    #cpove
+    def calc17(self, name = None):
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        #pove
+        if firstKey == 'c':
+            self.calc_po_ve()
+        #cve
+        elif firstKey == 'po':
+            self._a = ( self._c - self._vertex.coords[1])/(self._vertex.coords[0])**2
+            self._b = -2*self._a*self._vertex.coords[0]
+            self.calc00()
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        #cpo
+        else:
+            self._a = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('a', self._a)
+            self._a = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('b', self._b)
+            self.calc00()
+
+
+
+
+    #popove
+    def calc18(self, name = None):
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        #pove
+        if firstKey == 'po':
+            self.calc_po_ve()
+        #popo
+        elif firstKey == 've':
+            pass
+
