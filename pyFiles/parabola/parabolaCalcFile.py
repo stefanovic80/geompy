@@ -47,7 +47,7 @@ class parabolaCalc(dataExplore):
         self._vertex.data[1] = np.array([yv])
         #------------ vertex coords
 
-    #abp, point0, a (self._a) and b (self._b)
+    #abpo, point0, a (self._a) and b (self._b)
     def calc01(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -56,16 +56,13 @@ class parabolaCalc(dataExplore):
 
         self.calc00()
 
-    #abv
+    #abve
     def calc02(self, Name = None):
-        #self.params['c'] = self.params.pop('vertex')
-        #self.params['c'] = self._c = np.random.uniform(settings.ymin, settings.ymax)
         self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-        #self.params['c'] = self._c
         self.calc00()
 
 
-    #acp
+    #acpo
     def calc03(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -74,13 +71,13 @@ class parabolaCalc(dataExplore):
 
         self.calc00()
         
-    #acv, point0, a (self._a) and c (self._c)
+    #acve, point0, a (self._a) and c (self._c)
     def calc04(self, name = None):
         self.params['b'] = self.params.pop('vertex')
         self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
         self.calc00()
 
-    #app, point0, point1 and a (self._a)
+    #apopo, point0, point1 and a (self._a)
     def calc05(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -98,14 +95,15 @@ class parabolaCalc(dataExplore):
 
         self.calc00()
 
-    #apv
+    #apove
     def calc06(self, name = None):
-        self.params['b'] = self.params.pop('vertex')
-        self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
+        #self.params['b'] = self.params.pop('vertex')
+        #self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
+        self._b = np.random.uniform(settings.ymin, settings.ymax)
         self.calc01()
 
 
-    #av, vertex, concavity a (self._a)
+    #ave, vertex, concavity a (self._a)
     def calc07(self, name = None):
         self.data = [ self._x ]
         #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
@@ -113,7 +111,7 @@ class parabolaCalc(dataExplore):
         
         
     #B----------------------------------------------------------------
-    #bcp, point0, b (self._b) and c (self._c)
+    #bcpo, point0, b (self._b) and c (self._c)
     def calc08(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -122,12 +120,12 @@ class parabolaCalc(dataExplore):
 
         self.calc00()                
 
-    #bcv
+    #bcve
     def calc09(self, name = None):
-        self.calc11()
+        self.calc02()
         #to be better implemented
 
-    #bpp, point0, point1 and b (self._b)
+    #bpopo, point0, point1 and b (self._b)
     def calc10(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -145,7 +143,7 @@ class parabolaCalc(dataExplore):
 
         self.calc00()
 
-    #bv, vertex, b (self._b)
+    #bve, vertex, b (self._b)
     def calc11(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
@@ -156,7 +154,7 @@ class parabolaCalc(dataExplore):
         self.calc00()
 
     #C----------------------------------------------------------------
-    #cpp, point0, point1 and c (self._c)
+    #cpopo, point0, point1 and c (self._c)
     def calc12(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -176,7 +174,7 @@ class parabolaCalc(dataExplore):
 
 
 
-    #cv, vertex, c (self._c)
+    #cve, vertex, c (self._c)
     def calc13(self, name = None):
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
@@ -187,7 +185,7 @@ class parabolaCalc(dataExplore):
         
                 
     #P----------------------------------------------------------------
-    #ppp calculate from three points passing through (to be fixed!)
+    #popopo calculate from three points passing through (to be fixed!)
     def calc14(self, name = None):
 
         u = self.getPoint()
@@ -210,7 +208,7 @@ class parabolaCalc(dataExplore):
         self.calc00() 
     
     #one point and vertex
-    #pv
+    #pve
     def calc15(self, name = None):
         #self.dof = 2
         u = self.getPoint()

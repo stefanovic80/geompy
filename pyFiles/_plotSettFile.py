@@ -332,7 +332,23 @@ class plotSett():
         text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
+    def addParams(self, key, param):
+    	if key not in self.keys:
+    	    self.keys.append(key)
+    	    self.values.append(param)
+
+    	else:
+    	    idx = self.keys.index(key)
+    	    #self.values[idx] = param
+    	    del self.keys[idx]
+    	    del self.values[idx]
+    	    self.keys.append[key]
+    	    self.values.append[param]
+
+    	self.params = dict(zip(self.keys, self.values))
+    	self.sflk.append(key[:2])    	    
     
+    """	
     def addParams(self, key, param):
         
         elements = list( self.keys )
@@ -349,7 +365,7 @@ class plotSett():
             self.values.append(param)
             self.params = dict(zip(self.keys, self.values))
             self.sflk.append(key[:2])
-            
+    """        
     
 
     def onlyDraw(self):
