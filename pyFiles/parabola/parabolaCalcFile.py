@@ -92,9 +92,49 @@ class parabolaCalc(dataExplore):
         
     #acve, point0, a (self._a) and c (self._c)
     def calc04(self, name = None):
-        self.params['b'] = self.params.pop('vertex')
-        self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
-        self.calc00()
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if firstKey == 'a':
+            self._a = - self._b/(2*self._vertex.coords[0])
+            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+            self.calc00()
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        elif firstKey == 'b':
+            self._b = -2*self._a*self._vertex.coords[0]
+            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        else:
+            self._c = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('c', self._c)
+            self.calc00()
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if firstKey == 'a':
+            self._a = ( self._c - self._vertex.coords[1] )/( 4*self._vertex.coords[0] )
+            self._b = -2*self._a*self._vertex.coords[0]
+            self.calc00()
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        elif firstKey == 'c':
+            self._b = -2*self._a*self._vertex.coords[0]
+            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        else:
+            self._b = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('b', self._b)
+            self.calc00()
+
 
     #apopo, point0, point1 and a (self._a)
     def calc05(self, name = None):
@@ -116,12 +156,35 @@ class parabolaCalc(dataExplore):
 
     #apove
     def calc06(self, name = None):
-        #self.params['b'] = self.params.pop('vertex')
-        #self.params['b'] = self._b = np.random.uniform(settings.ymin, settings.ymax)
-        self._b = np.random.uniform(settings.ymin, settings.ymax)
-        self.calc01()
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        point = getPoint()
+        x0, y0 = point.coords[0], point.coords[1]
+        xv, yv = self._vertex.coords[0], self._vertex.coords[1]
+        if firstKey == 'a':
+            self._a = ( y0 - yv)/(x0 - yv)**2
+            self._b = - 2*self._a*xv
+            self._c = y0 - self._a*x0**2 - self._b*x0
+            self.calc00()
+
+        elif firstKey == 'po':
+            self._b = -2*self._a*self._vertex.coords[0]
+            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+            self.calc00()
+
+            if len( self.params ) > 2:
+                self.keys.popleft()
+                del self.params[firstKey]
+        else:
+            self._b = np.random.uniform(settings.ymin, settings.ymax)
+            self.addParams('b', self._b)
+            self.calc00()
 
 
+
+
+
+    #may be deprecated
     #ave, vertex, concavity a (self._a)
     def calc07(self, name = None):
         self.data = [ self._x ]
