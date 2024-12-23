@@ -11,7 +11,7 @@ class dataExplore(plotSett):
 
     def drawSetts(self):
         self.__del__()
-        key = sorted(list(self.sflk))
+        key = sorted(self.sflk)
         key = tuple(key) #hashable
         #to be checked out
         self.draws[key]()

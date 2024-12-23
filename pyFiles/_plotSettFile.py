@@ -347,7 +347,7 @@ class plotSett():
             self.values.append(param)
 
         self.params = dict(zip(self.keys, self.values))
-        self.sflk = tuple(k[:2] for k in self.params.keys())       
+        self.sflk = [ k[:2] for k in self.params.keys() ]       
     
 
     def onlyDraw(self):
