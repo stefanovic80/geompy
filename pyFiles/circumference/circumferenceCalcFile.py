@@ -76,6 +76,8 @@ class circumferenceCalc(dataExplore):
         if 'a' in firstKey:
             self._b = -2*self._centre.coords[1]
             self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
+
+            self.calc_ce_ra()
         elif 'ce' in firstKey:
             pass
         else:
