@@ -23,7 +23,7 @@ class method(circumferenceCalc):
             ('b', 'po', 'po'): self.calc_b_po_po,
             ('b', 'po', 'ra'): self.calc_b_po_ra,
             ('c', 'ce', 'po'): self.calc_c_ce_po,
-            ('c', 'ce', 'ra'): self.calc_c_ce_ra,
+            ('c', 'ce', 'ra'): self.noMethod,#self.calc_c_ce_ra,
             ('c', 'po', 'po'): self.calc_c_po_po,
             ('c', 'po', 'ra'): self.calc_c_po_ra,
             ('ce', 'po', 'po'): self.calc_ce_po_po,

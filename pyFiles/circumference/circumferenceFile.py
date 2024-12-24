@@ -7,7 +7,7 @@ from ..pointFile import point
 from ..line.lineFile import line
 from ..dataExploreFile import dataExplore
 
-from ..keys.parabola_listOfKeys import method
+from ..keys.circumference_listOfKeys import method
 
 
 class circumference(method):

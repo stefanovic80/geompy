@@ -155,7 +155,9 @@ class parabolaCalc(dataExplore):
     def calc06(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
-        point = getPoint()
+        #possible bug: u is not necessarely a point
+        u = self.getPoint()
+        point = next(u)
         x0, y0 = point.coords[0], point.coords[1]
         xv, yv = self._vertex.coords[0], self._vertex.coords[1]
         if firstKey == 'a':
@@ -364,7 +366,7 @@ class parabolaCalc(dataExplore):
     def calc18(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
-        #pove
+        #pove. It's not working yet
         if firstKey == 'po':
             self.calc_po_ve()
         #popo
