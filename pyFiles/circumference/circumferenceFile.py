@@ -93,7 +93,7 @@ class circumference(method):
     def a(self, value):
         self.addParams('a', value)
         self._a = value
-        self.drawSetts()
+        #self.drawSetts()
 
     @property
     def b(self):

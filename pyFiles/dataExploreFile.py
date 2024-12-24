@@ -13,7 +13,6 @@ class dataExplore(plotSett):
         self.__del__()
         key = sorted(self.sflk)
         key = tuple(key) #hashable
-        #to be checked out
         self.draws[key]()
         self.onlyDraw()
 
