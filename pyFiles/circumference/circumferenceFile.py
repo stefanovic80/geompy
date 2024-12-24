@@ -14,7 +14,7 @@ class circumference(method):
     
     dof = 3
 
-    def __init__(self, draw = False):
+    def __init__(self, draw = True):
         
         super().__init__()
         #plotSett.__init__(self)
@@ -153,71 +153,6 @@ class circumference(method):
             self.data[1] = self.data[1][idxs]
         except:
             pass
-
-    def draw_C(self):
-        self.__del__()
-        
-        lok = list( self.params.keys()) #List Of Keys
-        if 'radius' in self.params.keys():
-            self.calc_C_r()
-            self.onlyDraw()
-        elif any( 'point' in key for key in lok):
-            self.calc_C_p()
-
-
-    def draw_r(self):
-        self.__del__()
-
-        if 'Centre' in self.params.keys():
-            self.calc_C_r()
-            self.onlyDraw()
-        elif any('point' in key for key in lok):
-            self.calc_C_p()
-            self.onlyDraw()
-        
-    def draw(self):
-        self.__del__()
-        prefix = 'point'
-
-        #1) centre and radius
-        if 'Centre' in self.params.keys() and 'radius' in self.params.keys():
-            self.calc_C_r()
-            self.onlyDraw()
-
-        #2) centre, 1 point
-        elif 'Centre' in self.params.keys() and any(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc_C_p()
-            self.onlyDraw()
-
-        #3) all points
-        elif all(isinstance(key, str) and key.startswith("point") for key in self.params.keys() ):
-            self.calc_p_p_p()
-            self.onlyDraw()
-        else:
-            pass
-    
-    def draw_a(self):
-        self.__del__()
-        lok = list( self.params.keys() )
-        if 'b' in lok and 'c' in lok:
-            self.calc_a_b_c()
-            self.onlyDraw()
-    
-    def draw_b(self):
-        self.__del__()
-        lok = list( self.params.keys() )
-        if 'a' in lok and 'c' in lok:
-            self.calc_a_b_c()
-            self.onlyDraw()
-
-
-    def draw_c(self):
-        self.__del__()
-        lok = list( self.params.keys() )
-        if 'a' in lok and 'b' in lok:
-            self.calc_a_b_c()
-            self.onlyDraw()
-
 
     #to be partially inherited
     def erase(self):

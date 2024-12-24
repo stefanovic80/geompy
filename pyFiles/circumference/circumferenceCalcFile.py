@@ -11,11 +11,14 @@ class circumferenceCalc(dataExplore):
     def __init__(self):
         super().__init__()
 
-        self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
-        self.addParams('radius', self._radius)
         self._centre = point(draw = False)
-        self.addParams('Centre', self._centre)
-
+        self._a = -2*self._centre.coords[0]
+        self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
+        
+        self.addParams('a', self._a)
+        self.addParams('radius', self._radius)
+        self.addParams('centre', self._centre)
+        
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
@@ -25,12 +28,6 @@ class circumferenceCalc(dataExplore):
         self.k = 0
 
         self.dof = 3
-
-        self._a = -2*self._centre.coords[0]
-        self._b = -2*self._centre.coords[1]
-        self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
-        
-        #self.calc_a_b_c():#self, name = None, angle = 2*np.pi)
 
 
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
@@ -74,8 +71,16 @@ class circumferenceCalc(dataExplore):
         pass
 
     def calc_a_ce_ra(self, name = None, angle = 2*np.pi):
-        pass
-
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'a' in firstKey:
+            self._b = -2*self._centre.coords[1]
+            self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
+        elif 'ce' in firstKey:
+            pass
+        else:
+            pass
+ 
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
         point1 = self.getPoint()
         point2 = self.getPoint()
@@ -279,7 +284,6 @@ class circumferenceCalc(dataExplore):
         self._b = -2*y1
         self._c = x1**2 + y1**2 - x0**2 - y0**2
         
-        #self.calc_a_b_c()
         self.calc_ce_ra()
 
         
