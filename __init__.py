@@ -58,7 +58,8 @@ for name, param in loci.items():
 
 from .pyFiles.pointFile import point
 from .pyFiles.circumference.circumferenceFile import circumference
-from .pyFiles.ellipseFile import ellipse
+from .pyFiles.ellipse.ellipseFile import ellipse
+#from .pyFiles.hyperbola.hyperbolaFile import hyperbola
 from .pyFiles.line.lineFile import line
 from .pyFiles.segment.segmentFile import segment
 from .pyFiles.parabola.parabolaFile import parabola

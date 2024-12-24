@@ -1,11 +1,14 @@
 # circumference.py
-from . import plt, np, random
-from .Settings import settings
+from .. import plt, np, random
+from ..Settings import settings
 
-from ._plotSettFile import plotSett
-from .pointFile import point
-from .dataExploreFile import dataExplore
+from .._plotSettFile import plotSett
+from ..pointFile import point
 
+#to be removed
+from ..dataExploreFile import dataExplore
+
+#class ellipse(method):
 class ellipse(dataExplore):
 
     def __init__(self, draw = True):
