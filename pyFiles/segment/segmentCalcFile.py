@@ -9,21 +9,38 @@ from .._plotSettFile import plotSett
 from ..pointFile import point
 from ..dataExploreFile import dataExplore
 
-from ..keys.segment_listOfKeys import method
+from ..keys import segment_listOfKeys
 
 
-class segment(method):
-    
-    dof = 2
-
+class segmentCalc(dataExplore):
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
 
         super().__init__()
+         
+        _color = random.choice(self.colors)
+        if point0 is None:
+            point0 = point()
+            point0.color = _color
 
-        if draw: self.drawSetts()
+        if point1 is None:
+            point1 = point()
+            point1.color = _color
+
+        self.seed = seed
+        self._color = random.choice(self.colors)
+        
+        
+        self.endpoint = [point0, point1]
+
+        self.addParams('point0', self.endpoint[0])
+        self.addParams('point1', self.endpoint[1])
+
+    #po_po
+    def calc_po_po(self):
+        self.data[0] = np.array([self.endpoint[0].x[0], self.endpoint[1].x[0] ])
+        self.data[1] = np.array([self.endpoint[0].y[0], self.endpoint[1].y[0] ])
     
     
-
     @property
     def dataGroup(self):
         return self.data + self.labCoords
