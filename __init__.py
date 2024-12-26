@@ -20,7 +20,9 @@ from itertools import combinations
 loci = {\
         'line': (['m', 'po', 'po', 'q'], 2),\
         'parabola': (['a', 'b', 'c', 'po', 'po', 'po', 'v'], 3),\
-        'circumference':(['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'ra'], 3)\
+        'circumference': (['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'ra'], 3),\
+        'ellipse': (['a', 'b', 'c', 'd', 'e', 'ec', 'fo', 'fo' 'po','po', 'po', 'po', 'po'], 5),\
+        'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'fo', 'fo' 'po','po', 'po', 'po', 'po'], 5)\
         }
     
 
@@ -59,7 +61,7 @@ for name, param in loci.items():
 from .pyFiles.pointFile import point
 from .pyFiles.circumference.circumferenceFile import circumference
 from .pyFiles.ellipse.ellipseFile import ellipse
-#from .pyFiles.hyperbola.hyperbolaFile import hyperbola
+from .pyFiles.hyperbola.hyperbolaFile import hyperbola
 from .pyFiles.line.lineFile import line
 from .pyFiles.segment.segmentFile import segment
 from .pyFiles.parabola.parabolaFile import parabola

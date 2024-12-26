@@ -78,7 +78,15 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_a_ce_po(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'a' == firstKey:
+            self.calc_ce_po()
+        elif 'ce' == firstKey:
+            pass
+        else:
+            pass
+
 
     def calc_a_ce_ra(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )

@@ -4,9 +4,9 @@ from ..Settings import settings
 from .._plotSettFile import plotSett
 from ..pointFile import point
 
-from ..keys.ellipse_listOfKeys import method
+from ..keys.hyperbola_listOfKeys import method
 
-class ellipse(method):
+class hyperbola(method):
 
     dof = 5
 
