@@ -13,7 +13,7 @@ from .. import plt, np, random
 
 from ..keys.triangle_listOfKeys import method
 
-class triangle(dataExplore):
+class triangleCalc(dataExplore):
     
     def __init__(self, seed = seed, draw = True):
 

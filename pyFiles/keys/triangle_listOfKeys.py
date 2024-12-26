@@ -1,6 +1,6 @@
-from ..triangle.triangleCalcFile import triangleCalc
+from ..dataExploreFile import dataExplore
 
-class method(triangleCalc):
+class method(dataExplore):
     def __init__(self):
         super().__init__()
         self.draws = {
