@@ -57,8 +57,7 @@ class point(plotSett):
         self.coords = self.data
         self.data = [ np.array([u]) for u in self.data  ]
         
-        if draw == True:
-            self.draw()
+        if draw: self.draw()
 
     @property
     def x(self):

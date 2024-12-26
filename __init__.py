@@ -23,7 +23,8 @@ loci = {\
         'parabola': (['a', 'b', 'c', 'po', 'po', 'po', 'v'], 3),\
         'circumference': (['a', 'b', 'c', 'ce', 'po', 'po', 'po', 'ra'], 3),\
         'ellipse': (['a', 'b', 'c', 'd', 'e', 'ec', 'fo', 'fo' 'po','po', 'po', 'po', 'po'], 5),\
-        'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'fo', 'fo' 'po','po', 'po', 'po', 'po'], 5)\
+        'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'fo', 'fo' 'po','po', 'po', 'po', 'po'], 5),\
+        'triangle':(['an', 'an', 'an', 've', 've', 've', 'si', 'si', 'si'], 3)
         }
     
 

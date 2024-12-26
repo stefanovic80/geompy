@@ -10,6 +10,9 @@ from ..Settings import settings
 
 from .. import plt, np, random
 
+
+from ..keys.parabola_listOfKeys import method
+
 class triangle(dataExplore):
     
     def __init__(self, seed = seed, draw = True):

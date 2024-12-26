@@ -10,7 +10,7 @@ from .pointFile import point
 class dataExplore(plotSett):
 
     def drawSetts(self):
-        self.__del__()
+        #self.__del__()
         key = sorted(self.sflk)
         key = tuple(key) #hashable
         self.draws[key]()
