@@ -45,34 +45,7 @@ class line(method):
         y = self.angCoeff*x + self.intercept
         return point(x, y)
 
-
-    def draw(self):
-        self.__del__()
-        prefix = 'point'
-
-        if  "m" in self.params.keys() and "q" in self.params.keys():
-            self.angCoeff = self.params["m"]
-            self.intercept = self.params["q"]
-            self.calc1()
-            self.onlyDraw()
-        elif "m" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
-            point = next((val for key, val in self.params.items() if key.startswith(prefix)))
-
-            #self._points[0] = point
-            self.angCoeff = self.params["m"]
-            self.calc3()
-            self.onlyDraw()
-        elif "q" in self.params.keys() and any(prefix in key for key in self.params.keys() ):
-            
-            point = next((val for key, val in self.params.items() if key.startswith(prefix)))
-            
-            self.intercept = self.params["q"]
-            self.calc4()
-            self.onlyDraw()
-        else:
-            self.calc2()
-            self.onlyDraw()
-
+    
     @property
     def dataGroup(self):
         return self.data + self.labCoords
