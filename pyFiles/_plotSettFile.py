@@ -487,6 +487,7 @@ class plotSett():
         try:#removes all lines
             for line in self.lines:
                 line.remove()
+                #self.draws.clear()
         except:
             pass
 

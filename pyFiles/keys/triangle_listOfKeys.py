@@ -5,6 +5,7 @@ from ..triangle.triangleCalcFile import triangleCalc
 class method(triangleCalc):
     def __init__(self):
         super().__init__()
+        
         self.draws = {
             ('an', 'an', 'an'): self.noMethod,
             ('an', 'an', 'si'): self.noMethod,
@@ -17,6 +18,6 @@ class method(triangleCalc):
             ('ve', 've', 'si'): self.noMethod,
             ('ve', 've', 've'): self.noMethod
         }
-
+        
     def noMethod(self):
          print('This method has not been implemented yet!')
