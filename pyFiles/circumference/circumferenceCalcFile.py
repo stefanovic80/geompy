@@ -83,7 +83,12 @@ class circumferenceCalc(dataExplore):
         if 'a' == firstKey:
             self.calc_ce_po()
         elif 'ce' == firstKey:
-            pass
+            self._b = random.uniform(settings.ymin/2, settings.ymax/2)
+            u = getPoint()
+            point = next(u)
+            x, y = point.coords[0], point.coords[1]
+            self._c = -x**2-y**2-self._a*x-self._b*y
+            self.calc_a_b_c()
         else:
             pass
 
@@ -138,10 +143,25 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_b_ce_po(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'b' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_po()
+        else:
+            pass
+
+
 
     def calc_b_ce_ra(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'b' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_ra()
+        else:
+            pass
+
 
     def calc_b_po_po(self, name = None, angle = 2*np.pi):
         point1 = getPoint()
@@ -158,10 +178,29 @@ class circumferenceCalc(dataExplore):
         pass
 
     def calc_c_ce_po(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'c' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_po()
+        else:
+            pass
+
+
+
+
+
+
 
     def calc_c_ce_ra(self):
-        self.calc_ce_ra()
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'c' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_ra()
+        else:
+            pass
+
 
     #circumference equation calculation from centre coordinates and radius
     def calc_c_ce_ra(self, name = None, angle = 2*np.pi):
@@ -197,10 +236,24 @@ class circumferenceCalc(dataExplore):
         pass
 
     def calc_ce_po_po(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'po' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_po()
+        else:
+            pass
+
 
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
-        pass
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'ra' == firstKey:
+            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            self.calc_ce_po()
+        else:
+            pass
+
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc_po_po_po(self, name = None, angle = 2*np.pi):

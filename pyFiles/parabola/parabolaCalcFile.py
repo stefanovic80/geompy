@@ -8,6 +8,8 @@ from ..dataExploreFile import dataExplore
 from itertools import combinations
 from ..keys import parabola_listOfKeys
 
+#gc.collect()
+
 class parabolaCalc(dataExplore):
     def __init__(self):
         super().__init__()
