@@ -18,7 +18,6 @@ class line(method):
 
         if draw: self.drawSetts()
     
-    
     @property
     def m(self):
         return self.angCoeff

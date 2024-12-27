@@ -11,9 +11,10 @@ from ..Settings import settings
 from .. import plt, np, random
 
 
-from ..keys.triangle_listOfKeys import method
+from .triangle_listOfKeys import method
+from .triangleCalcFile import triangleCalc
 
-class triangle(dataExplore):
+class triangle(triangleCalc, method):
     
     def __init__(self, seed = seed, draw = True):
 
