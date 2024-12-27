@@ -20,4 +20,3 @@ class method(parabolaCalc):
             ('po', 'po', 'po'): self.calc14,
             ('po', 'po', 've'): self.calc18
         }
-

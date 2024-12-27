@@ -351,7 +351,8 @@ class plotSett():
     
 
     def onlyDraw(self):
-        self.__del__()
+        #self.__del__()
+        self.erase()
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         self.lines = []
         self.lines.append(line)
@@ -480,9 +481,17 @@ class plotSett():
         self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
         self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)  
         # alpha stands for transparency: 0 transparent, 1 opaque
-        self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)    
-    
+        self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
 
+    def erase(self):
+        try:#removes all lines
+            for line in self.lines:
+                line.remove()
+                #self.draws.clear()
+        except:
+            pass
+
+    
     def __del__(self):
         try:#removes all lines
             for line in self.lines:
