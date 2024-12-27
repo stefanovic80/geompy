@@ -48,7 +48,7 @@ for name, param in loci.items():
                 if i < len(lok) - 1:  # Aggiungi la virgola solo se non è l'ultimo elemento
                     file.write(",")
             file.write("\n        }\n\n")  # Chiudere il dizionario alla fine
-            file.write("    def noMethod(self):\n         print('This method has not been implemented yet!')\n")
+            #file.write("    def noMethod(self):\n         print('This method has not been implemented yet!')\n")
 #----------------------------------------------------------------------------------------------------------
 
 

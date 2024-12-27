@@ -18,6 +18,3 @@ class method(triangleCalc):
             ('ve', 've', 'si'): self.noMethod,
             ('ve', 've', 've'): self.noMethod
         }
-        
-    def noMethod(self):
-         print('This method has not been implemented yet!')

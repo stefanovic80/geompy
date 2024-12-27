@@ -21,6 +21,9 @@ class dataExplore(plotSett):
             print( next(params) )
 
 
+    def noMethod(self):
+         print('This method has not been implemented yet!')
+
     @property
     def points(self):
         j = 0

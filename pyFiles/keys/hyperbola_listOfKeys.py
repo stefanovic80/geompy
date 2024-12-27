@@ -223,6 +223,3 @@ class method(hyperbolaCalc):
             ('fo', 'po', 'po', 'po', 'po'): self.noMethod,
             ('fopo', 'po', 'po', 'po', 'po'): self.noMethod
         }
-
-    def noMethod(self):
-         print('This method has not been implemented yet!')

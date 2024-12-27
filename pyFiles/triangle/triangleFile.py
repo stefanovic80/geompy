@@ -39,10 +39,13 @@ class triangle(triangleCalc, method):
 
         for v in self.vertices:
             v.color = self._colorV
+        
+        self.draws = {('a', 'b', 'c'): self.calc1}
 
-        if draw == True:
-            self.calc1()
-            self.onlyDraw()
+        if draw:
+            self.draws[('a', 'b', 'c')]()
+            #self.calc1()
+            #self.onlyDraw()
 
     
     #to be properly implemented!
