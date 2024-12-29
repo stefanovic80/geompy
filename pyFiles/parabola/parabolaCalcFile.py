@@ -16,7 +16,7 @@ class parabolaCalc(dataExplore):
 
         self._vertex = point( random.uniform(settings.xmin, settings.xmax), random.uniform(settings.ymin, settings.ymax), draw = False  )
 
-        self._a = random.uniform(settings.xmin, settings.xmax)**-1#to be checked out!
+        self._a = random.uniform(settings.xmin/5, settings.xmax/5)**-1#to be checked out!
         self.addParams('a', self._a)
         self._b = random.uniform(settings.xmin, settings.xmax)#None 
         self.addParams('b', self._b)
