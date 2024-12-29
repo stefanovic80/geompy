@@ -309,6 +309,10 @@ class parabolaCalc(dataExplore):
 
         self.calc00()
 
+    def rmParam(self):
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+
         if len( self.params ) > 2:
             self.keys.popleft()
             del self.params[firstKey]
@@ -345,6 +349,7 @@ class parabolaCalc(dataExplore):
         #pove
         if firstKey == 'c':
             self.calc_po_ve()
+            self.rmParam()
         #cve
         elif firstKey == 'po':
             self._a = ( self._c - self._vertex.coords[1])/(self._vertex.coords[0])**2
