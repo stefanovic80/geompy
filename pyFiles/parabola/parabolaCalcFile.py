@@ -64,16 +64,16 @@ class parabolaCalc(dataExplore):
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
             self.calc00()
             
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         elif firstKey == 'b':
             self._b = -2*self._a*self._vertex.coords[0]
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
             
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('c', self._c)
@@ -98,16 +98,16 @@ class parabolaCalc(dataExplore):
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
             self.calc00()
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         elif firstKey == 'b':
             self._b = -2*self._a*self._vertex.coords[0]
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('c', self._c)
@@ -119,16 +119,16 @@ class parabolaCalc(dataExplore):
             self._b = -2*self._a*self._vertex.coords[0]
             self.calc00()
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         elif firstKey == 'c':
             self._b = -2*self._a*self._vertex.coords[0]
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         else:
             self._b = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('b', self._b)
@@ -173,9 +173,9 @@ class parabolaCalc(dataExplore):
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
             self.calc00()
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         else:
             self._b = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('b', self._b)
@@ -212,17 +212,17 @@ class parabolaCalc(dataExplore):
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
             self.calc00()
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         elif firstKey == 'b':
             self._a = ( self._c - self._vertex.coords[1] )/(self._vertex.coords[0]**2)
             self._b = -2*self._a*self._vertex.coords[0]
             self.calc00()
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         else:
             pass
             #to be implemented!
@@ -355,9 +355,9 @@ class parabolaCalc(dataExplore):
             self._a = -self._b/(2*self._vertex.coords[0])
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
 
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         #bpo
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
@@ -379,9 +379,9 @@ class parabolaCalc(dataExplore):
             self._a = ( self._c - self._vertex.coords[1])/(self._vertex.coords[0])**2
             self._b = -2*self._a*self._vertex.coords[0]
             self.calc00()
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
+            #if len( self.params ) > 2:
+            #    self.keys.popleft()
+            #    del self.params[firstKey]
         #cpo
         else:
             self._a = np.random.uniform(settings.ymin, settings.ymax)
