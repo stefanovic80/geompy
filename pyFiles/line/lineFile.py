@@ -12,7 +12,7 @@ class line(method):
         
     dof = 2
 
-    def __init__(self, seed = seed, draw = True, dof = dof):
+    def __init__(self, seed = seed, draw = False, dof = dof):
         
         super().__init__()
 

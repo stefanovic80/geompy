@@ -78,3 +78,13 @@ class lineCalc(dataExplore):
         self.angCoeff = (y0 - self.intercept)/x0
         self.calc_m_q()
 
+
+#WEAKREFERENCE
+import weakref
+
+c = lineCalc()
+
+m_q = weakref.ref(c.calc_m_q)
+po_po = weakref.ref(c.calc_po_po)
+m_po = weakref.ref(c.calc_m_po)
+po_q = weakref.ref(c.calc_po_q)

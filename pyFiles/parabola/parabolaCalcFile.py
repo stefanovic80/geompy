@@ -4,11 +4,12 @@ from .._plotSettFile import plotSett
 from ..pointFile import point
 from ..dataExploreFile import dataExplore
 
-# to be removed
-from itertools import combinations
+#from itertools import combinations
 from ..keys import parabola_listOfKeys
 
 #gc.collect()
+
+import weakref
 
 class parabolaCalc(dataExplore):
     def __init__(self):
