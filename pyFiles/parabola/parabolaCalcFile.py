@@ -313,6 +313,7 @@ class parabolaCalc(dataExplore):
     #one point and vertex
     #pove
     def calc_po_ve(self, name = None):
+        print("po_ve is working!")
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
@@ -369,12 +370,12 @@ class parabolaCalc(dataExplore):
         #pove
         if firstKey == 'c':
             self.calc_po_ve()
-            self.rmParam()
+            #self.rmParam()
         #cve
         elif firstKey == 'po':
             self._a = ( self._c - self._vertex.coords[1])/(self._vertex.coords[0])**2
             self._b = -2*self._a*self._vertex.coords[0]
-            self.calc00()
+            self.calc_a_b_c()
             #if len( self.params ) > 2:
             #    self.keys.popleft()
             #    del self.params[firstKey]
@@ -384,7 +385,7 @@ class parabolaCalc(dataExplore):
             self.addParams('a', self._a)
             self._a = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('b', self._b)
-            self.calc00()
+            self.calc_a_b_c()
 
 
 
@@ -394,10 +395,10 @@ class parabolaCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         #pove. It's not working yet
-        if firstKey == 'po':
+        if firstKey[:2] == 'po':
             self.calc_po_ve()
         #popo
-        elif firstKey == 've': 
+        elif firstKey[:2] == 've': 
             self._c = np.random.uniform(settings.ymin, settings.ymax)
             point0 = getPoint()
             point1 = getPoint()
