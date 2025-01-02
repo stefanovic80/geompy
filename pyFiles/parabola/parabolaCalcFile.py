@@ -30,7 +30,7 @@ class parabolaCalc(dataExplore):
 
     #A-----------------------------------------
     #a, b and c (to be modified!)
-    def calc00(self, name = None):
+    def calc_a_b_c(self, name = None):
 
         self.data = [ self._x ]
         self.data = self.data + [self._a*self._x**2 + self._b*self._x + self._c ]
@@ -47,22 +47,22 @@ class parabolaCalc(dataExplore):
         #------------ vertex coords
 
     #abpo, point0, a (self._a) and b (self._b)
-    def calc01(self, name = None):
+    def calc_a_b_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._c = y0 - self._a*x0**2 - self._b*x0
 
-        self.calc00()
+        self.calc_a_b_c()
 
     #abve
-    def calc02(self, Name = None):
+    def calc_a_b_ve(self, Name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if firstKey == 'a':
             self._a = - self._b/(2*self._vertex.coords[0])
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-            self.calc00()
+            self.calc_a_b_c()
             
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -77,26 +77,26 @@ class parabolaCalc(dataExplore):
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('c', self._c)
-            self.calc00()
+            self.calc_a_b_c()
 
 
     #acpo
-    def calc03(self, name = None):
+    def calc_a_c_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._b = (y0 - self._a*x0**2 - self._c)/x0
 
-        self.calc00()
+        self.calc_a_b_c()
         
     #acve, point0, a (self._a) and c (self._c)
-    def calc04(self, name = None):
+    def calc_a_c_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if firstKey == 'a':
             self._a = - self._b/(2*self._vertex.coords[0])
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-            self.calc00()
+            self.calc_a_b_c()
 
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -136,7 +136,7 @@ class parabolaCalc(dataExplore):
 
 
     #apopo, point0, point1 and a (self._a)
-    def calc05(self, name = None):
+    def calc_a_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -151,10 +151,10 @@ class parabolaCalc(dataExplore):
         self._b = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc00()
+        self.calc_a_b_c()
 
     #apove
-    def calc06(self, name = None):
+    def calc_a_po_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         #possible bug: u is not necessarely a point
@@ -166,12 +166,12 @@ class parabolaCalc(dataExplore):
             self._a = ( y0 - yv)/(x0 - yv)**2
             self._b = - 2*self._a*xv
             self._c = y0 - self._a*x0**2 - self._b*x0
-            self.calc00()
+            self.calc_a_b_c()
 
         elif firstKey == 'po':
             self._b = -2*self._a*self._vertex.coords[0]
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-            self.calc00()
+            self.calc_a_b_c()
 
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -179,15 +179,10 @@ class parabolaCalc(dataExplore):
         else:
             self._b = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('b', self._b)
-            self.calc00()
+            self.calc_a_b_c()
 
-
-
-
-
-    #may be deprecated
     #ave, vertex, concavity a (self._a)
-    def calc07(self, name = None):
+    def calc_a_ve(self, name = None):
         self.data = [ self._x ]
         #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
         self.data = self.data + [self._a*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
@@ -195,22 +190,22 @@ class parabolaCalc(dataExplore):
         
     #B----------------------------------------------------------------
     #bcpo, point0, b (self._b) and c (self._c)
-    def calc08(self, name = None):
+    def calc_b_c_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._a = (y0 - self._b*x0 - self._c)/x0**2
 
-        self.calc00()                
+        self.calc_a_b_c()                
 
     #bcve
-    def calc09(self, name = None):
+    def calc_b_c_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if firstKey == 'c':
             self._a = - self._b/(2*self._vertex.coords[0])
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-            self.calc00()
+            self.calc_a_b_c()
 
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -218,7 +213,7 @@ class parabolaCalc(dataExplore):
         elif firstKey == 'b':
             self._a = ( self._c - self._vertex.coords[1] )/(self._vertex.coords[0]**2)
             self._b = -2*self._a*self._vertex.coords[0]
-            self.calc00()
+            self.calc_a_b_c()
 
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -233,7 +228,7 @@ class parabolaCalc(dataExplore):
 
 
     #bpopo, point0, point1 and b (self._b)
-    def calc10(self, name = None):
+    def calc_b_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -248,10 +243,10 @@ class parabolaCalc(dataExplore):
         self._a = parabParams[0, 0]
         self._c = parabParams[0, 1]
 
-        self.calc00()
+        self.calc_a_b_c()
 
     #bve, vertex, b (self._b)
-    def calc11(self, name = None):
+    def calc_b_ve(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
@@ -262,7 +257,7 @@ class parabolaCalc(dataExplore):
 
     #C----------------------------------------------------------------
     #cpopo, point0, point1 and c (self._c)
-    def calc12(self, name = None):
+    def calc_c_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
@@ -277,23 +272,23 @@ class parabolaCalc(dataExplore):
         self._a = parabParams[0, 0]
         self._b = parabParams[0, 1]
 
-        self.calc00()
+        self.calc_a_b_c()
 
 
 
     #cve, vertex, c (self._c)
-    def calc13(self, name = None):
+    def calc_c_ve(self, name = None):
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
         self._a = (self._c - yv)/xv
         self._b = -2*xv*(self._c - yv)
 
-        self.calc00()
+        self.calc_a_b_c()
         
                 
     #P----------------------------------------------------------------
     #popopo calculate from three points passing through (to be fixed!)
-    def calc14(self, name = None):
+    def calc_po_po_po(self, name = None):
 
         u = self.getPoint()
         point0 = next(u)
@@ -312,8 +307,9 @@ class parabolaCalc(dataExplore):
         self._b = parabParams[0, 1]
         self._c = parabParams[0, 2]
         
-        self.calc00() 
-    
+        self.calc_a_b_c() 
+
+
     #one point and vertex
     #pove
     def calc_po_ve(self, name = None):
@@ -331,7 +327,7 @@ class parabolaCalc(dataExplore):
         self._c = parabParams[0, 1]
         self._b = -2*self._a*xv
 
-        self.calc00()
+        self.calc_a_b_c()
 
     def rmParam(self):
         firstKey = iter( self.params.keys() )
@@ -343,7 +339,7 @@ class parabolaCalc(dataExplore):
 
 
     #bpove
-    def calc16(self, name = None):
+    def calc_b_po_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         #pove
@@ -364,10 +360,10 @@ class parabolaCalc(dataExplore):
             self.addParams('c', self._c)
             self._a = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('a', self._a)
-            self.calc00()
+            self.calc_a_b_c()
 
     #cpove
-    def calc17(self, name = None):
+    def calc_c_po_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         #pove
@@ -394,7 +390,7 @@ class parabolaCalc(dataExplore):
 
 
     #popove
-    def calc18(self, name = None):
+    def calc_po_po_ve(self, name = None):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         #pove. It's not working yet
@@ -416,5 +412,5 @@ class parabolaCalc(dataExplore):
 
             self._a = parabParams[0, 0]
             self._b = parabParams[0, 1]
-            self.calc00()
+            self.calc_a_b_c()
 

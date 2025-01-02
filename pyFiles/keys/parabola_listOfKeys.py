@@ -4,20 +4,20 @@ class method(parabolaCalc):
     def __init__(self):
         super().__init__()
         self.draws = {
-            ('a', 'b', 'c'): self.calc00,
-            ('a', 'b', 'po'): self.calc01,
-            ('a', 'b', 've'): self.calc02,
-            ('a', 'c', 'po'): self.calc03,
-            ('a', 'c', 've'): self.calc04,
-            ('a', 'po', 'po'): self.calc05,
-            ('a', 'po', 've'): self.calc06,
-            ('b', 'c', 'po'): self.calc08,
-            ('b', 'c', 've'): self.calc09,
-            ('b', 'po', 'po'): self.calc10,
-            ('b', 'po', 've'): self.calc16,
-            ('c', 'po', 'po'): self.calc12,
-            ('c', 'po', 've'): self.calc17,
-            ('po', 'po', 'po'): self.calc14,
-            ('po', 'po', 've'): self.calc18
+            ('a', 'b', 'c'): self.calc_a_b_c,
+            ('a', 'b', 'po'): self.calc_a_b_po,
+            ('a', 'b', 've'): self.calc_a_b_ve,
+            ('a', 'c', 'po'): self.calc_a_c_po,
+            ('a', 'c', 've'): self.calc_a_c_ve,
+            ('a', 'po', 'po'): self.calc_a_po_po,
+            ('a', 'po', 've'): self.calc_a_po_ve,
+            ('b', 'c', 'po'): self.calc_b_c_po,
+            ('b', 'c', 've'): self.calc_b_c_ve,
+            ('b', 'po', 'po'): self.calc_b_po_po,
+            ('b', 'po', 've'): self.calc_b_po_ve,
+            ('c', 'po', 'po'): self.calc_c_po_po,
+            ('c', 'po', 've'): self.calc_c_po_ve,
+            ('po', 'po', 'po'): self.calc_po_po_po,
+            ('po', 'po', 've'): self.calc_po_po_ve
         }
 
