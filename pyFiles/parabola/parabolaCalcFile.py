@@ -49,12 +49,16 @@ class parabolaCalc(dataExplore):
 
     #abpo, point0, a (self._a) and b (self._b)
     def calc_a_b_po(self, name = None):
+        print("a_b_po needs to be debugged!")
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         self._c = y0 - self._a*x0**2 - self._b*x0
 
         self.calc_a_b_c()
+
+
+
 
     #abve
     def calc_a_b_ve(self, Name = None):
@@ -112,13 +116,13 @@ class parabolaCalc(dataExplore):
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('c', self._c)
-            self.calc00()
+            self.calc_a_b_c()
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if firstKey == 'a':
             self._a = ( self._c - self._vertex.coords[1] )/( 4*self._vertex.coords[0] )
             self._b = -2*self._a*self._vertex.coords[0]
-            self.calc00()
+            self.calc_a_b_c()
 
             #if len( self.params ) > 2:
             #    self.keys.popleft()
@@ -126,14 +130,15 @@ class parabolaCalc(dataExplore):
         elif firstKey == 'c':
             self._b = -2*self._a*self._vertex.coords[0]
             self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-
+            
+            self.calc_a_b_c()
             #if len( self.params ) > 2:
             #    self.keys.popleft()
             #    del self.params[firstKey]
         else:
             self._b = np.random.uniform(settings.ymin, settings.ymax)
             self.addParams('b', self._b)
-            self.calc00()
+            self.calc_a_b_c()
 
 
     #apopo, point0, point1 and a (self._a)
@@ -254,7 +259,7 @@ class parabolaCalc(dataExplore):
         self._a = - self._b/(2*self._a)
         self._c = yv + self._b**2/(4*self._a)
 
-        self.calc00()
+        self.calc_a_b_c()
 
     #C----------------------------------------------------------------
     #cpopo, point0, point1 and c (self._c)
@@ -359,9 +364,9 @@ class parabolaCalc(dataExplore):
         #bpo
         else:
             self._c = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('c', self._c)
+            #self.addParams('c', self._c)
             self._a = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('a', self._a)
+            #self.addParams('a', self._a)
             self.calc_a_b_c()
 
     #cpove
@@ -383,9 +388,9 @@ class parabolaCalc(dataExplore):
         #cpo
         else:
             self._a = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('a', self._a)
+            #self.addParams('a', self._a)
             self._a = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('b', self._b)
+            #self.addParams('b', self._b)
             self.calc_a_b_c()
 
 
