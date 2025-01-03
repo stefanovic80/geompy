@@ -43,9 +43,12 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_a_b_po(self, name = None, angle = 2*np.pi):
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
-        point = getPoint()
-        self._radius = ( ( x0 - x1 )**2 + ( y0 - y1 )**2 )**.5
+        xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        u = self.getPoint()
+        point0 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        self._c = -x0**2 - y0**2 - self._a*x0 - self._b*y0
+        self._radius = ( ( x0 - xc )**2 + ( y0 - yc )**2 )**.5
         self.calc_ce_ra()
 
     def calc_a_b_ra(self, name = None, angle = 2*np.pi):

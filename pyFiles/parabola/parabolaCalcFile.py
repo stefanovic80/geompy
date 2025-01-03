@@ -49,7 +49,6 @@ class parabolaCalc(dataExplore):
 
     #abpo, point0, a (self._a) and b (self._b)
     def calc_a_b_po(self, name = None):
-        print("a_b_po needs to be debugged!")
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
