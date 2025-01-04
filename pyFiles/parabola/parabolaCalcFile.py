@@ -405,8 +405,9 @@ class parabolaCalc(dataExplore):
         #popo
         elif firstKey[:2] == 've': 
             self._c = np.random.uniform(settings.ymin, settings.ymax)
-            point0 = getPoint()
-            point1 = getPoint()
+            u = self.getPoint()
+            point0 = next(u)
+            point1 = next(u)
             
             x0, y0 = point0.coords[0], point0.coords[1]
             x1, y1 = point1.coords[0], point1.coords[1]
