@@ -75,11 +75,8 @@ class plotSett():
         #to be implemented as .X.cut doesn't work on function
         self._cutOff = 0
 
-	#to be deprecated
+	    #to be deprecated
         self.labCoords = [None, None]
-
-    def missingMethod():
-        print("method still not implemented")
 
 
     @property
