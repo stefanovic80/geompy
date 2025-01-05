@@ -4,7 +4,7 @@ from ..pointFile import point
 from ..Settings import settings
 from .._plotSettFile import plotSett
 from ..dataExploreFile import dataExplore
-
+from ..pointFile import point
 
 
 class circumferenceCalc(dataExplore):
@@ -31,6 +31,17 @@ class circumferenceCalc(dataExplore):
 
 
         self.dof = 3
+
+
+    def po_po(self):
+        u = self.getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
+        rmin = point0.dist(point1)
+        r = random.uniform(rmin, 4*rmin)
+        return x0, y0, x1, y1, r
 
 
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
@@ -195,9 +206,6 @@ class circumferenceCalc(dataExplore):
 
 
 
-
-
-
     def calc_c_ce_ra(self):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
@@ -247,8 +255,24 @@ class circumferenceCalc(dataExplore):
         if 'po' == firstKey:
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
-        else:
-            self.noMethod()
+        elif 'ce' == firstKey:
+            x0, y0, x1, y1, self._radius = self.po_po()
+            self.calc_po_po_ra()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
@@ -284,17 +308,16 @@ class circumferenceCalc(dataExplore):
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc_ce_ra()
     
+
+
     """
     def gen(self, ls):
         for el in ls:
             yield el
     """
     def calc_po_po_ra(self, name = None, angle = 2*np.pi):
-        u = self.getPoint()
-        point0 = next(u)
-        point1 = next(u)
-        x0, y0 = point0.coords[0], point0.coords[1]
-        x1, y1 = point1.coords[0], point1.coords[1]
+        x0, y0, x1, y1, r = self.po_po()
+
         gamma = -(x0 - x1)/(y0 - y1)
         delta = -(x0**2-x1**2+y0**2-y1**2)/(y0-y1)
         ar = 1 + gamma**2
@@ -312,7 +335,8 @@ class circumferenceCalc(dataExplore):
         self.p += 1
 
         self._b = -(x0-x1)*(x0+x1+self._a)/(y0 -y1) - (y0 + y1)
-        xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        xc, yc = self._centre.coords[0], self._centre.coords[1] = \
+                self._centre.data[0], self._centre.data[1] = -self._a/2, -self._b/2
         self._c = -self._radius**2 + xc**2 + yc**2
         print("press one more time 'obj.radius = value' to get the other possible solution\n")
         self.calc_a_b_c()
