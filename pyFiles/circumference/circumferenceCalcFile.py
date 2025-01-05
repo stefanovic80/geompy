@@ -65,8 +65,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_ra()
         elif 'c' == firstKey:
-            #to be checked out!
-            pass
+            self.noMethod()
 
 
     def calc_a_c_po(self, name = None, angle = 2*np.pi):
@@ -93,7 +92,7 @@ class circumferenceCalc(dataExplore):
             self._c = -x**2-y**2-self._a*x-self._b*y
             self.calc_a_b_c()
         else:
-            pass
+            self.noMethod()
 
 
     def calc_a_ce_ra(self, name = None, angle = 2*np.pi):
@@ -105,9 +104,9 @@ class circumferenceCalc(dataExplore):
 
             self.calc_ce_ra()
         elif 'ce' in firstKey:
-            pass
+            self.noMethod()
         else:
-            pass
+            self.noMethod()
  
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
@@ -122,7 +121,7 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_a_po_ra(self, name = None, angle = 2*np.pi):
-        pass
+        self.noMethod()
 
     def calc_b_c_ce(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
@@ -133,7 +132,7 @@ class circumferenceCalc(dataExplore):
 
 
     def calc_b_c_ce(self, name = None, angle = 2*np.pi):
-        pass
+        self.noMethod()
 
     def calc_b_c_po(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
@@ -153,7 +152,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
         else:
-            pass
+            self.noMethod()
 
 
 
@@ -164,7 +163,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_ra()
         else:
-            pass
+            self.noMethod()
 
 
     def calc_b_po_po(self, name = None, angle = 2*np.pi):
@@ -179,7 +178,7 @@ class circumferenceCalc(dataExplore):
         self.calc_c_ce()
 
     def calc_b_po_ra(self, name = None, angle = 2*np.pi):
-        pass
+        self.noMethod()
 
     def calc_c_ce_po(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
@@ -188,7 +187,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
         else:
-            pass
+            self.noMethod()
 
 
 
@@ -203,7 +202,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_ra()
         else:
-            pass
+            self.noMethod()
 
 
     #circumference equation calculation from centre coordinates and radius
@@ -237,7 +236,7 @@ class circumferenceCalc(dataExplore):
         self.calc_c_ce()
 
     def calc_c_po_ra(self, name = None, angle = 2*np.pi):
-        pass
+        self.noMethod()
 
     def calc_ce_po_po(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
@@ -246,7 +245,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
         else:
-            pass
+            self.noMethod()
 
 
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
@@ -256,7 +255,7 @@ class circumferenceCalc(dataExplore):
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
         else:
-            pass
+            self.noMethod()
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -284,7 +283,7 @@ class circumferenceCalc(dataExplore):
 
 
     def calc_po_po_ra(self, name = None, angle = 2*np.pi):
-        pass
+        self.noMethod()
 
     #subMethods------------------------------------------------------------
     def calc_c_ce(self, name = None, angle = 2*np.pi):
@@ -362,6 +361,3 @@ class circumferenceCalc(dataExplore):
         self._c = x1**2 + y1**2 - x0**2 - y0**2
         
         self.calc_ce_ra()
-
-        
-

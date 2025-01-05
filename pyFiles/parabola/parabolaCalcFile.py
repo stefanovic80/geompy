@@ -224,13 +224,7 @@ class parabolaCalc(dataExplore):
             #    self.keys.popleft()
             #    del self.params[firstKey]
         else:
-            pass
-            #to be implemented!
-
-
-
-
-
+            self.noMethod()
 
     #bpopo, point0, point1 and b (self._b)
     def calc_b_po_po(self, name = None):
