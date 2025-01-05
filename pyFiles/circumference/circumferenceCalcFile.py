@@ -252,10 +252,11 @@ class circumferenceCalc(dataExplore):
     def calc_ce_po_po(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
-        if 'po' == firstKey:
+        if 'po' in firstKey:
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
-        elif 'ce' == firstKey:
+        elif 'ce' in firstKey:
+            print("ce_po_po is working with 'ce' as first")
             x0, y0, x1, y1, self._radius = self.po_po()
             self.calc_po_po_ra()
 
