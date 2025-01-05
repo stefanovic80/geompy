@@ -26,6 +26,9 @@ class circumferenceCalc(dataExplore):
         self._centre._color = self._color
         self.j = 0
         self.k = 0
+        
+        self.p = 0
+
 
         self.dof = 3
 
@@ -280,16 +283,20 @@ class circumferenceCalc(dataExplore):
 
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc_ce_ra()
-
-
+    
+    """
+    def gen(self, ls):
+        for el in ls:
+            yield el
+    """
     def calc_po_po_ra(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         x1, y1 = point1.coords[0], point1.coords[1]
-        gamma = (x0 - x1)/(y0 - y1)
-        delta = (x0**2-x1**2+y0**2-y1**2)/(y0-y1)
+        gamma = -(x0 - x1)/(y0 - y1)
+        delta = -(x0**2-x1**2+y0**2-y1**2)/(y0-y1)
         ar = 1 + gamma**2
         br = x0 + x1 + gamma*(y0 + y1 + delta)
         cr = 2*x0**2 + 2*x1**2 + 2*y0**2 + 2*y1**2 + 2*delta*(y0 + y1) - 4*self._radius**2 + delta**2
@@ -297,12 +304,17 @@ class circumferenceCalc(dataExplore):
         #to be fixed
         DeltaR =  br**2 - ar*cr#Reduced Delta in second square equation
         solutions = [ (-br+DeltaR**.5)/ar, (-br-DeltaR**.5)/ar ] #two solutions of squared equation
-        a = iter(solutions)
-        self._a = next(a)
+        # to iterate
+        #a = self.gen(ls = solutions)
+        #self._a = next(a)
+        j = self.p%2
+        self._a = solutions[j]
+        self.p += 1
+
         self._b = -(x0-x1)*(x0+x1+self._a)/(y0 -y1) - (y0 + y1)
         xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._c = -self._radius**2 + xc**2 + yc**2
-        print("calcuation mistake!")
+        print("press one more time 'obj.radius = value' to get the other possible solution\n")
         self.calc_a_b_c()
 
     #subMethods------------------------------------------------------------
