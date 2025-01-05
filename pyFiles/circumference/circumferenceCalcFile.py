@@ -292,7 +292,7 @@ class circumferenceCalc(dataExplore):
         delta = (x0**2-x1**2+y0**2-y1**2)/(y0-y1)
         ar = 1 + gamma**2
         br = x0 + x1 + gamma*(y0 + y1 + delta)
-        cr = 2*x0**2 + 2*x1**2 + 2*delta*(y0 + y1) - 4*self._radius**2 + delta**2
+        cr = 2*x0**2 + 2*x1**2 + 2*y0**2 + 2*y1**2 + 2*delta*(y0 + y1) - 4*self._radius**2 + delta**2
         
         #to be fixed
         DeltaR =  br**2 - ar*cr#Reduced Delta in second square equation
