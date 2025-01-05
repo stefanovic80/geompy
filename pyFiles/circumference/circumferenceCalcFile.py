@@ -45,7 +45,9 @@ class circumferenceCalc(dataExplore):
 
 
     def calc_a_b_c(self, name = None, angle = 2*np.pi):
-        self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        print("a_b_c is working!")
+        self._centre.coords[0], self._centre.coords[1] = self._centre.data[0], self._centre.data[1] = \
+                -self._a/2, -self._b/2
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
         self.calc_ce_ra()
 
@@ -396,7 +398,8 @@ class circumferenceCalc(dataExplore):
         self.data = [np.array(data[0]) + self._centre.coords[0], np.array(data[1]) + self._centre.coords[1] ]
 
         self.pointsSelect(angle = angle)
-
+        
+        #to be deprecated
         self._a = -2*self._centre.coords[0]
         self._b = -2*self._centre.coords[1]
         self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
