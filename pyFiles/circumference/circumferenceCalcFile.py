@@ -57,7 +57,8 @@ class circumferenceCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
 
-        self._radius = np.random.uniform(abs(settings.ymin, settings.ymax))
+        self._radius = np.random.uniform(0, abs(max([ settings.ymin,\
+                settings.ymax])))
         if 'ce' in firstKey:
             self._centre.coords[0] = self._centre.data[0] = -self._a/2
             self._centre.coords[1] = self._centre.data[1] = -self._b/2
