@@ -95,6 +95,7 @@ class parabolaCalc(dataExplore):
         
     #acve, point0, a (self._a) and c (self._c)
     def calc_a_c_ve(self, name = None):
+        print("to be debugged!")
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if firstKey == 'a':
