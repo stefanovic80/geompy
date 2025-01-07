@@ -98,46 +98,19 @@ class parabolaCalc(dataExplore):
         print("to be debugged!")
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
+        xv, yv = self._vertex.coords[0], self._vertex.coords[1]
         if firstKey == 'a':
-            self._a = - self._b/(2*self._vertex.coords[0])
-            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
+            self._a = (self._c -yv)/xv**2
+            self._b = -2*self._a*xv
             self.calc_a_b_c()
 
-            #if len( self.params ) > 2:
-            #    self.keys.popleft()
-            #    del self.params[firstKey]
-        elif firstKey == 'b':
-            self._b = -2*self._a*self._vertex.coords[0]
-            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-
-            #if len( self.params ) > 2:
-            #    self.keys.popleft()
-            #    del self.params[firstKey]
-        else:
-            self._c = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('c', self._c)
-            self.calc_a_b_c()
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if firstKey == 'a':
-            self._a = ( self._c - self._vertex.coords[1] )/( 4*self._vertex.coords[0] )
-            self._b = -2*self._a*self._vertex.coords[0]
-            self.calc_a_b_c()
-
-            #if len( self.params ) > 2:
-            #    self.keys.popleft()
-            #    del self.params[firstKey]
         elif firstKey == 'c':
-            self._b = -2*self._a*self._vertex.coords[0]
-            self._c = self._vertex.coords[1] + self._b**2/(4*self._a)
-            
+            self._b = -2*self._a*xv
+            self._c = yv + self._a*xv**2
             self.calc_a_b_c()
-            #if len( self.params ) > 2:
-            #    self.keys.popleft()
-            #    del self.params[firstKey]
-        else:
+        elif firstKey == 've':
             self._b = np.random.uniform(settings.ymin, settings.ymax)
-            self.addParams('b', self._b)
+            self.addParamsLeft('b', self._b)
             self.calc_a_b_c()
 
 

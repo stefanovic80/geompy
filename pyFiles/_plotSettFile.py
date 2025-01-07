@@ -349,17 +349,8 @@ class plotSett():
 
 
     def addParamsLeft(self, key, param):
-        #if key not in self.keys:
-        self.keys.appendleft(key)
-        self.values.appendleft(param)
-
-        #elif key in self.keys:
-        #    idx = self.keys.index(key)
-        #    del self.keys[idx]
-        #    del self.values[idx]
-
-        #    self.keys.append(key)
-        #    self.values.append(param)
+        self.keys[0] = key
+        self.values[0] = param
 
         self.params = dict(zip(self.keys, self.values))
         self.sflk = [ k[:2] for k in self.params.keys() ]
