@@ -54,9 +54,19 @@ class circumferenceCalc(dataExplore):
 
 
     def calc_a_b_ce(self, name = None, angle = 2*np.pi):
-        x0, y0 = self._centre.coords[0], self._centre.coords[1]
-        self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
-        self._radius = (x0**2 +y0**2 - self._c)**.5
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+
+        self._radius = np.random.uniform(abs(settings.ymin, settings.ymax))
+        if 'ce' in firstKey:
+            self._centre.coords[0] = self._centre.data[0] = -self._a/2
+            self._centre.coords[1] = self._centre.data[1] = -self._b/2
+        else:
+            xc, yc = self._centre.coords[0], self._centre.coords[1]
+            self._a = -2*xc
+            self._b = -2*yc
+            self._c = -self._radius**2 + xc**2 + yc**2
+        
         self.calc_ce_ra()
 
     def calc_a_b_po(self, name = None, angle = 2*np.pi):
