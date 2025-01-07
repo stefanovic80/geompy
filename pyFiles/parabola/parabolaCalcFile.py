@@ -251,10 +251,11 @@ class parabolaCalc(dataExplore):
 
     #cve, vertex, c (self._c)
     def calc_c_ve(self, name = None):
-        xv, yv = self.vertex.coords[0], self.vertex.coords[1]
+        print("c_ve is running!")
+        xv, yv = self._vertex.coords[0], self._vertex.coords[1]
 
-        self._a = (self._c - yv)/xv
-        self._b = -2*xv*(self._c - yv)
+        self._a = (self._c - yv)/xv**2
+        self._b = -2*xv*self._a
 
         self.calc_a_b_c()
         
@@ -346,18 +347,14 @@ class parabolaCalc(dataExplore):
             #self.rmParam()
         #cve
         elif firstKey == 'po':
-            self._a = ( self._c - self._vertex.coords[1])/(self._vertex.coords[0])**2
-            self._b = -2*self._a*self._vertex.coords[0]
-            self.calc_a_b_c()
-            #if len( self.params ) > 2:
-            #    self.keys.popleft()
-            #    del self.params[firstKey]
+            self.calc_c_ve()
         #cpo
         else:
+            u = self.getPoint()
+            point0 = next(u)
+            x0,  y0 = point0.coords[0], point0.coords[1]
             self._a = np.random.uniform(settings.ymin, settings.ymax)
-            #self.addParams('a', self._a)
-            self._a = np.random.uniform(settings.ymin, settings.ymax)
-            #self.addParams('b', self._b)
+            self._b = (y0 - self._a*x0**2-self._c)/x0
             self.calc_a_b_c()
 
 
