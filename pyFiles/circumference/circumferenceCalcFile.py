@@ -289,23 +289,16 @@ class circumferenceCalc(dataExplore):
 
 
 
-
-
-
-
-
-
-
-
-
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'ra' == firstKey:
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             #self.calc_ce_po()
+        elif 'po' == firstKey:
+            self.calc_ce_ra()
         else:
-            pass
+            self._centre.coords = self.centre.data = [ np.random.uniform(settings.ymin, settings.ymax) for j in range(2)]
         
         self.calc_ce_po()
 
