@@ -344,9 +344,9 @@ class parabolaCalc(dataExplore):
         #pove
         if firstKey == 'c':
             self.calc_po_ve()
-            #self.rmParam()
+            self.addParamsLeft('c', self._c )
         #cve
-        elif firstKey == 'po':
+        elif firstKey[:2] == 'po':
             self.calc_c_ve()
         #cpo
         else:
