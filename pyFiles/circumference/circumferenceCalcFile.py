@@ -39,7 +39,9 @@ class circumferenceCalc(dataExplore):
         point1 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         x1, y1 = point1.coords[0], point1.coords[1]
-        rmin = point0.dist(point1)
+        #to be debbugged
+        #rmin = point0.dist(point1)
+        rmin = ( (x0 -x1)**2 + (y0 - y1)**2)**.5
         r = random.uniform(rmin, 4*rmin)
         return x0, y0, x1, y1, r
 
@@ -274,18 +276,17 @@ class circumferenceCalc(dataExplore):
 
 
 
-
-
-
-
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'ra' == firstKey:
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_ce_po()
+            #self.calc_ce_po()
         else:
-            self.noMethod()
+            pass
+        
+        self.calc_ce_po()
+
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -408,16 +409,16 @@ class circumferenceCalc(dataExplore):
     # calculate from centre coordinates and a point passing through
     def calc_ce_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
-        point0 = next(self.getPoint())
-        point1 = next(self.getPoint())
+        point0 = next(u)
         x0 = point0.coords[0]
-        x1 = point1.coords[0]
         y0 = point0.coords[1]
-        y1 = point1.coords[1]
-        self._radius = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1  )**2  )
+        
+        xc = self._centre.coords[0]
+        yc = self._centre.coords[1]
+        self._radius = np.sqrt( ( x0 - xc  )**2 + ( y0 - yc  )**2  )
 
-        self._a = -2*x1
-        self._b = -2*y1
-        self._c = x1**2 + y1**2 - x0**2 - y0**2
+        self._a = -2*xc
+        self._b = -2*yc
+        self._c = xc**2 + yc**2 - x0**2 - y0**2
         
         self.calc_ce_ra()
