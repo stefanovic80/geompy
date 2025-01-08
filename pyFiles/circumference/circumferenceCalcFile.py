@@ -295,7 +295,11 @@ class circumferenceCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'ra' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
+            xc, yc = self._centre.coords[0], self.c_centre.coords[1]
+            u = self.getPoint()
+            point0 = next(u)
+            x0, y0 = point0.coords[0], point0.coords[1]
+            self._radius = ( (x0 - xc)**2 + (y0 - yc)**2  )**.5
             #self.calc_ce_po()
         elif 'po' == firstKey:
             self.calc_ce_ra()
@@ -436,6 +440,7 @@ class circumferenceCalc(dataExplore):
 
         self._a = -2*xc
         self._b = -2*yc
-        self._c = xc**2 + yc**2 - x0**2 - y0**2
+        self._radius = ( (x0 - xc)**2 + (y0 - yc)**2 )**.5
+        self._c = xc**2 + yc**2 - self._radius**2
         
         self.calc_ce_ra()
