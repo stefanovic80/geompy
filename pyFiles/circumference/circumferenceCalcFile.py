@@ -134,8 +134,13 @@ class circumferenceCalc(dataExplore):
 
             self.calc_ce_ra()
         elif 'ce' in firstKey:
-            self.noMethod()
-        else:
+            xc = -self._a/2
+            yc = np.random.uniform( settings.xmin, settings.xmax)
+            self._b = -2*yc
+            self._c = -self._radius**2 + xc**2 + yc**2
+            self.calc_a_b_c()
+
+        elif 'ra' in firstKey:
             self.noMethod()
  
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
@@ -275,7 +280,15 @@ class circumferenceCalc(dataExplore):
         #self.calc_c_ce()
 
     def calc_c_po_ra(self, name = None, angle = 2*np.pi):
-        self.noMethod()
+        firstKey = iter( self.params.keys() )
+        firstKey = next(firstKey)
+        if 'c' in firstKey:
+            self.calc_po_ra()
+        elif 'ra' == firstKey[:2]:
+            pass
+        elif 'po' == firstKey[:2]:
+            pass
+
 
     def calc_ce_po_po(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
@@ -294,14 +307,9 @@ class circumferenceCalc(dataExplore):
     def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
-        if 'ra' == firstKey:
-            xc, yc = self._centre.coords[0], self.c_centre.coords[1]
-            u = self.getPoint()
-            point0 = next(u)
-            x0, y0 = point0.coords[0], point0.coords[1]
-            self._radius = ( (x0 - xc)**2 + (y0 - yc)**2  )**.5
-            #self.calc_ce_po()
-        elif 'po' == firstKey:
+        if 'ra' == firstKey[:2]:
+            self.calc_ce_po()
+        elif 'po' == firstKey[:2]:
             self.calc_ce_ra()
         else:
             self._centre.coords = self.centre.data = [ np.random.uniform(settings.ymin, settings.ymax) for j in range(2)]
@@ -323,7 +331,7 @@ class circumferenceCalc(dataExplore):
         A = np.matrix([ [ x0, y0, 1  ], [ x1, y1, 1  ], [ x2, y2, 1  ] ])
         Ainv = np.linalg.inv(A)
         squares = np.array( [ -x0**2 - y0**2  , -x1**2 - y1**2  , -x2**2 - y2**2 ] )
-        #circParams = np.dot(Ainv, squares)
+        
         circParams = np.dot(Ainv, squares)
 
         self._a, self._b, self._c = circParams[0, 0], circParams[0, 1], circParams[0, 2]
@@ -332,14 +340,8 @@ class circumferenceCalc(dataExplore):
 
         self._radius = np.sqrt( (circParams[0, 0]/2)**2 + (circParams[0, 1]/2)**2 - circParams[0, 2]  )
         self.calc_ce_ra()
-    
 
 
-    """
-    def gen(self, ls):
-        for el in ls:
-            yield el
-    """
     def calc_po_po_ra(self, name = None, angle = 2*np.pi):
         x0, y0, x1, y1, r = self.po_po()
 
@@ -429,6 +431,7 @@ class circumferenceCalc(dataExplore):
 
     # calculate from centre coordinates and a point passing through
     def calc_ce_po(self, name = None, angle = 2*np.pi):
+        print("ce_po is working!")
         u = self.getPoint()
         point0 = next(u)
         x0 = point0.coords[0]
