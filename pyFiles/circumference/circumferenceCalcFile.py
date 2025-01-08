@@ -234,9 +234,12 @@ class circumferenceCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'c' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_ra()
-        else:
+        elif 'ce' in firstKey:
+            yc = self._centre.coords[1] = self._centre.data[1] = np.random.uniform(settings.ymin, settings.ymax)
+            xc = self._centre.coords[0] = self._centre.data[0] = ( abs( self._radius**2 - yc**2) )**.5
+            self.calc_ce_ra()
+        elif 'ra' in firstKey:
             self.noMethod()
 
 
