@@ -116,7 +116,7 @@ class circumferenceCalc(dataExplore):
             self.calc_ce_po()
         elif 'ce' == firstKey:
             self._b = random.uniform(settings.ymin/2, settings.ymax/2)
-            u = getPoint()
+            u = self.getPoint()
             point = next(u)
             x, y = point.coords[0], point.coords[1]
             self._c = -x**2-y**2-self._a*x-self._b*y
@@ -174,10 +174,6 @@ class circumferenceCalc(dataExplore):
         self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
         self._r = ( x0**2 + y0**2 - self._c )**.5
         self._calci_ce_ra()
-
-
-    def calc_b_c_ce(self, name = None, angle = 2*np.pi):
-        self.noMethod()
 
     def calc_b_c_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
@@ -275,7 +271,7 @@ class circumferenceCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'c' in firstKey:
-            self.calc_po_ra()
+            pass
         elif 'ra' == firstKey[:2]:
             pass
         elif 'po' == firstKey[:2]:
@@ -365,7 +361,7 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_c_po(self, name = None, angle = 2*np.pi):
-        point = getPoint()
+        point = self.getPoint()
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = point.coords[0], point.coords[1]
         a, b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c)**.5
