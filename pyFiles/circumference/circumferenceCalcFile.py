@@ -205,15 +205,19 @@ class circumferenceCalc(dataExplore):
 
 
     def calc_b_po_po(self, name = None, angle = 2*np.pi):
-        point1 = getPoint()
-        point2 = getPoint()
+        print("b_po_po is working!")
+        u = self.getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
         x1, y1 = point1.coords[0], point1.coords[1]
-        x2, y2 = point2.coords[0], point2.coords[1]
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = ( y2 - y1 )*(x2 + x1)/(2*self._b), (x2 - x1)*(y2 + y1 )/(2*self._b)
-        self._a = -2*x0
-        self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
-        self._radius = ( (x1 - x0)**2 + (y1 - y0))**.5
-        self.calc_c_ce()
+        A = np.matrix( [ [ x0, 1 ], [x1, 1] ] )
+        Ainv = np.linalg.inv(A)
+        y = np.array( [-x0**2 - y0**2 -self._b*y0 - self._c, -x1**2 - y1**2 - self._b*y1 - self._c ] )
+        parabParams = np.dot(Ainv, y)
+        self._a = parabParams[0, 0]
+        self._c = parabParams[0, 1]
+        self.calc_a_b_c()
 
     def calc_b_po_ra(self, name = None, angle = 2*np.pi):
         self.noMethod()
@@ -337,12 +341,9 @@ class circumferenceCalc(dataExplore):
         br = x0 + x1 + gamma*(y0 + y1 + delta)
         cr = 2*x0**2 + 2*x1**2 + 2*y0**2 + 2*y1**2 + 2*delta*(y0 + y1) - 4*self._radius**2 + delta**2
         
-        #to be fixed
         DeltaR =  br**2 - ar*cr#Reduced Delta in second square equation
         solutions = [ (-br+DeltaR**.5)/ar, (-br-DeltaR**.5)/ar ] #two solutions of squared equation
-        # to iterate
-        #a = self.gen(ls = solutions)
-        #self._a = next(a)
+
         j = self.p%2
         self._a = solutions[j]
         self.p += 1
