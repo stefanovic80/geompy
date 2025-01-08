@@ -224,7 +224,7 @@ class circumferenceCalc(dataExplore):
         if 'c' == firstKey:
             self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
             self.calc_ce_po()
-        else:
+        elif 'ce' == firstKey[:2]:
             self.noMethod()
 
 
@@ -240,27 +240,10 @@ class circumferenceCalc(dataExplore):
             xc = self._centre.coords[0] = self._centre.data[0] = ( abs( self._radius**2 - yc**2) )**.5
             self.calc_ce_ra()
         elif 'ra' in firstKey:
-            self.noMethod()
+            xc, yc = self._centre.coords[0], self._centre.coords[1]
+            self._a, self._b = -2*xc, -2*yc
+            self.calc_a_b_c()
 
-
-    #circumference equation calculation from centre coordinates and radius
-    def calc_c_ce_ra(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-
-        if firstKey == 'c':
-            self.noMethod()
-
-        elif firstKey == 'ce':
-            self.noMethod()
-            
-            """
-            if len( self.params ) > 2:
-                self.keys.popleft()
-                del self.params[firstKey]
-            """
-        else:
-            self.noMethod()
 
     def calc_c_po_po(self, name = None, angle = 2*np.pi):
         #to be fixed
