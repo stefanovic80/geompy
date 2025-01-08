@@ -144,15 +144,27 @@ class circumferenceCalc(dataExplore):
             self.noMethod()
  
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
+        print("a_po_po is running\n")
         u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
+        print("x0 is " + str(x0) + "\n" )
         x1, y1 = point1.coords[0], point1.coords[1]
-        self._b = ( ( x1**2 - x0**2  ) - self._a*( x1 - x0  )  )/( y1 - y0  )
-        self._c = -(x0**2 + y0**2 + self._a*x0 + self._b*y0 )
-        xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
-        self._radius = ((xc - x0)**2 + (yc - y0)**2)**.5#( xc**2 + yc**2 - self._c )**.5
+        
+        print("x1 is " + str(x1) + "\n" )
+        A = np.matrix( [ [y0, 1], [y1, 1] ])
+        Ainv = np.linalg.inv(A)
+        y = np.array( [-x0**2 - y0**2 - self._a**x0, -x1**2 - y1**2 - self._a*x1 ])
+        parabParams = np.dot(Ainv, y)
+
+        self._b = parabParams[0, 0]
+        self._c = parabParams[0, 1]
+
+        xc = self._centre.coords[0] = self._centre.data[0] = -self._a/2
+        yc = self._centre.coords[1] = self._centre.data[1] = -self._b/2
+        self._radius = ( (xc - x0)**2 + (yc -y0)**2 )**.5
+
         self.calc_ce_ra()
 
     def calc_a_po_ra(self, name = None, angle = 2*np.pi):
