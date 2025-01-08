@@ -22,7 +22,7 @@ class settings():
     window_width = dims[0]
     window_height = dims[1]
     linewidth = 2
-    steps = 1000#can be improved to 10000
+    steps = 10000#can be reduced to 1000
     xmin = -10
     xmax = 10
     ymin = xmin*window_height/window_width
