@@ -145,14 +145,8 @@ class circumferenceCalc(dataExplore):
  
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
         print("a_po_po is running\n")
-        u = self.getPoint()
-        point0 = next(u)
-        point1 = next(u)
-        x0, y0 = point0.coords[0], point0.coords[1]
-        print("x0 is " + str(x0) + "\n" )
-        x1, y1 = point1.coords[0], point1.coords[1]
+        x0, y0, x1, y1, r = self.po_po()
         
-        print("x1 is " + str(x1) + "\n" )
         A = np.matrix( [ [y0, 1], [y1, 1] ])
         Ainv = np.linalg.inv(A)
         y = np.array( [-x0**2 - y0**2 - self._a**x0, -x1**2 - y1**2 - self._a*x1 ])
@@ -168,7 +162,11 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
     def calc_a_po_ra(self, name = None, angle = 2*np.pi):
-        self.noMethod()
+        xc = self._centre.coords[0] = self._centre.data[0] = -self._a/2
+        yc = self._centre.coords[1] = self._centre.data[1] = np.random.uniform(settings.ymin, settings.ymax)
+        self._b = -2*yc
+        self._c = -self._radius**2 + xc**2 + yc**2
+        self.calc_ce_ra()
 
     def calc_b_c_ce(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
@@ -218,11 +216,7 @@ class circumferenceCalc(dataExplore):
 
     def calc_b_po_po(self, name = None, angle = 2*np.pi):
         print("b_po_po is working!")
-        u = self.getPoint()
-        point0 = next(u)
-        point1 = next(u)
-        x0, y0 = point0.coords[0], point0.coords[1]
-        x1, y1 = point1.coords[0], point1.coords[1]
+        x0, y0, x1, y1, r = self.po_po()
         A = np.matrix( [ [ x0, 1 ], [x1, 1] ] )
         Ainv = np.linalg.inv(A)
         y = np.array( [-x0**2 - y0**2 -self._b*y0 - self._c, -x1**2 - y1**2 - self._b*y1 - self._c ] )
@@ -263,11 +257,7 @@ class circumferenceCalc(dataExplore):
 
     def calc_c_po_po(self, name = None, angle = 2*np.pi):
         #to be fixed
-        u = self.getPoint()
-        point0 = next(u)
-        point1 = next(u)
-        x0, y0 = point0.coords[0], point0.coords[1]
-        x1, y1 = point1.coords[0], point1.coords[1]
+        x0, y0, x1, y1, r = self.po_po()
 
         A = np.matrix( [ [ x0, y0 ], [x1, y1] ])
         Ainv = np.linalg.inv(A)
@@ -382,7 +372,6 @@ class circumferenceCalc(dataExplore):
         self.calc_ce_ra()
 
 
-
     def calc_ce_ra(self, name = None, angle = 2*np.pi):
 
         data = [None, None]
@@ -427,6 +416,7 @@ class circumferenceCalc(dataExplore):
         self._b = -2*self._centre.coords[1]
         self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
 
+    
 
     # calculate from centre coordinates and a point passing through
     def calc_ce_po(self, name = None, angle = 2*np.pi):
