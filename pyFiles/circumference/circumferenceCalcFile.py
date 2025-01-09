@@ -154,10 +154,6 @@ class circumferenceCalc(dataExplore):
 
         self._b = parabParams[0, 0]
         self._c = parabParams[0, 1]
-        
-        #xc = self._centre.coords[0] = self._centre.data[0] = -self._a/2
-        #yc = self._centre.coords[1] = self._centre.data[1] = -self._b/2
-        #self._radius = ( (xc - x0)**2 + (yc -y0)**2 )**.5
         #self.calc_ce_ra()
         self.calc_a_b_c()
 

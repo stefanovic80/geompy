@@ -46,11 +46,17 @@ class dataExplore(plotSett):
 
     def getPoint(self):
         prefix = 'point'
+        filtered_dict = {key: val for key, val in self.params.items() if key.startswith(prefix)}
+        
+        for key, val in filtered_dict.items():
+            yield val
+        """
         for key, val in self.params.items():
             if key.startswith(prefix):
                 yield val#ontsTuple
             else:
                 pass
+        """
 
 
 
