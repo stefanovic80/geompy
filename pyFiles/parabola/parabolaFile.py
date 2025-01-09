@@ -69,7 +69,8 @@ class parabola(method):
 
     @vertex.setter
     def vertex(self, point):
-        self.addParams('vertex', point)
+        self.addParams('vx', point.coords[0])
+        self.addParams('vy', point.coords[1])
         self._vertex = point
         self.drawSetts()
 

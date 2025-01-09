@@ -161,7 +161,7 @@ class parabolaCalc(dataExplore):
             self.calc_a_b_c()
 
     #ave, vertex, concavity a (self._a)
-    def calc_a_ve(self, name = None):
+    def calc_a_vx_vy(self, name = None):
         self.data = [ self._x ]
         #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
         self.data = self.data + [self._a*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
@@ -219,7 +219,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
     #bve, vertex, b (self._b)
-    def calc_b_ve(self, name = None):
+    def calc_b_vx_vy(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
 
@@ -250,7 +250,7 @@ class parabolaCalc(dataExplore):
 
 
     #cve, vertex, c (self._c)
-    def calc_c_ve(self, name = None):
+    def calc_c_vx_vy(self, name = None):
         print("c_ve is running!")
         xv, yv = self._vertex.coords[0], self._vertex.coords[1]
 
@@ -286,7 +286,7 @@ class parabolaCalc(dataExplore):
 
     #one point and vertex
     #pove
-    def calc_po_ve(self, name = None):
+    def calc_po_vx_vy(self, name = None):
         print("po_ve is working!")
         u = self.getPoint()
         point0 = next(u)

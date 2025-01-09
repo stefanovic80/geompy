@@ -22,8 +22,9 @@ class circumference(method):
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self.addParams('radius', self._radius)
         self._centre = point(draw = False)
-        self.addParams('centre', self._centre)
-        
+        self.addParams('cx', self._centre.coords[0])
+        self.addParams('cy', self._centre.coords[1])
+
         self.angles = None
         self._angle = 2*np.pi
         self._color = random.choice(self.colors)
@@ -62,7 +63,8 @@ class circumference(method):
 
     @centre.setter
     def centre(self, point):
-        self.addParams('centre', point)
+        self.addParams('cx', point.coords[0])
+        self.addParams('cy', point.coords[1])
         self._centre = point
         self.drawSetts()
        

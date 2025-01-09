@@ -1,11 +1,8 @@
-#from ..dataExploreFile import dataExplore
 from ..triangle.triangleCalcFile import triangleCalc
 
-#class method(dataExplore):
 class method(triangleCalc):
     def __init__(self):
         super().__init__()
-        
         self.draws = {
             ('an', 'an', 'an'): self.noMethod,
             ('an', 'an', 'si'): self.noMethod,
@@ -18,3 +15,4 @@ class method(triangleCalc):
             ('ve', 've', 'si'): self.noMethod,
             ('ve', 've', 've'): self.noMethod
         }
+
