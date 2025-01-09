@@ -21,7 +21,10 @@ class dataExplore(plotSett):
 
 
     def noMethod(self):
-         print('This method has not been implemented yet!')
+        print('This method has not been implemented yet!')
+
+    def cantCalculate(self):
+        print("It can't be calculated!")
 
     @property
     def points(self):

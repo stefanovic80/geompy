@@ -53,26 +53,6 @@ class circumferenceCalc(dataExplore):
         self.calc_cx_cy_ra()
 
 
-    def calc_a_b_ce(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-
-        self._radius = np.random.uniform(0, abs(max([ settings.ymin,\
-                settings.ymax])))
-        
-        #self.addParamLeft('r', self._radius)
-        
-        if 'ce' in firstKey:
-            self._centre.coords[0] = self._centre.data[0] = -self._a/2
-            self._centre.coords[1] = self._centre.data[1] = -self._b/2
-        else:
-            xc, yc = self._centre.coords[0], self._centre.coords[1]
-            self._a = -2*xc
-            self._b = -2*yc
-            self._c = -self._radius**2 + xc**2 + yc**2
-        
-        self.calc_cx_cy_ra()
-
     def calc_a_b_po(self, name = None, angle = 2*np.pi):
         xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         u = self.getPoint()
@@ -87,17 +67,6 @@ class circumferenceCalc(dataExplore):
         self._c = -self._radius**2 + xc**2 + yc**2
         self.calc_cx_cy_ra()
 
-
-    def calc_a_c_ce(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'a' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_cx_cy_ra()
-        elif 'c' == firstKey:
-            self.noMethod()
-
-
     def calc_a_c_po(self, name = None, angle = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._b = (-x0**2 - y0**2 - self._a*x0 - self._c)/y0
@@ -109,40 +78,7 @@ class circumferenceCalc(dataExplore):
         self._radius = ( x0**2 + y0**2 - self._c)**.5
         self.calc_cx_cy_ra()
 
-    def calc_a_ce_po(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'a' == firstKey:
-            self.calc_ce_po()
-        elif 'ce' == firstKey:
-            self._b = random.uniform(settings.ymin/2, settings.ymax/2)
-            u = self.getPoint()
-            point = next(u)
-            x, y = point.coords[0], point.coords[1]
-            self._c = -x**2-y**2-self._a*x-self._b*y
-            self.calc_a_b_c()
-        else:
-            self.noMethod()
 
-
-    def calc_a_ce_ra(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'a' in firstKey:
-            self._b = -2*self._centre.coords[1]
-            self._c = self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._radius**2
-
-            self.calc_cx_cy_ra()
-        elif 'ce' in firstKey:
-            xc = -self._a/2
-            yc = np.random.uniform( settings.xmin, settings.xmax)
-            self._b = -2*yc
-            self._c = -self._radius**2 + xc**2 + yc**2
-            self.calc_a_b_c()
-
-        elif 'ra' in firstKey:
-            self.noMethod()
- 
     def calc_a_po_po(self, name = None, angle = 2*np.pi):
         print("a_po_po is running\n")
         x0, y0, x1, y1, r = self.po_po()
@@ -164,12 +100,8 @@ class circumferenceCalc(dataExplore):
         self._c = -self._radius**2 + xc**2 + yc**2
         self.calc_cx_cy_ra()
 
-    def calc_b_c_ce(self, name = None, angle = 2*np.pi):
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
-        self._a = -2*x0 
-        self._c = -(x0**2 + y0**2) - self._a*x0 - self._b*y0
-        self._r = ( x0**2 + y0**2 - self._c )**.5
-        self._calci_cx_cy_ra()
+    def calc_b_c_cx(self, name = None, angle = 2*np.pi):
+        self.noMethod()
 
     def calc_b_c_po(self, name = None, angle = 2*np.pi):
         u = self.getPoint()
@@ -185,26 +117,6 @@ class circumferenceCalc(dataExplore):
         self._a = -2*x0
         self.calc_cx_cy_ra()
 
-    def calc_b_ce_po(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'b' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_cx_cy_po()
-        else:
-            self.noMethod()
-
-
-
-    def calc_b_ce_ra(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'b' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_ce_ra()
-        else:
-            self.noMethod()
-
 
     def calc_b_po_po(self, name = None, angle = 2*np.pi):
         print("b_po_po is working!")
@@ -219,32 +131,6 @@ class circumferenceCalc(dataExplore):
 
     def calc_b_po_ra(self, name = None, angle = 2*np.pi):
         self.noMethod()
-
-    def calc_c_ce_po(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'c' == firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_cx_cy_po()
-        elif 'ce' == firstKey[:2]:
-            self.noMethod()
-
-
-
-
-    def calc_c_ce_ra(self):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'c' == firstKey:
-            self.calc_ce_ra()
-        elif 'ce' in firstKey:
-            yc = self._centre.coords[1] = self._centre.data[1] = np.random.uniform(settings.ymin, settings.ymax)
-            xc = self._centre.coords[0] = self._centre.data[0] = ( abs( self._radius**2 - yc**2) )**.5
-            self.calc_ce_ra()
-        elif 'ra' in firstKey:
-            xc, yc = self._centre.coords[0], self._centre.coords[1]
-            self._a, self._b = -2*xc, -2*yc
-            self.calc_a_b_c()
 
 
     def calc_c_po_po(self, name = None, angle = 2*np.pi):
@@ -267,39 +153,11 @@ class circumferenceCalc(dataExplore):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
         if 'c' in firstKey:
-            pass
+            self.calc_po_ra()
         elif 'ra' == firstKey[:2]:
             pass
         elif 'po' == firstKey[:2]:
             pass
-
-
-    def calc_ce_po_po(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'po' in firstKey:
-            self._radius = ( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )**.5
-            self.calc_ce_po()
-        elif 'ce' in firstKey:
-            print("ce_po_po is working with 'ce' as first")
-            x0, y0, x1, y1, self._radius = self.po_po()
-            self.calc_po_po_ra()
-
-
-
-
-    def calc_ce_po_ra(self, name = None, angle = 2*np.pi):
-        firstKey = iter( self.params.keys() )
-        firstKey = next(firstKey)
-        if 'ra' == firstKey[:2]:
-            self.calc_ce_po()
-        elif 'po' == firstKey[:2]:
-            self.calc_ce_ra()
-        else:
-            self._centre.coords = self.centre.data = [ np.random.uniform(settings.ymin, settings.ymax) for j in range(2)]
-        
-        self.calc_cx_cy_po()
-
 
 
     # calculate from three points the circumference passing through (to be fixed!)
@@ -354,13 +212,6 @@ class circumferenceCalc(dataExplore):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._a, self._b = -2*x0, -2*y0
         self._radius = ( x0**2 + y0**2 - self._c )**.5
-        self.calc_cx_cy_ra()
-
-    def calc_c_po(self, name = None, angle = 2*np.pi):
-        point = self.getPoint()
-        x0, y0 = self._centre.coords[0], self._centre.coords[1] = point.coords[0], point.coords[1]
-        a, b = -2*x0, -2*y0
-        self._radius = ( x0**2 + y0**2 - self._c)**.5
         self.calc_cx_cy_ra()
 
 

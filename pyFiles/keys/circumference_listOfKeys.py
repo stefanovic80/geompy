@@ -20,7 +20,7 @@ class method(circumferenceCalc):
             ('a', 'cy', 'ra'): self.noMethod,
             ('a', 'po', 'po'): self.calc_a_po_po,
             ('a', 'po', 'ra'): self.calc_a_po_ra,
-            ('b', 'c', 'cx'): self.noMethod,
+            ('b', 'c', 'cx'): self.calc_b_c_cx,
             ('b', 'c', 'cy'): self.noMethod,
             ('b', 'c', 'po'): self.calc_b_c_po,
             ('b', 'c', 'ra'): self.calc_b_c_ra,
