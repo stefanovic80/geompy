@@ -32,11 +32,3 @@ class method(parabolaCalc):
             ('po', 'vx', 'vy'): self.calc_po_vx_vy
         }
 
-            #('a', 'b', 've'): self.calc_a_b_ve,
-            #('a', 'c', 've'): self.calc_a_c_ve,
-            #('a', 'po', 've'): self.calc_a_po_ve,
-            #('b', 'c', 've'): self.calc_b_c_ve,
-            #('b', 'po', 've'): self.calc_b_po_ve,
-            #('c', 'po', 've'): self.calc_c_po_ve,
-            #('po', 'po', 've'): self.calc_po_po_ve
-

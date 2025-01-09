@@ -47,14 +47,4 @@ class method(circumferenceCalc):
             ('po', 'po', 'po'): self.calc_po_po_po,
             ('po', 'po', 'ra'): self.calc_po_po_ra 
         }
-
-
-            
-            #('a', 'b', 'ce'): self.calc_a_b_ce,
-            #('a', 'c', 'ce'): self.calc_a_c_ce,
-            #('b', 'c', 'ce'): self.calc_b_c_ce,
-            #('c', 'ce', 'po'): self.calc_c_ce_po,
-            #('c', 'ce', 'ra'): self.calc_c_ce_ra,
-            #('ce', 'po', 'po'): self.calc_ce_po_po,
-            #('ce', 'po', 'ra'): self.calc_ce_po_ra,
             

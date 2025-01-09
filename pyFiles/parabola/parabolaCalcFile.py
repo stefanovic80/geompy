@@ -89,7 +89,7 @@ class parabolaCalc(dataExplore):
     def calc_a_vx_vy(self, name = None):
         self.data = [ self._x ]
         #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
-        self.data = self.data + [self._a*(self._x - self.params['vertex'].coords[0])**2 + self.params['vertex'].coords[1] ]
+        self.data = self.data + [self._a*(self._x - self.params['vx'])**2 + self.params['vy'] ]
         
         
     #B----------------------------------------------------------------
