@@ -53,14 +53,6 @@ class dataExplore(plotSett):
         
         for key, val in filtered_dict.items():
             yield val
-        """
-        for key, val in self.params.items():
-            if key.startswith(prefix):
-                yield val#ontsTuple
-            else:
-                pass
-        """
-
 
 
     @property

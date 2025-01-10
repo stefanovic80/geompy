@@ -294,8 +294,6 @@ class plotSett():
     @step.setter
     def step(self, value):
         self._step = value
-        #if self._step > 100:
-        #    self._step = (settings.ymax - settings.ymin)/20
         self.grid(step = self._step, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
     @property

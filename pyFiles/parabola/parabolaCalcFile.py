@@ -4,7 +4,6 @@ from .._plotSettFile import plotSett
 from ..pointFile import point
 from ..dataExploreFile import dataExplore
 
-#from itertools import combinations
 from ..keys import parabola_listOfKeys
 
 #gc.collect()
@@ -47,7 +46,7 @@ class parabolaCalc(dataExplore):
         self._vertex.data[1] = np.array([yv])
         #------------ vertex coords
 
-    #abpo, point0, a (self._a) and b (self._b)
+    #abpo, point, a (self._a) and b (self._b)
     def calc_a_b_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -85,15 +84,14 @@ class parabolaCalc(dataExplore):
 
         self.calc_a_b_c()
 
-    #ave, vertex, concavity a (self._a)
+    #ave, a parameter (self._a, concavity), vertex x coord, vertex y
     def calc_a_vx_vy(self, name = None):
         self.data = [ self._x ]
-        #self.data = self.data + [self._a*(self._x - self._vertex.coords[0])**2 + self._vertex.coords[1] ]
         self.data = self.data + [self._a*(self._x - self.params['vx'])**2 + self.params['vy'] ]
         
         
     #B----------------------------------------------------------------
-    #bcpo, point0, b (self._b) and c (self._c)
+    #bcpo, point, b (self._b) and c (self._c)
     def calc_b_c_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -103,7 +101,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()                
 
 
-    #bpopo, point0, point1 and b (self._b)
+    #bpopo, point, point and b (self._b)
     def calc_b_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -121,7 +119,7 @@ class parabolaCalc(dataExplore):
 
         self.calc_a_b_c()
 
-    #bve, vertex, b (self._b)
+    #bve, b param (self._b), vertex x cord, vertex y coord
     def calc_b_vx_vy(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
@@ -132,7 +130,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
     #C----------------------------------------------------------------
-    #cpopo, point0, point1 and c (self._c)
+    #cpopo, c (self._c) param, point, point
     def calc_c_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
