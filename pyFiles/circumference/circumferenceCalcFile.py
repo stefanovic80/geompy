@@ -57,7 +57,7 @@ class circumferenceCalc(dataExplore):
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
-        self._c = -x0**2 - y0**2 - self._a*x0 - self._b*y0
+        self._c = -x0**2 - y0**2 -2 - self._a*x0 - self._b*y0
         self._radius = ( (self._a/2)**2 + (self._b/2)**2 - self._c )**.5
         xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self.calc_cx_cy_ra()

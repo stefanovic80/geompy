@@ -9,7 +9,7 @@ from ..dataExploreFile import dataExplore
 
 from ..keys.circumference_listOfKeys import method
 
-"""
+
 class custom_point(point):  # Estendi la classe point
     @property
     def x(self):
@@ -20,7 +20,7 @@ class custom_point(point):  # Estendi la classe point
     def x(self, value):
         print(f"Setting x to {value}")
         super(custom_point, self.__class__).x.__set__(self, value)
-"""
+
 
 class circumference(method):
     
@@ -34,8 +34,8 @@ class circumference(method):
         self._radius = random.uniform(0, (settings.ymax-settings.ymin)/2)
         self.addParams('radius', self._radius)
         
-        self._centre = point(draw = False)
-        #self._centre = custom_point(draw=False)
+        #self._centre = point(draw = False)
+        self._centre = custom_point(draw=False)
 
         self.addParams('cx', self._centre.coords[0])
         self.addParams('cy', self._centre.coords[1])
