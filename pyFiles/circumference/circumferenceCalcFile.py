@@ -129,7 +129,9 @@ class circumferenceCalc(dataExplore):
         parabParams = np.dot(Ainv, y)
         self._a = parabParams[0, 0]
         self._c = parabParams[0, 1]
-        self.calc_a_b_c()
+        xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
+        self._radius = ( (xc - x0)**2 + (yc - y0)**2 )**.5
+        self.calc_cx_cy_ra()
 
     def calc_b_po_ra(self, name = None, angle = 2*np.pi):
         self.noMethod()
