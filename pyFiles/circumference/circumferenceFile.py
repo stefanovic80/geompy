@@ -11,9 +11,15 @@ from ..keys.circumference_listOfKeys import method
 
 """
 class custom_point(point):  # Estendi la classe point
+    @property
     def x(self):
         print("it's working!")
         return super().x()
+
+    @x.setter
+    def x(self, value):
+        print(f"Setting x to {value}")
+        super(custom_point, self.__class__).x.__set__(self, value)
 """
 
 class circumference(method):
