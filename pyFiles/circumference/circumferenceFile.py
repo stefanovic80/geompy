@@ -69,7 +69,7 @@ class circumference(method):
         elif angle < 0:
             self._angle = 2*np.pi + angle
         
-        self.calc_ce_ra( name = None, angle = self._angle )
+        self.calc_cx_cy_ra( name = None, angle = self._angle )
         #self.chooseCalc( angle = self._angle )
         
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
