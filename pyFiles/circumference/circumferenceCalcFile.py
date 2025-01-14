@@ -92,8 +92,12 @@ class circumferenceCalc(dataExplore):
 
         self._b = parabParams[0, 0]
         self._c = parabParams[0, 1]
-        #self.calc_ce_ra()
-        self.calc_a_b_c()
+        
+        self._centre.coords[0] = self._centre.data[0] = -self._a/2
+        self._centre.coords[1] = self._centre.data[1] = -self._b/2
+        
+        self.calc_cx_cy_ra()
+        #self.calc_a_b_c()
 
     def calc_a_po_ra(self, name = None, angle = 2*np.pi):
         xc = self._centre.coords[0] = self._centre.data[0] = -self._a/2
@@ -150,8 +154,8 @@ class circumferenceCalc(dataExplore):
 
         xc, yc = self._centre.coords[0], self._centre.coords[1] = - self._a/2, -self._b/2
         self._radius = ( (xc - x0)**2 + (yc - y0)**2 )**.5
-        self.calc_a_b_c()
-        #self.calc_c_ce()
+        #self.calc_a_b_c()
+        self.calc_cx_cy_ra()
 
     def calc_c_po_ra(self, name = None, angle = 2*np.pi):
         firstKey = iter( self.params.keys() )
