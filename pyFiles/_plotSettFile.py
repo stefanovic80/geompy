@@ -439,17 +439,17 @@ class plotSett():
 
 
         #x grid---------------------------------------
-        if (settings.ymin < 0) and (settings.ymax > 0):
+        if (bottomConcat < 0) and (topConcat > 0):
             #------------ minor ticks
-            Yminor_ticksPos = np.arange(0, settings.ymax, minorStep)
-            Yminor_ticksNeg = np.arange(0, settings.ymin, -minorStep)[::-1]
+            Yminor_ticksPos = np.arange(0, topConcat, minorStep)
+            Yminor_ticksNeg = np.arange(0, bottomConcat, -minorStep)[::-1]
 
             Yminor_ticks = np.append(Yminor_ticksNeg, Yminor_ticksPos)
 
             #----------- major ticks
-            Ymajor_ticksPos = np.arange(0, settings.ymax, step)
+            Ymajor_ticksPos = np.arange(0, topConcat, step)
 
-            Ymajor_ticksNeg = np.arange(0, settings.ymin, -step)[::-1]
+            Ymajor_ticksNeg = np.arange(0, bottomConcat, -step)[::-1]
 
             Ymajor_ticks = np.append(Ymajor_ticksNeg, Ymajor_ticksPos)
 
@@ -458,19 +458,19 @@ class plotSett():
 
 
         else:
-            Yminor_ticks = np.arange(settings.ymin, settings.ymax, minorStep)
+            Yminor_ticks = np.arange(bottomConcat, topConcat, minorStep)
 
-            Ymajor_ticks = np.arange(settings.ymin, settings.ymax, step)
+            Ymajor_ticks = np.arange(bottomConcat, topConcat, step)
 
 
         #y grid---------------------------------------
-        topArrayMinor = np.arange(settings.ymax, topConcat, minorStep)
+        topArrayMinor = np.arange(topConcat, topConcat, minorStep)
         
-        topArrayMajor = np.arange(settings.ymax, topConcat, step)
+        topArrayMajor = np.arange(topConcat, topConcat, step)
 
-        bottomArrayMinor = np.arange( bottomConcat, settings.ymin, minorStep)
+        bottomArrayMinor = np.arange( bottomConcat, bottomConcat, minorStep)
 
-        bottomArrayMajor = np.arange( bottomConcat, settings.ymin, step)
+        bottomArrayMajor = np.arange( bottomConcat, bottomConcat, step)
 
 
 
