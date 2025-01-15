@@ -386,9 +386,9 @@ class plotSett():
         self.ax.set_ylim(settings.ymin, settings.ymax)
         
 
-    def grid(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
-        self.grid_x(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
-        self.grid_y(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
+    #def grid(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
+    #    self.grid_x(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
+    #    self.grid_y(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
 
 
 
@@ -438,22 +438,15 @@ class plotSett():
 
         major_ticks = np.concatenate((bottomArrayMajor, major_ticks, topArrayMajor))
 
+        return minor_ticks, major_ticks
 
-
-    
+    @staticmethod
     def gridParams(axis, maxs = settings.ymax, mins = settings.ymin ):
-        def decor(grid_):
-            def wrapper(*args, **kwargs):
+        def decor(func):
+            def wrapper(self, *args, **kwargs):
                 
-                self.grid_()
-                if axis == 'x':
-                    self.ax.set_xticks(minor_ticks, minor=True)
-                    self.ax.set_xticks(major_ticks)
-                    self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
-                elif axis == 'y':        
-                    self.ax.set_yticks(minor_ticks, minor=True)
-                    self.ax.set_yticks(major_ticks)
-                    self.hline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
+                func(self, *args, **kwargs)
+
 
                 self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
                 self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)  
@@ -464,15 +457,22 @@ class plotSett():
         return decor
 
     @gridParams(axis = 'x')
-    def grid_x():
-        self.grid_()
+    def grid_x(self):
+        minor_ticks, major_ticks = self.grid_()
+
+        self.ax.set_xticks(minor_ticks, minor=True)
+        self.ax.set_xticks(major_ticks)
+        self.vline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
+       
 
 
     @gridParams(axis = 'y')
-    def grid_y():
-        self.grid_()
+    def grid_y(self):
+        minor_ticks, major_ticks = self.grid_()
 
-
+        self.ax.set_yticks(minor_ticks, minor=True)
+        self.ax.set_yticks(major_ticks)
+        self.hline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
     def erase(self):
         try:#removes all lines

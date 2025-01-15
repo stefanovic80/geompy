@@ -73,8 +73,9 @@ from .pyFiles.function.functionFile import x
 from .pyFiles.triangle.triangleFile import triangle
 from .pyFiles.angle.angleFile import arc
 _set = start()
-_set.grid()
-
+#_set.grid()
+_set.grid_x()
+_set.grid_y()
 
 
 
