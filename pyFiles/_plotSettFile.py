@@ -294,7 +294,8 @@ class plotSett():
     @step.setter
     def step(self, value):
         self._step = value
-        self.grid(step = self._step, bottomConcat = settings.ymin, topConcat = settings.ymax )
+        self.grid_x(step = self._step, bottomConcat = settings.xmin, topConcat = settings.xmax )
+        self.grid_y(step = self._step, bottomConcat = settings.ymin, topConcat = settings.ymax )
 
     @property
     def steps(self):
@@ -303,8 +304,8 @@ class plotSett():
     @steps.setter
     def steps(self, value):
         self._steps = value
-        self.grid(step = self._step, steps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
-
+        self.grid_x(step = self._step, steps = value, bottomConcat = settings.xmin, topConcat = settings.xmax)
+        self.grid_y(step = self._step, steps = value, bottomConcat = settings.ymin, topConcat = settings.ymax)
 
 
     def label(self, name):
@@ -345,7 +346,7 @@ class plotSett():
         self.sflk = [ k[:2] for k in self.params.keys() ]       
     
 
-
+    #to be deprecated
     def addParamsLeft(self, key, param):
         self.keys[0] = key
         self.values[0] = param
@@ -385,15 +386,6 @@ class plotSett():
         self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
         self.ax.set_ylim(settings.ymin, settings.ymax)
         
-
-    #def grid(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
-    #    self.grid_x(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
-    #    self.grid_y(step = step, steps = steps, topConcat = topConcat, bottomConcat = bottomConcat)
-
-
-
-
-
 
     def grid_(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
@@ -457,7 +449,7 @@ class plotSett():
         return decor
 
     @gridParams(axis = 'x')
-    def grid_x(self):
+    def grid_x(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
         minor_ticks, major_ticks = self.grid_()
 
         self.ax.set_xticks(minor_ticks, minor=True)
@@ -467,7 +459,7 @@ class plotSett():
 
 
     @gridParams(axis = 'y')
-    def grid_y(self):
+    def grid_y(self, step = 2, steps = 10, topConcat = settings.ymax, bottomConcat = settings.ymin):
         minor_ticks, major_ticks = self.grid_()
 
         self.ax.set_yticks(minor_ticks, minor=True)
