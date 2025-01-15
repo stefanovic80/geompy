@@ -378,7 +378,7 @@ class plotSett():
 
     def limsx(self):
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        self.ax.set_xlim(settings.xmin, settings.xmax)
+        self.ax.set_ylim(settings.xmin, settings.xmax)
 
 
     def limsy(self):
@@ -393,47 +393,9 @@ class plotSett():
 
 
 
-    def grid_x(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
-        
-        minorStep = step / steps
-        
-        
-        #x grid---------------------------------------
-        if (settings.xmin < 0) and (settings.xmax > 0):
-            #------------ minor ticks
-            Xminor_ticksPos = np.arange(0, settings.xmax, minorStep)
-            Xminor_ticksNeg = np.arange(0, settings.xmin, -minorStep)[::-1]
-
-            Xminor_ticks = np.append(Xminor_ticksNeg, Xminor_ticksPos)
-            
-            #----------- major ticks
-            Xmajor_ticksPos = np.arange(0, settings.xmax, step)
-
-            Xmajor_ticksNeg = np.arange(0, settings.xmin, -step)[::-1]
-
-            Xmajor_ticks = np.append(Xmajor_ticksNeg, Xmajor_ticksPos)
-
-            self.ax.spines['bottom'].set_position('zero')
-            self.ax.spines['left'].set_position('zero')
 
 
-        else:
-            Xminor_ticks = np.arange(settings.xmin, settings.xmax, minorStep)
-        
-            Xmajor_ticks = np.arange(settings.xmin, settings.xmax, step)
-
-        self.ax.set_xticks(Xminor_ticks, minor = True)
-        self.ax.set_xticks(Xmajor_ticks) # minor = False can be neglected
-
-        # alpha stands for transparency: 0 transparent, 1 opaque
-        self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
-
-        self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
-        self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)
-
-
-
-    def grid_y(self, step = 2, steps = 10, topConcat = settings.ymax, bottomConcat = settings.ymin):
+    def grid_(self, step = 2, steps = 10, topConcat = settings.xmax, bottomConcat = settings.xmin):
 
         minorStep = step / steps
 
@@ -441,26 +403,26 @@ class plotSett():
         #x grid---------------------------------------
         if (bottomConcat < 0) and (topConcat > 0):
             #------------ minor ticks
-            Yminor_ticksPos = np.arange(0, topConcat, minorStep)
-            Yminor_ticksNeg = np.arange(0, bottomConcat, -minorStep)[::-1]
+            minor_ticksPos = np.arange(0, topConcat, minorStep)
+            minor_ticksNeg = np.arange(0, bottomConcat, -minorStep)[::-1]
 
-            Yminor_ticks = np.append(Yminor_ticksNeg, Yminor_ticksPos)
+            minor_ticks = np.append(minor_ticksNeg, minor_ticksPos)
 
             #----------- major ticks
-            Ymajor_ticksPos = np.arange(0, topConcat, step)
+            major_ticksPos = np.arange(0, topConcat, step)
 
-            Ymajor_ticksNeg = np.arange(0, bottomConcat, -step)[::-1]
+            major_ticksNeg = np.arange(0, bottomConcat, -step)[::-1]
 
-            Ymajor_ticks = np.append(Ymajor_ticksNeg, Ymajor_ticksPos)
+            major_ticks = np.append(major_ticksNeg, major_ticksPos)
 
             self.ax.spines['bottom'].set_position('zero')
             self.ax.spines['left'].set_position('zero')
 
 
         else:
-            Yminor_ticks = np.arange(bottomConcat, topConcat, minorStep)
+            minor_ticks = np.arange(bottomConcat, topConcat, minorStep)
 
-            Ymajor_ticks = np.arange(bottomConcat, topConcat, step)
+            major_ticks = np.arange(bottomConcat, topConcat, step)
 
 
         #y grid---------------------------------------
@@ -472,21 +434,45 @@ class plotSett():
 
         bottomArrayMajor = np.arange( bottomConcat, bottomConcat, step)
 
+        minor_ticks = np.concatenate((bottomArrayMinor, minor_ticks, topArrayMinor))
+
+        major_ticks = np.concatenate((bottomArrayMajor, major_ticks, topArrayMajor))
 
 
-        Yminor_ticks = np.concatenate((bottomArrayMinor, Yminor_ticks, topArrayMinor))
 
-        Ymajor_ticks = np.concatenate((bottomArrayMajor, Ymajor_ticks, topArrayMajor))
+    
+    def gridParams(axis, maxs = settings.ymax, mins = settings.ymin ):
+        def decor(grid_):
+            def wrapper(*args, **kwargs):
+                
+                self.grid_()
+                if axis == 'x':
+                    self.ax.set_xticks(minor_ticks, minor=True)
+                    self.ax.set_xticks(major_ticks)
+                    self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
+                elif axis == 'y':        
+                    self.ax.set_yticks(minor_ticks, minor=True)
+                    self.ax.set_yticks(major_ticks)
+                    self.hline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
-        
-        self.ax.set_yticks(Yminor_ticks, minor=True)
-        self.ax.set_yticks(Ymajor_ticks)
-        
+                self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
+                self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)  
+                # alpha stands for transparency: 0 transparent, 1 opaque
 
-        self.ax.grid(which='minor', alpha=0.2, linewidth = 1.0)
-        self.ax.grid(which='major', alpha=0.6, linewidth = 1.0)  
-        # alpha stands for transparency: 0 transparent, 1 opaque
-        self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
+                return self.grid_()
+            return wrapper
+        return decor
+
+    @gridParams(axis = 'x')
+    def grid_x():
+        self.grid_()
+
+
+    @gridParams(axis = 'y')
+    def grid_y():
+        self.grid_()
+
+
 
     def erase(self):
         try:#removes all lines
