@@ -88,6 +88,8 @@ class plotSett():
         settings.xmin = value
         settings.ymin = value*settings.window_height/settings.window_width
         self.step = self._step
+        self.grid_x()
+        self.grid_y()
         self.lims()
         
 
@@ -100,6 +102,8 @@ class plotSett():
         settings.xmax = value
         settings.ymax = value*settings.window_height/settings.window_width
         self.step = self._step
+        self.grid_x()
+        self.grid_y()
         self.lims()
 
 
@@ -358,7 +362,6 @@ class plotSett():
 
     def onlyDraw(self):
         self.__del__()
-        #self.erase()
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         self.lines = []
         self.lines.append(line)
@@ -379,7 +382,7 @@ class plotSett():
 
     def limsx(self):
         self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
-        self.ax.set_ylim(settings.xmin, settings.xmax)
+        self.ax.set_xlim(settings.xmin, settings.xmax)
 
 
     def limsy(self):
@@ -392,7 +395,7 @@ class plotSett():
         minorStep = step / steps
 
 
-        #x grid---------------------------------------
+        #grid---------------------------------------
         if (bottomConcat < 0) and (topConcat > 0):
             #------------ minor ticks
             minor_ticksPos = np.arange(0, topConcat, minorStep)
@@ -417,7 +420,7 @@ class plotSett():
             major_ticks = np.arange(bottomConcat, topConcat, step)
 
 
-        #y grid---------------------------------------
+        #grid---------------------------------------
         topArrayMinor = np.arange(topConcat, topConcat, minorStep)
         
         topArrayMajor = np.arange(topConcat, topConcat, step)
