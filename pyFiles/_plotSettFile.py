@@ -433,7 +433,7 @@ class plotSett():
         return minor_ticks, major_ticks
 
     @staticmethod
-    def gridParams(axis, maxs = settings.ymax, mins = settings.ymin ):
+    def gridParams(axis):#, maxs = settings.ymax, mins = settings.ymin ):
         def decor(func):
             def wrapper(self, *args, **kwargs):
                 
