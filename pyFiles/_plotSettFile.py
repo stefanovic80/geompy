@@ -106,7 +106,6 @@ class plotSett():
         self.grid_y()
         self.lims()
 
-
     @property
     def X(self):
 

@@ -87,6 +87,7 @@ class dataExplore(plotSett):
     def x(self):
         return self.data[0]
 
+
     @x.setter
     def x(self, value):
         differences = np.abs( self.data[0] - value)
