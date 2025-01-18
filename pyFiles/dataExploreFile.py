@@ -4,7 +4,7 @@ from . import seed
 from .Settings import settings
 
 from ._plotSettFile import plotSett
-from .pointFile import point
+#from .pointFile import point
 
 
 class dataExplore(plotSett):
@@ -106,6 +106,8 @@ class dataExplore(plotSett):
         if not isinstance(self._innerClass, self.innerClass):
             print("Creating InnerClass instance...")
             self._innerClass = self.innerClass(self)
+        else:
+            self.innerClass = self.data[0]
         
         return self._innerClass
 
