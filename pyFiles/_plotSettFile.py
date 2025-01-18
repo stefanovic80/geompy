@@ -78,6 +78,7 @@ class plotSett():
 	    #to be deprecated
         self.labCoords = [None, None]
 
+        self._innerClass = None
 
     @property
     def lower(self):

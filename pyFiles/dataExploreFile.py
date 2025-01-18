@@ -81,11 +81,33 @@ class dataExplore(plotSett):
             print(str(j) + space + str(u) + space + str(v) + ' ' + str(z) )
             j+=1
 
+    
+
+    class innerClass:
+        def __init__(self, outer_istance):
+            self.outer_istance = outer_istance
+
+        @property
+        def method(self):
+            pass
+
+        @method.setter
+        def method(self, value):
+            print("setter method is passed aways with value {value}")
+            self.outer_istance.grid_x()
+
 
 
     @property
     def x(self):
-        return self.data[0]
+        print(self._innerClass)
+        #self._innerClass = self.data[0]
+        
+        if not isinstance(self._innerClass, self.innerClass):
+            print("Creating InnerClass instance...")
+            self._innerClass = self.innerClass(self)
+        
+        return self._innerClass
 
 
     @x.setter
@@ -98,8 +120,11 @@ class dataExplore(plotSett):
         closest_elementx = self.data[0][closest_index]
         closest_elementy = self.data[1][closest_index]
         
-        print(closest_index, closest_elementx, closest_elementy )
+        #print(closest_index, closest_elementx, closest_elementy )
         
+        if not isinstance(self._innerClass, self.innerClass ):
+            print("if statement is true!")
+            self._innerClass = self.innerClass(self)
     
     @property
     def y(self):
