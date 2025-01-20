@@ -81,53 +81,55 @@ class dataExplore(plotSett):
             print(str(j) + space + str(u) + space + str(v) + ' ' + str(z) )
             j+=1
 
-    
 
-    class innerClass:
-        def __init__(self, outer_istance):
-            self.outer_istance = outer_istance
 
+    class InnerClass:
+        def __init__(self, parent):
+            self.parent = parent
+            self._value = None
+        @property
+        def data(self):
+            # Restituisce self.parent.data[0] come esempio di elaborazione
+            return self.parent.data[0]
+            
         @property
         def method(self):
-            pass
-
+            print("method is working right!")
+            return self._value
+        
         @method.setter
         def method(self, value):
-            print("setter method is passed aways with value {value}")
-            self.outer_istance.grid_x()
+            # Esegue il comportamento desiderato con il valore assegnato
+            print(f"InnerClass: elaboro {value}...")
+            self._value = value
+            # Esempio di elaborazione
+            differences = np.abs(self.parent.data[0] - value)
+            closest_index = np.argmin(differences)
+            closest_element = self.parent.data[0][closest_index]
+            print(f"Elemento più vicino a {value}: {closest_element}")
 
 
 
     @property
     def x(self):
-        print(self._innerClass)
-        #self._innerClass = self.data[0]
-        
-        if not isinstance(self._innerClass, self.innerClass):
-            print("Creating InnerClass instance...")
-            self._innerClass = self.innerClass(self)
-        else:
-            self.innerClass = self.data[0]
-        
+        # Se _innerClass non è inizializzato, crealo
+        if not isinstance(self._innerClass, self.InnerClass):
+            print("Creazione di InnerClass...")
+            self._innerClass = self.InnerClass(self)
+        # Ritorna l'istanza di InnerClass
         return self._innerClass
-
 
     @x.setter
     def x(self, value):
-        differences = np.abs( self.data[0] - value)
-        #Find the index of the closest element
-        closest_index = np.argmin(differences)
-        self._cutOff = closest_index
-        #get the actual value of the clostest element
-        closest_elementx = self.data[0][closest_index]
-        closest_elementy = self.data[1][closest_index]
-        
-        #print(closest_index, closest_elementx, closest_elementy )
-        
-        if not isinstance(self._innerClass, self.innerClass ):
-            print("if statement is true!")
-            self._innerClass = self.innerClass(self)
-    
+        # Imposta il valore elaborandolo
+        if not isinstance(self._innerClass, self.InnerClass):
+            print("Creazione di InnerClass per setter...")
+            self._innerClass = self.InnerClass(self)
+        # Imposta il valore di method (esempio: il setter fa qualcosa)
+        self._innerClass.method = value
+
+
+
     @property
     def y(self):
         return self.data[1]

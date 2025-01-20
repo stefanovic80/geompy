@@ -69,6 +69,8 @@ class plotSett():
         self.j = 0
         self.k = 0        
         self.lines = []
+        
+        self.w = 0
 
         self.sflk = None#deque(maxlen = self.dof) #Sorted First Letter Key
 	        
