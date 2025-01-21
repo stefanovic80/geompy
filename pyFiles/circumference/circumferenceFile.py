@@ -89,7 +89,28 @@ class circumference(method):
         self.addParams('cy', point.coords[1])
         self._centre = point 
         self.drawSetts()
-       
+    
+    @property
+    def centre_x(self):
+        return self._centre.coords[0]
+
+    @centre_x.setter
+    def centre_x(self, value):
+        self.centre.coords[0] = self.centre.data[0] = value
+        self.addParams('cx', value)
+        self.drawSetts()
+
+    @property
+    def centre_y(self):
+        return self._centre.coords[1]
+    
+    @centre_x.setter
+    def centre_y(self, value):
+        self.centre.coords[1] = self.centre.data[1] = value
+        self.addParams('cy', value)
+        self.drawSetts()
+
+
 
     @property
     def center(self):

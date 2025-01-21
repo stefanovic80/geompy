@@ -74,6 +74,29 @@ class parabola(method):
         self._vertex = point
         self.drawSetts()
 
+    @property
+    def vertex_x(self):
+        return self._vertex.data[0]
+
+    @vertex_x.setter
+    def vertex_x(self, value):
+        self._vertex.data[0] = np.array([value])
+        self._vertex.coords[0] = value
+        self.addParams('vx', value)
+        self.drawSetts()
+
+    @property
+    def vertex_y(self):
+        return self._vertex.data[1]
+    
+    @vertex_y.setter
+    def vertex_y(self, value):
+        self._vertex.data[1] = np.array([value])
+        self._vertex.coords[1] = value
+        self.addParams('vy', value)
+        self.drawSetts()
+
+
 
     @property
     def equation(self):

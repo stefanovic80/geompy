@@ -82,7 +82,7 @@ class dataExplore(plotSett):
             j+=1
 
 
-
+    """
     class InnerClass:
         def __init__(self, parent):
             self.parent = parent
@@ -127,6 +127,24 @@ class dataExplore(plotSett):
             self._innerClass = self.InnerClass(self)
         # Imposta il valore di method (esempio: il setter fa qualcosa)
         self._innerClass.method = value
+    """
+
+
+    @property
+    def x(self):
+        return self.data[0]
+
+    @x.setter
+    def x(self, value):
+        differences = np.abs( self.data[0] - value)
+        #Find the index of the closest element
+        closest_index = np.argmin(differences)
+        self._cutOff = closest_index
+        #get the actual value of the clostest element
+        closest_elementx = self.data[0][closest_index]
+        closest_elementy = self.data[1][closest_index]
+
+        print(closest_index, closest_elementx, closest_elementy )
 
 
 
