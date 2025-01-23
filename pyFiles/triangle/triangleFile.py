@@ -11,10 +11,13 @@ from ..Settings import settings
 from .. import plt, np, random
 
 
-from .triangle_listOfKeys import method
+#from .triangle_listOfKeys import method
 from .triangleCalcFile import triangleCalc
 
-class triangle(triangleCalc, method):
+from ..keys.triangle_listOfKeys import method
+
+
+class triangle(method):
     
     def __init__(self, seed = seed, draw = True):
 
