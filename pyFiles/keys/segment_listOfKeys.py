@@ -1,9 +1,10 @@
 from ..segment.segmentCalcFile import segmentCalc
+from weakref import WeakMethod
 
 class method(segmentCalc):
     def __init__(self):
         super().__init__()
         self.draws = {
-            ('po', 'po'): self.calc_po_po
+            ('po', 'po'): WeakMethod(self.noMethod)
         }
 

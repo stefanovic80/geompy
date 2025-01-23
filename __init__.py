@@ -29,7 +29,7 @@ loci = {\
     
 
 for name, param in loci.items():
-    string = "from .." + name + "." + name +  "CalcFile import "  +  name + "Calc\n\nclass method(" + name\
+    string = "from .." + name + "." + name +  "CalcFile import "  +  name + "Calc\nfrom weakref import WeakMethod\n\nclass method(" + name\
             +  "Calc):\n    def __init__(self):\n        super().__init__()\n        self.draws = {"
     # List of Keys
     dos = param[1]
@@ -44,7 +44,7 @@ for name, param in loci.items():
             lok = sorted(lok)
             for i, combo in enumerate(lok):
                 # Scrivere la combinazione nel file, ma evitare la virgola finale
-                file.write(f"\n            {combo}: self.noMethod")
+                file.write(f"\n            {combo}: WeakMethod(self.noMethod)")
                 if i < len(lok) - 1:  # Aggiungi la virgola solo se non è l'ultimo elemento
                     file.write(",")
             file.write("\n        }\n\n")  # Chiudere il dizionario alla fine
