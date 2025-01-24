@@ -1,31 +1,31 @@
 from ..line.lineFile import line
 from ..pointFile import point
-from ..dataExploreFile import dataExplore
+#from ..dataExploreFile import dataExplore
 from ..circumference.circumferenceFile import circumference
 from .. import seed
 from ..Settings import settings
 from .. import plt, np, random
 
 
-class angleCalc(dataExplore):
+class angleCalc(circumference):
     def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
 
         super().__init__()
         
         dof = 4
         
-        self._centre = point(draw = False)
+        #self._centre = point(draw = False)
 
         
         #self.line = [line0, line1]
-        self.angle = circumference(draw = False)
+        #self.angle = circumference(draw = False)
         
         #self.rotate = False
-        self._color = random.choice(self.colors)
-        self._name = None
+        #self._color = random.choice(self.colors)
+        #self._name = None
         #self.data = None
 
-        self.j = 0
+        #self.j = 0
         
     #may be deprecated
     def calc(self):
