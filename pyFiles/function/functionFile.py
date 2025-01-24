@@ -25,16 +25,10 @@ class function(dataExplore):
 
         if draw: self.onlyDraw()
 
-    #to be modified
     @property
     def y(self):
         return self.data[1]
-        """
-        try:
-            return self.data[1]
-        except:
-            pass
-        """
+        
     @y.setter
     def y(self, array):
         self.data[0] = x#np.arange
