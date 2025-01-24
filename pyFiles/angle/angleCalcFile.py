@@ -6,6 +6,7 @@ from .. import seed
 from ..Settings import settings
 from .. import plt, np, random
 
+from collections import deque
 
 class angleCalc(circumference):
     def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
@@ -14,19 +15,9 @@ class angleCalc(circumference):
         
         dof = 4
         
-        #self._centre = point(draw = False)
-
-        
-        #self.line = [line0, line1]
-        #self.angle = circumference(draw = False)
-        
-        #self.rotate = False
-        #self._color = random.choice(self.colors)
-        #self._name = None
-        #self.data = None
-
-        #self.j = 0
-        
+        self.keys = deque(maxlen = dof)
+        self.values = deque(maxlen = dof)        
+    
     #may be deprecated
     def calc(self):
         self.__del__()

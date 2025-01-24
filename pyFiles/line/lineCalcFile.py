@@ -14,7 +14,6 @@ class lineCalc(dataExplore):
         
         dof = 2
         self.keys = deque(maxlen = dof)
-        #self.sflk = deque(maxlen = dof)
         self.values = deque(maxlen = dof)
 
         self.seed = seed
