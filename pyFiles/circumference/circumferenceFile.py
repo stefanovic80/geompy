@@ -41,7 +41,7 @@ class circumference(method):
         self.addParams('cy', self._centre.coords[1])
 
         self.angles = None
-        self._angle = 2*np.pi
+        self._arc = 2*np.pi
         self._color = random.choice(self.colors)
 
         self._centre._color = self._color 
@@ -58,18 +58,18 @@ class circumference(method):
         self._centre.x = new_x.__get__(self._centre, point)
         """
     @property
-    def angle(self):
-        return self._angle
+    def arc(self):
+        return self._arc
 
-    @angle.setter
-    def angle(self, angle):
+    @arc.setter
+    def arc(self, arc):
         self.__del__()
-        if angle > 0:
-            self._angle = angle
-        elif angle < 0:
-            self._angle = 2*np.pi + angle
+        if arc > 0:
+            self._arc = arc
+        elif arc < 0:
+            self._arc = 2*np.pi + arc
         
-        self.calc_cx_cy_ra( name = None, angle = self._angle )
+        self.calc_cx_cy_ra( name = None, arc = self._arc )
         #self.chooseCalc( angle = self._angle )
         
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self.linewidth, color = self._color)
@@ -192,10 +192,10 @@ class circumference(method):
         return l
 
     
-    def pointsSelect(self, angle = 2*np.pi):
+    def pointsSelect(self, arc = 2*np.pi):
         
         try:
-            condition = self.angles < angle
+            condition = self.angles < arc
             idxs = np.where(self.angles[condition])
             idxs = np.where(self.data[0][condition])
             self.data[0] = self.data[0][idxs]
