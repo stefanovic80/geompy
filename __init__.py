@@ -25,7 +25,7 @@ loci = {\
         'ellipse': (['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2', 'po','po', 'po', 'po', 'po'], 5),\
         'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2', 'po','po', 'po', 'po', 'po'], 5),\
         'triangle':(['an', 'an', 'an', 've', 've', 've', 'si', 'si', 'si'], 3),\
-        'angle': (['am', 'li', 'li', 'po', 'po', 'po', 'si', 'si'] ,3)
+        'angle': (['am', 'cx', 'cy', 'po', 'po'] , 4)
         }
     
 

@@ -8,10 +8,19 @@ from .. import plt, np, random
 from ..keys.angle_listOfKeys import method
 
 class angle(method):
-    def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = False):
+    
+    dof = 4
+
+    #def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = False):
+    def __init__(self, seed = seed, draw = False, dof = dof):
 
         super().__init__()
         
+        self.addParams('cx', self._centre.coords[0] )
+        self.addParams('cy', self._centre.coords[1] )
+        self.addParams('po', point() )
+        self.addParams('po', point() )
+        """
         self.line = [line0, line1]
         self.angle = circumference(draw = False)
         
@@ -21,13 +30,10 @@ class angle(method):
         self.data = None
 
         self.j = 0
-        
+        """
         if draw: self.drawSetts()
+        
 
-
-
-
-    #def chooseCalc(self):
     def draw(self):
         self.__del__()
 
