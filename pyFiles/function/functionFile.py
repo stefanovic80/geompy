@@ -23,46 +23,23 @@ class function(dataExplore):
 
         self._color = random.choice(self.colors)
 
-        #self.j = 0
-        #self.k = 0
-        if draw == True:
-            self.draw()
+        if draw: self.onlyDraw()
 
     #to be modified
     @property
     def y(self):
+        return self.data[1]
+        """
         try:
             return self.data[1]
         except:
             pass
-
+        """
     @y.setter
     def y(self, array):
         self.data[0] = x#np.arange
         self.data[1] = array
         self.onlyDraw()
-    
-
-
-    #to be modified
-    #@property
-    #def x(self):
-    #    try:
-    #        return self.data[0]
-    #    except:
-    #        pass
-
-    #@x.setter
-    #def x(self, array):
-    #    self.data[0] = array
-        #self.data[1] = array
-        #self.draw()
-
-
-
-    def chooseCalc(self, angle = 2*np.pi):
-        self.__del__()
-        
 
     def __str__(self):
 
