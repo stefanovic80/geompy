@@ -10,17 +10,18 @@ from collections import deque
 
 class angleCalc(circumference):
     #def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
-    def __init__(self, draw = False):
+    def __init__(self, draw = True):
 
         super().__init__(draw)
         
         dof = 4
         self.keys = deque(maxlen = dof)
-        self.values = deque(maxlen = dof)        
-        self.addParams('am', np.pi/7) 
+        self.values = deque(maxlen = dof)       
+        arc = np.pi/7
+        self.addParams('am', arc) 
+        self.arc = arc
 
-
-        if draw: self.drawSetts()
+        #if draw: self.drawSetts()
     #may be deprecated
     def calc(self):
         self.__del__()
