@@ -9,15 +9,18 @@ from .. import plt, np, random
 from collections import deque
 
 class angleCalc(circumference):
-    def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
+    #def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
+    def __init__(self, draw = False):
 
-        super().__init__()
+        super().__init__(draw)
         
         dof = 4
-        
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)        
-    
+        self.addParams('am', np.pi/7) 
+
+
+        if draw: self.drawSetts()
     #may be deprecated
     def calc(self):
         self.__del__()
