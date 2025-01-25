@@ -9,9 +9,10 @@ from .. import seed
 from collections import deque
 
 class lineCalc(dataExplore):
+
     def __init__(self):
-        super().__init__()
         
+        super().__init__()
         dof = 2
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)

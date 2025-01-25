@@ -357,7 +357,6 @@ class plotSett():
 
     def onlyDraw(self):
         self.__del__()
-        #self.erase()
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         self.lines = []
         self.lines.append(line)

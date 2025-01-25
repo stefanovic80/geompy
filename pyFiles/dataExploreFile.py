@@ -12,8 +12,7 @@ class dataExplore(plotSett):
     def drawSetts(self):
         key = sorted(self.sflk)
         key = tuple(key) #hashable
-        self.draws[key]()()
-        #self.get_method(key)
+        self.draws[key]()() 
         self.onlyDraw()
 
         params = iter( self.params.items() )
