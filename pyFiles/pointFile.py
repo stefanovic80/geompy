@@ -49,7 +49,12 @@ class point(plotSett):
         self.coords = self.data
         self.data = [ np.array([u]) for u in self.data  ]
         
-        if draw: self.draw()
+        if draw: self.onlyDraw()
+
+    @property
+    def draw(self):
+        self.onlyDraw()
+
 
     @property
     def x(self):
@@ -66,7 +71,7 @@ class point(plotSett):
             self.data[0] = np.array( [ value ] )
             self.coords[0] = value
         self.lims()
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
 
 
@@ -85,7 +90,7 @@ class point(plotSett):
             self.data[1] = np.array( [ value ] )
             self.coords[1] = value
         self.lims()
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
 
 
@@ -128,20 +133,14 @@ class point(plotSett):
     def name(self, n):
         self._name = n
         self.__del__()
-        self.draw()
+        self.onlyDraw()
         self.label(n)
     #-----------------
     
 
-    #coords as a list of two numpy arrays of one element each
-    def calc(self):
-        pass
-
     #it overwrites the .draw method in _plotSett
-    def draw(self): 
-        #if self.rotate == False:
-        self.calc()
-        self.onlyDraw()
+    #def draw(self): 
+    #    self.onlyDraw()
       
     def onlyDraw(self):
 
@@ -184,7 +183,7 @@ class point(plotSett):
         b = plt.ginput()
         self.coords = [ b[0][0], b[0][1] ]
         self.data = [ np.array([ b[0][0] ] ), np.array([ b[0][1] ] ) ]
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
             
         self.lims()
@@ -227,7 +226,7 @@ class point(plotSett):
         
         locus.dataGroup = data
 
-        locus.draw()#, draw = False)
+        locus.onlyDraw()#, draw = False)
 
     def __str__(self):
 
