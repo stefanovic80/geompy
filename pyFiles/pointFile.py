@@ -51,11 +51,7 @@ class point(plotSett):
         
         if draw: self.onlyDraw()
 
-    @property
-    def draw(self):
-        self.onlyDraw()
-
-
+    
     @property
     def x(self):
         return self.data[0]

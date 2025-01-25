@@ -354,6 +354,9 @@ class plotSett():
         self.sflk = [ k[:2] for k in self.params.keys() ]
 
 
+    @property
+    def draw(self):
+        self.onlyDraw()
 
     def onlyDraw(self):
         self.__del__()
