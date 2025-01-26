@@ -76,102 +76,14 @@ class angleCalc(circumference):
         angle = np.arctan( coeffAng_point1 ) - np.arctan( coeffAng_point0  )
         self.arc = angle
         #self.radius = 3 # to be fixed according with plot size
-
-
-    #may be deprecated
-    def calc(self):
-        self.__del__()
-
-
-        m = [None, None]
-        q = [None, None]
-        
-        self.line[0]._color = self._color
-        self.line[0].calc2()
-        
-        self.line[1]._color = self._color
-        self.line[1].erase()
-        self.line[1]._points[0] = self.line[0]._points[0]
-        self.line[1].intercept = np.random.uniform(settings.xmin, settings.xmax)
-        self.line[1].calc4()
-        
-        m[0] = self.line[0].angCoeff
-        q[0] = self.line[0].intercept
-        
-        m[1] = self.line[1].angCoeff
-        q[1] = self.line[1].intercept
-
-
-        x = (q[1] - q[0])/(m[0] - m[1])
-        y = m[0]*x + q[0]
-        self.angle._center = point( x, y, draw = False  )
-        
-        radius = (settings.xmax - settings.xmin)/20
-        self.angle._radius = radius
-        
-        self.angle._color = self._color
-
-        arcSize = np.arctan( m[1] ) - np.arctan( m[0] )
-        self.angle.calc(arc = arcSize)
-        
-        self.angle._center.rotation( locus = self.angle, arc = np.arctan( m[0] ) )
-
-        self.data = self.angle.data
-        
-        self.size = None
-
     
-    
-    def calc2(self):
-        m = [None, None]
-        q = [None, None]
+    @property
+    def radius():
+        self._radius
 
-        m[0] = self.line[0].angCoeff#[0]
-        q[0] = self.line[0].intercept#[0]
-
-        m[1] = self.line[1].angCoeff#[0]
-        q[1] = self.line[1].intercept#[0]
-        
-        #------------- from chatGPT
-        # Get the indices that would sort 'm'
-        sorted_indices = np.argsort(m)
-        
-        # Sort 'm' and 'q' based on the sorted indices
-        m = [m[i] for i in sorted_indices]
-        q = [q[i] for i in sorted_indices]
-        #------------- from chatGPT
-
-
-        x = (q[1] - q[0])/(m[0] - m[1])
-        y = m[0]*x + q[0]
-        
-        self.angle._center = point( x, y, draw = False )
-
-
-
-
-
-
-
-
-
-
-        radius = (settings.xmax - settings.xmin)/20
-        self.angle._radius = radius
-
-        self.angle._color = self._color
-
-        self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
-        self.angle.calc(arc = self.size)
-        #to be modified!
-        
-        formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
-        self.angle._center.rotation( locus = self.angle, arc = formula)
-
-        #to be checked out!
-        self.data = self.angle.data
-
-        self.j+=1
+    @radius.setter
+    def radius(value):
+        self.calc_cx_cy_ra()
 
 
     def erase(self):
