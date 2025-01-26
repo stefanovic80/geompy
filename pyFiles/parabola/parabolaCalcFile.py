@@ -29,7 +29,7 @@ class parabolaCalc(dataExplore):
 
 
     #A-----------------------------------------
-    #a, b and c (to be modified!)
+    #calculate y = ax^2 + bx + c from a, b and c parameters (to be modified!)
     def calc_a_b_c(self, name = None):
 
         self.data = [ self._x ]
@@ -46,7 +46,8 @@ class parabolaCalc(dataExplore):
         self._vertex.data[1] = np.array([yv])
         #------------ vertex coords
 
-    #abpo, point, a (self._a) and b (self._b)
+
+    #calculate y = ax^2 + bx + c from a, b parameters and one point
     def calc_a_b_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -56,7 +57,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
 
-    #acpo
+    #calculate y = ax^2 + bx + c from a and c parameters and one point
     def calc_a_c_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -66,7 +67,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
 
-    #apopo, point0, point1 and a (self._a)
+    #calculate y = ax^2 + bx + c from a parameters and two points
     def calc_a_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -84,14 +85,15 @@ class parabolaCalc(dataExplore):
 
         self.calc_a_b_c()
 
-    #ave, a parameter (self._a, concavity), vertex x coord, vertex y
+
+    #calculate y = ax^2 + bx + c from parameter a, and vertex coordinates (vx, vy)
     def calc_a_vx_vy(self, name = None):
         self.data = [ self._x ]
         self.data = self.data + [self._a*(self._x - self.params['vx'])**2 + self.params['vy'] ]
         
         
     #B----------------------------------------------------------------
-    #bcpo, point, b (self._b) and c (self._c)
+    #calculate y = ax^2 + bx + c from b and c parameters and one point
     def calc_b_c_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -101,7 +103,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()                
 
 
-    #bpopo, point, point and b (self._b)
+    #calculate y = ax^2 + bx + c from b parameter and two points
     def calc_b_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -119,7 +121,8 @@ class parabolaCalc(dataExplore):
 
         self.calc_a_b_c()
 
-    #bve, b param (self._b), vertex x cord, vertex y coord
+
+    #calculate y = ax^2 + bx + c from paramter b and vertex coordinate vx and vy
     def calc_b_vx_vy(self, name = None):
         
         xv, yv = self.vertex.coords[0], self.vertex.coords[1]
@@ -130,7 +133,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
     #C----------------------------------------------------------------
-    #cpopo, c (self._c) param, point, point
+    #calculate y = ax^2 + bx + c from parameter c and two points
     def calc_c_po_po(self, name = None):
         u = self.getPoint()
         point0 = next(u)
@@ -149,8 +152,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c()
 
 
-
-    #cve, vertex, c (self._c)
+    #calculate y = ax^2 + bx + c from parameter c and vertex coordinatex vx and vy
     def calc_c_vx_vy(self, name = None):
         print("c_ve is running!")
         xv, yv = self._vertex.coords[0], self._vertex.coords[1]
@@ -162,7 +164,7 @@ class parabolaCalc(dataExplore):
         
                 
     #P----------------------------------------------------------------
-    #popopo calculate from three points passing through (to be fixed!)
+    #calculate y = ax^2 + bx + c from three points
     def calc_po_po_po(self, name = None):
 
         u = self.getPoint()
@@ -185,8 +187,7 @@ class parabolaCalc(dataExplore):
         self.calc_a_b_c() 
 
 
-    #one point and vertex
-    #pove
+    #calculate y = ax^2 + bx + c from one point and vertex coordinates
     def calc_po_vx_vy(self, name = None):
         print("po_ve is working!")
         u = self.getPoint()
@@ -201,6 +202,5 @@ class parabolaCalc(dataExplore):
 
         self._a = parabParams[0, 0]
         self._c = parabParams[0, 1]
-        self._b = -2*self._a*xv
-
+        self._b = -2*self.a*xv
         self.calc_a_b_c()

@@ -25,19 +25,23 @@ class angleCalc(circumference):
         for k in range(2):
             value = point()#draw = False)
             self.addParams( "point" + str(k), value )
-        
-        #if draw: self.drawSetts()
+
 
     def calc_cx_cy_po_po(self):
         print("cx_cy_po_po .calc method is working!")
-        cx, cy = self._centre.coords[0], self._centre.coords[1]
-        u = getPoint()
+        xc, yc = self._centre.coords[0], self._centre.coords[1]
+        u = self.getPoint()
         point0 = next(u)
         point1 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         x1, y1 = point1.coords[0], point1.coords[1]
         self.calc_cx_cy_po()
-        self.radius = 3 # to be fixed according with plot size
+        #to be fixed
+        coeffAng_point0, coeffAng_point1 = ( y0 - yc ) / ( x0 - xc) ,  ( y1 - yc ) / ( x1 - xc) 
+        angle = np.arctan( coeffAng_point1 ) - np.arctan( coeffAng_point0  )
+        self.arc = angle
+        #self.radius = 3 # to be fixed according with plot size
+
 
     #may be deprecated
     def calc(self):

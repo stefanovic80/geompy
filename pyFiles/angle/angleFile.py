@@ -16,7 +16,7 @@ class angle(method):
 
         super().__init__()
 
-        #if draw: self.drawSetts()
+        if draw: self.drawSetts()
 
     def erase(self):
         self.__del__()
