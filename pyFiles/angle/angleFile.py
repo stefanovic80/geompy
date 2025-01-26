@@ -26,6 +26,7 @@ class angle(method):
     def size(self, value):
         self._size = value
         self.addParams('am', value)
+        self.drawSetts()
 
     def erase(self):
         self.__del__()

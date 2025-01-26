@@ -26,6 +26,10 @@ class angleCalc(circumference):
 
         self.addParams('cx', self._centre.coords[0] )
         self.addParams('cy', self._centre.coords[1] )
+        self.centre.draw
+        self._size = np.random.uniform(0, 2*np.pi)
+        self.addParams('am', self._size)
+        #self.points = point()
         
         """
         x, y = np.random.randint(1, 4), np.random.randint(1, 4) 
