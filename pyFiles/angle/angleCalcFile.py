@@ -15,8 +15,8 @@ class angleCalc(circumference):
         super().__init__(draw = False)
         
         #test 
-        xc = self._centre.coords[0] = self._centre.data[0] = 0
-        yc = self._centre.coords[1] = self._centre.data[1] = 0
+        xc = self._centre.coords[0] = self._centre.data[0] = np.random.uniform(settings.xmin, settings.xmax)
+        yc = self._centre.coords[1] = self._centre.data[1] = np.random.uniform(settings.ymin, settings.ymax)
         
         dof = 4
         self.keys = deque(maxlen = dof)
