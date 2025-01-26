@@ -30,22 +30,8 @@ class angleCalc(circumference):
         self._size = np.random.uniform(0, 2*np.pi)
         self.addParams('am', self._size)
         #self.points = point()
+        #self.addParams('po', point() )
         
-        """
-        x, y = np.random.randint(1, 4), np.random.randint(1, 4) 
-        
-
-        self.point = point(x, y)
-        self.point.name = "P"
-        
-        x0, y0 = self.point.coords[0], self.point.coords[1]
-
-        k = 0 #to be fixed
-        self.addParams( "point" + str(k), self.point )
-        
-        self._size = np.random.uniform(0, 2*np.pi )
-        self.addParams("am", self._size)
-        """
 
     def calc_am_cx_cy_po(self):
         print("work in progress!")
@@ -62,30 +48,12 @@ class angleCalc(circumference):
         m[0] = ( y0 - yc ) / ( x0 - xc)
         rotateAngle = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
         m[1] = np.sign( y0 - yc  )*np.arctan( self._size )
-        
-        """
-        #------------- from chatGPT
-        # Get the indices that would sort 'm'
-        sorted_indices = np.argsort(m)
-
-        # Sort 'm' and 'q' based on the sorted indices
-        m = [m[i] for i in sorted_indices]
-        #q = [q[i] for i in sorted_indices]
-        #------------- from chatGPT
-        """
-
 
         radius = (settings.xmax - settings.xmin)/20
         self._radius = radius
 
-
-
-        #self._size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
         self.calc_cx_cy_ra(arc = self.size)
-        #to be modified!
-
-        #formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
-        self._centre.rotation( locus = self, angle = rotateAngle )# formula)
+        self._centre.rotation( locus = self, angle = rotateAngle )
 
 
 
