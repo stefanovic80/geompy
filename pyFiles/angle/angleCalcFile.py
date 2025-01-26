@@ -56,8 +56,8 @@ class angleCalc(circumference):
         
         
         m[0] = ( y0 - yc ) / ( x0 - xc)
-        rotateAngle = np.arctan(m[0])
-        m[1] =  np.arctan( self._size )
+        rotateAngle = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
+        m[1] = np.sign( y0 - yc  )*np.arctan( self._size )
         
         """
         #------------- from chatGPT
