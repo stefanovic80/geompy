@@ -12,18 +12,24 @@ class angleCalc(circumference):
     #def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = True):
     def __init__(self, draw = True):
 
-        super().__init__(draw)
+        super().__init__(draw = False)
         
         dof = 4
         self.keys = deque(maxlen = dof)
-        self.values = deque(maxlen = dof)       
-        arc = np.pi/7
-        self.addParams('am', arc) 
-        self.arc = arc
-
-        if draw: self.drawSetts()
+        self.values = deque(maxlen = dof)    
+        
+        self.addParams('cx', self._centre.coords[0] )
+        self.addParams('cy', self._centre.coords[1] )
+        
+        
+        for k in range(2):
+            value = point()#draw = False)
+            self.addParams( "point" + str(k), value )
+        
+        #if draw: self.drawSetts()
 
     def calc_cx_cy_po_po(self):
+        print("cx_cy_po_po .calc method is working!")
         cx, cy = self._centre.coords[0], self._centre.coords[1]
         u = getPoint()
         point0 = next(u)

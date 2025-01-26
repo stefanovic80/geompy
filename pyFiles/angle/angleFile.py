@@ -15,13 +15,8 @@ class angle(method):
     def __init__(self, seed = seed, draw = False, dof = dof):
 
         super().__init__()
-        
-        self.addParams('cx', self._centre.coords[0] )
-        self.addParams('cy', self._centre.coords[1] )
-        self.addParams('po', point() )
-        self.addParams('po', point() )
 
-        if draw: self.drawSetts()
+        #if draw: self.drawSetts()
 
     def erase(self):
         self.__del__()
