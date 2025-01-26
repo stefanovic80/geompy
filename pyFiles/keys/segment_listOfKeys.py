@@ -5,6 +5,6 @@ class method(segmentCalc):
     def __init__(self):
         super().__init__()
         self.draws = {
-            ('po', 'po'): WeakMethod(self.noMethod)
+            ('po', 'po'): WeakMethod(self.calc_po_po)
         }
 
