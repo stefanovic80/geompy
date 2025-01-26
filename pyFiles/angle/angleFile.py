@@ -28,6 +28,18 @@ class angle(method):
         self.addParams('am', value)
         self.drawSetts()
 
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        self._radius = value
+        self.calc_cx_cy_ra(arc = self._size)
+        self.drawSetts()
+
+
+
     def erase(self):
         self.__del__()
 

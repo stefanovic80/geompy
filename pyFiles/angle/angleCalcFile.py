@@ -76,15 +76,6 @@ class angleCalc(circumference):
         angle = np.arctan( coeffAng_point1 ) - np.arctan( coeffAng_point0  )
         self.arc = angle
         #self.radius = 3 # to be fixed according with plot size
-    
-    @property
-    def radius():
-        self._radius
-
-    @radius.setter
-    def radius(value):
-        self.calc_cx_cy_ra()
-
 
     def erase(self):
         self.__del__()
