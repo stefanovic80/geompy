@@ -32,7 +32,7 @@ class circumferenceCalc(dataExplore):
 
         self.dof = 3
 
-
+    #get two points 
     def po_po(self):
         u = self.getPoint()
         point0 = next(u)
@@ -45,14 +45,15 @@ class circumferenceCalc(dataExplore):
         r = random.uniform(rmin, 4*rmin)
         return x0, y0, x1, y1, r
 
-
+    #calculate from a, b and c in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_b_c(self, name = None, arc = 2*np.pi):
         self._centre.coords[0], self._centre.coords[1] = self._centre.data[0], self._centre.data[1] = \
                 -self._a/2, -self._b/2
         self._radius = np.sqrt( self._centre.coords[0]**2 + self._centre.coords[1]**2 - self._c  )
         self.calc_cx_cy_ra()
 
-
+    
+    #calculate from a, b and one point in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_b_po(self, name = None, arc = 2*np.pi):
         u = self.getPoint()
         point0 = next(u)
@@ -62,11 +63,13 @@ class circumferenceCalc(dataExplore):
         xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self.calc_cx_cy_ra()
 
+    #calculate from a, b and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_b_ra(self, name = None, arc = 2*np.pi):
         xc, yc = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._c = -self._radius**2 + xc**2 + yc**2
         self.calc_cx_cy_ra()
 
+    #calculate from a, c and one point in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_c_po(self, name = None, arc = 2*np.pi):
         u = self.getPoint()
         point0 = next(u)
@@ -74,6 +77,7 @@ class circumferenceCalc(dataExplore):
         self._b = (-x0**2 - y0**2 - self._a*x0 - self._c)/y0
         self.calc_a_b_c()
 
+    #calculate from a, c and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_c_ra(self, name = None, arc = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = -self._a/2, -self._b/2
         self._b = -2*y0
@@ -81,6 +85,7 @@ class circumferenceCalc(dataExplore):
         self.calc_cx_cy_ra()
 
 
+    #calculate from a, and two points in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_po_po(self, name = None, arc = 2*np.pi):
         print("a_po_po is running\n")
         x0, y0, x1, y1, r = self.po_po()
@@ -97,8 +102,8 @@ class circumferenceCalc(dataExplore):
         self._centre.coords[1] = self._centre.data[1] = -self._b/2
         
         self.calc_cx_cy_ra()
-        #self.calc_a_b_c()
 
+    #calculate from a, point and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_a_po_ra(self, name = None, arc = 2*np.pi):
         xc = self._centre.coords[0] = self._centre.data[0] = -self._a/2
         yc = self._centre.coords[1] = self._centre.data[1] = np.random.uniform(settings.ymin, settings.ymax)
@@ -106,9 +111,11 @@ class circumferenceCalc(dataExplore):
         self._c = -self._radius**2 + xc**2 + yc**2
         self.calc_cx_cy_ra()
 
+    #calculate from b, c and x coordinate of central point in equation x^2 + y^2 + ax + bx + c = 0
     def calc_b_c_cx(self, name = None, arc = 2*np.pi):
         self.noMethod()
 
+    #calculate from b, c and one point in equation x^2 + y^2 + ax + bx + c = 0
     def calc_b_c_po(self, name = None, arc = 2*np.pi):
         u = self.getPoint()
         point0 = next(u)
@@ -118,12 +125,14 @@ class circumferenceCalc(dataExplore):
         self._radius = ( ( xc - x0 )**2 + ( yc - y0 )**2 )**.5
         self.calc_cx_cy_ra()
 
+    #calculate from b, c and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_b_c_ra(self, name = None, arc = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1] = ( self._radius**2 - self._b**2/4 - self._c )**.5, -self._b/2
         self._a = -2*x0
         self.calc_cx_cy_ra()
 
 
+    #calculate from b and two points in equation x^2 + y^2 + ax + bx + c = 0
     def calc_b_po_po(self, name = None, arc = 2*np.pi):
         print("b_po_po is working!")
         x0, y0, x1, y1, r = self.po_po()
@@ -137,10 +146,12 @@ class circumferenceCalc(dataExplore):
         self._radius = ( (xc - x0)**2 + (yc - y0)**2 )**.5
         self.calc_cx_cy_ra()
 
+    #calculate from b, one point and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_b_po_ra(self, name = None, arc = 2*np.pi):
         self.noMethod()
 
 
+    #calculate from c, and two points in equation x^2 + y^2 + ax + bx + c = 0
     def calc_c_po_po(self, name = None, arc = 2*np.pi):
         #to be fixed
         x0, y0, x1, y1, r = self.po_po()
@@ -157,6 +168,7 @@ class circumferenceCalc(dataExplore):
         #self.calc_a_b_c()
         self.calc_cx_cy_ra()
 
+    #calculate from c, one point and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_c_po_ra(self, name = None, arc = 2*np.pi):
         firstKey = iter( self.params.keys() )
         firstKey = next(firstKey)
@@ -192,6 +204,7 @@ class circumferenceCalc(dataExplore):
         self.calc_cx_cy_ra()
 
 
+    #calculate from two points and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_po_po_ra(self, name = None, arc = 2*np.pi):
         x0, y0, x1, y1, r = self.po_po()
 
@@ -215,7 +228,7 @@ class circumferenceCalc(dataExplore):
         print("press one more time 'obj.radius = value' to get the other possible solution\n")
         self.calc_a_b_c()
 
-    #subMethods------------------------------------------------------------
+    #calculate from c, and central point coordintas (cx and cy) in equation x^2 + y^2 + ax + bx + c = 0
     def calc_c_cx_cy(self, name = None, arc = 2*np.pi):
         x0, y0 = self._centre.coords[0], self._centre.coords[1]
         self._a, self._b = -2*x0, -2*y0
@@ -223,6 +236,7 @@ class circumferenceCalc(dataExplore):
         self.calc_cx_cy_ra()
 
 
+    #calculate from central points coordinates (cx and cy) and radius in equation x^2 + y^2 + ax + bx + c = 0
     def calc_cx_cy_ra(self, name = None, arc = 2*np.pi):
 
         data = [None, None]
@@ -269,7 +283,7 @@ class circumferenceCalc(dataExplore):
 
     
 
-    # calculate from centre coordinates and a point passing through
+    # calculate from centre coordinates (cx, cy) and a point passing through
     def calc_cx_cy_po(self, name = None, arc = 2*np.pi):
         print("ce_po is working!")
         u = self.getPoint()

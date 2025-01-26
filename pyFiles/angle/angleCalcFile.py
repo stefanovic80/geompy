@@ -21,7 +21,18 @@ class angleCalc(circumference):
         self.addParams('am', arc) 
         self.arc = arc
 
-        #if draw: self.drawSetts()
+        if draw: self.drawSetts()
+
+    def calc_cx_cy_po_po(self):
+        cx, cy = self._centre.coords[0], self._centre.coords[1]
+        u = getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
+        self.calc_cx_cy_po()
+        self.radius = 3 # to be fixed according with plot size
+
     #may be deprecated
     def calc(self):
         self.__del__()

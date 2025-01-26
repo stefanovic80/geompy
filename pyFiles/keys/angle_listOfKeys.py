@@ -8,6 +8,6 @@ class method(angleCalc):
             ('am', 'cx', 'cy', 'po'): WeakMethod(self.noMethod),
             ('am', 'cx', 'po', 'po'): WeakMethod(self.noMethod),
             ('am', 'cy', 'po', 'po'): WeakMethod(self.noMethod),
-            ('cx', 'cy', 'po', 'po'): WeakMethod(self.noMethod)
+            ('cx', 'cy', 'po', 'po'): WeakMethod(self.calc_cx_cy_po_po)
         }
 
