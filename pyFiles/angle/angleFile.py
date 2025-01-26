@@ -16,7 +16,7 @@ class angle(method):
 
         super().__init__()
 
-        if draw: self.drawSetts()
+        #if draw: self.drawSetts()
 
     @property
     def size(self):
@@ -25,6 +25,7 @@ class angle(method):
     @size.setter
     def size(self, value):
         self._size = value
+        self.addParams('am', value)
 
     def erase(self):
         self.__del__()

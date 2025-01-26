@@ -22,10 +22,15 @@ class angleCalc(circumference):
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)    
         
+        self.endpoints = [None, None]
+
         self.addParams('cx', self._centre.coords[0] )
         self.addParams('cy', self._centre.coords[1] )
         
+        """
         x, y = np.random.randint(1, 4), np.random.randint(1, 4) 
+        
+
         self.point = point(x, y)
         self.point.name = "P"
         
@@ -36,7 +41,7 @@ class angleCalc(circumference):
         
         self._size = np.random.uniform(0, 2*np.pi )
         self.addParams("am", self._size)
-
+        """
 
     def calc_am_cx_cy_po(self):
         print("work in progress!")
