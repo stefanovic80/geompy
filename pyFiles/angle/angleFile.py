@@ -18,6 +18,14 @@ class angle(method):
 
         if draw: self.drawSetts()
 
+    @property
+    def amplitude(self):
+        return self._amplitude
+
+    @amplitude.setter
+    def amplitude(self, value):
+        self._amplitude = value
+
     def erase(self):
         self.__del__()
 
