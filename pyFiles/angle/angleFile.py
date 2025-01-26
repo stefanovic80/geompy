@@ -12,19 +12,19 @@ class angle(method):
     dof = 4
 
     #def __init__(self, line0 = line(draw = False) , line1 = line(draw = False), seed = seed, draw = False):
-    def __init__(self, seed = seed, draw = False, dof = dof):
+    def __init__(self, seed = seed, draw = True, dof = dof):
 
         super().__init__()
 
         if draw: self.drawSetts()
 
     @property
-    def amplitude(self):
-        return self._amplitude
+    def size(self):
+        return self._size
 
-    @amplitude.setter
-    def amplitude(self, value):
-        self._amplitude = value
+    @size.setter
+    def size(self, value):
+        self._size = value
 
     def erase(self):
         self.__del__()

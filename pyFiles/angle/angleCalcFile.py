@@ -14,8 +14,10 @@ class angleCalc(circumference):
 
         super().__init__(draw = False)
         
-        self._amplitude = np.pi/4
-
+        #test 
+        xc = self._centre.coords[0] = self._centre.data[0] = 0
+        yc = self._centre.coords[1] = self._centre.data[1] = 0
+        
         dof = 4
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)    
@@ -23,14 +25,17 @@ class angleCalc(circumference):
         self.addParams('cx', self._centre.coords[0] )
         self.addParams('cy', self._centre.coords[1] )
         
+        x, y = np.random.randint(1, 4), np.random.randint(1, 4) 
+        self.point = point(x, y)
+        self.point.name = "P"
         
-        #for k in range(1):
-        #    value = point()#draw = False)
+        x0, y0 = self.point.coords[0], self.point.coords[1]
+
         k = 0 #to be fixed
-        value = point()
-        self.addParams( "point" + str(k), value )
+        self.addParams( "point" + str(k), self.point )
         
-        self.addParams("am", self._amplitude)
+        self._size = np.random.uniform(0, 2*np.pi )
+        self.addParams("am", self._size)
 
 
     def calc_am_cx_cy_po(self):
@@ -39,22 +44,17 @@ class angleCalc(circumference):
         xc, yc = self._centre.coords[0], self._centre.coords[1]
 
         m = [None, None]
-        q = [None, None]
-
-
 
         u = self.getPoint()
         point0 = next(u)
         x0, y0 = point0.coords[0], point0.coords[1]
         
-
-        m[0] = ( y0 - yc ) / ( x0 - xc) 
-        m[1] =  np.arctan(m[0]) + self._amplitude
-
-        #q[0] = self.line[0].intercept#[0]
-
-        #q[1] = self.line[1].intercept#[0]
-
+        
+        m[0] = ( y0 - yc ) / ( x0 - xc)
+        rotateAngle = np.arctan(m[0])
+        m[1] =  np.arctan( self._size )
+        
+        """
         #------------- from chatGPT
         # Get the indices that would sort 'm'
         sorted_indices = np.argsort(m)
@@ -63,28 +63,21 @@ class angleCalc(circumference):
         m = [m[i] for i in sorted_indices]
         #q = [q[i] for i in sorted_indices]
         #------------- from chatGPT
+        """
 
-
-        #x = (q[1] - q[0])/(m[0] - m[1])
-        #issue
-        #y = m[0]*x + q[0]
-
-        #self.angle._center = point( x, y, draw = False )
 
         radius = (settings.xmax - settings.xmin)/20
         self._radius = radius
 
-        self._color = self._color
 
-        self.size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
-        #self.angle.calc(arc = self.size)
+
+        #self._size = abs( self.j%2*np.pi - np.arctan( m[1] ) + np.arctan( m[0] )  )
+        self.calc_cx_cy_ra(arc = self.size)
         #to be modified!
 
-        formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
-        #self._centre.rotation( locus = self.angle, arc = formula)
+        #formula = (self.j + 1)%2*np.arctan(m[0]) + self.j%2*np.arctan(m[1]) +int(self.j/2)*np.pi
+        self._centre.rotation( locus = self, angle = rotateAngle )# formula)
 
-        #to be checked out!
-        #self.data = self.angle.data
 
 
 
@@ -172,6 +165,15 @@ class angleCalc(circumference):
         y = m[0]*x + q[0]
         
         self.angle._center = point( x, y, draw = False )
+
+
+
+
+
+
+
+
+
 
         radius = (settings.xmax - settings.xmin)/20
         self.angle._radius = radius
