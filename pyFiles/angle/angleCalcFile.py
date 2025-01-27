@@ -76,7 +76,7 @@ class angleCalc(circumference):
         m[0] = ( y0 - yc ) / ( x0 - xc)
         rotateAngle0 = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
         m[1] = ( y1 - yc ) / ( x1 - xc)
-        rotateAngle1 = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0)
+        rotateAngle1 = np.arctan(m[1]) + np.pi*np.heaviside(xc - x1, 0)
 
         rotateAngle = sorted([rotateAngle0, rotateAngle1])
 
@@ -84,7 +84,7 @@ class angleCalc(circumference):
         self._radius = radius
         
         self.size = rotateAngle[1] - rotateAngle[0]
-
+        print( str(rotateAngle[0]) + "\n" + str(rotateAngle[1])+ "\n")
         self.calc_cx_cy_ra(arc = self.size)
         self._centre.rotation( locus = self, angle = rotateAngle[0] )
 
