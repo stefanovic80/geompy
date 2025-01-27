@@ -16,7 +16,31 @@ class angle(method):
 
         super().__init__()
 
-        #if draw: self.drawSetts()
+        if draw: self.drawSetts()
+
+    #overwritten dataExplore method
+    #-----------------------------------------
+    @property
+    def points(self):
+        j = 0
+        listOfPoints = []
+
+        for u in zip(self.data[0], self.data[1]):
+            listOfPoints = listOfPoints + [ point(u[0], u[1], draw = False) ]
+            j+=1
+
+        return listOfPoints
+
+
+    @points.setter
+    def points(self, value):
+
+        k = self.p%2#self.dof
+
+        self.addParams( "point" + str(k), value )
+        #self.drawSetts()
+        self.p += 1
+    #-----------------------------------------
 
     @property
     def size(self):
@@ -36,7 +60,8 @@ class angle(method):
     def radius(self, value):
         self._radius = value
         self.calc_cx_cy_ra(arc = self._size)
-        self.drawSetts()
+        #self._centre.rotation( locus = self, angle = rotateAngle )
+        #self.drawSetts()
 
 
 

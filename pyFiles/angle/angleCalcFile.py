@@ -29,13 +29,11 @@ class angleCalc(circumference):
         self.centre.draw
         self._size = np.random.uniform(0, 2*np.pi)
         self.addParams('am', self._size)
-        #self.points = point()
-        #self.addParams('po', point() )
+        self._point = point()
+        self.points = self._point
         
 
     def calc_am_cx_cy_po(self):
-        print("work in progress!")
-
         xc, yc = self._centre.coords[0], self._centre.coords[1]
 
         m = [None, None]
@@ -64,6 +62,35 @@ class angleCalc(circumference):
 
     def calc_cx_cy_po_po(self):
         print("cx_cy_po_po .calc method is working!")
+
+        xc, yc = self._centre.coords[0], self._centre.coords[1]
+
+        m = [None, None]
+
+        u = self.getPoint()
+        point0 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        point1 = next(u)
+        x1, y1 = point1.coords[0], point1.coords[1]
+        
+        m[0] = ( y0 - yc ) / ( x0 - xc)
+        rotateAngle0 = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
+        m[1] = ( y1 - yc ) / ( x1 - xc)
+        rotateAngle1 = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0)
+
+        rotateAngle = sorted([rotateAngle0, rotateAngle1])
+
+        radius = (settings.xmax - settings.xmin)/20
+        self._radius = radius
+        
+        self.size = rotateAngle[1] - rotateAngle[0]
+
+        self.calc_cx_cy_ra(arc = self.size)
+        self._centre.rotation( locus = self, angle = rotateAngle[0] )
+
+
+
+        """
         xc, yc = self._centre.coords[0], self._centre.coords[1]
         u = self.getPoint()
         point0 = next(u)
@@ -76,7 +103,7 @@ class angleCalc(circumference):
         angle = np.arctan( coeffAng_point1 ) - np.arctan( coeffAng_point0  )
         self.arc = angle
         #self.radius = 3 # to be fixed according with plot size
-
+        """
     def erase(self):
         self.__del__()
 
