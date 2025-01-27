@@ -14,10 +14,12 @@ from ..keys import segment_listOfKeys
 
 class segmentCalc(dataExplore):
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
+        #def __init__(self):
 
         super().__init__()
          
         _color = random.choice(self.colors)
+        
         if point0 is None:
             point0 = point()
             point0.color = _color
@@ -25,21 +27,38 @@ class segmentCalc(dataExplore):
         if point1 is None:
             point1 = point()
             point1.color = _color
-
+        
         self.seed = seed
         self._color = random.choice(self.colors)
+        self._point = [point0, point1]
         
+        self.addParams('point0', self._point[0])
+        self.addParams('point1', self._point[1])
         
-        self.endpoint = [point0, point1]
+        x0, y0 = self._point[0].coords[0], self._point[1].coords[0]
+        x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
 
-        self.addParams('point0', self.endpoint[0])
-        self.addParams('point1', self.endpoint[1])
+        self._length = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1 )**2  )
+        #to prevent x0 = x1 
+        
+        self.addParams('length', self._length)
 
-    #po_po
+        m = ( y0 - y1  ) / ( x0 - x1  )
+        #to be checked out
+        self._angle = np.arctan( m ) + np.pi*np.heaviside(x0 - x1, 0)
+
+    #twp points
     def calc_po_po(self):
-        self.data[0] = np.array([self.endpoint[0].x[0], self.endpoint[1].x[0] ])
-        self.data[1] = np.array([self.endpoint[0].y[0], self.endpoint[1].y[0] ])
+        self.data[0] = np.array([self._point[0].x[0], self._point[1].x[0] ])
+        self.data[1] = np.array([self._point[0].y[0], self._point[1].y[0] ])
     
+    #angle, length and one point
+    def calc_an_le_po(self):
+        u = self.getPoint()
+        self._point[0] = next(u)
+        x, y = self._length*np.cos(self._angle), self._length*np.sin(self._angle)
+        self._point[1] = point(x, y)
+
     
     @property
     def dataGroup(self):

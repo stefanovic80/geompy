@@ -72,6 +72,9 @@ pyFiles/line/.lineCalcFile.py.swp
 pyFiles/angle/.angleCalcFile.py.swp
 pyModules2gen/.angleFile.py.swn
 
+pyFiles/segment/.segmentFile.py.swp
+
+
 pyFiles/segment/.segmentCalcFile.py.swp
 
 pyFiles/function/.functionFile.py.swp

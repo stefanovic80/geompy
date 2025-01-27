@@ -13,8 +13,6 @@ from ..keys.segment_listOfKeys import method
 
 
 class segment(method):
-    
-    dof = 2
 
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
 
@@ -23,6 +21,24 @@ class segment(method):
         if draw: self.drawSetts()
     
     
+    @property
+    def length(self):
+        return self._length
+
+    @length.setter
+    def length(self, value):
+        self.addParams('length', abs(value) )
+        self.drawSetts()
+
+    @property
+    def angle(self):
+        return self._angle
+
+    @angle.setter
+    def angle(self, value):
+        self.addParams('angle', value)
+        self.drawSetts()
+
 
     @property
     def dataGroup(self):
