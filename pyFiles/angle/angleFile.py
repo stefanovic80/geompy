@@ -38,7 +38,8 @@ class angle(method):
         k = self.p%2#self.dof
 
         self.addParams( "point" + str(k), value )
-        #self.drawSetts()
+        if self.p > 0:
+            self.drawSetts()
         self.p += 1
     #-----------------------------------------
 
