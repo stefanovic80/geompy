@@ -54,7 +54,8 @@ class angleCalc(circumference):
         self._centre.rotation( locus = self, angle = rotateAngle )
 
     def calc_am_cx_po_po(self):
-        self._calc_cx_po_po(arc = np.pi/2 )
+        self.calc_cx_po_po()#arc = np.pi/2 )
+        self.calc_cx_cy_po_po()
         print("Work in progress!")
 
     def calc_am_cy_po_po(self):
