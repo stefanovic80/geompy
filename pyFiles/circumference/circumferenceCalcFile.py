@@ -179,6 +179,39 @@ class circumferenceCalc(dataExplore):
         elif 'po' == firstKey[:2]:
             pass
 
+    #calculate from y coordinate of central point and two points (po_po)
+    def calc_cy_po_po(self, name = None, arc = 2*np.pi):
+        u = self.getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
+        self._b = -2*self._centre.coords[1]
+        
+        A = np.matrix( [ [ x0, 1  ], [ x1, 1  ]  ] )
+        Ainv = np.linalg.inv(A)
+        y = np.array( [ -x0**2 - y0**2 - self._b*y0, -x1**2 - y1**2 - self._b*y1  ] )
+        parabParams = np.dot(Ainv, y)
+        self._a = parabParams[0, 0]
+        self._c = parabParams[0, 1]
+        self.calc_a_b_c()
+        
+    #calculate from y coordinate of central point and two points (po_po)
+    def calc_cx_po_po(self, name = None, arc = 2*np.pi):
+        u = self.getPoint()
+        point0 = next(u)
+        point1 = next(u)
+        x0, y0 = point0.coords[0], point0.coords[1]
+        x1, y1 = point1.coords[0], point1.coords[1]
+        self._a = -2*self._centre.coords[0]
+
+        A = np.matrix( [ [ y0, 1  ], [ y1, 1  ]  ] )
+        Ainv = np.linalg.inv(A)
+        y = np.array( [ -x0**2 - y0**2 - self._a*x0, -x1**2 - y1**2 - self._a*x1 ] )
+        parabParams = np.dot(Ainv, y)
+        self._b = parabParams[0, 0]
+        self._c = parabParams[0, 1]
+        self.calc_a_b_c()
 
     # calculate from three points the circumference passing through (to be fixed!)
     def calc_po_po_po(self, name = None, arc = 2*np.pi):
