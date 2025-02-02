@@ -51,7 +51,8 @@ class angleCalc(circumference):
         self._radius = radius
 
         self.calc_cx_cy_ra(arc = self._size)
-        self._centre.rotation( locus = self, angle = rotateAngle )
+        self.rotate = self, rotateAngle
+        #self._centre.rotation( locus = self, angle = rotateAngle )
 
     def calc_am_cx_po_po(self):
         self.calc_cx_po_po()#arc = np.pi/2 )
@@ -89,7 +90,8 @@ class angleCalc(circumference):
         self._size = rotateAngle[1] - rotateAngle[0]
         print( str(rotateAngle[0]) + "\n" + str(rotateAngle[1])+ "\n")
         self.calc_cx_cy_ra(arc = self._size)
-        self._centre.rotation( locus = self, angle = rotateAngle[0] )
+        self.rotate = self, rotateAngle[0]
+        #self._centre.rotation( locus = self, angle = rotateAngle[0] )
 
 
 

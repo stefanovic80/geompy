@@ -61,10 +61,7 @@ class angle(method):
     def radius(self, value):
         self._radius = value
         self.calc_cx_cy_ra(arc = self._size)
-        #self._centre.rotation( locus = self, angle = rotateAngle )
-        #self.drawSetts()
-
-
+        
 
     def erase(self):
         self.__del__()

@@ -70,6 +70,10 @@ class plotSett():
         self.k = 0        
         self.lines = []
 
+
+        self._angle = 0
+        self._rotationPoint = None
+
         self.sflk = None#deque(maxlen = self.dof) #Sorted First Letter Key
 	        
         #to be implemented as .X.cut doesn't work on function

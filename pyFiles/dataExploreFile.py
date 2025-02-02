@@ -80,9 +80,24 @@ class dataExplore(plotSett):
             init = u
             print(str(j) + space + str(u) + space + str(v) + ' ' + str(z) )
             j+=1
-
-
-
+    
+    @property
+    def rotate(self):
+        return self._angle
+        
+    @rotate.setter
+    def rotate(self, value):
+        self.__del__()
+        point = value[0]
+        angle = value[1]
+        self._angle = angle
+        self._rotationPoint = point
+        A = np.matrix( [ [ np.cos(angle) , -np.sin(angle) ], [ np.sin(angle) , np.cos(angle) ] ] )
+        data0 = self.data[0]
+        self.data[0] = A[0, 0]*self.data[0] + A[0, 1]*self.data[1]
+        self.data[1] = A[1, 0]*data0 + A[1, 1]*self.data[1]
+        self.onlyDraw()
+        
     @property
     def x(self):
         return self.data[0]
