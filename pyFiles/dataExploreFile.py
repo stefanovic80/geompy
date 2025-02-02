@@ -94,8 +94,10 @@ class dataExplore(plotSett):
         self._rotationPoint = point
         A = np.matrix( [ [ np.cos(angle) , -np.sin(angle) ], [ np.sin(angle) , np.cos(angle) ] ] )
         data0 = self.data[0]
-        self.data[0] = A[0, 0]*(self.data[0] - self._centre.data[0] ) + A[0, 1]*( self.data[1] - self._centre.data[1] ) + self._centre.data[0]
-        self.data[1] = A[1, 0]*(data0 - self._centre.data[0]) + A[1, 1]*( self.data[1] - self._centre.data[1] ) + self._centre.data[1]
+        #self.data[0] = A[0, 0]*(self.data[0] - self._centre.data[0] ) + A[0, 1]*( self.data[1] - self._centre.data[1] ) + self._centre.data[0]
+        #self.data[1] = A[1, 0]*(data0 - self._centre.data[0]) + A[1, 1]*( self.data[1] - self._centre.data[1] ) + self._centre.data[1]
+        self.data[0] = A[0, 0]*(self.data[0] - point.data[0] ) + A[0, 1]*( self.data[1] - point.data[1] ) + point.data[0]
+        self.data[1] = A[1, 0]*(data0 - point.data[0]) + A[1, 1]*( self.data[1] - point.data[1] ) + point.data[1]
         self.onlyDraw()
         
     @property
