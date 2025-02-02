@@ -50,9 +50,14 @@ class segmentCalc(dataExplore):
     #twp points
     def calc_po_po(self):
         #sorted( self._point[0].x[0], self._point[1].x[0] )
-        self.data[0] = np.array([self._point[0].x[0], self._point[1].x[0] ])
+        self.data[0] =  np.array([self._point[0].x[0], self._point[1].x[0] ])
         self.data[1] = np.array([self._point[0].y[0], self._point[1].y[0] ])
-    
+        
+        #to be fixed
+        idxs = np.argsort(self.data[0] )
+        self.data[0] = self.data[0][idxs]
+        self.data[1] = self.data[1][idxs]
+
     #angle, length and one point
     def calc_an_le_po(self):
         print("an_le_po is working")
