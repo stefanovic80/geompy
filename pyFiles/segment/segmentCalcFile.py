@@ -52,9 +52,13 @@ class segmentCalc(dataExplore):
         #sorted( self._point[0].x[0], self._point[1].x[0] )
         self.data[0] =  np.array([self._point[0].x[0], self._point[1].x[0] ])
         self.data[1] = np.array([self._point[0].y[0], self._point[1].y[0] ])
-        
+
+
+
+
         #to be fixed
-        idxs = np.argsort(self.data[0] )
+        idxs = np.argsort( self.data[0] )
+        self._point = [self._point[i] for i in idxs]
         self.data[0] = self.data[0][idxs]
         self.data[1] = self.data[1][idxs]
 
