@@ -50,8 +50,11 @@ class segmentCalc(dataExplore):
     #twp points
     def calc_po_po(self):
         #sorted( self._point[0].x[0], self._point[1].x[0] )
-        self.data[0] =  np.array([self._point[0].x[0], self._point[1].x[0] ])
-        self.data[1] = np.array([self._point[0].y[0], self._point[1].y[0] ])
+        u = self.getPoint()
+        self._point[0] = next(u)
+        self._point[1] = next(u)
+        self.data[0] =  np.array([self._point[0].coords[0], self._point[1].coords[0] ])
+        self.data[1] = np.array([self._point[0].coords[1], self._point[1].coords[1] ])
 
 
 
@@ -71,7 +74,21 @@ class segmentCalc(dataExplore):
         self._point[1] = point(x, y)
         self.calc_po_po()
 
-    
+    def calc_an_po_po(self):
+        #if 'an' == self.sflk[0]:
+        self.calc_po_po()
+        #else:
+        #    print("work in progress")
+
+    def calc_le_po_po(self):
+        #if "le" == self.sflk[0]:
+        self.calc_po_po()
+        #else:
+        #    print("work in progress!")
+
+    def calc_po_po_po(self):
+        self.calc_po_po()
+
     @property
     def dataGroup(self):
         return self.data + self.labCoords
@@ -82,7 +99,7 @@ class segmentCalc(dataExplore):
         #self.labCoords = value[2:4]
         #to be implemented!
 
-
+    
 
     def erase(self):
         self.__del__()
