@@ -67,9 +67,11 @@ class segmentCalc(dataExplore):
 
     #angle, length and one point
     def calc_an_le_po(self):
-        print("an_le_po is working")
-        u = self.getPoint()
-        self._point[0] = next(u)
+        #print("an_le_po is working")
+        #u = self.getPoint()
+        #self._point[0] = next(u)
+
+        #to be fixed!
         x, y = self._length*np.cos(self._angle), self._length*np.sin(self._angle)
         self._point[1] = point(x, y)
         self.calc_po_po()
