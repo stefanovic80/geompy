@@ -15,7 +15,8 @@ from collections import deque
 
 class segmentCalc(dataExplore):
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
-        #def __init__(self):
+        
+        self._length = 0
 
         super().__init__()
         
@@ -43,17 +44,8 @@ class segmentCalc(dataExplore):
         x0, y0 = self._point[0].coords[0], self._point[1].coords[0]
         x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
 
-        #self._length = np.sqrt( ( x0 - x1  )**2 + ( y0 - y1 )**2  )
-        
-        #self.addParams('length', self._length)
-
-        #m = ( y0 - y1  ) / ( x0 - x1  )
-        #to be checked out
-        #self._angle = np.arctan( m ) + np.pi*np.heaviside(x0 - x1, 0)
-
     #twp points
     def calc_po_po(self):
-        #sorted( self._point[0].x[0], self._point[1].x[0] )
         u = self.getPoint()
         self._point[0] = next(u)
         self._point[1] = next(u)
@@ -63,40 +55,45 @@ class segmentCalc(dataExplore):
         #to be fixed
         idxs = np.argsort( self.data[0] )
         self._point = [self._point[i] for i in idxs]
+
+        self._length = np.sqrt( ( self._point[0].coords[0] - self._point[1].coords[0]  )**2 + ( self._point[0].coords[1] - self._point[1].coords[1] )**2  )
+
         self.data[0] = self.data[0][idxs]
         self.data[1] = self.data[1][idxs]
 
     #angle, length and one point
     def calc_an_le(self):
-        print("an_le_po is working")
-        #u = self.getPoint()
-        #self._point[0] = next(u)
-
-        #to be fixed!
-        x, y = self._length*np.cos(self._angle), self._length*np.sin(self._angle)
+        x, y = self._point[0].coords[0] + self._length*np.cos(self._angle), self._point[0].coords[1] + self._length*np.sin(self._angle)
         self._point[1] = point(x, y)
         self.calc_po_po()
 
     def calc_an_po(self):
         x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
-        dist = np.sqrt( (x0 - self._point[1].coords[0] )**2 + ( y0 - self._point[1].coords[1] )**2 )
-        
-        """
-        self._point[1].coords[0] =  x0 + dist*np.cos(self._angle)
-        self._point[1].data[0] = np.array( self._point[1].coords[0] )
-        self._point[1].coords[1] =  y0 + dist*np.sin(self._angle)
-        self._point[1].data[1] = np.array( self._point[1].coords[1] )
-        """
+        self._length = np.sqrt( (x0 - self._point[1].coords[0] )**2 + ( y0 - self._point[1].coords[1] )**2 )
 
-        self._point[1].x = x0 + dist*np.cos(self._angle)
-        self._point[1].y = x0 + dist*np.sin(self._angle)
+        self._point[1].x = x0 + self._length*np.cos(self._angle)
+        self._point[1].y = x0 + self._length*np.sin(self._angle)
 
         self.data[0] = np.array([self._point[0].coords[0], self._point[1].coords[0] ])
         self.data[1] = np.array([self._point[0].coords[1], self._point[1].coords[1] ])
 
 
+
+
+    
     def calc_le_po(self):
-        print("work in progress!")
+        x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
+        x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
+        previousLength = np.sqrt( ( x0 - x1 )**2 + ( y0 - y1 )**2 )
+
+        cosine = (x1 - x0)/previousLength
+        sine = (y1 - y0)/previousLength
+        self._point[1].x = self._point[0].coords[0] + cosine*self._length
+        self._point[1].y = self._point[0].coords[1] + sine*self._length
+
+        self.data[0] = np.array([self._point[0].coords[0], self._point[1].coords[0] ])
+        self.data[1] = np.array([self._point[0].coords[1], self._point[1].coords[1] ])
+        
 
     @property
     def dataGroup(self):
