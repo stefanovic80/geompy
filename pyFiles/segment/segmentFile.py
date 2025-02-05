@@ -27,6 +27,7 @@ class segment(method):
 
     @length.setter
     def length(self, value):
+        self.__del__()
         self._length = value
         self.addParams('length', abs(value) )
         self.drawSetts()

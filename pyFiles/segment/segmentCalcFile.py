@@ -42,16 +42,19 @@ class segmentCalc(dataExplore):
     #to be decorated
     #--------------------------
     def calc_length(self):
-        x0, y0 = self._point[0].coords[0], self._point[1].coords[0]
+        x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
         x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
         
         self._length = np.sqrt( ( x0 - x1 )**2 + ( y0 - y1 )**2 )
     
     def calc_angle(self):
-        x0, y0 = self._point[0].coords[0], self._point[1].coords[0]
+        x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
         x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
 
         self._angle = np.arctan( ( y0 - y1) / ( x0 - x1) )
+
+    def calc_po(self):
+        pass
     #---------------------------
 
     #twp points
@@ -78,7 +81,12 @@ class segmentCalc(dataExplore):
     def calc_an_le(self):
         x, y = self._point[0].coords[0] + self._length*np.cos(self._angle), self._point[0].coords[1] + self._length*np.sin(self._angle)
         self._point[1] = point(x, y)
-        self.calc_po_po()
+        #self.calc_po_po()
+
+        #point with lower x value may have to be set as first one: to be checked out
+        self.data[0] =  np.array([self._point[0].coords[0], self._point[1].coords[0] ])
+        self.data[1] = np.array([self._point[0].coords[1], self._point[1].coords[1] ])
+
 
     def calc_an_po(self):
         x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
