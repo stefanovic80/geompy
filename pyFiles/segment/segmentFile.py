@@ -42,7 +42,9 @@ class segment(method):
         self.addParams('angle', value)
         self.drawSetts()
 
-
+    
+    #to be deprecated
+    #-------------------------------------
     @property
     def dataGroup(self):
         return self.data + self.labCoords
@@ -52,7 +54,7 @@ class segment(method):
         self.data = value[0:2]
         #self.labCoords = value[2:4]
         #to be implemented!
-
+    #-------------------------------------
 
 
     def erase(self):
