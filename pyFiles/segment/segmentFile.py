@@ -36,6 +36,7 @@ class segment(method):
 
     @angle.setter
     def angle(self, value):
+        self._angle = value
         self.addParams('angle', value)
         self.drawSetts()
 
