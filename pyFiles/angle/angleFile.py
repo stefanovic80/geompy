@@ -60,7 +60,8 @@ class angle(method):
     @radius.setter
     def radius(self, value):
         self._radius = value
-        self.calc_cx_cy_ra(arc = self._size)
+        #self.calc_cx_cy_ra(arc = self._size)
+        self.drawSetts()
         
 
     def erase(self):

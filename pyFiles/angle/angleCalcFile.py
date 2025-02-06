@@ -21,8 +21,8 @@ class angleCalc(circumference):
         dof = 4
         self.keys = deque(maxlen = dof)
         self.values = deque(maxlen = dof)    
-        
-        self.endpoints = [None, None]
+
+        self._radius = (settings.xmax - settings.xmin)/20
 
         self.addParams('cx', self._centre.coords[0] )
         self.addParams('cy', self._centre.coords[1] )
@@ -47,12 +47,8 @@ class angleCalc(circumference):
         rotateAngle = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
         m[1] = np.sign( y0 - yc  )*np.arctan( self._size )
 
-        radius = (settings.xmax - settings.xmin)/20
-        self._radius = radius
-
         self.calc_cx_cy_ra(arc = self._size)
         self.rotate = self._centre, rotateAngle
-        #self._centre.rotation( locus = self, angle = rotateAngle )
 
     def calc_am_cx_po_po(self):
         self.calc_cx_po_po()#arc = np.pi/2 )
@@ -85,16 +81,11 @@ class angleCalc(circumference):
         rotateAngle1 = np.arctan(m[1]) + np.pi*np.heaviside(xc - x1, 0)
 
         rotateAngle = sorted([rotateAngle0, rotateAngle1])
-
-        radius = (settings.xmax - settings.xmin)/20
-        self._radius = radius
         
         self._size = rotateAngle[1] - rotateAngle[0]
         self.calc_cx_cy_ra(arc = self._size)
         
         self.rotate = self.centre, rotateAngle[0]
-        
-        #self._centre.rotation( locus = self, angle = rotateAngle[0] )
 
 
     def erase(self):
