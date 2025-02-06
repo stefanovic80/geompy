@@ -65,7 +65,9 @@ class angleCalc(circumference):
 
 
     def calc_cx_cy_po_po(self):
-        print("cx_cy_po_po .calc method is working!")
+        """
+            it draws angle centered in "cx" and "cy" with two points ('po' and 'po') as bord
+        """
 
         xc, yc = self._centre.coords[0], self._centre.coords[1]
 
@@ -88,7 +90,6 @@ class angleCalc(circumference):
         self._radius = radius
         
         self._size = rotateAngle[1] - rotateAngle[0]
-        print( str(rotateAngle[0]) + "\n" + str(rotateAngle[1])+ "\n")
         self.calc_cx_cy_ra(arc = self._size)
         
         self.rotate = self.centre, rotateAngle[0]
