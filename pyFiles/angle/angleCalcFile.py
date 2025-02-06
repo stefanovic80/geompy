@@ -90,7 +90,9 @@ class angleCalc(circumference):
         self._size = rotateAngle[1] - rotateAngle[0]
         print( str(rotateAngle[0]) + "\n" + str(rotateAngle[1])+ "\n")
         self.calc_cx_cy_ra(arc = self._size)
-        self.rotate = self, rotateAngle[0]
+        
+        self.rotate = self.centre, rotateAngle[0]
+        
         #self._centre.rotation( locus = self, angle = rotateAngle[0] )
 
 
