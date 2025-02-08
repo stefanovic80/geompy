@@ -1,5 +1,6 @@
 from ..line.lineFile import line
 from ..pointFile import point
+from ..segment.segmentFile import segment
 from .._plotSettFile import plotSett
 from ..dataExploreFile import dataExplore
 from ..circumference.circumferenceFile import circumference
@@ -38,34 +39,10 @@ class triangleCalc(dataExplore):
 
         for v in self.vertices:
             v.color = self._colorV
-
-        if draw == True:
-            self.calc1()
-            self.onlyDraw()
-
-
-    def __del__(self):
-        super().__del__()
-        try:
-            for tex in self.tex:
-                tex.remove()
-        except:
-            pass
     
-    
-    def chooseCalc(self):
-        self.__del__()
-        calculation_functions = [self.calc1]
 
-        for calc_function in calculation_functions:
-            if self.rotate == False:
-                try:
-                    self.lims()
-                    calc_function()
-                    break
-                except:
-                    pass
-
+    def calc_ve_ve_ve(self):
+        pass
 
     def calc1(self):
         for l in range(2):

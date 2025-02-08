@@ -47,12 +47,22 @@ class dataExplore(plotSett):
         self.drawSetts()
         self.p += 1
 
+    #-------------------------to be decorated
     def getPoint(self):
         prefix = 'point'
         filtered_dict = {key: val for key, val in self.params.items() if key.startswith(prefix)}
         
         for key, val in filtered_dict.items():
             yield val
+
+        
+    def getVertex(self):
+        prefix = 'vertex'
+        filtered_dict = {key: val for key, val in self.params.items() if key.startswith(prefix)}
+
+        for key, val in filtered_dict.items():
+            yield val
+    #-------------------------to be decorated
 
 
     @property
