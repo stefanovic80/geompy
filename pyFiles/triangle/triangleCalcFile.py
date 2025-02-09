@@ -11,19 +11,16 @@ class triangleCalc(dataExplore):
 
         super().__init__()
         #to be fixed
-        self.addParams('vertex0', point() )
-        self.addParams('vertex1', point() )
-        self.addParams('vertex2', point() )
+        self.addParams('point0', point() )
+        self.addParams('point1', point() )
+        self.addParams('point2', point() )
 
-    def calc_ve_ve_ve(self):
-        u = self.getVertex()
+    def calc_po_po_po(self):
+        u = self.getPoint()
         
         A = next(u)
         B = next(u)
         C = next(u)
-        
-        
-        A.name, B.name, C.name = "A", "B", "C"
         
         self.data = [ np.array( [ A.x[0], B.x[0], C.x[0], A.x[0] ]), np.array( [ A.y[0], B.y[0], C.y[0], A.y[0] ]  ) ]
 
