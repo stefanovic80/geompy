@@ -8,12 +8,13 @@ from ..keys.triangle_listOfKeys import method
 
 class triangle(method):
     
-    def __init__(self, seed = seed, draw = False):
+    def __init__(self, seed = seed, draw = True):
 
         super().__init__()
+        
+        self._color = random.choice(self.colors)
+        """
         s = False
-        self.vertices = [point(draw = s ), point(draw = s), point(draw = s)]
-        #self.sides = [line(draw = s), line(draw = s), line(draw = s)]
         
         self._color = random.choice(self.colors)
         self._colorV = random.choice(self.colors)
@@ -28,10 +29,7 @@ class triangle(method):
         self.l = 0
         
         self._side = 0
-
-        for v in self.vertices:
-            v.color = self._colorV
-        
+        """
         
 
         if draw: self.drawSetts()

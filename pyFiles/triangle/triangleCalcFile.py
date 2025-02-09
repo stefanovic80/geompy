@@ -3,7 +3,6 @@ from ..Settings import settings
 from ..pointFile import point
 from ..dataExploreFile import dataExplore
 from .. import seed # may be not really necessary
-from ..segment.segmentFile import segment
 
 
 class triangleCalc(dataExplore):
@@ -25,11 +24,8 @@ class triangleCalc(dataExplore):
         
         
         A.name, B.name, C.name = "A", "B", "C"
-        s1, s1.points, s1.points = segment(), A, B
-        s2, s2.points, s2.points = segment(), B, C
-        s3, s3.points, s3.points = segment(), C, A
-
-        self.data = [ np.array( A.x, B.x, C.x), np.array( A.y, B.y, C.y ) ]
+        
+        self.data = [ np.array( [ A.x[0], B.x[0], C.x[0], A.x[0] ]), np.array( [ A.y[0], B.y[0], C.y[0], A.y[0] ]  ) ]
 
     def calc1(self):
         for l in range(2):
