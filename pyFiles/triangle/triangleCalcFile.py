@@ -12,10 +12,18 @@ class triangleCalc(dataExplore):
 
         super().__init__()
 
-    
-
     def calc_ve_ve_ve(self):
-        pass
+        u = self.getVertex()
+        A = next(u)
+        B = next(u)
+        C = next(u)
+        
+        A.name, B.name, C.name = "A", "B", "C"
+        s1, s1.points, s1.points = segment(), A, B
+        s2, s2.points, s2.points = segment(), B, C
+        s3, s3.points, s3.points = segment(), C, A
+
+        self.data = [ np.array( A.x, B.x, C.x), np.array( A.y, B.y, C.y ) ]
 
     def calc1(self):
         for l in range(2):
