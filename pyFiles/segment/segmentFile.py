@@ -1,20 +1,12 @@
-# lineFile.py
+# segmentFile.py
 from .. import plt, np, random
 from .. import seed
 from ..Settings import settings
-
-#plt.ion()
-
-from .._plotSettFile import plotSett
 from ..pointFile import point
-from ..dataExploreFile import dataExplore
-
 from ..keys.segment_listOfKeys import method
 
 
 class segment(method):
-    
-    dof = 2
 
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
 
@@ -23,7 +15,30 @@ class segment(method):
         if draw: self.drawSetts()
     
     
+    @property
+    def length(self):
+        return self._length
 
+    @length.setter
+    def length(self, value):
+        self.__del__()
+        self._length = value
+        self.addParams('length', abs(value) )
+        self.drawSetts()
+
+    @property
+    def angle(self):
+        return self._angle
+
+    @angle.setter
+    def angle(self, value):
+        self._angle = value
+        self.addParams('angle', value)
+        self.drawSetts()
+
+    
+    #to be deprecated
+    #-------------------------------------
     @property
     def dataGroup(self):
         return self.data + self.labCoords
@@ -33,7 +48,7 @@ class segment(method):
         self.data = value[0:2]
         #self.labCoords = value[2:4]
         #to be implemented!
-
+    #-------------------------------------
 
 
     def erase(self):

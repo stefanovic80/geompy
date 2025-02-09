@@ -69,9 +69,16 @@ pyFiles/circumference/.circumferenceFile.py.swp
 
 pyFiles/line/.lineCalcFile.py.swp
 
-
+pyFiles/angle/.angleCalcFile.py.swp
 pyModules2gen/.angleFile.py.swn
 
+pyFiles/segment/.segmentFile.py.swp
+pyFiles/triangle/.triangleFile.py.swp
+
+pyFiles/segment/.segmentCalcFile.py.swp
+
+pyFiles/function/.functionFile.py.swp
+pyFiles/angle/.angleFile.py.swp
 pyFiles/circumference/po_po_ra.aux
 pyFiles/circumference/po_po_ra.idx
 pyFiles/circumference/po_po_ra.log

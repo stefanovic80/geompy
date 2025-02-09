@@ -5,6 +5,7 @@ from .._plotSettFile import plotSett
 from ..pointFile import point
 
 from ..keys.ellipse_listOfKeys import method
+from collections import deque
 
 class ellipse(method):
 
@@ -14,6 +15,17 @@ class ellipse(method):
         
         super().__init__()
         #plotSett.__init__(self)
+
+        dof = 5
+        self.keys = deque(maxlen = dof)
+        self.values = deque(maxlen = dof)
+
+        self.addParams('a', 0)
+        self.addParams('b', 0)
+        self.addParams('c', 0)
+        self.addParams('d', 0)
+        self.addParams('e', 0)
+
 
         if draw: self.drawSetts()
 

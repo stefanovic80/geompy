@@ -9,12 +9,12 @@ from .. import seed
 from collections import deque
 
 class lineCalc(dataExplore):
+
     def __init__(self):
-        super().__init__()
         
+        super().__init__()
         dof = 2
         self.keys = deque(maxlen = dof)
-        #self.sflk = deque(maxlen = dof)
         self.values = deque(maxlen = dof)
 
         self.seed = seed
@@ -77,14 +77,3 @@ class lineCalc(dataExplore):
         x0, y0 = point.coords[0], point.coords[1]
         self.angCoeff = (y0 - self.intercept)/x0
         self.calc_m_q()
-
-
-#WEAKREFERENCE
-import weakref
-
-c = lineCalc()
-
-m_q = weakref.ref(c.calc_m_q)
-po_po = weakref.ref(c.calc_po_po)
-m_po = weakref.ref(c.calc_m_po)
-po_q = weakref.ref(c.calc_po_q)

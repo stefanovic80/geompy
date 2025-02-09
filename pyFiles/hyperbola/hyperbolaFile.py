@@ -6,6 +6,8 @@ from ..pointFile import point
 
 from ..keys.hyperbola_listOfKeys import method
 
+from collections import deque
+
 class hyperbola(method):
 
     dof = 5
@@ -14,7 +16,15 @@ class hyperbola(method):
         
         super().__init__()
         #plotSett.__init__(self)
-
+        dof = 5
+        self.keys = deque(maxlen = dof)
+        self.values = deque(maxlen = dof)
+        
+        self.addParams('a', 0)
+        self.addParams('b', 0)
+        self.addParams('c', 0)
+        self.addParams('d', 0)
+        self.addParams('e', 0)
         if draw: self.drawSetts()
 
     

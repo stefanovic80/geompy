@@ -1,71 +1,20 @@
-from ..line.lineFile import line
-from ..pointFile import point
-from .._plotSettFile import plotSett
-from ..dataExploreFile import dataExplore
-from ..circumference.circumferenceFile import circumference
-
-from .. import seed 
-
-from ..Settings import settings
-
+# triangleFile.py
 from .. import plt, np, random
+from .. import seed
+from ..Settings import settings
+from ..pointFile import point
+from ..keys.triangle_listOfKeys import method
 
 
-from .triangle_listOfKeys import method
-from .triangleCalcFile import triangleCalc
-
-class triangle(triangleCalc, method):
+class triangle(method):
     
     def __init__(self, seed = seed, draw = True):
 
         super().__init__()
-        s = False
-        self.vertices = [point(draw = s ), point(draw = s), point(draw = s)]
-        #self.sides = [line(draw = s), line(draw = s), line(draw = s)]
         
         self._color = random.choice(self.colors)
-        self._colorV = random.choice(self.colors)
         
-        #to set up "labels" decorated method
-        self.j = 0
-
-        #to set up setter decorated labels
-        self.k = 0
-        
-        #to set up setter decorated vertex
-        self.l = 0
-        
-        self._side = 0
-
-        for v in self.vertices:
-            v.color = self._colorV
-        
-        self.draws = {('a', 'b', 'c'): self.calc1}
-        #self.draws = [self.calc1]
-
-        if draw:
-            #self.draws[0]()
-            self.draws[('a', 'b', 'c')]()
-            #self.calc1()
-            #self.onlyDraw()
-
-    
-    #to be properly implemented!
-    #------------------------------
-    @property
-    def ar(self):
-        pass
-
-    @ar.setter
-    def ar(self, value):
-        j = value
-        lines = [None, None]
-        for j in range(2):
-            lines[j] = line()#draw = False)
-            #lines[j+1] = line()#draw = False)
-            lines[j].points = self.vertices[0]
-            lines[j].points = self.vertices[1]
-    #------------------------------
+        if draw: self.drawSetts()
 
     @property
     def side(self):
@@ -82,7 +31,6 @@ class triangle(triangleCalc, method):
         self._side = k
         sideSize = ( (self.vertices[k].x[0] - self.vertices[l].x[0])**2 + (self.vertices[k].y[0] - self.vertices[l].y[0])**2 )**.5
         print(str(self._side) + ' ' + str(sideSize) ) 
-        #return self._side, sideSize
 
     def size(self, newSize):
 

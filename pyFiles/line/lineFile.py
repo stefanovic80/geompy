@@ -9,10 +9,10 @@ from ..keys.line_listOfKeys import method
 
 
 class line(method):
-        
+    #to be deprecated        
     dof = 2
 
-    def __init__(self, seed = seed, draw = True, dof = dof):
+    def __init__(self, seed = seed, draw = True):#, dof = dof):
         
         super().__init__()
 

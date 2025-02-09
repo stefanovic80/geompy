@@ -70,6 +70,10 @@ class plotSett():
         self.k = 0        
         self.lines = []
 
+
+        self._angle = 0
+        self._rotationPoint = None
+
         self.sflk = None#deque(maxlen = self.dof) #Sorted First Letter Key
 	        
         #to be implemented as .X.cut doesn't work on function
@@ -354,10 +358,12 @@ class plotSett():
         self.sflk = [ k[:2] for k in self.params.keys() ]
 
 
+    @property
+    def draw(self):
+        self.onlyDraw()
 
     def onlyDraw(self):
         self.__del__()
-        #self.erase()
         line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
         self.lines = []
         self.lines.append(line)

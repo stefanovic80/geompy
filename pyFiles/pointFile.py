@@ -38,27 +38,20 @@ class point(plotSett):
             self.data[0] = x
             self.data[1] = y 
         
-        """
-        #------------------------------------------------------------
-        # Get local variables as a dictionary
-        local_vars = locals()
 
-        # Convert the dictionary values to a list
-        args_list = list(local_vars.values())
-        #------------------------------------------------------------
-        """
         
         self._color = random.choice(self.colors)
         self.lines = None
         self.tex = None 
        
-        self._angle = []
+        #self._angle = []
 
         self.coords = self.data
         self.data = [ np.array([u]) for u in self.data  ]
         
-        if draw: self.draw()
+        if draw: self.onlyDraw()
 
+    
     @property
     def x(self):
         return self.data[0]
@@ -74,7 +67,7 @@ class point(plotSett):
             self.data[0] = np.array( [ value ] )
             self.coords[0] = value
         self.lims()
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
 
 
@@ -93,7 +86,7 @@ class point(plotSett):
             self.data[1] = np.array( [ value ] )
             self.coords[1] = value
         self.lims()
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
 
 
@@ -136,50 +129,14 @@ class point(plotSett):
     def name(self, n):
         self._name = n
         self.__del__()
-        self.draw()
+        self.onlyDraw()
         self.label(n)
     #-----------------
     
 
-
-    #to be implemented!
-    def angle(self, input0, input1):
-        from .circumferenceFile import circumference
-        import numbers
-
-        
-        self._angle = self._angle + [ circumference() ]
-        self._angle[-1].center = self
-        radius = self.dist(input0)
-        self._angle[-1].radius = radius
-        tan = [None, None]
-        l = 0
-        j = 0
-        k = j%1
-        tan[j] = (input0.y[j] - self.y[j]  )/(input0.x[j]- self.x[j])
-
-        if isinstance(input0, point) and isinstance(input1, point):
-            tan[j+1] = (input1.y[j+1] - self.y[j+1])/(input1.x[j+1]- self.x[j+1])
-            tan.sort()
-            self._angle[-1].angle = np.arctan(tan[j+1]) - np.arctan(tan[j])
-        
-        #it works on the first quadrant!
-        elif isinstance(input0, point) and isinstance(input1, numbers.Number):
-            if input0.x[0] < self.x[0]:
-                l+=1
-            self._angle[-1].angle = input1 + np.arctan(tan[j])
-    
-        self.rotation( locus = self._angle[-1], angle = np.arctan(tan[j]) + l*np.pi )
-
-    #coords as a list of two numpy arrays of one element each
-    def calc(self):
-        pass
-
     #it overwrites the .draw method in _plotSett
-    def draw(self): 
-        #if self.rotate == False:
-        self.calc()
-        self.onlyDraw()
+    #def draw(self): 
+    #    self.onlyDraw()
       
     def onlyDraw(self):
 
@@ -222,7 +179,7 @@ class point(plotSett):
         b = plt.ginput()
         self.coords = [ b[0][0], b[0][1] ]
         self.data = [ np.array([ b[0][0] ] ), np.array([ b[0][1] ] ) ]
-        self.draw()
+        self.onlyDraw()
         self.label(self._name)
             
         self.lims()
@@ -265,7 +222,7 @@ class point(plotSett):
         
         locus.dataGroup = data
 
-        locus.draw()#, draw = False)
+        locus.onlyDraw()#, draw = False)
 
     def __str__(self):
 

@@ -41,9 +41,9 @@ class method(circumferenceCalc):
             ('c', 'po', 'ra'): WeakMethod(self.calc_c_po_ra),
             ('cx', 'cy', 'po'): WeakMethod(self.calc_cx_cy_po),
             ('cx', 'cy', 'ra'): WeakMethod(self.calc_cx_cy_ra),
-            ('cx', 'po', 'po'): WeakMethod(self.noMethod),
+            ('cx', 'po', 'po'): WeakMethod(self.calc_cx_po_po),
             ('cx', 'po', 'ra'): WeakMethod(self.noMethod),
-            ('cy', 'po', 'po'): WeakMethod(self.noMethod),
+            ('cy', 'po', 'po'): WeakMethod(self.calc_cy_po_po),
             ('cy', 'po', 'ra'): WeakMethod(self.noMethod),
             ('po', 'po', 'po'): WeakMethod(self.calc_po_po_po),
             ('po', 'po', 'ra'): WeakMethod(self.calc_po_po_po)

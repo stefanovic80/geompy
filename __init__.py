@@ -19,12 +19,13 @@ from itertools import combinations
 #[params], Degree of Freedom (2 or 3)
 loci = {\
         'line': (['m', 'po', 'po', 'q'], 2),\
-        'segment': (['po', 'po'], 2),\
+        'segment': (['an', 'le', 'po', 'po'], 2),\
         'parabola': (['a', 'b', 'c', 'po', 'po', 'po', 'vx', 'vy'], 3),\
         'circumference': (['a', 'b', 'c', 'cx', 'cy', 'po', 'po', 'po', 'ra'], 3),\
-        'ellipse': (['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2' 'po','po', 'po', 'po', 'po'], 5),\
-        'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2' 'po','po', 'po', 'po', 'po'], 5),\
-        'triangle':(['an', 'an', 'an', 've', 've', 've', 'si', 'si', 'si'], 3)
+        'ellipse': (['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2', 'po','po', 'po', 'po', 'po'], 5),\
+        'hyperbola':(['a', 'b', 'c', 'd', 'e', 'ec', 'f1', 'f2', 'po','po', 'po', 'po', 'po'], 5),\
+        'triangle':(['an', 'an', 'an', 've', 've', 've', 'si', 'si', 'si'], 3),\
+        'angle': (['am', 'cx', 'cy', 'po', 'po'] , 4)
         }
     
 
@@ -71,7 +72,7 @@ from .pyFiles.function.functionFile import function
 from .pyFiles.function.functionFile import x
 
 from .pyFiles.triangle.triangleFile import triangle
-from .pyFiles.angle.angleFile import arc
+from .pyFiles.angle.angleFile import angle
 _set = start()
 _set.grid()
 

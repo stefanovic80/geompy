@@ -14,6 +14,6 @@ class method(triangleCalc):
             ('si', 'si', 'si'): WeakMethod(self.noMethod),
             ('ve', 'si', 'si'): WeakMethod(self.noMethod),
             ('ve', 've', 'si'): WeakMethod(self.noMethod),
-            ('ve', 've', 've'): WeakMethod(self.noMethod)
+            ('ve', 've', 've'): WeakMethod( self.calc_ve_ve_ve )
         }
 
