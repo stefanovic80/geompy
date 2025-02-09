@@ -32,7 +32,6 @@ class triangle(method):
         for v in self.vertices:
             v.color = self._colorV
         
-        self.draws = {('a', 'b', 'c'): self.calc1}
         
 
         if draw: self.drawSetts()
