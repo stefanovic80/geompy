@@ -1,12 +1,8 @@
-# lineFile.py
+# segmentFile.py
 from .. import plt, np, random
 from .. import seed
 from ..Settings import settings
-
-#from .._plotSettFile import plotSett
 from ..pointFile import point
-#from ..dataExploreFile import dataExplore
-
 from ..keys.segment_listOfKeys import method
 
 
