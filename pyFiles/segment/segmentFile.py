@@ -3,11 +3,9 @@ from .. import plt, np, random
 from .. import seed
 from ..Settings import settings
 
-#plt.ion()
-
-from .._plotSettFile import plotSett
+#from .._plotSettFile import plotSett
 from ..pointFile import point
-from ..dataExploreFile import dataExplore
+#from ..dataExploreFile import dataExplore
 
 from ..keys.segment_listOfKeys import method
 

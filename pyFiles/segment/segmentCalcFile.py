@@ -14,6 +14,7 @@ from ..keys import segment_listOfKeys
 from collections import deque
 
 class segmentCalc(dataExplore):
+    #it fails to meet parabola structure
     def __init__(self, point0 = None, point1 = None, seed = seed, draw = True):
 
         super().__init__()

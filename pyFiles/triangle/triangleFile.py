@@ -1,25 +1,14 @@
-from ..line.lineFile import line
-from ..pointFile import point
-from .._plotSettFile import plotSett
-from ..dataExploreFile import dataExplore
-from ..circumference.circumferenceFile import circumference
-
-from .. import seed 
-
-from ..Settings import settings
-
+# triangleFile.py
 from .. import plt, np, random
-
-
-#from .triangle_listOfKeys import method
-from .triangleCalcFile import triangleCalc
-
+from .. import seed
+from ..Settings import settings
+from ..pointFile import point
 from ..keys.triangle_listOfKeys import method
 
 
 class triangle(method):
     
-    def __init__(self, seed = seed, draw = True):
+    def __init__(self, seed = seed, draw = False):
 
         super().__init__()
         s = False
@@ -44,13 +33,9 @@ class triangle(method):
             v.color = self._colorV
         
         self.draws = {('a', 'b', 'c'): self.calc1}
-        #self.draws = [self.calc1]
+        
 
-        if draw:
-            #self.draws[0]()
-            self.draws[('a', 'b', 'c')]()
-            #self.calc1()
-            #self.onlyDraw()
+        if draw: self.drawSetts()
 
     
     #to be properly implemented!

@@ -1,14 +1,12 @@
 from .. import plt, np, random
 from ..Settings import settings
-from .._plotSettFile import plotSett
 from ..pointFile import point
 from ..dataExploreFile import dataExplore
-
 from ..keys import parabola_listOfKeys
 
 #gc.collect()
-
-import weakref
+#from .._plotSettFile import plotSett
+#import weakref
 
 class parabolaCalc(dataExplore):
     def __init__(self):
