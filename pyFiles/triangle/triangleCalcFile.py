@@ -8,15 +8,21 @@ from ..segment.segmentFile import segment
 
 class triangleCalc(dataExplore):
     
-    def __init__(self):#, seed = seed, draw = True):
+    def __init__(self):
 
         super().__init__()
 
-    def calc_ve_ve_ve(self):
         u = self.getVertex()
+        #to be fixed!
+        u = self.getVertex()
+        u = self.getVertex()
+        """
         A = next(u)
         B = next(u)
         C = next(u)
+        """
+
+    def calc_ve_ve_ve(self):
         
         A.name, B.name, C.name = "A", "B", "C"
         s1, s1.points, s1.points = segment(), A, B
