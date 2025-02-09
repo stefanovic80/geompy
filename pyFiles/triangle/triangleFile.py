@@ -13,44 +13,8 @@ class triangle(method):
         super().__init__()
         
         self._color = random.choice(self.colors)
-        """
-        s = False
         
-        self._color = random.choice(self.colors)
-        self._colorV = random.choice(self.colors)
-        
-        #to set up "labels" decorated method
-        self.j = 0
-
-        #to set up setter decorated labels
-        self.k = 0
-        
-        #to set up setter decorated vertex
-        self.l = 0
-        
-        self._side = 0
-        """
-        
-
         if draw: self.drawSetts()
-
-    
-    #to be properly implemented!
-    #------------------------------
-    @property
-    def ar(self):
-        pass
-
-    @ar.setter
-    def ar(self, value):
-        j = value
-        lines = [None, None]
-        for j in range(2):
-            lines[j] = line()#draw = False)
-            #lines[j+1] = line()#draw = False)
-            lines[j].points = self.vertices[0]
-            lines[j].points = self.vertices[1]
-    #------------------------------
 
     @property
     def side(self):
@@ -67,7 +31,6 @@ class triangle(method):
         self._side = k
         sideSize = ( (self.vertices[k].x[0] - self.vertices[l].x[0])**2 + (self.vertices[k].y[0] - self.vertices[l].y[0])**2 )**.5
         print(str(self._side) + ' ' + str(sideSize) ) 
-        #return self._side, sideSize
 
     def size(self, newSize):
 
