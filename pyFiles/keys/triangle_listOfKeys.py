@@ -6,14 +6,14 @@ class method(triangleCalc):
         super().__init__()
         self.draws = {
             ('an', 'an', 'an'): WeakMethod(self.noMethod),
+            ('an', 'an', 'po'): WeakMethod(self.noMethod),
             ('an', 'an', 'si'): WeakMethod(self.noMethod),
-            ('an', 'an', 've'): WeakMethod(self.noMethod),
+            ('an', 'po', 'po'): WeakMethod(self.noMethod),
+            ('an', 'po', 'si'): WeakMethod(self.noMethod),
             ('an', 'si', 'si'): WeakMethod(self.noMethod),
-            ('an', 've', 'si'): WeakMethod(self.noMethod),
-            ('an', 've', 've'): WeakMethod(self.noMethod),
-            ('si', 'si', 'si'): WeakMethod(self.noMethod),
-            ('ve', 'si', 'si'): WeakMethod(self.noMethod),
-            ('ve', 've', 'si'): WeakMethod(self.noMethod),
-            ('ve', 've', 've'): WeakMethod( self.calc_ve_ve_ve )
+            ('po', 'po', 'po'): WeakMethod(self.calc_po_po_po),
+            ('po', 'po', 'si'): WeakMethod(self.noMethod),
+            ('po', 'si', 'si'): WeakMethod(self.noMethod),
+            ('si', 'si', 'si'): WeakMethod(self.noMethod)
         }
 
