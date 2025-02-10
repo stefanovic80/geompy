@@ -31,15 +31,6 @@ class angleCalc(circumference):
         self.addParams('am', self._size)
         self._point = point(draw = False)
         self.points = self._point
-        
-        
-        #self.toggle_gen = toggle()
-    
-    def toggle():
-        state = 0
-        while True:
-            yield state
-            state = 1 - state  # Switch between 0 and 1
 
 
     def calc_am_cx_cy_po(self):
@@ -89,17 +80,14 @@ class angleCalc(circumference):
         m[1] = ( y1 - yc ) / ( x1 - xc)
         rotateAngle1 = np.arctan(m[1]) + np.pi*np.heaviside(xc - x1, 0)
 
-        rotateAngle = sorted([rotateAngle0, rotateAngle1])
+        #rotateAngle = sorted([rotateAngle0, rotateAngle1])
+        rotateAngle = [rotateAngle0, rotateAngle1]
         
-        self._size = rotateAngle[1] - rotateAngle[0]
+        _size = rotateAngle[1] - rotateAngle[0]
+        self._size = np.pi*( 1 - np.sign( _size ) ) + _size
         self.calc_cx_cy_ra(arc = self._size)
         
-        """
-        #complemetary angle
-        k = next(self.toggle_gen)
-        b = 2*k -1
-        self.calc_cx_cy_ra(arc = k*2*np.pi + b*(-1)*self._size)
-        """
+
         self.rotate = self.centre, rotateAngle[0]
 
 
