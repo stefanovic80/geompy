@@ -13,7 +13,17 @@ class segment(method):
         super().__init__()
 
         if draw: self.drawSetts()
-    
+   
+    @property
+    def m(self):
+        return ( self._point[0].coords[1] - self._point[1].coords[1] ) / ( self._point[0].coords[0] - self._point[1].coords[0] )
+
+    @property
+    def q(self):
+        x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
+        x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
+        
+        return ( y0*x1 - x0*y0 )/(x1 - x0)
     
     @property
     def length(self):

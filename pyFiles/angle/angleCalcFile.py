@@ -62,7 +62,17 @@ class angleCalc(circumference):
 
     def calc_cx_cy_po_po(self):
         """
-            it draws angle centered in "cx" and "cy" with two points ('po' and 'po') as bord
+        Calculates the angle between two points ('po' and 'po') relative to a center (cx, cy),
+        and rotates the arc accordingly.
+        
+        - Computes the slopes (m) between the center and the two points.
+        - Uses the arctangent function to determine the angles of the points relative to the center.
+        - Correctly handles division by zero cases.
+        - Calculates the total angle (arc) between the two points.
+        - Rotates the arc based on the calculated angles, similar to how angles are defined and rotated in GeoGebra.
+
+        Note: Angles are calculated relative to the horizontal axis, and the arc is rotated 
+        based on the relative position of the points to the center.
         """
 
         xc, yc = self._centre.coords[0], self._centre.coords[1]
@@ -75,9 +85,9 @@ class angleCalc(circumference):
         point1 = next(u)
         x1, y1 = point1.coords[0], point1.coords[1]
         
-        m[0] = ( y0 - yc ) / ( x0 - xc)
+        m[0] = ( y0 - yc ) / ( x0 - xc) if x0 != xc else float('inf')
         rotateAngle0 = np.arctan(m[0]) + np.pi*np.heaviside(xc - x0, 0) 
-        m[1] = ( y1 - yc ) / ( x1 - xc)
+        m[1] = ( y1 - yc ) / ( x1 - xc) if x1 != xc else float('inf')
         rotateAngle1 = np.arctan(m[1]) + np.pi*np.heaviside(xc - x1, 0)
 
         #rotateAngle = sorted([rotateAngle0, rotateAngle1])
