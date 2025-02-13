@@ -480,36 +480,41 @@ all poits with x values after 2 are removed
 
 
 
-# Arcs drawing
+# Angles
 
-The arc class takes two lines as argument
+The angle class
 
+`alpha = angle()`
 
+draws a generic angle, centered anywhere and with an amplitude spanning from 0 to `2pi`.
 
-`l0 = line()`
+Let move this angle and center it into the A point
 
-`l1 = line()`
+`A = point(2, 3)`
 
-`l0.m = 1`
+`A.name = "A"`
 
-`l0.m = -1.2`
+`alpha.centre = A`
 
-`l0.q = -.5`
+`alpha.name = r"$\alpha$`
 
-`l1.q = -2.2`
+and set it's size according with the position of two other points
 
-`alpha = arc(l0, l1)`
+`B = point()`
 
-`alpha.size`
+`B.name = "B"`
+
+`C = point()`
+
+`C.name = "C"`
+
+`alpha.points = B`
+
+`alpha.points = C`
 
 ![Alt Text](pictures/angle0.png)
 
-by typing
 
-`alpha.draw()`
-
-
-![Alt Text](pictures/angle1.png)
 
 # Plot settings
 
