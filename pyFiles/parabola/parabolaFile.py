@@ -33,6 +33,14 @@ class parabola(method):
 
     @a.setter
     def a(self, value):
+        """
+        Sets the coefficient 'a' of the parabola equation y = ax^2 + bx + c,
+        and recalculates the parabola accordingly. Updates the internal parameters
+        and redraws the parabola representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'a'.
+        """
         self.addParams('a', value)
         self._a = value
         self.drawSetts()
@@ -45,6 +53,14 @@ class parabola(method):
 
     @b.setter
     def b(self, value):
+        """
+        Sets the coefficient 'b' of the parabola equation y = ax^2 + bx + c,
+        and recalculates the parabola accordingly. Updates the internal parameters
+        and redraws the parabola representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'b'.
+        """
         self.addParams('b', value)
         self._b = value
         self.drawSetts()
@@ -57,6 +73,14 @@ class parabola(method):
 
     @c.setter
     def c(self, value):
+        """
+        Sets the coefficient 'c' of the parabola equation y = ax^2 + bx + c,
+        and recalculates the parabola accordingly. Updates the internal parameters
+        and redraws the parabola representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'c'.
+        """
         self.addParams('c', value)
         self._c = value
         self.drawSetts()
@@ -69,6 +93,14 @@ class parabola(method):
 
     @vertex.setter
     def vertex(self, point):
+        """
+        Sets the vertex of the parabola and recalculates
+        the parabola equation accordingly. Updates the internal parameters
+        and redraws the parabola representation.
+        
+        Parameters:
+        point (Point): The new vertex of the parabola, represented as a Point object.
+        """
         self.addParams('vx', point.coords[0])
         self.addParams('vy', point.coords[1])
         self._vertex = point

@@ -25,6 +25,14 @@ class line(method):
 
     @m.setter
     def m(self, value):
+        """
+        Sets the slope (angular coefficient) of the line and recalculates
+        the line equation accordingly. Updates the internal parameters and 
+        redraws the line representation.
+    
+        Parameters:
+        value (float): The new slope (angular coefficient) of the line.
+        """
         self.addParams("m", value)
         self.angCoeff = value
         self.drawSetts()
@@ -35,6 +43,14 @@ class line(method):
 
     @q.setter
     def q(self, value):
+        """
+        Sets the intercept of the line and recalculates
+        the line equation accordingly. Updates the internal parameters and
+        redraws the line representation.
+        
+        Parameters:
+        value (float): The new intercept of the line.
+        """
         self.addParams("q", value)
         self.intercept = value
         self.drawSetts()

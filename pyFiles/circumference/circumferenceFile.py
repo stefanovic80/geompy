@@ -84,6 +84,13 @@ class circumference(method):
 
     @centre.setter
     def centre(self, point):
+        """
+        Sets the center of the circle and recalculates its equation accordingly.
+        Updates the internal parameters and redraws the circle representation.
+        
+        Parameters:
+        point (Point): The new center of the circle, represented as a Point object.
+        """
         self.addParams('cx', point.coords[0])
         self.addParams('cy', point.coords[1])
         self._centre = point 
@@ -127,6 +134,13 @@ class circumference(method):
 
     @radius.setter
     def radius(self, r):
+        """
+        Sets the radius of the circle and recalculates its equation accordingly.
+        Updates the internal parameters and redraws the circle representation.
+        
+        Parameters:
+        r (float): The new radius of the circle.
+        """
         self.addParams('radius', r)
         self._radius = r
         self.drawSetts()
@@ -137,6 +151,14 @@ class circumference(method):
 
     @a.setter
     def a(self, value):
+        """
+        Sets the coefficient 'a' in the circle equation x^2 + y^2 + ax + by + c = 0,
+        recalculates the x-coordinate of the circle's center accordingly, and updates
+        the internal parameters. Redraws the circle representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'a'.
+        """
         self.addParams('a', value)
         self._a = value
         self._centre.coords[0] = self._centre.data[0] = - value/2
@@ -148,6 +170,14 @@ class circumference(method):
 
     @b.setter
     def b(self, value):
+        """
+        Sets the coefficient 'b' in the circle equation x^2 + y^2 + ax + by + c = 0,
+        recalculates the x-coordinate of the circle's center accordingly, and updates
+        the internal parameters. Redraws the circle representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'b'.
+        """
         self.addParams('b', value)
         self._b = value
         self._centre.coords[1] = self._centre.data[1] = - value/2
@@ -160,12 +190,33 @@ class circumference(method):
 
     @c.setter
     def c(self, value):
+        """
+        Sets the coefficient 'c' in the circle equation x^2 + y^2 + ax + by + c = 0,
+        recalculates the x-coordinate of the circle's center accordingly, and updates
+        the internal parameters. Redraws the circle representation.
+        
+        Parameters:
+        value (float): The new value for the coefficient 'c'.
+        """
         self.addParams('c', value)
         self._c = value
         self.drawSetts()
 
 
     def tangent(self, point):
+        """
+        Computes the tangent line to the circle passing through a given point.
+        
+        The point can either lie on the circle or be external to it. Depending on 
+        the position of the point relative to the circle, the function calculates
+        the slope of the tangent line and returns the corresponding line object.
+        
+        Parameters:
+        point (Point): The point through which the tangent line passes.
+        
+        Returns:
+        line: A line object representing the tangent line.
+        """
         xc = self._centre.data[0]
         yc = self._centre.data[1]
         x0 = point.data[0]
