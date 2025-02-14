@@ -61,6 +61,8 @@ class lineCalc(dataExplore):
             L = len(self._y)
             self.data = [np.zeros(L) + x1]
             self.data = self.data + [ self._y ]
+            self.angCoeff = np.inf
+            self.intercept = np.inf
 
     def calc_m_po(self): #calculate equation from 1 point and angCoeff
         j = 0

@@ -52,7 +52,7 @@ class segmentCalc(dataExplore):
         x0, y0 = self._point[0].coords[0], self._point[0].coords[1]
         x1, y1 = self._point[1].coords[0], self._point[1].coords[1]
 
-        self._angle = np.arctan( ( y0 - y1) / ( x0 - x1) )
+        self._angle = np.arctan( ( y0 - y1) / ( x0 - x1) ) if x0 != x1 else float('inf')
 
     def calc_po(self):
         pass
