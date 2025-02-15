@@ -55,11 +55,35 @@ class line(method):
         self.intercept = value
         self.drawSetts()
     
+    #to be fixed
     def system(self, line):
-        x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff)
+        # Case when the first line is vertical
+        if self.angCoeff == np.inf:  # Se la pendenza della prima retta è infinita
+            x = self.data[0][0]  # La coordinata x è l'intercetta della retta verticale
+            y = line.angCoeff * x + line.intercept  # Troviamo y dalla seconda retta
+            return point(x, y)
+    
+        # Caso in cui la seconda retta è verticale
+        elif line.angCoeff == np.inf:  # Se la pendenza della seconda retta è infinita
+            x = line.data[0][0]  # La coordinata x è l'intercetta della retta verticale
+            y = self.angCoeff * x + self.intercept  # Troviamo y dalla prima retta
+            return point(x, y)
+    
+        # Caso generale, nessuna retta è verticale
+        else:
+            x = -(self.intercept - line.intercept) / (self.angCoeff - line.angCoeff)
+            y = self.angCoeff * x + self.intercept
+            return point(x, y)
+
+
+
+
+    """
+    def system(self, line):
+        x = -(self.intercept - line.intercept)/(self.angCoeff - line.angCoeff) #if self.intecept not equal np.inf
         y = self.angCoeff*x + self.intercept
         return point(x, y)
-
+    """
     
     @property
     def dataGroup(self):
