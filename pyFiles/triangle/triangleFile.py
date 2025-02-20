@@ -14,6 +14,8 @@ class triangle(method):
         
         self._color = random.choice(self.colors)
         
+        self.m = []
+        
         if draw: self.drawSetts()
 
     @property

@@ -16,7 +16,7 @@ if is_interactive():
 
 plt.ion()
 
-plt.rcParams [ 'axes.labelsize' ] = 12
+#plt.rcParams [ 'axes.labelsize' ] = 12
 plt.rcParams [ 'figure.figsize' ] = ( settings.window_width , settings.window_width*settings.window_height/settings.window_width)
 plt.rcParams [ 'font.size' ] = 12
 plt.rcParams [ 'font.weight'] = 'bold'
@@ -37,6 +37,7 @@ class plotSett():
 
         self.colors = colors = ['b', 'blue', 'g', 'green', 'r', 'red', 'm', 'magenta', 'k', 'black', settings.azure]
         self._linewidth = settings.linewidth
+        self._labelsize = 12
         self.plotSettings = None
 
         #self.data = [None, None] 
@@ -50,6 +51,7 @@ class plotSett():
         self.vline = None
 
         plt.rcParams [ 'lines.linewidth' ] = self._linewidth
+        plt.rcParams [ 'axes.labelsize' ] = self._labelsize
 
         #to be deprecated
         self.lims()
@@ -290,6 +292,15 @@ class plotSett():
         self.__del__()
         self.onlyDraw()
 
+    @property
+    def textsize(self):
+        return self._labelsize
+
+    @textsize.setter
+    def textsize(self, value):
+        self._labelsize = value
+        plt.rcParams [ 'axes.labelsize' ] = self._labelsize
+        self.label(self._name)
 
     @property
     def step(self):
@@ -312,6 +323,7 @@ class plotSett():
 
 
     def label(self, name):
+        #to be deprecated
         try:
             self.tex.remove()
         except:
@@ -329,7 +341,7 @@ class plotSett():
         self.labCoords[0] = data[0][random_index] + shift
         self.labCoords[1] = data[1][random_index] + shift
         
-        text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = 12, color = self._color, ha="center", va="center")
+        text = self.ax.text(self.labCoords[0], self.labCoords[1], self._name, fontsize = self._labelsize, color = self._color, ha="center", va="center")
         self.lines.append(text)
 
     def addParams(self, key, param):
@@ -349,7 +361,7 @@ class plotSett():
         self.sflk = [ k[:2] for k in self.params.keys() ]       
     
 
-
+    #to be deprecated!
     def addParamsLeft(self, key, param):
         self.keys[0] = key
         self.values[0] = param
