@@ -28,7 +28,6 @@ class lineCalc(dataExplore):
 
         self.intercept = np.random.uniform(settings.ymin, settings.ymax)
         self.addParams('q', self.intercept)
-
         
     def calc_m_q(self): #calculate equation from angCoeff and intercept
         self.data = [self._x]
