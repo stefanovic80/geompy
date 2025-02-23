@@ -4,7 +4,8 @@ dependencies:
   - numpy
   - matplotlib
   - screeninfo
-  - collections
+  - collectionis
+  - screeninfo
 
 channels:
   - conda-forge
