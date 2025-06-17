@@ -22,8 +22,18 @@ class function(dataExplore):
         #plotSett.__init__(self)
 
         self._color = random.choice(self.colors)
+        
+        self.data[0] = x
 
         if draw: self.onlyDraw()
+
+    @property
+    def x(self):
+        return self.data[0]
+
+    @x.setter
+    def x(self, array):
+        self.data[0] = array
 
     @property
     def y(self):
@@ -31,7 +41,7 @@ class function(dataExplore):
         
     @y.setter
     def y(self, array):
-        self.data[0] = x#np.arange
+        #self.data[0] = x#np.arange
         self.data[1] = array
         self.onlyDraw()
 

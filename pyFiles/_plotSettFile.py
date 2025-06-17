@@ -446,7 +446,7 @@ class plotSett():
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.vline = self.ax.axvline(0, color = 'k', linewidth = self._linewidth)
 
-        self.ax.grid(which='minor', alpha=0.6, linewidth = 1.5)
+        self.ax.grid(which='minor', alpha=0.4, linewidth = 2)
         self.ax.grid(which='major', alpha=0.8, linewidth = 1.5)
 
 
@@ -501,7 +501,7 @@ class plotSett():
         self.ax.set_yticks(Ymajor_ticks)
         
 
-        self.ax.grid(which='minor', alpha=0.6, linewidth = 1.5)
+        self.ax.grid(which='minor', alpha=0.4, linewidth = 2)
         self.ax.grid(which='major', alpha=0.8, linewidth = 1.5)  
         # alpha stands for transparency: 0 transparent, 1 opaque
         self.hline = self.ax.axhline(0, color = 'k', linewidth = self._linewidth)
