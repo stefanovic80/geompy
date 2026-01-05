@@ -1,0 +1,112 @@
+%https://tex.stackexchange.com/questions/37581/latex-figures-side-by-side
+% put a double figure side by side
+
+%\documentclass[12pt]{report}
+%\documentclass[12pt]{extreport}
+\documentclass[14pt]{extarticle}
+%\documentclass{memoir}
+
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{IEEEtrantools}
+\usepackage{cancel}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+
+\usepackage{verbatim}
+%\usepackage{textcomp}
+\usepackage{eurosym}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+
+%\usepackage{imakeidx}%
+%\makeindex[program=xindy]%, options=-C utf8 -L portuguese]%
+\usepackage{makeidx}
+\makeindex
+
+
+
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,264mm},
+ left=8mm,
+ right=8mm,
+ top=10mm,
+ bottom=10mm
+ }
+
+\begin{document}
+
+%\backmatter
+%text\index{test}
+%\printindex
+
+
+
+\pagenumbering{gobble}
+
+\begin{center}
+{\bf Circumference equation from two points (po and po) and radius (ra)}
+\end{center}
+
+point0: $P(x0, y0)$\\
+point1: $P(x1, y1)$\\
+
+\begin{eqnarray}
+	x_0^2 + y_0^2 + ax_0 + bx_0 + c = 0\qquad - \\
+	x_1^2 + y_1^2 + ax_1 + bx_1 + c = 0\qquad =
+\end{eqnarray}
+
+\hrule
+
+\begin{eqnarray}
+	\left(x_0 + x_1 + a\right)\left(x_0 - x_1\right) + \left( y_0 + y_1 + b\right)\left(y_0 - y_1\right) = 0\\
+\end{eqnarray}
+
+\begin{eqnarray}
+	b & = & - \frac{\left(x_0 + x_1 + a\right)\left(x_0 - x_1\right)}{y_0 - y_1} - \left(y_0 + y_1\right)\\
+	b & = & -a\frac{x_0-x_1}{y_0 - y1} - \frac{x_0^2 -x_1^2 + y_0^2 - y_1^2}{y_0 - y_1}	
+\end{eqnarray}
+
+\begin{eqnarray}
+	\gamma & = & - \frac{x_0 - x_1}{y_0 - y_1}\\
+	\delta & = & -\frac{x_0^2 - x_1^2 + y_0^2 - y_1^2}{y_0 - y_1}
+\end{eqnarray}
+
+
+\begin{eqnarray}
+	\Rightarrow\qquad b = \gamma a + \delta
+\end{eqnarray}
+
+
+\newpage
+
+
+
+\begin{eqnarray}
+	x_0^2 + y_0^2 + ax_0 + bx_0 + c = 0\qquad + \\
+	x_1^2 + y_1^2 + ax_1 + bx_1 + c = 0\qquad =
+\end{eqnarray}
+
+
+\hrule
+
+\begin{eqnarray}
+	x_0^2 + x_1^2 + y_0^2 + y_1^2 + a(x_0 + x_1) + (\gamma a + \delta)(y_0 + y_1) - 2R^2 + \frac{a^2}{2} + \frac{b^2}{2} = 0\\
+	\Rightarrow a_rx^2 + 2b_rx + c_r = 0
+\end{eqnarray}
+
+\begin{eqnarray}
+	a_{1,2} = \frac{-b_r \pm \sqrt{b_r^2 - a_rc_r}}{a_r}
+\end{eqnarray}
+
+
+\end{document}
