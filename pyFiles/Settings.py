@@ -20,7 +20,7 @@ dims = get_monitor_dimensions()
 
 class settings():
     window_width = dims[0]
-    window_height = dims[1]
+    window_height = dims[1]*.93
     linewidth = 2
     steps = 10000#can be reduced to 1000
     xmin = -10
