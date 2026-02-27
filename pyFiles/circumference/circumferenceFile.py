@@ -56,6 +56,11 @@ class circumference(method):
 
         self._centre.x = new_x.__get__(self._centre, point)
         """
+
+    def limsx(self):
+        self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
+        self.ax.set_xlim(settings.xmin, settings.xmax)
+
     @property
     def arc(self):
         return self._arc

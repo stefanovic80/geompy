@@ -400,7 +400,7 @@ class plotSett():
 
 
     def limsy(self):
-        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps)
+        self._y = np.linspace(settings.ymin, settings.ymax, settings.steps) #may I have to add self.data[1] as I did in .limsx(self)?
         self.ax.set_ylim(settings.ymin, settings.ymax)
         
 

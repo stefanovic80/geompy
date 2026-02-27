@@ -51,7 +51,12 @@ class point(plotSett):
         
         if draw: self.onlyDraw()
 
-    
+
+    def limsx(self):
+        self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
+        self.ax.set_xlim(settings.xmin, settings.xmax)
+        print("Warning: .higher and .lower  methods has a bug while used with .point and .circumference")
+
     @property
     def x(self):
         return self.data[0]
