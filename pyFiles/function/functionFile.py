@@ -23,7 +23,7 @@ class function(dataExplore):
 
         self._color = random.choice(self.colors)
         
-        self.data[0] = x
+        self.data[0] = self._x#x
 
         if draw: self.onlyDraw()
 

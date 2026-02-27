@@ -395,7 +395,7 @@ class plotSett():
         self.limsy()
 
     def limsx(self):
-        self._x = np.linspace(settings.xmin, settings.xmax, settings.steps)
+        self._x = self.data[0] = np.linspace(settings.xmin, settings.xmax, settings.steps)
         self.ax.set_xlim(settings.xmin, settings.xmax)
 
 
