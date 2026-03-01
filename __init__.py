@@ -74,7 +74,8 @@ from .pyFiles.function.functionFile import x
 from .pyFiles.triangle.triangleFile import triangle
 from .pyFiles.angle.angleFile import angle
 
-from .pyFiles.vectorFile import vector
+from .pyFiles.segment.vectorFile import vector
+#from .pyFiles.vectorFile import vector
 
 _set = start()
 _set.grid()
