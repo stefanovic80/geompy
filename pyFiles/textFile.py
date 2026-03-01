@@ -22,14 +22,17 @@ class text(point):
         self.lines.append(line)
 
     @property
-    def body(self):
+    def name(self):
         return self.bodyAttr
 
-    @body.setter
-    def body(self, value):
+    @name.setter
+    def name(self, value):
         self.bodyAttr = value
         self.onlyDraw()
 
+
+    #------------------------------------------------
+    #to be checked out
     @property
     def rise(self):
         self.__del__()
@@ -42,3 +45,5 @@ class text(point):
         self.__del__()
         fontsize = self._labelsize - 1
         line = self.ax.text(self.data[0], self.data[1], self.bodyAttr, color = self._color, fontsize = fontsize)
+    #to be checked out
+    #--------------------------------------------------
