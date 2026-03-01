@@ -75,6 +75,7 @@ from .pyFiles.triangle.triangleFile import triangle
 from .pyFiles.angle.angleFile import angle
 
 from .pyFiles.segment.vectorFile import vector
+from .pyFiles.textFile import text
 #from .pyFiles.vectorFile import vector
 
 _set = start()

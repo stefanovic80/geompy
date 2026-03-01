@@ -44,7 +44,7 @@ class point(plotSett):
         self.lines = None
         self.tex = None 
        
-        #self._angle = []
+        self.bodyAttr = "text"
 
         self.coords = self.data
         self.data = [ np.array([u]) for u in self.data  ]
