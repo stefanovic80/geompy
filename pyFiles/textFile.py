@@ -17,7 +17,7 @@ class text(point):
     def onlyDraw(self):
         self.__del__()
         #line, = self.ax.plot(self.data[0], self.data[1], linewidth=self._linewidth, color = self._color)
-        line = self.ax.text(self.data[0], self.data[1], self.bodyAttr, color = self._color)
+        line = self.ax.text(self.data[0], self.data[1], self.bodyAttr, color = self._color, fontsize = self._labelsize)
         self.lines = []
         self.lines.append(line)
 
@@ -35,15 +35,21 @@ class text(point):
     #to be checked out
     @property
     def rise(self):
-        self.__del__()
-        fontsize = self._labelsize + 1
-        line = self.ax.text(self.data[0], self.data[1], self.bodyAttr, color = self._color, fontsize = fontsize)
+        self._labelsize = self._labelsize + 1
+        self.onlyDraw()
 
+    @rise.setter
+    def rise(self, value):
+        self._labelsize = self._labelsize + value
+        self.onlyDraw()
 
     @property
     def drop(self):
-        self.__del__()
-        fontsize = self._labelsize - 1
-        line = self.ax.text(self.data[0], self.data[1], self.bodyAttr, color = self._color, fontsize = fontsize)
-    #to be checked out
+        self._labesize = self._labelsize - 1
+        self.onlyDraw()
+    
+    @drop.setter
+    def drop(self, value):
+        self._labelsize = self._labelsize - value
+        self.onlyDraw()
     #--------------------------------------------------
