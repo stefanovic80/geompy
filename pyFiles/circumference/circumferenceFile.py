@@ -208,6 +208,21 @@ class circumference(method):
         self.drawSetts()
 
 
+    def system(self, line):
+        m, q = line.m, line.q
+        xc, yc = self._centre.data[0], self._centre.data[1]
+        r = self._radius
+        bh = m*(q-yc)-xc
+        a = 1 + m**2
+        c = (q-yc)**2-r**2 +xc**2
+        DeltaR = bh**2-a*c
+        x0 = (-bh + DeltaR**.5)/a
+        y0= m*x0 + q
+        x1 = (-bh - DeltaR**.5)/a
+        y1= m*x1 + q
+        return point(x0[0], y0[0]), point(x1[0], y1[0])
+
+
     def tangent(self, point):
         """
         Computes the tangent line to the circle passing through a given point.
