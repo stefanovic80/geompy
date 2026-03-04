@@ -128,7 +128,18 @@ class parabola(method):
         self.addParams('vy', value)
         self.drawSetts()
 
-
+    def system(self, line):
+        a, b, c = self._a, self._b, self._c
+        m, q = line.m, line.q
+        B = b - m
+        C = c - q
+        Delta = B**2 - 4*a*C
+        x0 = (-B + Delta**.5)/(2*a)
+        y0 = m*x0 + q
+        x1 = (-B - Delta**.5)/(2*a)
+        y1 = m*x1 + q
+        #return point(x0[0], y0[0]), point(x1[0], y1[0])
+        return point(x0, y0), point(x1, y1)
 
     @property
     def equation(self):
