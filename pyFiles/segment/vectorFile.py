@@ -21,7 +21,8 @@ class vector(segment):
             width=0.003, 
             headwidth=6,      # Larghezza della base della punta
             headlength=9,     # Lunghezza totale della punta
-            headaxislength=9  # <--- Impostalo UGUALE a headlength per base piatta
+            headaxislength=9,  # <--- Impostalo UGUALE a headlength per base piatta
+            color = self._color
         )
 
         self.lines = []
