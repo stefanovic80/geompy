@@ -40,13 +40,25 @@ class vector(segment):
         
 
         #X, Y, U, V = self.data[0][0], self.data[1][0], -self.data[0][0] + self.data[0][1], -self.data[1][0] + self.data[1][1]
+        
+
+        
         k = 3
         j = 1
         if abs(self.data[0][0]) > abs(self.data[0][1]):
             j += 1
+            self.flipPoints()
+        """
+        idx0 = np.abs(self.data[0]).argmin()
+        idx1 = 1 - idx0
+        """
 
-        X, Y, U, V = self.data[0][k%j], self.data[1][k%j], -self.data[0][k%j] + self.data[0][k%(j+1)], -self.data[1][k%j] + self.data[1][k%(j+1)]
+        #X, Y, U, V = self.data[0][k%j], self.data[1][k%j], -self.data[0][k%j] + self.data[0][k%(j+1)], -self.data[1][k%j] + self.data[1][k%(j+1)]
         #X, Y, U, V = self.data[0][1], self.data[1][1], -self.data[0][1] + self.data[0][0], -self.data[1][1] + self.data[1][0]
+
+
+        X, Y, U, V = self.data[0][0], self.data[1][0], -self.data[0][0] + self.data[0][1], -self.data[1][0] + self.data[1][1]
+        #X, Y, U, V = self.data[0][idx0], self.data[1][idx0], -self.data[0][idx0] + self.data[0][idx1], -self.data[1][idx0] + self.data[0][idx1]
 
         line = self.ax.quiver(
             X, Y, U, V, 
@@ -63,10 +75,14 @@ class vector(segment):
         self.lines = []
         self.lines.append(line)
 
-    @property
-    def flip(self):
+    
+    def flipPoints(self):
         self.data[0] = self.data[0][::-1]
         self.data[1] = self.data[1][::-1]
+    
+    @property
+    def flip(self):
+        self.flipPoints()
         self.onlyDrawFlip()
 
 
