@@ -6,6 +6,10 @@ from ..pointFile import point
 from ..keys.segment_listOfKeys import method
 from .segmentFile import segment
 
+
+
+
+
 class vector(segment):
 
     def onlyDrawFlip(self):
@@ -64,3 +68,56 @@ class vector(segment):
         self.data[0] = self.data[0][::-1]
         self.data[1] = self.data[1][::-1]
         self.onlyDrawFlip()
+
+
+
+
+
+
+
+
+
+
+"""
+class vector(segment):
+
+    def clear_plot(self):
+        # Invece di __del__, puliamo le linee esistenti
+        if hasattr(self, 'lines'):
+            for line in self.lines:
+                line.remove()
+        self.lines = []
+
+    def onlyDraw(self):
+        self.clear_plot()
+
+        # Logica di calcolo indici pulita
+        # Se abs(data[0][0]) > abs(data[0][1]), j=2, altrimenti j=1
+        j = 2 if abs(self.data[0][0]) > abs(self.data[0][1]) else 1
+        k = 3
+        
+        # Indici calcolati una volta sola
+        idx_start = k % j
+        idx_end = k % (j + 1)
+
+        X = self.data[0][idx_start]
+        Y = self.data[1][idx_start]
+        U = self.data[0][idx_end] - self.data[0][idx_start]
+        V = self.data[1][idx_end] - self.data[1][idx_start]
+
+        line = self.ax.quiver(
+            X, Y, U, V,
+            angles='xy', scale_units='xy', scale=1,
+            width=0.003, headwidth=6, headlength=9, headaxislength=9,
+            color=self._color
+        )
+        self.lines.append(line)
+
+    @property
+    def flip(self):
+        # Inverti i dati
+        self.data[0] = self.data[0][::-1]
+        self.data[1] = self.data[1][::-1]
+        # Disegna usando la stessa logica di sempre
+        self.onlyDraw()
+"""
