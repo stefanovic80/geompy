@@ -10,9 +10,17 @@ class vector(segment):
 
     def onlyDraw(self):
         self.__del__()
-        X, Y, U, V = self.data[0][0], self.data[1][0], -self.data[0][0] + self.data[0][1], -self.data[1][0] + self.data[1][1]
-        #line = self.ax.quiver(X, Y, U, V, angles= 'xy', scale_units='xy', scale=1, width = 0.003, headwidth=6, headlength=6, headaxislength=9)
         
+
+        #X, Y, U, V = self.data[0][0], self.data[1][0], -self.data[0][0] + self.data[0][1], -self.data[1][0] + self.data[1][1]
+        k = 3
+        j = 1
+        if abs(self.data[0][0]) > abs(self.data[0][1]):
+            j += 1
+
+        X, Y, U, V = self.data[0][k%j], self.data[1][k%j], -self.data[0][k%j] + self.data[0][k%(j+1)], -self.data[1][k%j] + self.data[1][k%(j+1)]
+        #X, Y, U, V = self.data[0][1], self.data[1][1], -self.data[0][1] + self.data[0][0], -self.data[1][1] + self.data[1][0]
+
         line = self.ax.quiver(
             X, Y, U, V, 
             angles='xy', 
