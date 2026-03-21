@@ -13,7 +13,7 @@ from .segmentFile import segment
 class vector(segment):
 
     def Draw(self):
-        self.__del__()
+        #self.__del__()
 
 
         X, Y, U, V = self.data[0][0], self.data[1][0], -self.data[0][0] + self.data[0][1], -self.data[1][0] + self.data[1][1]
@@ -46,10 +46,40 @@ class vector(segment):
 
 
         self.Draw()
-        
-        
+    
+
+    #--------------------------------------------------------
+    @property
+    def tail(self):
+        return point(self.data[0][0], self.data[1][0])
+    
+    @tail.setter
+    def tail(self, pt):
+        self.__del__()
+        self._point[0].__del__()#to be fixed
+        self._point[0] = pt
+        self.data[0][0] = pt.data[0]
+        self.data[1][0] = pt.data[1]
+        self.Draw()
+
+    @property
+    def head(self):
+        return point(self.data[0][1], self.data[1][1])
+
+    @head.setter
+    def head(self, pt):
+        self.__del__()
+        self._point[1].__del__()
+        self._point[1] = pt
+        self.data[0][1] = pt.data[0]
+        self.data[1][1] = pt.data[1]
+        self.Draw()
+
+    #--------------------------------------------------------
+    
     @property
     def flip(self):
+        self.__del__()
         self.data[0] = self.data[0][::-1]
         self.data[1] = self.data[1][::-1]
         self.Draw()
