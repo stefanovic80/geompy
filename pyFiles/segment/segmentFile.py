@@ -36,6 +36,20 @@ class segment(method):
         self.addParams('length', abs(value) )
         self.drawSetts()
 
+    
+    @property
+    def m(self):
+        return (self.data[1][1] - self.data[1][0])/(self.data[0][1] - self.data[0][0])
+
+    @m.setter
+    def m(self, value):
+        Sin = value/(1+value**2)**.5
+        Cos = 1/(1+value**2)**.5
+        self.data[1][1] = self.data[1][0] + Sin*self._length
+        self.data[0][1] = self.data[0][0] + Cos*self._length
+        #self.drawSetts()
+        self.onlyDraw()
+
     @property
     def angle(self):
         return self._angle
